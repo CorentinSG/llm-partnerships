@@ -515,7 +515,7 @@
         }
       ],
       "shortDescription": "Programme permettant aux étudiants sélectionnés de passer un an à Cornell Law School et d'obtenir un LL.M.",
-      "admissionConditions": "Être inscrit en Master 1 ou Master 2 de droit à Paris 1 lors de l'année de sélection. TOEFL minimum 100 ou IELTS minimum 7.0. L'étudiant doit valider au moins un diplôme de niveau Bac+4 avant le départ.",
+      "admissionConditions": "Être inscrit en Master 1 ou Master 2 de droit à Paris 1 lors de l'année de sélection. TOEFL minimum 100 ou IELTS minimum 7.0. L'étudiant doit valider au moins un diplôme de niveau Bac+4 avant le départ. Candidature préalable Cornell via LSAC (LL.M. Credential Assembly Service).",
       "languageTests": [
         { "test": "TOEFL", "minimumScore": "100", "details": "TOEFL préférable à tout autre diplôme." },
         { "test": "IELTS", "minimumScore": "7.0", "details": "Accepté comme dispense de TOEFL." }
@@ -526,10 +526,10 @@
       "tuitionCategory": "fixed_fee",
       "tuitionDisplay": "Frais de scolarité à payer auprès de Paris 1, montant proche d'une inscription en Master, plus CVEC le cas échéant.",
       "financialAid": "Aucune aide financière prévue par le programme.",
-      "applicationDeadline": "15 décembre 2024 pour première candidature directe à Cornell ; 6 janvier 2025 à 17h pour le dossier Paris 1.",
+      "applicationDeadline": "Cornell/LSAC : 1er décembre 2024 (envoi des candidats nominés par email) ; 15 décembre 2024 (dossier LSAC). Paris 1 : 6 janvier 2025 à 17h (dossier).",
       "reliabilityStatus": "confirmed",
       "missingInformation": ["Spécialité exacte du LL.M", "Lien officiel", "Montant exact des frais Paris 1"],
-      "notes": "Assurance maladie américaine obligatoire et à la charge de l'étudiant. Logement, repas et vie quotidienne non pris en charge."
+      "notes": "Candidature Cornell : dépôt via LSAC (LL.M. Credential Assembly Service) ; prévoir 4–6 semaines de traitement LSAC. Lettres de recommandation : au moins 2, dont la lettre de nomination (via LSAC LOR). Nominés à envoyer à glsadmissions@cornell.edu avant le 1er décembre 2024 (copie : fas75@cornell.edu, dfp7@cornell.edu). Lien de candidature directe Cornell : https://llm.lsac.org/login/access.aspx?appl=2098L11. Fee waiver : demander à glsadmissions@cornell.edu (le fee LSAC CAS reste dû). Assurance maladie US obligatoire, logement/repas à charge."
     },
     {
       "id": "paris1-boston-college",
