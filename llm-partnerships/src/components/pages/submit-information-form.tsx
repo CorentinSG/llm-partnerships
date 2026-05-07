@@ -11,6 +11,13 @@ import { Textarea } from "@/components/ui/textarea"
 
 export function SubmitInformationForm() {
   const [submitted, setSubmitted] = React.useState(false)
+  const [status, setStatus] = React.useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle")
+  const [errorMessage, setErrorMessage] = React.useState<string>("")
+
+  const formspreeEndpoint =
+    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || ""
 
   return (
     <PageShell
@@ -19,7 +26,7 @@ export function SubmitInformationForm() {
     >
       <Card>
         <CardContent className="p-6">
-          {submitted ? (
+          {submitted && status === "success" ? (
             <div className="space-y-2">
               <div className="text-lg font-semibold">Merci.</div>
               <p className="text-sm text-muted-foreground">
@@ -33,9 +40,51 @@ export function SubmitInformationForm() {
           ) : (
             <form
               className="grid gap-4 sm:grid-cols-2"
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault()
-                setSubmitted(true)
+                setErrorMessage("")
+
+                if (!formspreeEndpoint) {
+                  setStatus("error")
+                  setErrorMessage(
+                    "Envoi email non configuré. Ajoute NEXT_PUBLIC_FORMSPREE_ENDPOINT (Formspree) dans Vercel / .env."
+                  )
+                  return
+                }
+
+                const form = e.currentTarget
+                const formData = new FormData(form)
+
+                setStatus("sending")
+                try {
+                  const res = await fetch(formspreeEndpoint, {
+                    method: "POST",
+                    headers: { Accept: "application/json" },
+                    body: formData
+                  })
+
+                  if (!res.ok) {
+                    let detail = ""
+                    try {
+                      const json = (await res.json()) as any
+                      detail = json?.error || json?.message || ""
+                    } catch {
+                      // ignore
+                    }
+                    throw new Error(detail || `HTTP ${res.status}`)
+                  }
+
+                  setStatus("success")
+                  setSubmitted(true)
+                  form.reset()
+                } catch (err: any) {
+                  setStatus("error")
+                  setErrorMessage(
+                    `Échec d’envoi. ${
+                      err?.message ? String(err.message) : "Réessaie."
+                    }`
+                  )
+                }
               }}
             >
               <div className="space-y-2">
@@ -81,12 +130,20 @@ export function SubmitInformationForm() {
                   placeholder="https://…"
                 />
               </div>
+              <input type="hidden" name="page" value="Submit information" />
               <div className="sm:col-span-2 flex items-center justify-between gap-3">
                 <div className="text-xs text-muted-foreground">
-                  Pas de backend : rien n’est stocké.
+                  Les messages sont envoyés par email (Formspree). Rien n’est stocké sur le site.
                 </div>
-                <Button type="submit">Envoyer</Button>
+                <Button type="submit" disabled={status === "sending"}>
+                  {status === "sending" ? "Envoi…" : "Envoyer"}
+                </Button>
               </div>
+              {status === "error" ? (
+                <div className="sm:col-span-2 rounded-lg border bg-muted/30 p-3 text-sm text-muted-foreground">
+                  {errorMessage}
+                </div>
+              ) : null}
             </form>
           )}
         </CardContent>

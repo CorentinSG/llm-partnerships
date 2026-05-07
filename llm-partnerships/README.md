@@ -23,6 +23,15 @@ npm run dev
 
 Then open http://localhost:3000
 
+## Email submissions (Gmail)
+
+The “Proposer une information” form can send submissions to your Gmail using Formspree (no backend required).
+
+1) Create a Formspree form and set the recipient email to your Gmail.
+2) Add this env var in Vercel (Project → Settings → Environment Variables) and locally if needed:
+
+- `NEXT_PUBLIC_FORMSPREE_ENDPOINT` = `https://formspree.io/f/<yourFormId>`
+
 ## Edit data
 
 Update `data/database.json`. When a field is unknown, keep:
