@@ -41,10 +41,32 @@ function mapTuitionCategory(category: string, unknownValue: string) {
   return map[category] || unknownValue
 }
 
+function isFrenchFeesOnly(tuitionDisplay: string | undefined) {
+  if (!tuitionDisplay) return false
+  const t = tuitionDisplay.toLowerCase()
+  return (
+    t.includes("à payer auprès de paris") ||
+    t.includes("a payer aupres de paris") ||
+    t.includes("à payer auprès de paris 1") ||
+    t.includes("a payer aupres de paris 1") ||
+    t.includes("à verser à paris") ||
+    t.includes("a verser a paris") ||
+    t.includes("à verser à paris-panthéon-assas") ||
+    t.includes("a verser a paris-pantheon-assas") ||
+    t.includes("frais de scolarité à payer auprès de paris") ||
+    t.includes("frais de scolarite a payer aupres de paris")
+  )
+}
+
 const partnerships: Partnership[] = database.partnerships.map((p) => {
   const uni = database.frenchUniversities.find((u) => u.id === p.frenchUniversityId)
   const unknown = database.unknownValue || "Non communiqué"
-  const tuitionCategory = mapTuitionCategory(p.tuitionCategory, unknown)
+  let tuitionCategory = mapTuitionCategory(p.tuitionCategory, unknown)
+  // User rule: if only French university fees are due, treat as "Sans frais"
+  // (i.e., no tuition due to the US partner university).
+  if (p.tuitionCategory === "fixed_fee" && isFrenchFeesOnly(p.tuitionDisplay)) {
+    tuitionCategory = "sans frais"
+  }
   const availableSeats = inferSeats(p.availableSeatsMin, p.availableSeatsMax, p.availableSeatsDisplay, unknown)
   const partnershipType =
     p.partnershipType && database.partnershipTypes?.[p.partnershipType]
