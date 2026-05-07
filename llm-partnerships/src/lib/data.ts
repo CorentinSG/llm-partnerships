@@ -41,6 +41,25 @@ function mapTuitionCategory(category: string, unknownValue: string) {
   return map[category] || unknownValue
 }
 
+function normalizeRequiredLevel(value: string, unknownValue: string) {
+  const v = (value || "").trim()
+  if (!v) return unknownValue
+  const n = v.toLowerCase()
+  if (
+    n === "m2" ||
+    n.includes("m2 (") ||
+    n.includes("fin de master") ||
+    n.includes("master 2 de droit") ||
+    n === "master 2" ||
+    n === "master 2 de droit"
+  ) {
+    return "M2"
+  }
+  if (n === "m1") return "M1"
+  if (n === "l3") return "L3"
+  return v
+}
+
 function isFrenchFeesOnly(tuitionDisplay: string | undefined) {
   if (!tuitionDisplay) return false
   const t = tuitionDisplay.toLowerCase()
@@ -86,7 +105,7 @@ const partnerships: Partnership[] = database.partnerships.map((p) => {
     programType: p.programType || unknown,
     partnershipType,
     specialties: p.specialties?.length ? p.specialties : [unknown],
-    requiredLevel: p.requiredLevel || unknown,
+    requiredLevel: normalizeRequiredLevel(p.requiredLevel || unknown, unknown),
     programLanguage: p.programLanguage || unknown,
     duration: p.duration || unknown,
     officialLink: p.officialLink || "",
