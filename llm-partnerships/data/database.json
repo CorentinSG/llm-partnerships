@@ -104,6 +104,15 @@
       "country": "France",
       "coordinates": { "lat": 49.0365, "lng": 2.0761 },
       "dataStatus": "incomplete"
+    },
+    {
+      "id": "dauphine",
+      "name": "Paris Dauphine-PSL",
+      "faculty": "Non communiqué",
+      "city": "Paris",
+      "country": "France",
+      "coordinates": { "lat": 48.8704, "lng": 2.2747 },
+      "dataStatus": "to_confirm"
     }
   ],
   "partnerships": [
@@ -1116,6 +1125,88 @@
         "Lien officiel"
       ],
       "notes": "Aucun détail fiable communiqué sur les conditions du partenariat."
+    },
+    {
+      "id": "dauphine-case-western",
+      "frenchUniversityId": "dauphine",
+      "frenchUniversity": "Paris Dauphine-PSL",
+      "partnerUniversity": "Case Western Reserve University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Cleveland (Ohio)",
+      "continent": "Amérique du Nord",
+      "programType": "LL.M partenaire",
+      "partnershipType": "reserved_seat",
+      "specialties": ["Non communiqué"],
+      "requiredLevel": "M2 (fin de Master)",
+      "applicationYear": "Début d’année (dossier)",
+      "programLanguage": "Anglais",
+      "duration": "Non communiqué",
+      "officialLink": "",
+      "shortDescription": "2 à 4 places au tarif Dauphine pour effectuer un LL.M aux États-Unis (Case Western, Ohio) à la fin du Master.",
+      "admissionConditions": "Sélection au début de l’année sur dossier (application packets).",
+      "languageTests": [
+        { "test": "TOEFL iBT", "minimumScore": "80+", "details": "4.0 and above / 80 and above (selon info transmise)." },
+        { "test": "IELTS", "minimumScore": "6.5+", "details": "Non communiqué" },
+        { "test": "Duolingo English Test", "minimumScore": "120+", "details": "Non communiqué" },
+        { "test": "ELS", "minimumScore": "Level 112", "details": "Graduation from ELS: Level 112" }
+      ],
+      "availableSeatsDisplay": "2 à 4 places (partenariat Dauphine → US)",
+      "availableSeatsMin": 2,
+      "availableSeatsMax": 4,
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Frais au tarif Dauphine uniquement (aucuns frais de scolarité de l’université américaine indiqués).",
+      "financialAid": "Non communiqué",
+      "applicationDeadline": "Non communiqué",
+      "reliabilityStatus": "to_confirm",
+      "missingInformation": [
+        "Lien officiel",
+        "Durée exacte",
+        "Calendrier détaillé",
+        "Frais exacts (tarif Dauphine) et coûts annexes",
+        "Précision TOEFL (barème / format)"
+      ],
+      "notes": "Information fournie par l’utilisateur ; à vérifier via une page officielle Dauphine/PSL."
+    },
+    {
+      "id": "dauphine-saint-louis-university",
+      "frenchUniversityId": "dauphine",
+      "frenchUniversity": "Paris Dauphine-PSL",
+      "partnerUniversity": "Saint Louis University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "St. Louis (Missouri)",
+      "continent": "Amérique du Nord",
+      "programType": "LL.M partenaire",
+      "partnershipType": "reserved_seat",
+      "specialties": ["Non communiqué"],
+      "requiredLevel": "M2 (fin de Master)",
+      "applicationYear": "Début d’année (dossier)",
+      "programLanguage": "Anglais",
+      "duration": "Non communiqué",
+      "officialLink": "",
+      "shortDescription": "2 à 4 places au tarif Dauphine pour effectuer un LL.M aux États-Unis (Saint Louis University, Missouri) à la fin du Master.",
+      "admissionConditions": "Sélection au début de l’année sur dossier (application packets).",
+      "languageTests": [
+        { "test": "TOEFL iBT", "minimumScore": "80+", "details": "4.0 and above / 80 and above (selon info transmise)." },
+        { "test": "IELTS", "minimumScore": "6.5+", "details": "Non communiqué" },
+        { "test": "Duolingo English Test", "minimumScore": "120+", "details": "Non communiqué" },
+        { "test": "ELS", "minimumScore": "Level 112", "details": "Graduation from ELS: Level 112" }
+      ],
+      "availableSeatsDisplay": "2 à 4 places (partenariat Dauphine → US)",
+      "availableSeatsMin": 2,
+      "availableSeatsMax": 4,
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Frais au tarif Dauphine uniquement (aucuns frais de scolarité de l’université américaine indiqués).",
+      "financialAid": "Non communiqué",
+      "applicationDeadline": "Non communiqué",
+      "reliabilityStatus": "to_confirm",
+      "missingInformation": [
+        "Lien officiel",
+        "Durée exacte",
+        "Calendrier détaillé",
+        "Frais exacts (tarif Dauphine) et coûts annexes",
+        "Précision TOEFL (barème / format)"
+      ],
+      "notes": "Information fournie par l’utilisateur ; à vérifier via une page officielle Dauphine/PSL."
     }
   ],
   "researchQueue": [
@@ -1133,7 +1224,7 @@
       "city": "Paris",
       "status": "to_research",
       "knownPartners": [],
-      "notes": "Aucune donnée fiable encore collectée sur les partenariats LL.M."
+      "notes": "Mise à jour: info utilisateur (à confirmer) : 2–4 places au tarif Dauphine pour un LL.M à Case Western (Ohio) et Saint Louis University (Missouri), sélection au début d’année sur dossier. À sourcer via une page officielle."
     },
     {
       "id": "paris-saclay",
