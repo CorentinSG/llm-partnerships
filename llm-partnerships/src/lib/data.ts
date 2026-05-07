@@ -77,6 +77,16 @@ function isFrenchFeesOnly(tuitionDisplay: string | undefined) {
   )
 }
 
+function parseUsState(partnerCity: string | undefined) {
+  if (!partnerCity) return ""
+  // Expected format examples:
+  // "Cleveland (Ohio)", "St. Louis (Missouri)", "Washington, D.C."
+  const m = partnerCity.match(/\(([^)]+)\)\s*$/)
+  if (m && m[1]) return m[1].trim()
+  if (partnerCity.toLowerCase().includes("d.c")) return "District of Columbia"
+  return ""
+}
+
 const partnerships: Partnership[] = database.partnerships.map((p) => {
   const uni = database.frenchUniversities.find((u) => u.id === p.frenchUniversityId)
   const unknown = database.unknownValue || "Non communiqué"
@@ -101,6 +111,7 @@ const partnerships: Partnership[] = database.partnerships.map((p) => {
     partnerCountry: p.partnerCountry || unknown,
     partnerUniversity: p.partnerUniversity || unknown,
     partnerCity: p.partnerCity || undefined,
+    partnerState: parseUsState(p.partnerCity) || undefined,
     continent: p.continent || unknown,
     programType: p.programType || unknown,
     partnershipType,
@@ -190,6 +201,11 @@ export function getFilterOptions() {
   const partnerCountries = uniq(partnerships.map((p) => p.partnerCountry))
   const continents = uniq(partnerships.map((p) => p.continent))
   const partnerUniversities = uniq(partnerships.map((p) => p.partnerUniversity))
+  const partnerStates = uniq(
+    partnerships
+      .map((p) => p.partnerState || "")
+      .filter((s) => Boolean(s))
+  )
   const programTypes = uniq(partnerships.map((p) => p.programType))
   const partnershipTypes = uniq(
     partnerships.map((p) => p.partnershipType || database.unknownValue)
@@ -207,6 +223,7 @@ export function getFilterOptions() {
   return {
     frenchUniversities,
     partnerCountries,
+    partnerStates,
     continents,
     partnerUniversities,
     programTypes,

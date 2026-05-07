@@ -7,6 +7,7 @@ import { FiltersPanel } from "@/components/filters/filters-panel"
 import { FranceMap } from "@/components/france-map"
 import { PartnershipCard } from "@/components/partnership-card"
 import { StatsBar } from "@/components/stats-bar"
+import { UsMap } from "@/components/us-map"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -30,6 +31,7 @@ export function HomePage() {
 
   const [searchQuery, setSearchQuery] = React.useState("")
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
+  const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
@@ -41,6 +43,7 @@ export function HomePage() {
     (filters.partnerCountry ? 1 : 0) +
     (filters.continent ? 1 : 0) +
     (filters.partnerUniversity ? 1 : 0) +
+    (filters.partnerState ? 1 : 0) +
     (filters.programType ? 1 : 0) +
     (filters.partnershipType ? 1 : 0) +
     (filters.requiredLevel ? 1 : 0) +
@@ -145,13 +148,44 @@ export function HomePage() {
 
         <div className="mt-10 grid gap-7 lg:grid-cols-[460px_1fr]">
           <div className="space-y-6">
-            <FranceMap
-              points={points}
-              selectedFrenchUniversity={filters.frenchUniversity}
-              onSelect={(u) =>
-                setFilters((prev) => ({ ...prev, frenchUniversity: u }))
-              }
-            />
+            <div className="flex items-center gap-2">
+              <Button
+                variant={mapMode === "fr" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setMapMode("fr")}
+              >
+                France
+              </Button>
+              <Button
+                variant={mapMode === "us" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setMapMode("us")}
+              >
+                États-Unis
+              </Button>
+            </div>
+
+            {mapMode === "fr" ? (
+              <FranceMap
+                points={points}
+                selectedFrenchUniversity={filters.frenchUniversity}
+                onSelect={(u) =>
+                  setFilters((prev) => ({ ...prev, frenchUniversity: u }))
+                }
+              />
+            ) : (
+              <UsMap
+                partnerships={all}
+                selectedState={filters.partnerState}
+                onSelectState={(state) =>
+                  setFilters((prev) => ({
+                    ...prev,
+                    partnerCountry: "États-Unis",
+                    partnerState: state
+                  }))
+                }
+              />
+            )}
 
             <Card className="hidden lg:block">
               <CardContent className="p-6">

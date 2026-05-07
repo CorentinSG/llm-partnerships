@@ -24,6 +24,7 @@ export function FiltersPanel({
   options: {
     frenchUniversities: string[]
     partnerCountries: string[]
+    partnerStates: string[]
     continents: string[]
     partnerUniversities: string[]
     programTypes: string[]
@@ -73,6 +74,13 @@ export function FiltersPanel({
           value={filters.partnerUniversity}
           options={options.partnerUniversities}
           onChange={(v) => onChange({ ...filters, partnerUniversity: v })}
+        />
+        <SelectFilter
+          label="État (USA)"
+          placeholder="Tous"
+          value={filters.partnerState}
+          options={options.partnerStates}
+          onChange={(v) => onChange({ ...filters, partnerState: v })}
         />
         <SelectFilter
           label="Type de programme"

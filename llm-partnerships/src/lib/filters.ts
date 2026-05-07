@@ -6,6 +6,7 @@ export interface FiltersState {
   partnerCountry?: string
   continent?: string
   partnerUniversity?: string
+  partnerState?: string
   programType?: string
   partnershipType?: string
   specialties?: string[]
@@ -48,6 +49,8 @@ export function filterPartnerships(
     if (filters.continent && p.continent !== filters.continent) return false
     if (filters.partnerUniversity && p.partnerUniversity !== filters.partnerUniversity)
       return false
+    if (filters.partnerState && (p.partnerState || "") !== filters.partnerState)
+      return false
     if (filters.programType && p.programType !== filters.programType) return false
     if (filters.partnershipType && p.partnershipType !== filters.partnershipType)
       return false
@@ -87,6 +90,7 @@ export function filterPartnerships(
       p.partnerCountry,
       p.partnerUniversity,
       p.partnerCity || "",
+      p.partnerState || "",
       p.continent,
       p.programType,
       p.partnershipType || "",
