@@ -1,0 +1,13 @@
+{
+  "name": "llm-partnerships-monorepo-wrapper",
+  "private": true,
+  "workspaces": [
+    "llm-partnerships"
+  ],
+  "scripts": {
+    "dev": "npm --workspace llm-partnerships run dev",
+    "build": "npm --workspace llm-partnerships run build",
+    "start": "npm --workspace llm-partnerships run start"
+  }
+}
+
