@@ -44,6 +44,7 @@ export interface Partnership {
   partnerUniversity: string
   partnerCity?: string
   partnerState?: string
+  partnerCoordinates?: Coordinates
   continent: string
   programType: string
   partnershipType?: string

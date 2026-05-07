@@ -9,15 +9,38 @@ import { cn } from "@/lib/utils"
 
 const usStates = usStatesRaw as any
 
-function countByState(partnerships: Partnership[]) {
-  const map = new Map<string, number>()
+function groupPartnerUniversities(partnerships: Partnership[]) {
+  const byUni = new Map<
+    string,
+    {
+      partnerUniversity: string
+      partnerState: string
+      partnerCity?: string
+      partnerCoordinates?: { lat: number; lng: number }
+      count: number
+    }
+  >()
+
   for (const p of partnerships) {
     if (p.partnerCountry !== "États-Unis") continue
     const state = p.partnerState || ""
     if (!state) continue
-    map.set(state, (map.get(state) || 0) + 1)
+    const key = `${p.partnerUniversity}__${state}`
+    const existing = byUni.get(key)
+    if (existing) existing.count += 1
+    else
+      byUni.set(key, {
+        partnerUniversity: p.partnerUniversity,
+        partnerState: state,
+        partnerCity: p.partnerCity,
+        partnerCoordinates: p.partnerCoordinates,
+        count: 1
+      })
   }
-  return map
+
+  return Array.from(byUni.values()).sort((a, b) =>
+    a.partnerUniversity.localeCompare(b.partnerUniversity)
+  )
 }
 
 export function UsMap({
@@ -35,8 +58,8 @@ export function UsMap({
   const height = 340
   const [hovered, setHovered] = React.useState<string | null>(null)
 
-  const stateCounts = React.useMemo(
-    () => countByState(partnerships),
+  const universities = React.useMemo(
+    () => groupPartnerUniversities(partnerships),
     [partnerships]
   )
 
@@ -49,6 +72,24 @@ export function UsMap({
       centroidFor: centroid
     }
   }, [width, height])
+
+  const stateCentroids = React.useMemo(() => {
+    const map = new Map<string, { x: number; y: number }>()
+    for (const f of usStates.features) {
+      const name = String(f.properties?.name || "")
+      const [x, y] = centroidFor(f)
+      map.set(name, { x, y })
+    }
+    return map
+  }, [centroidFor])
+
+  const stateCounts = React.useMemo(() => {
+    const map = new Map<string, number>()
+    for (const u of universities) {
+      map.set(u.partnerState, (map.get(u.partnerState) || 0) + u.count)
+    }
+    return map
+  }, [universities])
 
   return (
     <div className={cn("w-full", className)}>
@@ -104,45 +145,71 @@ export function UsMap({
             )
           })}
 
-          {/* state markers */}
-          {usStates.features.map((f: any) => {
-            const name = String(f.properties?.name || "")
-            const count = stateCounts.get(name) || 0
-            if (!count) return null
-            const [cx, cy] = centroidFor(f)
-            const selected = name === selectedState
-            const r = selected ? 9 : 7
+          {/* partner university markers (one per partner university) */}
+          {universities.map((u) => {
+            const selected = u.partnerState === selectedState
+            const base = stateCentroids.get(u.partnerState)
+            if (!base) return null
+
+            // Position:
+            // - exact coords if provided
+            // - otherwise, deterministic jitter around state centroid (approx)
+            let x = base.x
+            let y = base.y
+
+            if (u.partnerCoordinates) {
+              // project lon/lat using the same projection
+              const proj = geoAlbersUsa()
+                .translate([width / 2, height / 2])
+                .scale(650)
+              const p = proj([u.partnerCoordinates.lng, u.partnerCoordinates.lat]) as
+                | [number, number]
+                | null
+              if (p) {
+                x = p[0]
+                y = p[1]
+              }
+            } else {
+              const seed = Array.from(`${u.partnerUniversity}-${u.partnerState}`).reduce(
+                (acc, ch) => acc + ch.charCodeAt(0),
+                0
+              )
+              const angle = (seed % 360) * (Math.PI / 180)
+              const radius = 10 + (seed % 12)
+              x = base.x + Math.cos(angle) * radius
+              y = base.y + Math.sin(angle) * radius
+            }
+
+            const r = selected ? 6.5 : 5.2
+            const label = `${u.partnerUniversity} • ${u.partnerState}${
+              u.partnerCoordinates ? "" : " (position approximative)"
+            }`
             return (
               <g
-                key={`${name}-marker`}
-                onClick={() => onSelectState(selected ? undefined : name)}
+                key={`${u.partnerUniversity}-${u.partnerState}`}
+                onClick={() =>
+                  onSelectState(selected ? undefined : u.partnerState)
+                }
+                onMouseEnter={() => setHovered(u.partnerState)}
                 style={{ cursor: "pointer" }}
               >
                 <circle
-                  cx={cx}
-                  cy={cy}
+                  cx={x}
+                  cy={y}
                   r={r + 7}
                   fill="hsl(var(--primary))"
                   opacity={selected ? 0.18 : 0.1}
                 />
                 <circle
-                  cx={cx}
-                  cy={cy}
+                  cx={x}
+                  cy={y}
                   r={r}
                   fill="hsl(var(--background))"
                   stroke="hsl(var(--primary))"
                   strokeWidth={selected ? 3 : 2}
-                />
-                <text
-                  x={cx}
-                  y={cy + 4}
-                  textAnchor="middle"
-                  fontSize="11"
-                  fill="hsl(var(--foreground))"
-                  style={{ fontWeight: 700 }}
                 >
-                  {count}
-                </text>
+                  <title>{label}</title>
+                </circle>
               </g>
             )
           })}
@@ -194,4 +261,3 @@ export function UsMap({
     </div>
   )
 }
-

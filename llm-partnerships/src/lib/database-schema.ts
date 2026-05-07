@@ -23,9 +23,11 @@ export interface DatabasePartnership {
   partnerUniversity: string
   partnerCountry: string
   partnerCity?: string
+  partnerState?: string
   continent: string
   programType: string
   partnershipType?: string
+  partnerCoordinates?: { lat: number; lng: number }
   specialties: string[]
   requiredLevel: string
   applicationYear: string
