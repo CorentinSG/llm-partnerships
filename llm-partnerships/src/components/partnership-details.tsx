@@ -58,6 +58,16 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               value={partnership.partnershipType || "Non communiqué"}
             />
             <Field
+              label="Candidature"
+              value={
+                partnership.applicationProcess === "internal"
+                  ? "Interne (sélection par l’université française)"
+                  : partnership.applicationProcess === "lsac"
+                    ? "Plateforme LSAC"
+                    : "Non communiqué"
+              }
+            />
+            <Field
               label="Partenaire (pays/continent)"
               value={`${partnership.partnerCountry} • ${partnership.continent}`}
             />

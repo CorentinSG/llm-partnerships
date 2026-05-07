@@ -66,6 +66,15 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
           </span>
           <span>•</span>
           <span>Langue : {partnership.programLanguage}</span>
+          <span>•</span>
+          <span>
+            Candidature :{" "}
+            {partnership.applicationProcess === "internal"
+              ? "Interne"
+              : partnership.applicationProcess === "lsac"
+                ? "LSAC"
+                : "Non communiqué"}
+          </span>
         </div>
       </CardContent>
       <CardFooter className="flex items-center justify-between gap-3">

@@ -87,6 +87,20 @@ function parseUsState(partnerCity: string | undefined) {
   return ""
 }
 
+function mapApplicationProcess(
+  value: string | undefined,
+  admissionConditions: string | undefined,
+  unknownValue: string
+): "internal" | "lsac" | "Non communiqué" {
+  if (value === "internal") return "internal"
+  if (value === "lsac") return "lsac"
+  if (value === "non_communique") return "Non communiqué"
+
+  const text = `${admissionConditions || ""}`.toLowerCase()
+  if (text.includes("lsac")) return "lsac"
+  return "Non communiqué"
+}
+
 const partnerships: Partnership[] = database.partnerships.map((p) => {
   const uni = database.frenchUniversities.find((u) => u.id === p.frenchUniversityId)
   const unknown = database.unknownValue || "Non communiqué"
@@ -120,6 +134,11 @@ const partnerships: Partnership[] = database.partnerships.map((p) => {
     requiredLevel: normalizeRequiredLevel(p.requiredLevel || unknown, unknown),
     programLanguage: p.programLanguage || unknown,
     duration: p.duration || unknown,
+    applicationProcess: mapApplicationProcess(
+      p.applicationProcess,
+      p.admissionConditions,
+      unknown
+    ),
     officialLink: p.officialLink || "",
     attachments: p.attachments || [],
     shortDescription: p.shortDescription || unknown,

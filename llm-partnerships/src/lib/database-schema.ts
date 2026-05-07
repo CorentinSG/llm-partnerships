@@ -33,6 +33,7 @@ export interface DatabasePartnership {
   applicationYear: string
   programLanguage: string
   duration: string
+  applicationProcess?: "internal" | "lsac" | "non_communique"
   officialLink: string
   attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string

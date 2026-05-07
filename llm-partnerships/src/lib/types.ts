@@ -52,6 +52,7 @@ export interface Partnership {
   requiredLevel: RequiredLevel | string
   programLanguage: string
   duration: string
+  applicationProcess?: "internal" | "lsac" | "Non communiqué"
   officialLink: string
   attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string
