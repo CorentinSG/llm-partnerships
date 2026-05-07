@@ -112,7 +112,7 @@
       "city": "Paris",
       "country": "France",
       "coordinates": { "lat": 48.8704, "lng": 2.2747 },
-      "dataStatus": "to_confirm"
+      "dataStatus": "confirmed"
     }
   ],
   "partnerships": [
@@ -1157,7 +1157,7 @@
       "tuitionDisplay": "Frais au tarif Dauphine uniquement.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
+      "reliabilityStatus": "confirmed",
       "missingInformation": [
         "Lien officiel",
         "Durée exacte",
@@ -1165,7 +1165,7 @@
         "Frais exacts (tarif Dauphine) et coûts annexes",
         "Précision TOEFL (barème / format)"
       ],
-      "notes": "Information fournie par l’utilisateur ; à vérifier via une page officielle Dauphine/PSL."
+      "notes": "Information confirmée par l’utilisateur."
     },
     {
       "id": "dauphine-saint-louis-university",
@@ -1198,7 +1198,7 @@
       "tuitionDisplay": "Frais au tarif Dauphine uniquement.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
+      "reliabilityStatus": "confirmed",
       "missingInformation": [
         "Lien officiel",
         "Durée exacte",
@@ -1206,7 +1206,7 @@
         "Frais exacts (tarif Dauphine) et coûts annexes",
         "Précision TOEFL (barème / format)"
       ],
-      "notes": "Information fournie par l’utilisateur ; à vérifier via une page officielle Dauphine/PSL."
+      "notes": "Information confirmée par l’utilisateur."
     }
   ],
   "researchQueue": [
