@@ -32,6 +32,7 @@ export interface DatabasePartnership {
   programLanguage: string
   duration: string
   officialLink: string
+  attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string
   admissionConditions: string
   languageTests: DatabaseLanguageTest[]
@@ -69,4 +70,3 @@ export interface PartnershipsDatabase {
   partnerships: DatabasePartnership[]
   researchQueue: ResearchQueueItem[]
 }
-

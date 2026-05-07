@@ -51,6 +51,7 @@ export interface Partnership {
   programLanguage: string
   duration: string
   officialLink: string
+  attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string
   admissionConditions: string
   languageTests: LanguageTest[]

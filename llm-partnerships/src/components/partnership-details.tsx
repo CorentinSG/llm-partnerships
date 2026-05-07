@@ -1,5 +1,12 @@
 import Link from "next/link"
-import { ExternalLink, GraduationCap, Languages, MapPin, Users } from "lucide-react"
+import {
+  ExternalLink,
+  FileText,
+  GraduationCap,
+  Languages,
+  MapPin,
+  Users
+} from "lucide-react"
 import type { ReactNode } from "react"
 
 import { ReliabilityBadge } from "@/components/reliability-badge"
@@ -143,6 +150,30 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               }
             />
           </div>
+
+          {partnership.attachments && partnership.attachments.length > 0 ? (
+            <div className="space-y-2">
+              <div className="text-sm font-medium">Documents (PDF)</div>
+              <div className="space-y-2">
+                {partnership.attachments.map((a) => (
+                  <div key={`${a.url}-${a.label}`} className="flex flex-col gap-1">
+                    <a
+                      href={a.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-sm underline underline-offset-4"
+                    >
+                      <FileText className="h-4 w-4" aria-hidden="true" />
+                      {a.label}
+                    </a>
+                    {a.note ? (
+                      <div className="text-xs text-muted-foreground">{a.note}</div>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {partnership.missingInformation && partnership.missingInformation.length > 0 ? (
             <div className="space-y-2">

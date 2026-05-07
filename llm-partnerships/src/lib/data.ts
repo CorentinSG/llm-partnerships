@@ -90,6 +90,7 @@ const partnerships: Partnership[] = database.partnerships.map((p) => {
     programLanguage: p.programLanguage || unknown,
     duration: p.duration || unknown,
     officialLink: p.officialLink || "",
+    attachments: p.attachments || [],
     shortDescription: p.shortDescription || unknown,
     admissionConditions: p.admissionConditions || unknown,
     languageTests:

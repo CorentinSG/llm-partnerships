@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ExternalLink, Info } from "lucide-react"
+import { ExternalLink, FileText, Info } from "lucide-react"
 
 import { ReliabilityBadge } from "@/components/reliability-badge"
 import { TuitionBadges } from "@/components/tuition-badges"
@@ -80,14 +80,33 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             <Link href={`/partnership/${partnership.id}`}>Ouvrir</Link>
           </Button>
         </div>
-        {partnership.officialLink ? (
-          <Button asChild variant="ghost" size="sm">
-            <a href={partnership.officialLink} target="_blank" rel="noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
-              Source
-            </a>
-          </Button>
-        ) : null}
+        <div className="flex items-center gap-1">
+          {partnership.attachments && partnership.attachments.length > 0 ? (
+            <Button asChild variant="ghost" size="sm">
+              <a
+                href={partnership.attachments[0].url}
+                target="_blank"
+                rel="noreferrer"
+                title={partnership.attachments[0].label}
+              >
+                <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
+                PDF
+              </a>
+            </Button>
+          ) : null}
+          {partnership.officialLink ? (
+            <Button asChild variant="ghost" size="sm">
+              <a
+                href={partnership.officialLink}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
+                Source
+              </a>
+            </Button>
+          ) : null}
+        </div>
       </CardFooter>
     </Card>
   )
