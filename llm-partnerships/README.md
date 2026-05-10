@@ -32,6 +32,13 @@ The “Proposer une information” form can send submissions to your Gmail using
 
 - `NEXT_PUBLIC_FORMSPREE_ENDPOINT` = `https://formspree.io/f/<yourFormId>`
 
+## Google Analytics (GA4)
+
+1) Create a GA4 property and get your Measurement ID (looks like `G-XXXXXXXXXX`).
+2) Add it in Vercel (Project → Settings → Environment Variables):
+
+- `NEXT_PUBLIC_GA_ID` = `G-XXXXXXXXXX`
+
 ## Edit data
 
 Update `data/database.json`. When a field is unknown, keep:
