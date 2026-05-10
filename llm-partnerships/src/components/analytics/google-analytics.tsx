@@ -1,4 +1,5 @@
 import Script from "next/script"
+import * as React from "react"
 
 import { GA4PageView } from "@/components/analytics/ga4"
 
@@ -21,8 +22,9 @@ export function GoogleAnalytics() {
           gtag('config', '${measurementId}', { send_page_view: false });
         `}
       </Script>
-      <GA4PageView measurementId={measurementId} />
+      <React.Suspense fallback={null}>
+        <GA4PageView measurementId={measurementId} />
+      </React.Suspense>
     </>
   )
 }
-
