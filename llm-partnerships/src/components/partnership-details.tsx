@@ -88,6 +88,91 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             </p>
           </div>
 
+          {partnership.sourceNote ? (
+            <div className="space-y-2">
+              <div className="text-sm font-medium">Source (note)</div>
+              <p className="text-sm text-muted-foreground">{partnership.sourceNote}</p>
+            </div>
+          ) : null}
+
+          {partnership.seatPolicy ? (
+            <div className="space-y-2">
+              <div className="text-sm font-medium">Politique de places</div>
+              {partnership.seatPolicy.description ? (
+                <p className="text-sm text-muted-foreground">
+                  {partnership.seatPolicy.description}
+                </p>
+              ) : null}
+              {partnership.seatPolicy.reportedCohortSize ? (
+                <p className="text-sm text-muted-foreground">
+                  {partnership.seatPolicy.reportedCohortSize}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+
+          {partnership.admissionSelection ? (
+            <div className="space-y-2">
+              <div className="text-sm font-medium">SÃ©lection</div>
+              {partnership.admissionSelection.selectionBasis ? (
+                <p className="text-sm text-muted-foreground">
+                  {partnership.admissionSelection.selectionBasis}
+                </p>
+              ) : null}
+              <div className="grid gap-4 sm:grid-cols-2">
+                {partnership.admissionSelection.internalCandidates ? (
+                  <div className="space-y-2">
+                    <div className="text-xs font-medium text-muted-foreground">
+                      Candidats internes
+                    </div>
+                    <div className="space-y-1 text-sm text-muted-foreground">
+                      {partnership.admissionSelection.internalCandidates.program ? (
+                        <div>{partnership.admissionSelection.internalCandidates.program}</div>
+                      ) : null}
+                      {partnership.admissionSelection.internalCandidates.oneSemesterNYRequirement ? (
+                        <div>
+                          {partnership.admissionSelection.internalCandidates.oneSemesterNYRequirement}
+                        </div>
+                      ) : null}
+                      {partnership.admissionSelection.internalCandidates.nyBarTrackRequirement ? (
+                        <div>
+                          {partnership.admissionSelection.internalCandidates.nyBarTrackRequirement}
+                        </div>
+                      ) : null}
+                      {partnership.admissionSelection.internalCandidates.note ? (
+                        <div>{partnership.admissionSelection.internalCandidates.note}</div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : null}
+
+                {partnership.admissionSelection.externalCandidates ? (
+                  <div className="space-y-2">
+                    <div className="text-xs font-medium text-muted-foreground">
+                      Candidats externes
+                    </div>
+                    <div className="space-y-1 text-sm text-muted-foreground">
+                      {typeof partnership.admissionSelection.externalCandidates.accepted ===
+                      "boolean" ? (
+                        <div>
+                          {partnership.admissionSelection.externalCandidates.accepted
+                            ? "Candidatures extÃ©rieures acceptÃ©es"
+                            : "Candidatures extÃ©rieures non acceptÃ©es"}
+                        </div>
+                      ) : null}
+                      {partnership.admissionSelection.externalCandidates.selectionMethod ? (
+                        <div>{partnership.admissionSelection.externalCandidates.selectionMethod}</div>
+                      ) : null}
+                      {partnership.admissionSelection.externalCandidates.requirements ? (
+                        <div>{partnership.admissionSelection.externalCandidates.requirements}</div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+
           <div className="space-y-2">
             <div className="text-sm font-medium">Conditions dâ€™admission</div>
             <p className="text-sm text-muted-foreground">

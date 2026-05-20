@@ -60,9 +60,33 @@ export interface Partnership {
   }
   nyBarOption?: {
     available?: boolean
+    confirmed?: boolean
+    additionalSemesterRequired?: boolean
+    additionalSemesterCost?: string
+    additionalInsurance?: string
+    eligibilityNote?: string
     description?: string
     additionalRequirements?: string
     additionalTuition?: string
+  }
+  seatPolicy?: {
+    hasFixedQuota?: boolean
+    description?: string
+    reportedCohortSize?: string
+  }
+  admissionSelection?: {
+    selectionBasis?: string
+    internalCandidates?: {
+      program?: string
+      oneSemesterNYRequirement?: string
+      nyBarTrackRequirement?: string
+      note?: string
+    }
+    externalCandidates?: {
+      accepted?: boolean
+      selectionMethod?: string
+      requirements?: string
+    }
   }
   specialties: string[]
   requiredLevel: RequiredLevel | string
@@ -90,6 +114,7 @@ export interface Partnership {
   applicationDocuments?: string[]
   contactEmail?: string
   sourceType?: string
+  sourceNote?: string
   reliabilityStatus: ReliabilityStatus
   missingInformation?: string[]
   notes: string

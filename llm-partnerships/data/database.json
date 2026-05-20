@@ -1426,8 +1426,8 @@
                              "programLanguage":  "Anglais",
                              "duration":  "1 an (St John\u0027s Track) : septembre à décembre à Lyon, janvier à mai à New York",
                              "officialLink":  "https://www.ucly.fr/en/academics/our-programmes/ll-m-in-european-and-international-trade-investment-law-master-2/",
-                             "shortDescription":  "Programme de double diplôme entre l\u0027Université Catholique de Lyon et St. John\u0027s University School of Law. Les étudiants suivent un semestre à Lyon puis un semestre à New York. Les étudiants admis obtiennent un Master 2 français en European and International Trade and Investment Law ainsi qu\u0027un LL.M. délivré par St. John\u0027s University School of Law.",
-                             "admissionConditions":  "Les candidats doivent avoir un diplôme de droit de premier cycle (Licence en droit, LL.B. ou équivalent) ainsi qu\u0027un niveau postgraduate. Dans tous les cas, au moins 4 années d\u0027études supérieures en droit sont requises. D\u0027autres profils peuvent être examinés par le comité d\u0027admission (y compris en fonction de l\u0027expérience professionnelle pertinente).",
+                             "shortDescription":  "Programme de double diplôme UCLy × St. John\u0027s (New York). Un semestre à New York permet d\u0027obtenir le LL.M. de St. John\u0027s ; un second semestre est nécessaire pour l\u0027option New York Bar (frais supplémentaires).",
+                             "admissionConditions":  "Les candidats doivent avoir un diplôme de droit de premier cycle (Licence en droit, LL.B. ou équivalent), ainsi qu\u0027au moins 4 années d\u0027études supérieures en droit. Pour les candidats internes (M1 International Business Law à l\u0027UCLy) : 14/20 de moyenne requis pour partir un semestre à New York ; 15/20 de moyenne requis pour partir deux semestres avec l\u0027option permettant de préparer le New York Bar. Les candidatures extérieures sont acceptées sur dossier.",
                              "languageTests":  [
                                                    {
                                                        "test":  "IELTS",
@@ -1450,22 +1450,22 @@
                                                        "details":  "Test internet-based accepté."
                                                    }
                                                ],
-                             "availableSeatsDisplay":  "Non communiquÃ©",
+                             "availableSeatsDisplay":  "Pas de nombre de places fixe. Admissions selon le dossier. Une étudiante du programme indique qu\u0027environ 10 étudiants sont partis sur la cohorte concernée.",
                              "availableSeatsMin":  null,
                              "availableSeatsMax":  null,
                              "tuitionCategory":  "fixed_fee",
-                             "tuitionDisplay":  "St John\u0027s Track : 20 500 €. Le Lyon Track coûte 9 500 € pour les étudiants Home/EEE et 11 000 € pour les étudiants non-EEE, mais cette option ne comprend pas le semestre à New York.",
+                             "tuitionDisplay":  "St John\u0027s Track : 20 500 € + environ 2 700 € d\u0027assurance. Option New York Bar : semestre supplémentaire à St. John\u0027s (~15 000 €) + environ 2 700 € d\u0027assurance.",
                              "financialAid":  "Non communiquÃ©",
                              "applicationDeadline":  "Mai 2025",
                              "reliabilityStatus":  "confirmed",
                              "missingInformation":  [
-                                                        "Nombre exact de places disponibles",
-                                                        "Montant exact du semestre supplémentaire pour la New York Bar Option",
-                                                        "Existence ou non de bourses",
-                                                        "Frais administratifs actualisés",
-                                                        "Détail précis des crédits suivis à St. John\u0027s University"
+                                                        "Montant exact et officiel de l\u0027assurance (année universitaire en cours)",
+                                                        "Montant exact actualisé du second semestre (New York Bar)",
+                                                        "Critères détaillés pour les candidats extérieurs",
+                                                        "Conditions exactes du New York Bar applicables aux diplômés",
+                                                        "Logement, visa, transport et coût de la vie à New York"
                                                     ],
-                             "notes":  "Cette entrée concerne uniquement le St John\u0027s Track et la New York Bar Option, car ce sont les éléments du programme liés aux États-Unis. Le Lyon Track est mentionné uniquement à titre comparatif mais ne constitue pas un partenariat LL.M aux États-Unis.",
+                             "notes":  "Mise à jour confirmée par une étudiante du programme : 20 500 € + ~2 700 € d\u0027assurance (semestre à New York) ; ~15 000 € + ~2 700 € d\u0027assurance (semestre supplémentaire New York Bar) ; sélection sur notes/dossier ; 14/20 requis (1 semestre NY) et 15/20 (2 semestres + NY Bar) pour les candidats internes ; candidatures extérieures acceptées sur dossier ; pas de quota fixe ; cohorte rapportée ~10 étudiants.",
                              "programName":  "LL.M. in European and International Trade \u0026 Investment Law / St. John\u0027s LL.M. in Transnational Legal Practice",
                              "degreesAwarded":  [
                                                     "Master 2 de droit français en European and International Trade and Investment Law",
@@ -1481,23 +1481,32 @@
                                          },
                              "nyBarOption":  {
                                                  "available":  true,
-                                                 "description":  "Les étudiants du St John\u0027s Track peuvent préparer le New York Bar. Après avoir terminé le St John\u0027s Track, ils peuvent rester un semestre supplémentaire à St. John\u0027s University afin de préparer l\u0027examen du barreau de New York.",
-                                                 "additionalRequirements":  "Les étudiants souhaitant rester pour la New York Bar Option doivent s\u0027inscrire à au moins 12 crédits pendant le semestre d\u0027automne supplémentaire à St. John\u0027s University.",
-                                                 "additionalTuition":  "St. John\u0027s University applique un tarif préférentiel pour ce semestre supplémentaire. Le montant exact n\u0027est pas communiqué."
+                                                 "confirmed":  true,
+                                                 "description":  "Les étudiants qui souhaitent pouvoir passer le New York Bar doivent effectuer un second semestre à St. John\u0027s University après le semestre initial à New York.",
+                                                 "additionalSemesterRequired":  true,
+                                                 "additionalSemesterCost":  "Environ 15 000 €",
+                                                 "additionalInsurance":  "Environ 2 700 €",
+                                                 "eligibilityNote":  "Après ce second semestre, l\u0027étudiant peut passer le New York Bar, sous réserve de remplir les conditions applicables du barreau de New York."
                                              },
                              "languageRequirementsSummary":  "Le programme est entièrement enseigné en anglais. Pour le St John\u0027s Track et la New York Bar Option, un test d\u0027anglais est obligatoire, sauf pour les candidats natifs du Canada, du Royaume-Uni, de Nouvelle-Zélande ou d\u0027Australie.",
                              "frenchLanguageRequirement":  "Aucun niveau de français requis. Les cours sont entièrement enseignés en anglais. Des cours de français gratuits peuvent être proposés aux étudiants intéressés.",
                              "tuitionDetails":  {
-                                                    "lyonTrack":  {
-                                                                      "homeOrEEAStudents":  "9 500 €",
-                                                                      "nonEEAStudents":  "11 000 €",
-                                                                      "includedInUSPartnership":  false
-                                                                  },
-                                                    "stJohnsTrack":  {
-                                                                         "allStudents":  "20 500 €",
-                                                                         "includedInUSPartnership":  true
-                                                                     },
-                                                    "administrativeFees":  "Les frais administratifs peuvent changer chaque année. Pour 2021-2022, ils étaient de 556 €, dont 443 € de frais d\u0027inscription à l\u0027examen d\u0027État et 113 € de frais universitaires."
+                                                    "stJohnsTrackOneSemester":  {
+                                                                                    "description":  "Un semestre à Lyon puis un semestre à New York à St. John\u0027s University School of Law.",
+                                                                                    "tuition":  "20 500 €",
+                                                                                    "insurance":  "Environ 2 700 €",
+                                                                                    "totalEstimatedCost":  "Environ 23 200 € (hors logement, transport, visa et coût de la vie)."
+                                                                                },
+                                                    "nyBarOptionAdditionalSemester":  {
+                                                                                          "description":  "Semestre supplémentaire à St. John\u0027s University nécessaire pour pouvoir préparer le New York Bar.",
+                                                                                          "additionalTuition":  "Environ 15 000 €",
+                                                                                          "additionalInsurance":  "Environ 2 700 €",
+                                                                                          "totalAdditionalEstimatedCost":  "Environ 17 700 € (hors logement, transport, visa et coût de la vie)."
+                                                                                      },
+                                                    "totalEstimatedCostWithNYBarOption":  {
+                                                                                              "description":  "St John\u0027s Track + semestre supplémentaire New York Bar.",
+                                                                                              "amount":  "Environ 40 900 € (hors logement, transport, visa et coût de la vie)."
+                                                                                          }
                                                 },
                              "applicationProcessDetails":  "Les candidatures ouvrent chaque année à partir d\u0027octobre pour la rentrée suivante. Les candidats reçoivent généralement une réponse du comité d\u0027admission sous un mois. Les étudiants non-européens concernés par la procédure Études en France doivent suivre la procédure Campus France en plus de la procédure d\u0027admission UCLy.",
                              "applicationDocuments":  [
@@ -1510,7 +1519,27 @@
                                                           "Tout autre document jugé utile"
                                                       ],
                              "contactEmail":  "llm@univ-catholyon.fr",
-                             "sourceType":  "official_university_page"
+                             "sourceType":  "official_page_and_student_confirmation",
+                             "sourceNote":  "Certaines informations proviennent de la page officielle UCLy, et les informations pratiques sur les coûts, l\u0027assurance, la sélection et le nombre de places ont été confirmées par une étudiante du programme.",
+                             "seatPolicy":  {
+                                                "hasFixedQuota":  false,
+                                                "description":  "Il n\u0027y a pas véritablement de limite de places définie. Si le dossier est considéré comme suffisamment solide, l\u0027étudiant peut partir, indépendamment d\u0027un quota fixe.",
+                                                "reportedCohortSize":  "Environ 10 étudiants partis (cohorte confirmée par une étudiante)."
+                                            },
+                             "admissionSelection":  {
+                                                        "selectionBasis":  "Sélection principalement fondée sur les notes et la qualité du dossier.",
+                                                        "internalCandidates":  {
+                                                                                   "program":  "M1 International Business Law (UCLy)",
+                                                                                   "oneSemesterNYRequirement":  "14/20 de moyenne requis pour partir un semestre à New York.",
+                                                                                   "nyBarTrackRequirement":  "15/20 de moyenne requis pour partir deux semestres (option New York Bar).",
+                                                                                   "note":  "Si ces moyennes ne sont pas atteintes, l\u0027étudiant n\u0027est pas admis dans le track correspondant."
+                                                                               },
+                                                        "externalCandidates":  {
+                                                                                   "accepted":  true,
+                                                                                   "selectionMethod":  "Candidatures extérieures acceptées sur dossier.",
+                                                                                   "requirements":  "Critères exacts non entièrement communiqués ; évaluation par le comité d\u0027admission."
+                                                                               }
+                                                    }
                          },
                          {
                              "id":  "nantes-lsu",
