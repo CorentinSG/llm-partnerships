@@ -30,14 +30,14 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
     partnership.languageTests?.length > 0
       ? partnership.languageTests
           .map((t) =>
-            t.test === "Non communiquÃ©"
-              ? "Non communiquÃ©"
+            t.test === "Non communiqué"
+              ? "Non communiqué"
               : t.details
-                ? `${t.test} (${t.minimumScore}) â€” ${t.details}`
+                ? `${t.test} (${t.minimumScore}) — ${t.details}`
                 : `${t.test} (${t.minimumScore})`
           )
-          .join(" â€¢ ")
-      : "Non communiquÃ©"
+          .join(" • ")
+      : "Non communiqué"
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -45,36 +45,37 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
         <CardHeader>
           <CardTitle className="flex items-start justify-between gap-3">
             <span className="leading-tight">
-              {partnership.frenchUniversity} â†” {partnership.partnerUniversity}
+              {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
             </span>
             <ReliabilityBadge status={partnership.reliabilityStatus} />
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="FacultÃ©" value={partnership.frenchFaculty} />
-            <Field label="Type de programme" value={partnership.programType} />            {partnership.programName ? (
+            <Field label="Faculté" value={partnership.frenchFaculty} />
+            <Field label="Type de programme" value={partnership.programType} />
+            {partnership.programName ? (
               <Field label="Nom du programme" value={partnership.programName} />
             ) : null}
             <Field
               label="Type de partenariat"
-              value={partnership.partnershipType || "Non communiquÃ©"}
+              value={partnership.partnershipType || "Non communiqué"}
             />
             <Field
               label="Candidature"
               value={
                 partnership.applicationProcess === "internal"
-                  ? "Interne (sÃ©lection par lâ€™universitÃ© franÃ§aise)"
+                  ? "Interne (sélection par l’université française)"
                   : partnership.applicationProcess === "lsac"
                     ? "Plateforme LSAC"
-                    : "Non communiquÃ©"
+                    : "Non communiqué"
               }
             />
             <Field
               label="Partenaire (pays/continent)"
-              value={`${partnership.partnerCountry} â€¢ ${partnership.continent}`}
+              value={`${partnership.partnerCountry} • ${partnership.continent}`}
             />
-            <Field label="DurÃ©e" value={partnership.duration} />
+            <Field label="Durée" value={partnership.duration} />
             <Field label="Langue" value={partnership.programLanguage} />
             <Field label="Niveau requis" value={String(partnership.requiredLevel)} />
           </div>
@@ -82,7 +83,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           <Separator />
 
           <div className="space-y-2">
-            <div className="text-sm font-medium">RÃ©sumÃ©</div>
+            <div className="text-sm font-medium">Résumé</div>
             <p className="text-sm text-muted-foreground">
               {partnership.shortDescription}
             </p>
@@ -113,7 +114,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
 
           {partnership.admissionSelection ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">SÃ©lection</div>
+              <div className="text-sm font-medium">Sélection</div>
               {partnership.admissionSelection.selectionBasis ? (
                 <p className="text-sm text-muted-foreground">
                   {partnership.admissionSelection.selectionBasis}
@@ -156,8 +157,8 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                       "boolean" ? (
                         <div>
                           {partnership.admissionSelection.externalCandidates.accepted
-                            ? "Candidatures extÃ©rieures acceptÃ©es"
-                            : "Candidatures extÃ©rieures non acceptÃ©es"}
+                            ? "Candidatures extérieures acceptées"
+                            : "Candidatures extérieures non acceptées"}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.externalCandidates.selectionMethod ? (
@@ -174,7 +175,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           ) : null}
 
           <div className="space-y-2">
-            <div className="text-sm font-medium">Conditions dâ€™admission</div>
+            <div className="text-sm font-medium">Conditions d’admission</div>
             <p className="text-sm text-muted-foreground">
               {partnership.admissionConditions}
             </p>
@@ -265,16 +266,16 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                 </div>
               }
             />
-            <Field label="Aides financiÃ¨res" value={partnership.financialAid} />
+            <Field label="Aides financières" value={partnership.financialAid} />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="AnnÃ©e de candidature" value={partnership.applicationYear} />
+            <Field label="Année de candidature" value={partnership.applicationYear} />
             <Field label="Date limite" value={partnership.applicationDeadline} />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Remarques" value={partnership.notes || "Non communiquÃ©"} />
+            <Field label="Remarques" value={partnership.notes || "Non communiqué"} />
             <Field
               label="Source officielle"
               value={
@@ -289,7 +290,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                     Ouvrir
                   </Link>
                 ) : (
-                  "Non communiquÃ©"
+                  "Non communiqué"
                 )
               }
             />
@@ -321,7 +322,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
 
           {partnership.missingInformation && partnership.missingInformation.length > 0 ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Champs Ã  complÃ©ter</div>
+              <div className="text-sm font-medium">Champs à compléter</div>
               <div className="flex flex-wrap gap-2">
                 {partnership.missingInformation.map((m) => (
                   <span
@@ -345,7 +346,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               Localisation (France)
             </div>
             <div className="text-sm text-muted-foreground">
-              {partnership.city} â€¢ {partnership.frenchUniversity}
+              {partnership.city} • {partnership.frenchUniversity}
             </div>
           </CardContent>
         </Card>
@@ -354,10 +355,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           <CardContent className="p-6 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
               <GraduationCap className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-              SpÃ©cialitÃ©s
+              Spécialités
             </div>
             <div className="text-sm text-muted-foreground">
-              {(partnership.specialties || ["Non communiquÃ©"]).join(" â€¢ ")}
+              {(partnership.specialties || ["Non communiqué"]).join(" • ")}
             </div>
           </CardContent>
         </Card>
