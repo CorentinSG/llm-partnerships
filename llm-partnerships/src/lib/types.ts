@@ -48,6 +48,22 @@ export interface Partnership {
   continent: string
   programType: string
   partnershipType?: string
+  programName?: string
+  degreesAwarded?: string[]
+  usTrack?: {
+    name?: string
+    location?: string
+    structure?: string
+    degree?: string
+    tuition?: string
+    barOptionAvailable?: boolean
+  }
+  nyBarOption?: {
+    available?: boolean
+    description?: string
+    additionalRequirements?: string
+    additionalTuition?: string
+  }
   specialties: string[]
   requiredLevel: RequiredLevel | string
   programLanguage: string
@@ -57,6 +73,8 @@ export interface Partnership {
   attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string
   admissionConditions: string
+  languageRequirementsSummary?: string
+  frenchLanguageRequirement?: string
   languageTests: LanguageTest[]
   availableSeats: Seats | string
   availableSeatsDisplay?: string
@@ -68,6 +86,10 @@ export interface Partnership {
   financialAid: string
   applicationYear: string
   applicationDeadline: string
+  applicationProcessDetails?: string
+  applicationDocuments?: string[]
+  contactEmail?: string
+  sourceType?: string
   reliabilityStatus: ReliabilityStatus
   missingInformation?: string[]
   notes: string
