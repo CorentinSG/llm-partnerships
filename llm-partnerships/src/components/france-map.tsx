@@ -48,6 +48,31 @@ export function FranceMap({
     return { svgPath: d, projectPoint: projectPointLocal }
   }, [width, height, padding])
 
+  const displayPoints = React.useMemo(() => {
+    // If multiple universities share the same city/coordinates (ex: Lyon 3 and UCLy),
+    // their markers would overlap. We apply a small deterministic offset per "stack".
+    const keyFor = (x: number, y: number) => `${Math.round(x)}:${Math.round(y)}`
+    const counts = new Map<string, number>()
+
+    return points.map((p) => {
+      const { x, y } = projectPoint(p.coordinates.lat, p.coordinates.lng)
+      const k = keyFor(x, y)
+      const idx = counts.get(k) ?? 0
+      counts.set(k, idx + 1)
+
+      if (idx === 0) return { p, x, y }
+
+      // Spiral offsets (pixels) for 2nd, 3rd, 4th... points at same location.
+      const angle = (idx * 2 * Math.PI) / 6
+      const radius = 10 + idx * 3
+      return {
+        p,
+        x: x + Math.cos(angle) * radius,
+        y: y + Math.sin(angle) * radius
+      }
+    })
+  }, [points, projectPoint])
+
   return (
     <div className={cn("w-full", className)}>
       <div className="flex items-center justify-between gap-3">
@@ -127,8 +152,7 @@ export function FranceMap({
             opacity="0.25"
           />
 
-          {points.map((p) => {
-            const { x, y } = projectPoint(p.coordinates.lat, p.coordinates.lng)
+          {displayPoints.map(({ p, x, y }) => {
             const selected = p.frenchUniversity === selectedFrenchUniversity
             const isHovered = hovered === p.frenchUniversity
             return (
