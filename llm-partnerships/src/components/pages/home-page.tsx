@@ -32,6 +32,7 @@ export function HomePage() {
   const [searchQuery, setSearchQuery] = React.useState("")
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
   const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
+  const [mobileView, setMobileView] = React.useState<"results" | "map">("results")
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
@@ -72,7 +73,7 @@ export function HomePage() {
 
         <div className="container relative py-14 sm:py-16">
           <div className="max-w-4xl space-y-5">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl leading-[1.06]">
+            <h1 className="text-3xl font-semibold tracking-tight sm:text-6xl leading-[1.06]">
               Explorer les partenariats LL.M des facultés de droit françaises
             </h1>
             <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -159,7 +160,32 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-7 lg:grid-cols-[420px_1fr]">
+        <div className="mt-6 flex items-center justify-between gap-3 lg:hidden">
+          <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
+            <Button
+              variant={mobileView === "results" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setMobileView("results")}
+              className="rounded-full"
+            >
+              Résultats
+            </Button>
+            <Button
+              variant={mobileView === "map" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setMobileView("map")}
+              className="rounded-full"
+            >
+              Carte
+            </Button>
+          </div>
+
+          <div className="text-xs text-muted-foreground">
+            Pince pour zoomer sur la carte.
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-7 lg:mt-10 lg:grid-cols-[420px_1fr]">
           <div className="space-y-6">
             <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
               <Button
@@ -180,27 +206,29 @@ export function HomePage() {
               </Button>
             </div>
 
-            {mapMode === "fr" ? (
-              <FranceMap
-                points={points}
-                selectedFrenchUniversity={filters.frenchUniversity}
-                onSelect={(u) =>
-                  setFilters((prev) => ({ ...prev, frenchUniversity: u }))
-                }
-              />
-            ) : (
-              <UsMap
-                partnerships={all}
-                selectedState={filters.partnerState}
-                onSelectState={(state) =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    partnerCountry: "États-Unis",
-                    partnerState: state
-                  }))
-                }
-              />
-            )}
+            <div className={mobileView === "map" ? "block lg:block" : "hidden lg:block"}>
+              {mapMode === "fr" ? (
+                <FranceMap
+                  points={points}
+                  selectedFrenchUniversity={filters.frenchUniversity}
+                  onSelect={(u) =>
+                    setFilters((prev) => ({ ...prev, frenchUniversity: u }))
+                  }
+                />
+              ) : (
+                <UsMap
+                  partnerships={all}
+                  selectedState={filters.partnerState}
+                  onSelectState={(state) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      partnerCountry: "États-Unis",
+                      partnerState: state
+                    }))
+                  }
+                />
+              )}
+            </div>
 
             <Card className="hidden lg:block">
               <CardContent className="p-6">
@@ -226,7 +254,7 @@ export function HomePage() {
             </Card>
           </div>
 
-          <div className="space-y-4">
+          <div className={mobileView === "results" ? "space-y-4" : "hidden lg:block"}>
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">
@@ -239,7 +267,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <ScrollArea className="glass-panel h-[78dvh] rounded-3xl">
+            <ScrollArea className="glass-panel h-[62dvh] rounded-3xl sm:h-[70dvh] lg:h-[78dvh]">
               <div className="space-y-3 p-3">
                 {filtered.map((p) => (
                   <PartnershipCard key={p.id} partnership={p} />

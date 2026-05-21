@@ -115,7 +115,7 @@ export function FranceMap({
 
           <svg
             viewBox={`0 0 ${width} ${height}`}
-            className="h-[380px] w-full"
+            className="h-[320px] w-full sm:h-[380px]"
             role="img"
             aria-label="Carte de France avec points des universités"
             style={{ touchAction: "none" }}

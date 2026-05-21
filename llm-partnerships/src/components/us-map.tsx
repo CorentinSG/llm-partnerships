@@ -138,7 +138,7 @@ export function UsMap({
 
           <svg
             viewBox={`0 0 ${width} ${height}`}
-            className="h-[300px] w-full"
+            className="h-[260px] w-full sm:h-[300px]"
             role="img"
             aria-label="Carte des États-Unis (contigus) avec états cliquables"
             style={{ touchAction: "none" }}
