@@ -6,6 +6,7 @@ import { geoAlbersUsa, geoPath } from "d3-geo"
 import usStatesRaw from "../../data/us-states-contiguous.json"
 import type { Partnership } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { usePanZoom } from "@/lib/use-pan-zoom"
 
 const usStates = usStatesRaw as any
 
@@ -57,17 +58,19 @@ export function UsMap({
   const width = 520
   const height = 340
   const [hovered, setHovered] = React.useState<string | null>(null)
+  const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
 
   const universities = React.useMemo(
     () => groupPartnerUniversities(partnerships),
     [partnerships]
   )
 
-  const { pathFor, centroidFor } = React.useMemo(() => {
-    const projection = geoAlbersUsa().translate([width / 2, height / 2]).scale(650)
-    const pathGen = geoPath(projection as any)
+  const { pathFor, centroidFor, projection } = React.useMemo(() => {
+    const proj = geoAlbersUsa().translate([width / 2, height / 2]).scale(650)
+    const pathGen = geoPath(proj as any)
     const centroid = (feature: any) => pathGen.centroid(feature) as [number, number]
     return {
+      projection: proj,
       pathFor: (feature: any) => pathGen(feature) as string,
       centroidFor: centroid
     }
@@ -105,147 +108,170 @@ export function UsMap({
       </div>
 
       <div className="glass-panel mt-3 rounded-3xl p-4">
-        <svg
-          viewBox={`0 0 ${width} ${height}`}
-          className="h-[300px] w-full"
-          role="img"
-          aria-label="Carte des États-Unis (contigus) avec états cliquables"
-        >
-          <defs>
-            <linearGradient id="usFill" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0" stopColor="hsl(var(--muted))" stopOpacity="1" />
-              <stop offset="1" stopColor="hsl(var(--muted))" stopOpacity="0.55" />
-            </linearGradient>
-          </defs>
+        <div className="relative">
+          <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
+            <button
+              type="button"
+              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              onClick={controls.zoomIn}
+              aria-label="Zoom avant"
+            >
+              +
+            </button>
+            <button
+              type="button"
+              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              onClick={controls.zoomOut}
+              aria-label="Zoom arrière"
+            >
+              −
+            </button>
+            <button
+              type="button"
+              className="glass-button inline-flex h-9 items-center justify-center rounded-full px-3 text-xs text-foreground"
+              onClick={controls.reset}
+              aria-label="Réinitialiser le zoom"
+            >
+              Reset
+            </button>
+          </div>
 
-          {usStates.features.map((f: any) => {
-            const name = String(f.properties?.name || "")
-            const selected = name && name === selectedState
-            const isHovered = hovered === name
-            const hasData = stateCounts.has(name)
-            const d = pathFor(f)
-            return (
-              <path
-                key={name}
-                d={d}
-                fill={hasData ? "url(#usFill)" : "hsl(var(--background))"}
-                stroke="hsl(var(--border))"
-                strokeWidth={selected ? 2.5 : 1.2}
-                opacity={hasData ? 1 : 0.5}
-                onMouseEnter={() => setHovered(name)}
-                onMouseLeave={() => setHovered((prev) => (prev === name ? null : prev))}
-                onClick={() => onSelectState(selected ? undefined : name)}
-                style={{ cursor: hasData ? "pointer" : "default" }}
-              >
-                <title>
-                  {name}
-                  {hasData ? ` • ${stateCounts.get(name)} partenariat(s)` : ""}
-                </title>
-              </path>
-            )
-          })}
+          <svg
+            viewBox={`0 0 ${width} ${height}`}
+            className="h-[300px] w-full"
+            role="img"
+            aria-label="Carte des États-Unis (contigus) avec états cliquables"
+            style={{ touchAction: "none" }}
+            {...bind}
+          >
+            <defs>
+              <linearGradient id="usFill" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stopColor="hsl(var(--muted))" stopOpacity="1" />
+                <stop offset="1" stopColor="hsl(var(--muted))" stopOpacity="0.55" />
+              </linearGradient>
+            </defs>
 
-          {/* partner university markers (one per partner university) */}
-          {universities.map((u) => {
-            const selected = u.partnerState === selectedState
-            const base = stateCentroids.get(u.partnerState)
-            if (!base) return null
-
-            // Position:
-            // - exact coords if provided
-            // - otherwise, deterministic jitter around state centroid (approx)
-            let x = base.x
-            let y = base.y
-
-            if (u.partnerCoordinates) {
-              // project lon/lat using the same projection
-              const proj = geoAlbersUsa()
-                .translate([width / 2, height / 2])
-                .scale(650)
-              const p = proj([u.partnerCoordinates.lng, u.partnerCoordinates.lat]) as
-                | [number, number]
-                | null
-              if (p) {
-                x = p[0]
-                y = p[1]
-              }
-            } else {
-              const seed = Array.from(`${u.partnerUniversity}-${u.partnerState}`).reduce(
-                (acc, ch) => acc + ch.charCodeAt(0),
-                0
-              )
-              const angle = (seed % 360) * (Math.PI / 180)
-              const radius = 10 + (seed % 12)
-              x = base.x + Math.cos(angle) * radius
-              y = base.y + Math.sin(angle) * radius
-            }
-
-            const r = selected ? 6.5 : 5.2
-            const label = `${u.partnerUniversity} • ${u.partnerState}${
-              u.partnerCoordinates ? "" : " (position approximative)"
-            }`
-            return (
-              <g
-                key={`${u.partnerUniversity}-${u.partnerState}`}
-                onClick={() =>
-                  onSelectState(selected ? undefined : u.partnerState)
-                }
-                onMouseEnter={() => setHovered(u.partnerState)}
-                style={{ cursor: "pointer" }}
-              >
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={r + 7}
-                  fill="hsl(var(--primary))"
-                  opacity={selected ? 0.18 : 0.1}
-                />
-                <circle
-                  cx={x}
-                  cy={y}
-                  r={r}
-                  fill="hsl(var(--background))"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth={selected ? 3 : 2}
-                >
-                  <title>{label}</title>
-                </circle>
-              </g>
-            )
-          })}
-
-          {/* hover tooltip */}
-          {hovered ? (
-            (() => {
-              const count = stateCounts.get(hovered) || 0
-              const label = count ? `${hovered} • ${count}` : hovered
-              return (
-                <g>
-                  <rect
-                    x={12}
-                    y={12}
-                    width={220}
-                    height={30}
-                    rx={10}
-                    fill="hsl(var(--background))"
-                    opacity={0.96}
+            <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
+              {usStates.features.map((f: any) => {
+                const name = String(f.properties?.name || "")
+                const selected = name && name === selectedState
+                const hasData = stateCounts.has(name)
+                const d = pathFor(f)
+                return (
+                  <path
+                    key={name}
+                    d={d}
+                    fill={hasData ? "url(#usFill)" : "hsl(var(--background))"}
                     stroke="hsl(var(--border))"
-                  />
-                  <text
-                    x={22}
-                    y={32}
-                    textAnchor="start"
-                    fontSize="12"
-                    fill="hsl(var(--foreground))"
-                    style={{ fontWeight: 600 }}
+                    strokeWidth={selected ? 2.5 : 1.2}
+                    opacity={hasData ? 1 : 0.5}
+                    onMouseEnter={() => setHovered(name)}
+                    onMouseLeave={() =>
+                      setHovered((prev) => (prev === name ? null : prev))
+                    }
+                    onClick={() => onSelectState(selected ? undefined : name)}
+                    style={{ cursor: hasData ? "pointer" : "default" }}
                   >
-                    {label}
-                  </text>
-                </g>
-              )
-            })()
-          ) : null}
-        </svg>
+                    <title>
+                      {name}
+                      {hasData ? ` • ${stateCounts.get(name)} partenariat(s)` : ""}
+                    </title>
+                  </path>
+                )
+              })}
+
+              {universities.map((u) => {
+                const selected = u.partnerState === selectedState
+                const base = stateCentroids.get(u.partnerState)
+                if (!base) return null
+
+                let x = base.x
+                let y = base.y
+
+                if (u.partnerCoordinates) {
+                  const p = projection([u.partnerCoordinates.lng, u.partnerCoordinates.lat]) as
+                    | [number, number]
+                    | null
+                  if (p) {
+                    x = p[0]
+                    y = p[1]
+                  }
+                } else {
+                  const seed = Array.from(`${u.partnerUniversity}-${u.partnerState}`).reduce(
+                    (acc, ch) => acc + ch.charCodeAt(0),
+                    0
+                  )
+                  const angle = (seed % 360) * (Math.PI / 180)
+                  const radius = 10 + (seed % 12)
+                  x = base.x + Math.cos(angle) * radius
+                  y = base.y + Math.sin(angle) * radius
+                }
+
+                const r = selected ? 6.5 : 5.2
+                const label = `${u.partnerUniversity} • ${u.partnerState}${
+                  u.partnerCoordinates ? "" : " (position approximative)"
+                }`
+                return (
+                  <g
+                    key={`${u.partnerUniversity}-${u.partnerState}`}
+                    onClick={() => onSelectState(selected ? undefined : u.partnerState)}
+                    onMouseEnter={() => setHovered(u.partnerState)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={r + 7}
+                      fill="hsl(var(--primary))"
+                      opacity={selected ? 0.18 : 0.1}
+                    />
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={r}
+                      fill="hsl(var(--background))"
+                      stroke="hsl(var(--primary))"
+                      strokeWidth={selected ? 3 : 2}
+                    >
+                      <title>{label}</title>
+                    </circle>
+                  </g>
+                )
+              })}
+
+              {hovered ? (
+                (() => {
+                  const count = stateCounts.get(hovered) || 0
+                  const label = count ? `${hovered} • ${count}` : hovered
+                  return (
+                    <g>
+                      <rect
+                        x={12}
+                        y={12}
+                        width={220}
+                        height={30}
+                        rx={10}
+                        fill="hsl(var(--background))"
+                        opacity={0.96}
+                        stroke="hsl(var(--border))"
+                      />
+                      <text
+                        x={22}
+                        y={32}
+                        textAnchor="start"
+                        fontSize="12"
+                        fill="hsl(var(--foreground))"
+                        style={{ fontWeight: 600 }}
+                      >
+                        {label}
+                      </text>
+                    </g>
+                  )
+                })()
+              ) : null}
+            </g>
+          </svg>
+        </div>
       </div>
 
       {selectedState ? (
@@ -261,3 +287,4 @@ export function UsMap({
     </div>
   )
 }
+
