@@ -161,6 +161,7 @@ export function UsMap({
                   <path
                     key={name}
                     d={d}
+                    data-panzoom-ignore="true"
                     fill={hasData ? "url(#usFill)" : "hsl(var(--background))"}
                     stroke="hsl(var(--border))"
                     strokeWidth={selected ? 2.5 : 1.2}
@@ -214,6 +215,7 @@ export function UsMap({
                 return (
                   <g
                     key={`${u.partnerUniversity}-${u.partnerState}`}
+                    data-panzoom-ignore="true"
                     onClick={() => onSelectState(selected ? undefined : u.partnerState)}
                     onMouseEnter={() => setHovered(u.partnerState)}
                     style={{ cursor: "pointer" }}
@@ -287,4 +289,3 @@ export function UsMap({
     </div>
   )
 }
-

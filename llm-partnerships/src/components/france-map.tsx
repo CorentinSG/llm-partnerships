@@ -172,17 +172,18 @@ export function FranceMap({
                 opacity="0.25"
               />
 
-              {displayPoints.map(({ p, x, y }) => {
-                const selected = p.frenchUniversity === selectedFrenchUniversity
-                const isHovered = hovered === p.frenchUniversity
-                return (
-                  <g
-                    key={p.frenchUniversity}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => onSelect(selected ? undefined : p.frenchUniversity)}
-                    onMouseEnter={() => setHovered(p.frenchUniversity)}
-                    onMouseLeave={() =>
+            {displayPoints.map(({ p, x, y }) => {
+              const selected = p.frenchUniversity === selectedFrenchUniversity
+              const isHovered = hovered === p.frenchUniversity
+              return (
+                <g
+                  key={p.frenchUniversity}
+                  data-panzoom-ignore="true"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => onSelect(selected ? undefined : p.frenchUniversity)}
+                  onMouseEnter={() => setHovered(p.frenchUniversity)}
+                  onMouseLeave={() =>
                       setHovered((prev) => (prev === p.frenchUniversity ? null : prev))
                     }
                     onKeyDown={(e) => {
@@ -264,4 +265,3 @@ export function FranceMap({
     </div>
   )
 }
-

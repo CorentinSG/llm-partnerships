@@ -20,6 +20,10 @@ export function usePanZoom({
   const last = React.useRef<{ x: number; y: number } | null>(null)
 
   const onPointerDown = React.useCallback((e: React.PointerEvent<SVGElement>) => {
+    // Allow interactive elements inside the SVG (points, states, buttons) to receive clicks.
+    const target = e.target as Element | null
+    if (target && target.closest('[data-panzoom-ignore="true"]')) return
+
     dragging.current = true
     ;(e.currentTarget as SVGElement).setPointerCapture(e.pointerId)
     last.current = { x: e.clientX, y: e.clientY }
@@ -89,4 +93,3 @@ export function usePanZoom({
     controls: { zoomIn, zoomOut, reset }
   }
 }
-
