@@ -1,6 +1,6 @@
 ﻿import Link from "next/link"
-import { Globe2 } from "lucide-react"
 
+import { LogoMark } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -16,7 +16,7 @@ export function SiteHeader({ className }: { className?: string }) {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/90 text-primary-foreground shadow-sm ring-1 ring-white/15">
-            <Globe2 className="h-4 w-4" aria-hidden="true" />
+            <LogoMark className="h-4 w-4" />
           </div>
           <div className="leading-tight">
             <div className="text-sm font-semibold tracking-tight">LL.M Partnerships</div>
