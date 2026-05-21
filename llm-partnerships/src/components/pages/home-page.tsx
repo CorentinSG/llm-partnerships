@@ -23,7 +23,6 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { emptyFilters, filterPartnerships, type FiltersState } from "@/lib/filters"
 import { getAllPartnerships, getFilterOptions, getFrenchUniversitiesPoints } from "@/lib/data"
-import { UsLawyerPath } from "@/components/us-lawyer-path"
 
 export function HomePage() {
   const all = React.useMemo(() => getAllPartnerships(), [])
@@ -76,18 +75,29 @@ export function HomePage() {
             <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl leading-[1.06]">
               Explorer les partenariats LL.M des facultés de droit françaises
             </h1>
-            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Pour le moment, ce site se concentre sur les partenariats avec des{" "}
-              <span className="font-medium text-foreground">
-                universités américaines
-              </span>{" "}
-              pour des LL.M. Comme un LL.M aux États-Unis est souvent très cher,
-              passer par un partenariat universitaire peut être l’un des
-              meilleurs moyens d’y accéder (et, selon les projets, de préparer
-              ensuite le barreau dans un État américain). Ce site vise à
-              centraliser, clarifier et comparer ces partenariats — sans jamais
-              inventer les informations manquantes.
-            </p>
+            <div className="space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p>
+                Le parcours le plus classique pour devenir avocat aux États-Unis
+                après des études de droit en France consiste à valider une
+                formation juridique française, candidater à un LL.M américain,
+                suivre les cours nécessaires pour être éligible au barreau visé.
+              </p>
+              <p>
+                Mais le principal obstacle reste souvent le prix très élevé des
+                LL.M aux États-Unis. Certaines formations peuvent coûter
+                plusieurs dizaines voir centaines de milliers de dollars. L’une
+                des meilleures solutions pour réduire ce coût est de passer par
+                les partenariats conclus entre les universités françaises et les
+                law schools américaines.
+              </p>
+              <p>
+                Ce site vise à centraliser ces partenariats afin de permettre
+                aux étudiants de comparer rapidement les universités
+                partenaires, les frais, les réductions possibles, les places
+                disponibles, les tests d’anglais requis et les conditions de
+                sélection.
+              </p>
+            </div>
           </div>
 
           <div className="mt-6">
@@ -149,7 +159,7 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-7 lg:grid-cols-[460px_1fr]">
+        <div className="mt-10 grid gap-7 lg:grid-cols-[420px_1fr]">
           <div className="space-y-6">
             <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
               <Button
@@ -229,7 +239,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <ScrollArea className="glass-panel h-[72dvh] rounded-3xl">
+            <ScrollArea className="glass-panel h-[78dvh] rounded-3xl">
               <div className="space-y-3 p-3">
                 {filtered.map((p) => (
                   <PartnershipCard key={p.id} partnership={p} />
@@ -243,10 +253,6 @@ export function HomePage() {
             </ScrollArea>
           </div>
         </div>
-      </section>
-
-      <section className="container pb-16">
-        <UsLawyerPath />
       </section>
     </main>
   )

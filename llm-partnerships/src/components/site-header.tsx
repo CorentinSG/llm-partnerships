@@ -28,6 +28,9 @@ export function SiteHeader({ className }: { className?: string }) {
           <Button asChild variant="ghost" size="sm">
             <Link href="/about">À propos</Link>
           </Button>
+          <Button asChild variant="ghost" size="sm">
+            <Link href="/guide">Guide USA</Link>
+          </Button>
           <Button asChild variant="secondary" size="sm">
             <Link href="/submit">Proposer une info</Link>
           </Button>

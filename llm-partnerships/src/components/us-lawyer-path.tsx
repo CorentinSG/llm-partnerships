@@ -155,15 +155,8 @@ export function UsLawyerPath({ className }: { className?: string }) {
           })}
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-          <span>Prochaine étape :</span>
-          <span className="inline-flex items-center gap-1 text-foreground">
-            enrichir avec des liens officiels
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </span>
-        </div>
+        {/* Footer intentionally omitted (MVP). */}
       </div>
     </section>
   )
 }
-
