@@ -34,6 +34,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <GoogleAnalytics />
             <SiteHeader />
             {children}
+            <footer className="container pb-10 pt-10">
+              <div className="glass-panel rounded-2xl px-5 py-4 text-xs leading-relaxed text-muted-foreground">
+                <span className="font-medium text-foreground/80">
+                  Avertissement :
+                </span>{" "}
+                ce site est un MVP informatif (focus : partenariats LL.M vers des law
+                schools américaines). Les informations peuvent être incomplètes ou
+                évoluer. Vérifie toujours les sources officielles (universités, LSAC,
+                barreaux) avant toute candidature. Ce contenu ne constitue pas un
+                conseil juridique.
+              </div>
+            </footer>
           </div>
         </ThemeProvider>
       </body>
