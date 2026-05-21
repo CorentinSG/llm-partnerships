@@ -23,6 +23,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { emptyFilters, filterPartnerships, type FiltersState } from "@/lib/filters"
 import { getAllPartnerships, getFilterOptions, getFrenchUniversitiesPoints } from "@/lib/data"
+import { UsLawyerPath } from "@/components/us-lawyer-path"
 
 export function HomePage() {
   const all = React.useMemo(() => getAllPartnerships(), [])
@@ -242,6 +243,10 @@ export function HomePage() {
             </ScrollArea>
           </div>
         </div>
+      </section>
+
+      <section className="container pb-16">
+        <UsLawyerPath />
       </section>
     </main>
   )

@@ -4,6 +4,7 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { CheckCircle2, Flag, Globe, HelpCircle, School } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import type { Partnership } from "@/lib/types"
 import { countUnique, getReliabilityCounts } from "@/lib/filters"
 
@@ -86,10 +87,28 @@ export function StatsBar({ all }: { all: Partnership[] }) {
               <div className="text-xs text-muted-foreground">À confirmer</div>
               <div className="mt-1 text-2xl font-semibold">{counts.to_confirm}</div>
             </div>
-            <HelpCircle
-              className="h-5 w-5 text-muted-foreground"
-              aria-hidden="true"
-            />
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:text-foreground glass-button"
+                  aria-label="Que signifie « À confirmer » ?"
+                >
+                  <HelpCircle className="h-5 w-5" aria-hidden="true" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent align="end" className="w-80">
+                <div className="space-y-2">
+                  <div className="text-sm font-medium">À confirmer</div>
+                  <p className="text-sm text-muted-foreground">
+                    L’information est <span className="font-medium text-foreground">probable</span>{" "}
+                    ou <span className="font-medium text-foreground">partielle</span>, mais elle n’a pas
+                    encore été vérifiée avec une source officielle (ou la source est trop ancienne).
+                    Elle peut donc changer.
+                  </p>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
           <div className="mt-3 h-[72px]">
             <ResponsiveContainer width="100%" height="100%">

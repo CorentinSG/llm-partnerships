@@ -6,7 +6,7 @@ export default function AboutPage() {
       title="À propos"
       description="Objectif du projet et comment contribuer."
     >
-      <div className="prose prose-neutral max-w-none">
+      <div className="prose prose-neutral dark:prose-invert max-w-none">
         <p>
           Ce projet vise à rendre les informations sur les partenariats LL.M
           faciles à trouver, comparer et vérifier pour les étudiants en droit.

@@ -19,9 +19,9 @@ const ScrollArea = React.forwardRef<
     </ScrollAreaPrimitive.Viewport>
     <ScrollAreaPrimitive.Scrollbar
       orientation="vertical"
-      className="flex touch-none select-none p-0.5"
+      className="flex touch-none select-none p-1 opacity-70 transition-opacity hover:opacity-100"
     >
-      <ScrollAreaPrimitive.Thumb className="relative flex-1 rounded-full bg-foreground/10 dark:bg-foreground/12" />
+      <ScrollAreaPrimitive.Thumb className="relative flex-1 rounded-full bg-foreground/12 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] dark:bg-foreground/14" />
     </ScrollAreaPrimitive.Scrollbar>
     <ScrollAreaPrimitive.Corner />
   </ScrollAreaPrimitive.Root>
