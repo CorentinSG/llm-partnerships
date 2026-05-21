@@ -53,17 +53,28 @@ export function usePanZoom({
   }, [getTwoPointers, t])
 
   const onPointerDown = React.useCallback((e: React.PointerEvent<SVGElement>) => {
-    // Allow interactive elements inside the SVG (points, states, buttons) to receive clicks.
-    const target = e.target as Element | null
-    if (target && target.closest('[data-panzoom-ignore="true"]')) return
-
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
 
-    dragging.current = true
-    ;(e.currentTarget as SVGElement).setPointerCapture(e.pointerId)
-    last.current = { x: e.clientX, y: e.clientY }
+    // Always capture so pinch works even when starting on interactive shapes.
+    try {
+      ;(e.currentTarget as SVGElement).setPointerCapture(e.pointerId)
+    } catch {
+      // ignore
+    }
 
-    if (pointers.current.size >= 2) startPinchIfPossible()
+    // Allow interactive elements inside the SVG (points, states, buttons) to receive clicks.
+    const target = e.target as Element | null
+    const ignorePan = !!(target && target.closest('[data-panzoom-ignore="true"]'))
+
+    if (pointers.current.size >= 2) {
+      startPinchIfPossible()
+      return
+    }
+
+    if (ignorePan) return
+
+    dragging.current = true
+    last.current = { x: e.clientX, y: e.clientY }
   }, [startPinchIfPossible])
 
   const onPointerMove = React.useCallback((e: React.PointerEvent<SVGElement>) => {

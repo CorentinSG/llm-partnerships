@@ -1,8 +1,10 @@
-﻿import Link from "next/link"
+import Link from "next/link"
+import { Menu } from "lucide-react"
 
 import { LogoMark } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
 export function SiteHeader({ className }: { className?: string }) {
@@ -25,18 +27,58 @@ export function SiteHeader({ className }: { className?: string }) {
         </Link>
 
         <nav className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/about">À propos</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/guide">Guide USA</Link>
-          </Button>
-          <Button asChild variant="secondary" size="sm">
-            <Link href="/submit">Proposer une info</Link>
-          </Button>
-          <ThemeToggle />
+          <div className="hidden items-center gap-2 md:flex">
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/about">À propos</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/guide">Guide USA</Link>
+            </Button>
+            <Button asChild variant="secondary" size="sm">
+              <Link href="/submit">Proposer une info</Link>
+            </Button>
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <Button asChild variant="secondary" size="sm" className="h-9 rounded-full px-3">
+              <Link href="/submit">Proposer</Link>
+            </Button>
+            <ThemeToggle />
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 rounded-full"
+                  aria-label="Menu"
+                >
+                  <Menu className="h-5 w-5" aria-hidden="true" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle>Menu</SheetTitle>
+                </SheetHeader>
+                <div className="mt-6 flex flex-col gap-2">
+                  <Button asChild variant="ghost" className="justify-start">
+                    <Link href="/">Accueil</Link>
+                  </Button>
+                  <Button asChild variant="ghost" className="justify-start">
+                    <Link href="/about">À propos</Link>
+                  </Button>
+                  <Button asChild variant="ghost" className="justify-start">
+                    <Link href="/guide">Guide USA</Link>
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </nav>
       </div>
     </header>
   )
 }
+

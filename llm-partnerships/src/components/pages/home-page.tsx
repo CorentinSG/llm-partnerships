@@ -32,7 +32,6 @@ export function HomePage() {
   const [searchQuery, setSearchQuery] = React.useState("")
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
   const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
-  const [mobileView, setMobileView] = React.useState<"results" | "map">("results")
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
@@ -160,31 +159,6 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between gap-3 lg:hidden">
-          <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
-            <Button
-              variant={mobileView === "results" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setMobileView("results")}
-              className="rounded-full"
-            >
-              Résultats
-            </Button>
-            <Button
-              variant={mobileView === "map" ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setMobileView("map")}
-              className="rounded-full"
-            >
-              Carte
-            </Button>
-          </div>
-
-          <div className="text-xs text-muted-foreground">
-            Pince pour zoomer sur la carte.
-          </div>
-        </div>
-
         <div className="mt-6 grid gap-7 lg:mt-10 lg:grid-cols-[420px_1fr]">
           <div className="space-y-6">
             <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
@@ -206,29 +180,27 @@ export function HomePage() {
               </Button>
             </div>
 
-            <div className={mobileView === "map" ? "block lg:block" : "hidden lg:block"}>
-              {mapMode === "fr" ? (
-                <FranceMap
-                  points={points}
-                  selectedFrenchUniversity={filters.frenchUniversity}
-                  onSelect={(u) =>
-                    setFilters((prev) => ({ ...prev, frenchUniversity: u }))
-                  }
-                />
-              ) : (
-                <UsMap
-                  partnerships={all}
-                  selectedState={filters.partnerState}
-                  onSelectState={(state) =>
-                    setFilters((prev) => ({
-                      ...prev,
-                      partnerCountry: "États-Unis",
-                      partnerState: state
-                    }))
-                  }
-                />
-              )}
-            </div>
+            {mapMode === "fr" ? (
+              <FranceMap
+                points={points}
+                selectedFrenchUniversity={filters.frenchUniversity}
+                onSelect={(u) =>
+                  setFilters((prev) => ({ ...prev, frenchUniversity: u }))
+                }
+              />
+            ) : (
+              <UsMap
+                partnerships={all}
+                selectedState={filters.partnerState}
+                onSelectState={(state) =>
+                  setFilters((prev) => ({
+                    ...prev,
+                    partnerCountry: "États-Unis",
+                    partnerState: state
+                  }))
+                }
+              />
+            )}
 
             <Card className="hidden lg:block">
               <CardContent className="p-6">
@@ -254,7 +226,7 @@ export function HomePage() {
             </Card>
           </div>
 
-          <div className={mobileView === "results" ? "space-y-4" : "hidden lg:block"}>
+          <div className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">
