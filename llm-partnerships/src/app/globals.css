@@ -82,3 +82,38 @@ h3 {
   font-family: var(--font-serif), ui-serif, Georgia, Cambria, "Times New Roman",
     Times, serif;
 }
+
+/* Liquid Glass backdrop */
+.app-surface {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+
+.app-surface::before {
+  content: "";
+  position: absolute;
+  inset: -40vh -25vw;
+  z-index: -1;
+  background:
+    radial-gradient(900px 600px at 20% 10%, hsla(var(--primary) / 0.18), transparent 60%),
+    radial-gradient(700px 500px at 85% 20%, hsla(var(--accent) / 0.20), transparent 60%),
+    radial-gradient(900px 700px at 55% 90%, hsla(210 90% 60% / 0.10), transparent 65%);
+  filter: blur(12px);
+}
+
+.dark .app-surface::before {
+  background:
+    radial-gradient(900px 600px at 20% 10%, hsla(var(--primary) / 0.22), transparent 60%),
+    radial-gradient(700px 500px at 85% 20%, hsla(var(--accent) / 0.10), transparent 60%),
+    radial-gradient(900px 700px at 55% 90%, hsla(210 90% 60% / 0.08), transparent 65%);
+  filter: blur(16px);
+}
+
+.glass-card {
+  @apply bg-background/55 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:bg-background/35 dark:border-white/10;
+}
+
+.glass-button {
+  @apply bg-background/45 backdrop-blur-xl border border-white/20 hover:bg-background/60 dark:bg-background/25 dark:border-white/10;
+}

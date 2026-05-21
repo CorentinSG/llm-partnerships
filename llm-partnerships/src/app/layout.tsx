@@ -5,6 +5,7 @@ import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google"
 
 import { SiteHeader } from "@/components/site-header"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -26,13 +27,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="fr" suppressHydrationWarning>
       <body className={`${sans.variable} ${serif.variable}`}>
-        <div className="min-h-dvh bg-background">
-          <GoogleAnalytics />
-          <SiteHeader />
-          {children}
-        </div>
+        <ThemeProvider>
+          <div className="min-h-dvh bg-background app-surface">
+            <GoogleAnalytics />
+            <SiteHeader />
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
