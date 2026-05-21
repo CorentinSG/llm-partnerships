@@ -254,12 +254,12 @@ export function FranceMap({
 
       {selectedFrenchUniversity ? (
         <div className="mt-3 text-sm text-muted-foreground">
-          Selected:{" "}
+          Sélection :{" "}
           <span className="font-medium text-foreground">{selectedFrenchUniversity}</span>
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">
-          Conseil : clique sur un point pour filtrer la liste.
+          Conseil : clique sur un point pour filtrer la liste (sur mobile : pince pour zoomer).
         </div>
       )}
     </div>

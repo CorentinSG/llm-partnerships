@@ -283,7 +283,7 @@ export function UsMap({
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">
-          Conseil : clique sur un état (avec un chiffre) pour filtrer.
+          Conseil : clique sur un état (avec un chiffre) pour filtrer (sur mobile : pince pour zoomer).
         </div>
       )}
     </div>
