@@ -9,11 +9,11 @@ export function SiteHeader({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 border-b bg-background/55 backdrop-blur-xl supports-[backdrop-filter]:bg-background/45",
+        "sticky top-0 z-40 border-b bg-background/55 shadow-[0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/45 dark:shadow-none",
         className
       )}
     >
-      <div className="container flex h-14 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/90 text-primary-foreground shadow-sm ring-1 ring-white/15">
             <Globe2 className="h-4 w-4" aria-hidden="true" />

@@ -61,21 +61,21 @@ export function HomePage() {
 
   return (
     <main>
-      <section className="relative overflow-hidden border-b">
+      <section className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0"
           aria-hidden="true"
         >
-          <div className="absolute -top-24 left-1/2 h-72 w-[900px] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-          <div className="absolute -bottom-24 left-1/3 h-72 w-[700px] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
+          <div className="absolute -top-28 left-1/2 h-80 w-[980px] -translate-x-1/2 rounded-full bg-primary/14 blur-3xl" />
+          <div className="absolute -bottom-28 left-1/3 h-80 w-[820px] -translate-x-1/2 rounded-full bg-accent/18 blur-3xl" />
         </div>
 
-        <div className="container relative py-12">
-          <div className="max-w-3xl space-y-4">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+        <div className="container relative py-14 sm:py-16">
+          <div className="max-w-4xl space-y-5">
+            <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl leading-[1.06]">
               Explorer les partenariats LL.M des facultés de droit françaises
             </h1>
-            <p className="text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
               Pour le moment, ce site se concentre sur les partenariats avec des{" "}
               <span className="font-medium text-foreground">
                 universités américaines
@@ -95,11 +95,12 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="container py-10">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="w-full max-w-2xl space-y-2">
-            <div className="text-sm font-medium">Recherche globale</div>
-            <div className="relative">
+      <section className="container pb-14 pt-10">
+        <div className="glass-panel rounded-3xl p-5 sm:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="w-full max-w-2xl space-y-2">
+              <div className="text-sm font-medium">Recherche globale</div>
+              <div className="relative">
               <Search
                 className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
                 aria-hidden="true"
@@ -108,13 +109,13 @@ export function HomePage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Rechercher : universités, pays, programmes, spécialités, remarques…"
-                className="pl-9"
+                className="h-11 rounded-xl pl-9"
                 aria-label="Recherche globale"
               />
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="secondary" className="lg:hidden">
@@ -140,26 +141,29 @@ export function HomePage() {
               </SheetContent>
             </Sheet>
 
-            <Button variant="outline" onClick={resetAll}>
-              Réinitialiser
-            </Button>
+              <Button variant="outline" onClick={resetAll}>
+                Réinitialiser
+              </Button>
+            </div>
           </div>
         </div>
 
         <div className="mt-10 grid gap-7 lg:grid-cols-[460px_1fr]">
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
+            <div className="glass-panel inline-flex items-center gap-1 rounded-full p-1">
               <Button
-                variant={mapMode === "fr" ? "default" : "outline"}
+                variant={mapMode === "fr" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setMapMode("fr")}
+                className="rounded-full"
               >
                 France
               </Button>
               <Button
-                variant={mapMode === "us" ? "default" : "outline"}
+                variant={mapMode === "us" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => setMapMode("us")}
+                className="rounded-full"
               >
                 États-Unis
               </Button>
@@ -197,7 +201,7 @@ export function HomePage() {
                     </div>
                   </div>
                   <Button variant="secondary" size="sm" onClick={resetAll}>
-                    Reset
+                    Réinitialiser
                   </Button>
                 </div>
                 <Separator className="my-4" />
@@ -224,7 +228,7 @@ export function HomePage() {
               </div>
             </div>
 
-            <ScrollArea className="h-[72dvh] rounded-2xl border bg-card">
+            <ScrollArea className="glass-panel h-[72dvh] rounded-3xl">
               <div className="space-y-3 p-3">
                 {filtered.map((p) => (
                   <PartnershipCard key={p.id} partnership={p} />

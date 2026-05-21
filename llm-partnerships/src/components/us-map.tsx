@@ -104,7 +104,7 @@ export function UsMap({
         </button>
       </div>
 
-      <div className="mt-3 rounded-2xl border bg-card p-4 shadow-sm">
+      <div className="glass-panel mt-3 rounded-3xl p-4">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="h-[300px] w-full"

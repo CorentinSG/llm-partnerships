@@ -25,14 +25,14 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
     .map((t) => (
       <span
         key={t}
-        className="rounded-full border px-2 py-0.5 text-[11px] text-muted-foreground"
+        className="glass-button rounded-full px-2 py-0.5 text-[11px] text-muted-foreground"
       >
         {t}
       </span>
     ))
 
   return (
-    <Card className="transition-all hover:bg-muted/30 hover:shadow-md hover:border-primary/20">
+    <Card className="transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6),0_26px_80px_rgba(0,0,0,0.14)]">
       <CardHeader className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <ReliabilityBadge status={partnership.reliabilityStatus} />
@@ -41,7 +41,7 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             {testsBadges}
           </div>
         </div>
-        <CardTitle className="text-[15px] leading-snug tracking-tight">
+        <CardTitle className="text-[16px] leading-snug tracking-tight">
           {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
         </CardTitle>
         <div className="text-sm text-muted-foreground">

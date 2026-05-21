@@ -31,7 +31,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr]">
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-muted-foreground">
@@ -44,7 +44,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         </CardContent>
       </Card>
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-muted-foreground">Partenariats</div>
@@ -55,7 +55,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         </CardContent>
       </Card>
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-muted-foreground">Pays partenaires</div>
@@ -66,7 +66,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         </CardContent>
       </Card>
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-muted-foreground">Confirmés</div>
@@ -80,7 +80,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         </CardContent>
       </Card>
       <Card className="sm:col-span-2 lg:col-span-1">
-        <CardContent className="p-4">
+        <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs text-muted-foreground">À confirmer</div>

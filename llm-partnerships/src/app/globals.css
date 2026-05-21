@@ -32,7 +32,7 @@
   --input: 214 20% 90%;
   --ring: 221 83% 53%;
 
-  --radius: 14px;
+  --radius: 18px;
 }
 
 .dark {
@@ -74,13 +74,7 @@ body {
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
     "Noto Sans", "Liberation Sans", sans-serif;
   @apply bg-background text-foreground antialiased;
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif), ui-serif, Georgia, Cambria, "Times New Roman",
-    Times, serif;
+  text-rendering: optimizeLegibility;
 }
 
 /* Liquid Glass backdrop */
@@ -102,6 +96,18 @@ h3 {
   filter: blur(12px);
 }
 
+.app-surface::after {
+  content: "";
+  position: absolute;
+  inset: -20vh -20vw;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
 .dark .app-surface::before {
   background:
     radial-gradient(900px 600px at 20% 10%, hsla(var(--primary) / 0.22), transparent 60%),
@@ -110,10 +116,23 @@ h3 {
   filter: blur(16px);
 }
 
+.dark .app-surface::after {
+  opacity: 0.10;
+  mix-blend-mode: overlay;
+}
+
 .glass-card {
-  @apply bg-background/55 backdrop-blur-xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.08)] dark:bg-background/35 dark:border-white/10;
+  @apply bg-background/55 backdrop-blur-xl border border-white/25 shadow-[0_1px_0_rgba(255,255,255,0.55),0_18px_55px_rgba(0,0,0,0.10)] dark:bg-background/30 dark:border-white/10;
 }
 
 .glass-button {
-  @apply bg-background/45 backdrop-blur-xl border border-white/20 hover:bg-background/60 dark:bg-background/25 dark:border-white/10;
+  @apply bg-background/45 backdrop-blur-xl border border-white/25 shadow-[0_1px_0_rgba(255,255,255,0.35)] hover:bg-background/60 dark:bg-background/20 dark:border-white/10;
+}
+
+.glass-panel {
+  @apply bg-background/60 backdrop-blur-2xl border border-white/25 shadow-[0_1px_0_rgba(255,255,255,0.55),0_20px_70px_rgba(0,0,0,0.12)] dark:bg-background/25 dark:border-white/10;
+}
+
+.glass-input {
+  @apply bg-background/55 backdrop-blur-xl border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:bg-background/20 dark:border-white/10;
 }
