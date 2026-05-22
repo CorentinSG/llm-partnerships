@@ -44,6 +44,30 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 évoluer. Vérifie toujours les sources officielles (universités, LSAC,
                 barreaux) avant toute candidature. Ce contenu ne constitue pas un
                 conseil juridique.
+
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
+                  <span className="text-foreground/75">
+                    Créé par Corentin Saint‑Girons, avocat au barreau de New York.
+                  </span>
+                  <span className="text-muted-foreground/60">•</span>
+                  <a
+                    className="underline underline-offset-4 hover:text-foreground"
+                    href="https://www.instagram.com/corentin_sg/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Instagram
+                  </a>
+                  <span className="text-muted-foreground/60">•</span>
+                  <a
+                    className="underline underline-offset-4 hover:text-foreground"
+                    href="https://www.linkedin.com/in/corentin-saint-girons/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </footer>
           </div>
