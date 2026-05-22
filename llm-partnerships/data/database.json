@@ -1,4 +1,4 @@
-{
+﻿{
   "schemaVersion": "1.0",
   "language": "fr",
   "projectName": "French Law Schools LL.M Partnerships Database",
@@ -106,7 +106,7 @@
         "lat": 43.5297,
         "lng": 5.4474
       },
-      "dataStatus": "confirmed"
+      "dataStatus": "to_confirm"
     },
     {
       "id": "catholille",
@@ -217,7 +217,7 @@
       "tuitionDisplay": "2 places à 5 000 €. Une autre place semble proposée avec frais de scolarité BU réduits d'environ 27 000 $, montant à confirmer.",
       "financialAid": "Réduction d'environ 27 000 $ mentionnée pour une place, montant à confirmer.",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "missingInformation": [
         "Lien officiel actuel",
         "Montant actualisé",
@@ -273,7 +273,7 @@
       "tuitionDisplay": "2 places à 5 000 €. Une place avec frais UC Law SF réduits de 20 000 $ via la bourse Riesenfeld est mentionnée, montant à confirmer.",
       "financialAid": "Bourse Riesenfeld de 20 000 $ mentionnée, à confirmer.",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "missingInformation": [
         "Lien officiel actuel",
         "Montant actualisé",
@@ -1647,7 +1647,7 @@
       "tuitionDisplay": "Environ 9 000 $ l’année",
       "financialAid": "Tarif réduit dans le cadre du partenariat.",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "missingInformation": [
         "Nom exact du LL.M",
         "Test d’anglais exact",
@@ -1689,7 +1689,7 @@
       "tuitionDisplay": "Non communiqué",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "missingInformation": [
         "Nom exact du LL.M",
         "Prix",
@@ -1731,7 +1731,7 @@
       "tuitionDisplay": "Environ 24 000 $",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
       "missingInformation": [
         "Nom exact du LL.M",
@@ -1772,7 +1772,7 @@
       "tuitionDisplay": "Environ 50 000 $",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
       "missingInformation": [
         "Nom exact du LL.M",
@@ -1814,7 +1814,7 @@
       "tuitionDisplay": "Environ 30 000 $ (prix exact à confirmer)",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "confirmed",
+      "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
       "missingInformation": [
         "Nom exact de l’université partenaire à Boston",
@@ -2274,3 +2274,4 @@
     }
   ]
 }
+
