@@ -2058,8 +2058,8 @@
       "tuitionDisplay": "Réduction de 50 % des frais d'inscription (≈ 38 801 $/an), à confirmer.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "student_report",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "user_confirmed",
       "missingInformation": [
         "Lien officiel Cardozo / université française",
         "Conditions exactes d'éligibilité",
@@ -2099,8 +2099,8 @@
       "tuitionDisplay": "Réduction de 50 % des frais d'inscription (≈ 38 801 $/an), à confirmer.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "student_report",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "user_confirmed",
       "missingInformation": [
         "Lien officiel Cardozo / université française",
         "Conditions exactes d'éligibilité",
@@ -2140,8 +2140,8 @@
       "tuitionDisplay": "Réduction de 50 % des frais d'inscription (≈ 38 801 $/an), à confirmer.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "student_report",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "user_confirmed",
       "missingInformation": [
         "Lien officiel Cardozo / université française",
         "Conditions exactes d'éligibilité",
@@ -2181,8 +2181,8 @@
       "tuitionDisplay": "Réduction de 50 % des frais d'inscription (≈ 38 801 $/an), à confirmer.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "student_report",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "user_confirmed",
       "missingInformation": [
         "Lien officiel Cardozo / université française",
         "Conditions exactes d'éligibilité",
@@ -2222,8 +2222,8 @@
       "tuitionDisplay": "Réduction de 50 % des frais d'inscription (≈ 38 801 $/an), à confirmer.",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "student_report",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "user_confirmed",
       "missingInformation": [
         "Lien officiel Cardozo / université française",
         "Conditions exactes d'éligibilité",
@@ -2274,4 +2274,7 @@
     }
   ]
 }
+
+
+
 
