@@ -81,7 +81,8 @@ export function usePanZoom({
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
 
     // Pinch zoom with two fingers.
-    if (pinch.current?.active && pointers.current.size >= 2) {
+    const pinchState = pinch.current
+    if (pinchState?.active && pointers.current.size >= 2) {
       const two = getTwoPointers()
       if (!two) return
       const [a, b] = two
@@ -97,13 +98,13 @@ export function usePanZoom({
       const py = mid.y - rect.top
 
       setT(() => {
-        const start = pinch.current!.startTransform
-        const scale = dist / pinch.current!.startDistance
+        const start = pinchState.startTransform
+        const scale = dist / pinchState.startDistance
         const nextK = clamp(start.k * scale, minZoom, maxZoom)
 
         // Zoom around the pinch midpoint, and keep finger-midpoint translation feeling natural.
-        const startPx = pinch.current!.startMid.x - rect.left
-        const startPy = pinch.current!.startMid.y - rect.top
+        const startPx = pinchState.startMid.x - rect.left
+        const startPy = pinchState.startMid.y - rect.top
         const zoomedX = px - ((startPx - start.x) * nextK) / start.k
         const zoomedY = py - ((startPy - start.y) * nextK) / start.k
 
