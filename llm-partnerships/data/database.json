@@ -1102,7 +1102,7 @@
       "partnerCountry": "États-Unis",
       "partnerCity": "New York",
       "continent": "Amérique du Nord",
-      "programType": "Double diplôme",
+      "programType": "Double diplôme (J.D.)",
       "partnershipType": "dual_degree",
       "specialties": [
         "Droit français et droit américain"
@@ -1119,7 +1119,7 @@
           "note": "Document non le plus à jour (année 2024/2025). Mise à jour à venir si nouvelles infos."
         }
       ],
-      "shortDescription": "Double diplôme en droit français et droit américain mentionné parmi les partenariats de Paris 1.",
+      "shortDescription": "Double diplôme Paris 1 ↔ Columbia : ce programme n’est pas un LL.M mais un J.D. (correction confirmée par message reçu).",
       "admissionConditions": "Non communiqué",
       "languageTests": [],
       "availableSeatsDisplay": "Non communiqué",
@@ -1131,7 +1131,7 @@
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "incomplete",
       "missingInformation": [
-        "Type exact de diplôme",
+        "Structure exacte du double diplôme (parcours, durée, diplômes délivrés)",
         "Niveau requis",
         "Test de langue",
         "Nombre de places",
@@ -1139,7 +1139,7 @@
         "Durée",
         "Lien officiel"
       ],
-      "notes": "Information mentionnée mais insuffisamment détaillée dans les données disponibles."
+      "notes": "Correction confirmée par message reçu : le double diplôme Paris 1 ↔ Columbia est un J.D., pas un LL.M. Les détails (modalités, durée, frais, éligibilité, procédure) restent à documenter via une source officielle."
     },
     {
       "id": "lyon3-lsu",
