@@ -1625,7 +1625,7 @@
       "duration": "1 an",
       "officialLink": "",
       "shortDescription": "Partenariat LL.M entre l’Institut de Droit des Affaires d’Aix-Marseille Université et Chicago-Kent College of Law.",
-      "admissionConditions": "Sélection interne auprès de l’Institut de Droit des Affaires, puis candidature auprès de Chicago-Kent.",
+      "admissionConditions": "Processus (à confirmer) : sélection interne IDA (liste de 3 universités par ordre de préférence, CV FR, lettre de motivation FR, entretien avec les directeurs du master — entretien en anglais), puis candidature auprès de l’université américaine (CV EN, lettre EN, relevés de notes, test d’anglais, et parfois dossier via LSAC).",
       "languageTests": [
         {
           "test": "TOEFL",
@@ -1640,6 +1640,7 @@
       ],
       "applicationProcess": "internal",
       "sourceType": "recent_student_confirmation",
+      "sourceNote": "Retour étudiant : la sélection passe d’abord par une procédure interne IDA avant la candidature américaine. Le périmètre exact (réservé IDA ou plus large AMU) et le timing précis (pendant M2 vs après validation M2) restent à confirmer.",
       "availableSeatsDisplay": "Environ une dizaine de places pour les partenariats LL.M américains, selon retour étudiant.",
       "availableSeatsMin": null,
       "availableSeatsMax": null,
@@ -1654,7 +1655,7 @@
         "Deadline",
         "Détail des frais annexes"
       ],
-      "notes": "Infos pratiques confirmées par une étudiante récente du programme. Une information antérieure mentionnait environ 6 000 $, mais l’information la plus récente communiquée indique environ 9 000 $/an."
+      "notes": "Retour étudiant : procédure en 2 temps (sélection interne IDA puis candidature US). À confirmer : (1) réservé aux étudiants IDA ou plus largement AMU, (2) candidature pendant le M2 ou après validation du M2, (3) quota exact par université."
     },
     {
       "id": "amu-lsu",
@@ -1677,11 +1678,12 @@
       "duration": "1 an",
       "officialLink": "",
       "shortDescription": "Partenariat LL.M entre l’Institut de Droit des Affaires d’Aix-Marseille Université et Louisiana State University à Baton Rouge.",
-      "admissionConditions": "Sélection interne auprès de l’Institut de Droit des Affaires, puis candidature auprès de LSU.",
+      "admissionConditions": "Processus (à confirmer) : sélection interne IDA (liste de 3 universités par ordre de préférence, CV FR, lettre de motivation FR, entretien en anglais), puis candidature auprès de LSU (CV EN, lettre EN, relevés, test d’anglais, dossier LSAC selon info disponible).",
       "languageTests": [],
       "applicationProcess": "internal",
       "applicationPlatform": "LSAC",
       "sourceType": "recent_student_confirmation",
+      "sourceNote": "Retour étudiant : sélection interne IDA avant la candidature américaine ; LSU mentionné comme candidature via LSAC. Détails techniques (deadline, pièces exactes, tests) non communiqués.",
       "availableSeatsDisplay": "Environ une dizaine de places pour les partenariats LL.M américains, selon retour étudiant.",
       "availableSeatsMin": null,
       "availableSeatsMax": null,
@@ -1720,7 +1722,7 @@
       "applicationProcess": "internal",
       "officialLink": "",
       "shortDescription": "Partenariat LL.M entre l’Institut de Droit des Affaires d’Aix-Marseille Université et University of San Diego School of Law.",
-      "admissionConditions": "Sélection interne auprès de l’Institut de Droit des Affaires, puis candidature auprès de l’université américaine.",
+      "admissionConditions": "Processus (à confirmer) : sélection interne IDA (liste de 3 universités, CV FR, lettre FR, entretien en anglais), puis candidature auprès de l’université américaine (CV EN, lettre EN, relevés, test d’anglais).",
       "languageTests": [
         { "test": "TOEFL", "minimumScore": "90", "details": "Confirmé par une étudiante récente du programme." }
       ],
@@ -1733,6 +1735,7 @@
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
+      "sourceNote": "Retour étudiant : sélection interne IDA puis candidature US. Le périmètre exact et le timing (pendant M2 vs après) restent à confirmer.",
       "missingInformation": [
         "Nom exact du LL.M",
         "Deadline",
@@ -1762,7 +1765,7 @@
       "applicationProcess": "internal",
       "officialLink": "",
       "shortDescription": "Partenariat LL.M entre l’Institut de Droit des Affaires d’Aix-Marseille Université et USC Gould School of Law.",
-      "admissionConditions": "Sélection interne auprès de l’Institut de Droit des Affaires, puis candidature auprès d’USC.",
+      "admissionConditions": "Processus (à confirmer) : sélection interne IDA (liste de 3 universités, CV FR, lettre FR, entretien en anglais), puis candidature auprès d’USC (CV EN, lettre EN, relevés, test d’anglais ; LSAC possiblement).",
       "languageTests": [],
       "applicationPlatform": "LSAC, à confirmer",
       "availableSeatsDisplay": "Environ une dizaine de places pour les partenariats LL.M américains, selon retour étudiant.",
@@ -1774,6 +1777,7 @@
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
+      "sourceNote": "Retour étudiant : sélection interne IDA puis candidature US ; USC mentionné comme partenaire. LSAC « possible » à confirmer.",
       "missingInformation": [
         "Nom exact du LL.M",
         "Test d’anglais requis",
@@ -1804,7 +1808,7 @@
       "applicationProcess": "internal",
       "officialLink": "",
       "shortDescription": "Partenariat LL.M avec une université située à Boston. Le nom exact de l’université partenaire doit encore être confirmé.",
-      "admissionConditions": "Sélection interne auprès de l’Institut de Droit des Affaires, puis candidature auprès de l’université américaine.",
+      "admissionConditions": "Processus (à confirmer) : sélection interne IDA (liste de 3 universités, CV FR, lettre FR, entretien en anglais), puis candidature auprès du partenaire à Boston (CV EN, lettre EN, relevés, test d’anglais ; dossier LSAC selon retour étudiant).",
       "languageTests": [],
       "applicationPlatform": "LSAC",
       "availableSeatsDisplay": "Environ une dizaine de places pour les partenariats LL.M américains, selon retour étudiant.",
@@ -1816,6 +1820,7 @@
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "to_confirm",
       "sourceType": "recent_student_confirmation",
+      "sourceNote": "Retour étudiant : partenariat à Boston avec candidature via LSAC, mais le nom exact du partenaire et le prix exact restent à confirmer.",
       "missingInformation": [
         "Nom exact de l’université partenaire à Boston",
         "Nom exact du LL.M",
