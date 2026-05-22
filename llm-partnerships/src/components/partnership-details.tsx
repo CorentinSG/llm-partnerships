@@ -47,7 +47,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             <span className="leading-tight">
               {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
             </span>
-            <ReliabilityBadge status={partnership.reliabilityStatus} />
+            <ReliabilityBadge
+              status={partnership.reliabilityStatus}
+              sourceType={partnership.sourceType}
+            />
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">

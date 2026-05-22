@@ -46,6 +46,8 @@ export interface DatabasePartnership {
   tuitionDisplay: string
   financialAid: string
   applicationDeadline: string
+  sourceType?: string
+  sourceNote?: string
   reliabilityStatus: ReliabilityStatus
   missingInformation: string[]
   notes: string

@@ -161,6 +161,8 @@ const partnerships: Partnership[] = database.partnerships.map((p) => {
     financialAid: p.financialAid || unknown,
     applicationYear: p.applicationYear || unknown,
     applicationDeadline: p.applicationDeadline || unknown,
+    sourceType: p.sourceType,
+    sourceNote: p.sourceNote,
     reliabilityStatus: p.reliabilityStatus,
     missingInformation: p.missingInformation || [],
     notes: p.notes || ""

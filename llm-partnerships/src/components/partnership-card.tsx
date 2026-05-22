@@ -35,7 +35,10 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
     <Card className="transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6),0_26px_80px_rgba(0,0,0,0.14)]">
       <CardHeader className="space-y-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
-          <ReliabilityBadge status={partnership.reliabilityStatus} />
+          <ReliabilityBadge
+            status={partnership.reliabilityStatus}
+            sourceType={partnership.sourceType}
+          />
           <div className="flex flex-wrap gap-2">
             <TuitionBadges tuitionCategory={partnership.tuitionCategory} />
             {testsBadges}
