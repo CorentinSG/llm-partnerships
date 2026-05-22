@@ -1147,27 +1147,27 @@
       "frenchUniversity": "Université Jean Moulin Lyon 3",
       "partnerUniversity": "Louisiana State University Paul M. Hebert Law Center",
       "partnerCountry": "États-Unis",
-      "partnerCity": "Baton Rouge",
+      "partnerCity": "Baton Rouge, LA",
       "partnerState": "Louisiana",
       "continent": "Amérique du Nord",
-      "programType": "LL.M partenaire",
-      "partnershipType": "reserved_seat",
+      "programType": "LL.M",
+      "partnershipType": "reserved_seat_and_preferential_treatment",
       "specialties": [
         "Non communiqué"
       ],
       "requiredLevel": "Master 2 de droit",
-      "applicationYear": "M2",
+      "applicationYear": "M2 en 2025-2026 pour départ en 2026-2027",
       "programLanguage": "Anglais",
-      "duration": "Non communiqué",
+      "duration": "1 an",
       "officialLink": "",
       "attachments": [
         {
-          "label": "PDF Lyon 3 (2025)",
+          "label": "PDF Lyon 3 (2026/2027)",
           "url": "/pdfs/lyon3-presentation-llm-2025.pdf"
         }
       ],
-      "shortDescription": "Partenariat LL.M entre Lyon 3 et LSU Law Center.",
-      "admissionConditions": "TOEFL iBT minimum 90, recommandé 100+, ou IELTS 7.0.",
+      "shortDescription": "Partenariat LL.M avec Louisiana State University à Baton Rouge. Une place est proposée sans frais de scolarité, avec frais d’inscription et frais LSAC. Des places supplémentaires peuvent bénéficier d’un traitement préférentiel avec frais réduits.",
+      "admissionConditions": "Sélection sur dossier par Lyon 3 (CV EN, lettre de motivation EN, résultats académiques), puis entretien en anglais. Après sélection, candidature auprès de LSU (modalités LSU, via LSAC).",
       "languageTests": [
         {
           "test": "TOEFL iBT",
@@ -1180,21 +1180,31 @@
           "details": "Aucune précision supplémentaire communiquée."
         }
       ],
-      "availableSeatsDisplay": "1 place sans frais de scolarité + places avec traitement préférentiel",
+      "applicationProcess": "internal",
+      "applicationPlatform": "LSAC",
+      "availableSeatsDisplay": "1 place sans frais de scolarité + possibilité d’étudiant supplémentaire avec traitement préférentiel",
       "availableSeatsMin": 1,
       "availableSeatsMax": null,
       "tuitionCategory": "no_tuition",
-      "tuitionDisplay": "1 place sans frais de scolarité. Inscription : 4 100 $, sous réserve de modifications, plus frais LSAC. Places avec traitement préférentiel : frais de scolarité 6 400 $ au lieu de 36 400 $, plus inscription 4 100 $ et frais LSAC.",
-      "financialAid": "Réduction importante possible via traitement préférentiel.",
+      "tuitionDisplay": "1 place sans frais de scolarité. Frais d’inscription : environ 4 100 $ (sous réserve de modification), plus frais de dossier LSAC. Pour les étudiants supplémentaires avec traitement préférentiel : frais de scolarité d’environ 6 400 $ au lieu de 36 400 $, plus environ 4 100 $ d’inscription et frais LSAC.",
+      "financialAid": "Non communiqué",
+      "costOfLivingEstimate": "Environ 22 200 $ pour l’année entière",
+      "applicationNotes": "Les traductions des relevés de notes peuvent être faites par l’étudiant, mais doivent être envoyées par l’université d’origine avec tampon.",
+      "additionalProgramInfo": [
+        "Participer au programme d’été LSU à Lyon : 8 juin 2026 → 26 juin 2026.",
+        "Arrivée à Baton Rouge au plus tard le 1er août 2026.",
+        "Orientation obligatoire à partir du 3 août 2026 (cours intensif de deux semaines).",
+        "Début des cours : 17 août 2026."
+      ],
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "confirmed",
       "missingInformation": [
+        "Nom exact du LL.M",
         "Nombre exact de places avec traitement préférentiel",
-        "Durée",
         "Lien officiel",
-        "Montants actualisés"
+        "Frais actualisés définitifs"
       ],
-      "notes": "Les montants sont sous réserve de modifications."
+      "notes": "Données (année 2026/2027) issues de supports Lyon 3 fournis par l’utilisateur. Important : il s’agit d’un partenariat (pas un échange universitaire). Les étudiants restent inscrits à Lyon 3 pendant l’année de mobilité et obtiennent uniquement le LL.M américain."
     },
     {
       "id": "lyon3-minnesota",
@@ -1202,27 +1212,27 @@
       "frenchUniversity": "Université Jean Moulin Lyon 3",
       "partnerUniversity": "University of Minnesota Law School",
       "partnerCountry": "États-Unis",
-      "partnerCity": "Minneapolis",
+      "partnerCity": "Minneapolis, MN",
       "partnerState": "Minnesota",
       "continent": "Amérique du Nord",
-      "programType": "LL.M partenaire",
+      "programType": "LL.M",
       "partnershipType": "reserved_seat",
       "specialties": [
         "Non communiqué"
       ],
       "requiredLevel": "Master 2 de droit",
-      "applicationYear": "M2",
+      "applicationYear": "M2 en 2025-2026 pour départ en 2026-2027",
       "programLanguage": "Anglais",
-      "duration": "Non communiqué",
+      "duration": "1 an",
       "officialLink": "",
       "attachments": [
         {
-          "label": "PDF Lyon 3 (2025)",
+          "label": "PDF Lyon 3 (2026/2027)",
           "url": "/pdfs/lyon3-presentation-llm-2025.pdf"
         }
       ],
-      "shortDescription": "Partenariat LL.M entre Lyon 3 et University of Minnesota Law School.",
-      "admissionConditions": "TOEFL iBT minimum 95 ou IELTS minimum 6.5.",
+      "shortDescription": "Partenariat LL.M avec University of Minnesota Law School. Une place est proposée sans frais de scolarité.",
+      "admissionConditions": "Sélection sur dossier par Lyon 3, puis entretien en anglais. Après sélection, candidature auprès de l’université américaine (modalités Minnesota).",
       "languageTests": [
         {
           "test": "TOEFL iBT",
@@ -1239,17 +1249,19 @@
       "availableSeatsMin": 1,
       "availableSeatsMax": 1,
       "tuitionCategory": "no_tuition",
-      "tuitionDisplay": "Sans frais de scolarité",
+      "tuitionDisplay": "1 place sans frais de scolarité",
       "financialAid": "Non communiqué",
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "confirmed",
       "missingInformation": [
-        "Spécialités",
-        "Durée",
         "Frais annexes",
-        "Lien officiel"
+        "Procédure de candidature américaine",
+        "Deadline américaine",
+        "Lien officiel",
+        "Nom exact du LL.M"
       ],
-      "notes": "Autres frais non communiqués."
+      "costOfLivingEstimate": "Environ 20 600 $ pour l’année entière",
+      "notes": "Données (année 2026/2027) issues de supports Lyon 3 fournis par l’utilisateur. Important : partenariat (pas échange)."
     },
     {
       "id": "lyon3-brooklyn",
@@ -1257,27 +1269,27 @@
       "frenchUniversity": "Université Jean Moulin Lyon 3",
       "partnerUniversity": "Brooklyn Law School",
       "partnerCountry": "États-Unis",
-      "partnerCity": "New York",
+      "partnerCity": "Brooklyn / New York City, NY",
       "partnerState": "New York",
       "continent": "Amérique du Nord",
-      "programType": "LL.M partenaire",
+      "programType": "LL.M",
       "partnershipType": "preferential_treatment",
       "specialties": [
         "Non communiqué"
       ],
       "requiredLevel": "Master 2 de droit",
-      "applicationYear": "M2",
+      "applicationYear": "M2 en 2025-2026 pour départ en 2026-2027",
       "programLanguage": "Anglais",
-      "duration": "Non communiqué",
+      "duration": "1 an",
       "officialLink": "",
       "attachments": [
         {
-          "label": "PDF Lyon 3 (2025)",
+          "label": "PDF Lyon 3 (2026/2027)",
           "url": "/pdfs/lyon3-presentation-llm-2025.pdf"
         }
       ],
-      "shortDescription": "Partenariat LL.M entre Lyon 3 et Brooklyn Law School avec traitement préférentiel.",
-      "admissionConditions": "TOEFL iBT minimum 95 ou IELTS minimum 7.0.",
+      "shortDescription": "Partenariat LL.M avec Brooklyn Law School. Une place bénéficie d’un traitement préférentiel : un semestre gratuit et un semestre payant.",
+      "admissionConditions": "Sélection sur dossier par Lyon 3, puis entretien en anglais. Après sélection, candidature auprès de Brooklyn (via LSAC).",
       "languageTests": [
         {
           "test": "TOEFL iBT",
@@ -1294,16 +1306,21 @@
       "availableSeatsMin": 1,
       "availableSeatsMax": 1,
       "tuitionCategory": "reduced_tuition",
-      "tuitionDisplay": "Un semestre gratuit, un semestre payant.",
-      "financialAid": "Traitement préférentiel de 50 %.",
+      "tuitionDisplay": "1 semestre gratuit et 1 semestre payant. Estimation 2025-2026 : environ 1 450 $ de frais + 63 949 $ pour l’année complète, soit environ 33 424 $ après remise.",
+      "financialAid": "Traitement préférentiel de 50 %",
+      "costOfLivingEstimate": "Environ 38 765 $ pour l’année entière",
+      "applicationProcess": "internal",
+      "applicationPlatform": "LSAC",
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "confirmed",
       "missingInformation": [
-        "Montant exact du semestre payant",
-        "Durée",
+        "Nom exact du LL.M",
+        "Frais actualisés définitifs",
+        "Deadline américaine",
         "Lien officiel"
       ],
-      "notes": "Frais de dossier LSAC et traduction officielle des notes exigés."
+      "applicationNotes": "Frais de dossier LSAC et traduction officielle des notes exigés.",
+      "notes": "Données (année 2026/2027) issues de supports Lyon 3 fournis par l’utilisateur."
     },
     {
       "id": "lyon3-georgetown",
@@ -1311,27 +1328,27 @@
       "frenchUniversity": "Université Jean Moulin Lyon 3",
       "partnerUniversity": "Georgetown University Law Center",
       "partnerCountry": "États-Unis",
-      "partnerCity": "Washington, D.C.",
+      "partnerCity": "Washington, DC",
       "partnerState": "District of Columbia",
       "continent": "Amérique du Nord",
-      "programType": "LL.M partenaire",
+      "programType": "LL.M",
       "partnershipType": "preferential_treatment",
       "specialties": [
         "Non communiqué"
       ],
       "requiredLevel": "Master 2 de droit",
-      "applicationYear": "M2",
+      "applicationYear": "M2 en 2025-2026 pour départ en 2026-2027",
       "programLanguage": "Anglais",
-      "duration": "Non communiqué",
+      "duration": "1 an",
       "officialLink": "",
       "attachments": [
         {
-          "label": "PDF Lyon 3 (2025)",
+          "label": "PDF Lyon 3 (2026/2027)",
           "url": "/pdfs/lyon3-presentation-llm-2025.pdf"
         }
       ],
-      "shortDescription": "Partenariat LL.M entre Lyon 3 et Georgetown University Law Center avec réduction des frais de scolarité.",
-      "admissionConditions": "TOEFL iBT minimum 100 ou IELTS minimum 7.5.",
+      "shortDescription": "Partenariat LL.M avec Georgetown University Law Center. Trois places bénéficient d’une réduction de 50 % des frais de scolarité.",
+      "admissionConditions": "Sélection sur dossier par Lyon 3, puis entretien en anglais. Après sélection, candidature auprès de Georgetown (modalités US).",
       "languageTests": [
         {
           "test": "TOEFL iBT",
@@ -1348,17 +1365,19 @@
       "availableSeatsMin": 3,
       "availableSeatsMax": 3,
       "tuitionCategory": "reduced_tuition",
-      "tuitionDisplay": "Réduction de 50 % des frais de scolarité. Coût estimé autour de 45 000 $, à confirmer.",
-      "financialAid": "Réduction de 50 %.",
+      "tuitionDisplay": "Réduction de 50 % des frais de scolarité. Estimation 2025-2026 : environ 86 294 $ pour l’année complète, soit environ 43 147 $ après remise.",
+      "financialAid": "Réduction de 50 % des frais de scolarité",
+      "costOfLivingEstimate": "Environ 26 705 $ pour l’année entière",
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "confirmed",
       "missingInformation": [
-        "Coût exact actualisé",
-        "Spécialités",
-        "Durée",
+        "Nom exact du LL.M",
+        "Frais actualisés définitifs",
+        "Procédure de candidature américaine",
+        "Deadline américaine",
         "Lien officiel"
       ],
-      "notes": "Le montant de 45 000 $ est une estimation à confirmer."
+      "notes": "Données (année 2026/2027) issues de supports Lyon 3 fournis par l’utilisateur."
     },
     {
       "id": "bordeaux-cincinnati",
