@@ -152,15 +152,6 @@ export function UsMap({
             </defs>
 
             <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
-              {/* Pan surface (transparent): enables drag even when the map fills the whole viewport */}
-              <rect
-                x={0}
-                y={0}
-                width={width}
-                height={height}
-                fill="transparent"
-                stroke="none"
-              />
               {usStates.features.map((f: any) => {
                 const name = String(f.properties?.name || "")
                 const selected = name && name === selectedState

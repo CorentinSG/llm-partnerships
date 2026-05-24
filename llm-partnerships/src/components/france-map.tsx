@@ -137,15 +137,6 @@ export function FranceMap({
             </defs>
 
             <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
-              {/* Pan surface (transparent): enables drag even when the map fills the whole viewport */}
-              <rect
-                x={0}
-                y={0}
-                width={width}
-                height={height}
-                fill="transparent"
-                stroke="none"
-              />
               {svgPath ? (
                 <>
                   <path d={svgPath} fill="url(#frFill)" filter="url(#softShadow)" />
