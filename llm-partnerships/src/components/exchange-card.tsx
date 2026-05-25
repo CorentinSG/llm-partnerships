@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 export function ExchangeCard({ item }: { item: InternationalExchange }) {
+  const showStudentBadge = (item.sourceType || "").includes("student_shared_unofficial_document")
   return (
     <div className="glass-panel rounded-3xl p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -22,6 +23,14 @@ export function ExchangeCard({ item }: { item: InternationalExchange }) {
             </Badge>
             <Badge variant="outline">Échange</Badge>
             <ReliabilityBadge status={item.reliabilityStatus as any} sourceType={item.sourceType} />
+            {showStudentBadge ? (
+              <Badge
+                variant="outline"
+                className="border-amber-400/30 bg-amber-400/10 text-amber-200"
+              >
+                À confirmer – source étudiante
+              </Badge>
+            ) : null}
           </div>
           <div className="text-lg font-semibold tracking-tight sm:text-xl">
             {item.frenchUniversity} → {item.partnerUniversity}

@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 export function ExchangeDetails({ item }: { item: InternationalExchange }) {
+  const showStudentBadge = (item.sourceType || "").includes("student_shared_unofficial_document")
   return (
     <PageShell
       title={`${item.frenchUniversity} → ${item.partnerUniversity}`}
@@ -30,6 +31,14 @@ export function ExchangeDetails({ item }: { item: InternationalExchange }) {
                   status={item.reliabilityStatus as any}
                   sourceType={item.sourceType}
                 />
+                {showStudentBadge ? (
+                  <Badge
+                    variant="outline"
+                    className="border-amber-400/30 bg-amber-400/10 text-amber-200"
+                  >
+                    À confirmer – source étudiante non officielle
+                  </Badge>
+                ) : null}
               </div>
               <div className="text-sm text-muted-foreground">
                 {item.frenchFaculty} • {item.frenchProgram || "Non communiqué"}
@@ -65,6 +74,15 @@ export function ExchangeDetails({ item }: { item: InternationalExchange }) {
             </div>
           </div>
         </div>
+
+        {showStudentBadge ? (
+          <div className="rounded-2xl border border-amber-400/20 bg-amber-400/10 p-4 text-sm text-muted-foreground">
+            Les informations relatives aux partenariats de l’Université Paris Nanterre
+            sont issues d’un document étudiant non officiel et peuvent varier selon les
+            promotions. Les universités partenaires, le nombre de places, les bourses et
+            les modalités doivent être confirmés auprès du master ou de l’université.
+          </div>
+        ) : null}
 
         <div className="grid gap-4 lg:grid-cols-2">
           <div className="glass-panel rounded-3xl p-6">

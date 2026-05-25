@@ -6,12 +6,16 @@ import { ExternalLink, FileText, Info } from "lucide-react"
 import { ReliabilityBadge } from "@/components/reliability-badge"
 import { TuitionBadges } from "@/components/tuition-badges"
 import { PartnershipDialog } from "@/components/partnership-dialog"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
 
 export function PartnershipCard({ partnership }: { partnership: Partnership }) {
+  const showNanterreStudentBadge =
+    partnership.frenchUniversity === "Université Paris Nanterre" &&
+    (partnership.sourceType || "").includes("student_shared_unofficial_document")
   const tests =
     partnership.languageTests?.length > 0
       ? partnership.languageTests
@@ -39,6 +43,14 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             status={partnership.reliabilityStatus}
             sourceType={partnership.sourceType}
           />
+          {showNanterreStudentBadge ? (
+            <Badge
+              variant="outline"
+              className="border-amber-400/30 bg-amber-400/10 text-amber-200"
+            >
+              À confirmer – source étudiante non officielle
+            </Badge>
+          ) : null}
           <div className="flex flex-wrap gap-2">
             <TuitionBadges tuitionCategory={partnership.tuitionCategory} />
             {testsBadges}
