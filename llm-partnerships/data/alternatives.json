@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0",
+  "language": "fr",
+  "unknownValue": "Non communiqué",
+  "items": [
+    {
+      "id": "udem-jd-common-law-nord-americaine",
+      "category": "alternative_common_law_route",
+      "status": "confirmed_official_source",
+      "institution": "Université de Montréal",
+      "faculty": "Faculté de droit",
+      "city": "Montréal",
+      "country": "Canada",
+      "continent": "Amérique du Nord",
+      "programName": "Juris Doctor - Common law nord-américaine",
+      "programType": "Juris Doctor / programme de 2e cycle",
+      "isUSLLM": false,
+      "isFrenchUniversityPartnership": false,
+      "officialLink": "https://admission.umontreal.ca/programmes/juris-doctor-common-law-nord-americaine/",
+      "credits": "32 crédits",
+      "studyMode": ["Temps plein", "Temps partiel"],
+      "campus": "Montréal",
+      "language": "Français et anglais",
+      "shortDescription": "Programme de 2e cycle de l’Université de Montréal offrant une formation en common law canadienne et américaine, dans une perspective comparative avec le droit civil.",
+      "whyRelevant": "Ce programme peut être intéressant pour les étudiants francophones qui souhaitent acquérir une formation en common law nord-américaine sans passer directement par un LL.M américain.",
+      "mainSubjects": [
+        "Fondements et méthodes de la common law",
+        "Contracts",
+        "Torts",
+        "Real Property",
+        "Procédure civile",
+        "Droit des obligations",
+        "Droit comparé civil law / common law"
+      ],
+      "admissionConditions": {
+        "degreeRequirement": "Diplôme de 1er cycle en droit de l’Université de Montréal ou diplôme jugé équivalent.",
+        "professionalAccreditationRequirement": "Le diplôme doit répondre aux exigences de la Fédération des ordres professionnels de juristes du Canada.",
+        "minimumAverage": "2,7 / 4,3 ou équivalent",
+        "languageRequirement": "Bonne connaissance du français et de l’anglais."
+      },
+      "duration": {
+        "minimum": "2 trimestres",
+        "maximum": "12 trimestres après l’inscription initiale"
+      },
+      "tuition": {
+        "frenchOrBelgianFrancophoneStudents": "Estimation 2025-2026 : 2 183,05 $ CAD par trimestre à temps plein de 15 crédits.",
+        "internationalStudents": "Estimation 2025-2026 : 11 998,60 $ CAD par trimestre à temps plein de 15 crédits.",
+        "note": "Les montants sont des estimations officielles et ne comprennent pas nécessairement les assurances, le logement, le transport, les manuels ou autres frais."
+      },
+      "barEligibilityWarning": "Ne pas présenter ce programme comme garantissant l’éligibilité à un barreau américain. L’éligibilité aux barreaux américains dépend de chaque État et doit être vérifiée auprès de l’autorité compétente.",
+      "displayWarning": "Ce programme n’est pas un LL.M américain et n’est pas un partenariat entre une université française et une law school américaine.",
+      "recommendedDisplaySection": "Parcours alternatifs vers la common law nord-américaine",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_university_page",
+      "missingInformation": [
+        "Éligibilité exacte aux barreaux américains État par État",
+        "Conditions précises pour les titulaires d’un M1 ou M2 français",
+        "Équivalence exacte d’un diplôme français au regard des exigences d’admission",
+        "Coût total exact pour les 32 crédits"
+      ]
+    }
+  ]
+}
