@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0",
+  "sectionName": "Échanges juridiques internationaux",
+  "description": "Programmes de mobilité ou d’échange entre universités françaises et universités étrangères permettant à des étudiants en droit de suivre des cours à l’étranger, sans nécessairement obtenir un LL.M.",
+  "warning": "Ces programmes ne sont pas des LL.M et ne permettent pas, en tant que tels, d’être éligible à un barreau américain. Vérifie toujours l’éligibilité auprès de l’autorité compétente de l’État visé.",
+  "unknownValue": "Non communiqué",
+  "exchanges": [
+    {
+      "id": "paris-nanterre-university-of-chicago-gsal",
+      "frenchUniversity": "Université Paris Nanterre",
+      "frenchFaculty": "UFR Droit et Science politique",
+      "frenchProgram": "Master Droit public économique / Droit de l’économie",
+      "frenchCity": "Nanterre",
+      "partnerUniversity": "University of Chicago",
+      "partnerProgram": "Graduate Student-at-Large",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Chicago",
+      "partnerState": "Illinois",
+      "continent": "Amérique du Nord",
+      "mobilityType": "Échange / mobilité académique non diplômante",
+      "isLLM": false,
+      "isDegreeGranting": false,
+      "duration": "Un semestre",
+      "semester": "Deuxième semestre du M2",
+      "requiredLevel": "M2",
+      "programLanguage": "Anglais",
+      "shortDescription": "Mobilité permettant à certains étudiants du Master Droit public économique / Droit de l’économie de l’Université Paris Nanterre de suivre un semestre de cours à University of Chicago dans le cadre du programme Graduate Student-at-Large.",
+      "importantClarification": "Ce programme semble être une mobilité académique d’un semestre et non un LL.M. Il ne délivre pas de LL.M américain. Il doit être présenté séparément des partenariats LL.M.",
+      "barEligibilityWarning": "Attention : ce programme n’est pas un LL.M américain. Il s’agit d’une mobilité académique d’un semestre permettant de suivre des cours à University of Chicago, sous réserve d’admission. Il ne doit pas être confondu avec les partenariats LL.M listés dans la section principale. Il ne rend pas automatiquement éligible à un barreau américain.",
+      "admissionConditions": "Dossier examiné par University of Chicago, selon retour étudiant. Conditions exactes à confirmer.",
+      "selectionProcess": "Non communiqué précisément. Retour étudiant indiquant que University of Chicago examine le dossier.",
+      "tuitionDisplay": "Environ 20 000 € (estimation, retour étudiant).",
+      "financialAid": "Exonérations possibles selon les notes, à confirmer.",
+      "availableSeatsDisplay": "Non communiqué",
+      "officialLink": "https://www.master-droit-de-leconomie-universite-paris-x-nanterre.fr/nos-partenaires",
+      "sourceType": "official_page_and_student_feedback",
+      "reliabilityStatus": "to_confirm",
+      "missingInformation": [
+        "Confirmation officielle qu’il s’agit bien du programme Graduate Student-at-Large",
+        "Coût exact actualisé",
+        "Nombre de places",
+        "Critères exacts de sélection",
+        "Conditions exactes d’exonération de frais",
+        "Cours accessibles à University of Chicago",
+        "Procédure de candidature complète"
+      ],
+      "notes": "Une étudiante a mentionné ce programme comme un possible parcours à Chicago, mais une autre a signalé qu’il s’agit probablement d’un échange et non d’un LL.M. À afficher uniquement dans la section « Échanges juridiques internationaux »."
+    }
+  ]
+}
+

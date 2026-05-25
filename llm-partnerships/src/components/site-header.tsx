@@ -35,6 +35,9 @@ export function SiteHeader({ className }: { className?: string }) {
               <Link href="/guide">Guide USA</Link>
             </Button>
             <Button asChild variant="ghost" size="sm">
+              <Link href="/exchanges">Échanges</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
               <Link href="/alternatives">Parcours alternatifs</Link>
             </Button>
             <Button asChild variant="secondary" size="sm">
@@ -74,6 +77,9 @@ export function SiteHeader({ className }: { className?: string }) {
                   </Button>
                   <Button asChild variant="ghost" className="justify-start">
                     <Link href="/guide">Guide USA</Link>
+                  </Button>
+                  <Button asChild variant="ghost" className="justify-start">
+                    <Link href="/exchanges">Échanges</Link>
                   </Button>
                   <Button asChild variant="ghost" className="justify-start">
                     <Link href="/alternatives">Parcours alternatifs</Link>
