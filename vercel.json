@@ -1,7 +1,6 @@
 {
   "framework": "nextjs",
   "installCommand": "npm install",
-  "buildCommand": "npm --workspace llm-partnerships-directory run build",
-  "outputDirectory": "llm-partnerships/.next"
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next"
 }
-
