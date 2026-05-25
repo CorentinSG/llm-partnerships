@@ -185,20 +185,23 @@ function FiltersUI({
   onChange: (next: ExchangesFilters) => void
   onReset: () => void
 }) {
+  const ALL = "__all__"
   return (
     <div className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label>Université française</Label>
           <Select
-            value={filters.frenchUniversity || ""}
-            onValueChange={(v) => onChange({ ...filters, frenchUniversity: v || undefined })}
+            value={filters.frenchUniversity || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, frenchUniversity: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value={ALL}>Toutes</SelectItem>
               {options.frenchUniversities.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -211,14 +214,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Université partenaire</Label>
           <Select
-            value={filters.partnerUniversity || ""}
-            onValueChange={(v) => onChange({ ...filters, partnerUniversity: v || undefined })}
+            value={filters.partnerUniversity || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, partnerUniversity: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value={ALL}>Toutes</SelectItem>
               {options.partnerUniversities.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -231,14 +236,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Pays</Label>
           <Select
-            value={filters.partnerCountry || ""}
-            onValueChange={(v) => onChange({ ...filters, partnerCountry: v || undefined })}
+            value={filters.partnerCountry || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, partnerCountry: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               {options.partnerCountries.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -251,14 +258,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Ville partenaire</Label>
           <Select
-            value={filters.partnerCity || ""}
-            onValueChange={(v) => onChange({ ...filters, partnerCity: v || undefined })}
+            value={filters.partnerCity || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, partnerCity: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value={ALL}>Toutes</SelectItem>
               {options.partnerCities.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -271,14 +280,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Type de mobilité</Label>
           <Select
-            value={filters.mobilityType || ""}
-            onValueChange={(v) => onChange({ ...filters, mobilityType: v || undefined })}
+            value={filters.mobilityType || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, mobilityType: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               {options.mobilityTypes.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -291,14 +302,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Durée</Label>
           <Select
-            value={filters.duration || ""}
-            onValueChange={(v) => onChange({ ...filters, duration: v || undefined })}
+            value={filters.duration || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, duration: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Toutes" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value={ALL}>Toutes</SelectItem>
               {options.durations.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -311,14 +324,16 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Niveau requis</Label>
           <Select
-            value={filters.requiredLevel || ""}
-            onValueChange={(v) => onChange({ ...filters, requiredLevel: v || undefined })}
+            value={filters.requiredLevel || ALL}
+            onValueChange={(v) =>
+              onChange({ ...filters, requiredLevel: v === ALL ? undefined : v })
+            }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               {options.requiredLevels.map((v) => (
                 <SelectItem key={v} value={v}>
                   {v}
@@ -331,14 +346,14 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Semestre</Label>
           <Select
-            value={filters.semester || ""}
-            onValueChange={(v) => onChange({ ...filters, semester: v || undefined })}
+            value={filters.semester || ALL}
+            onValueChange={(v) => onChange({ ...filters, semester: v === ALL ? undefined : v })}
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               {options.semesters
                 .filter(Boolean)
                 .map((v) => (
@@ -353,11 +368,11 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Programme diplômant</Label>
           <Select
-            value={filters.isDegreeGranting || ""}
+            value={filters.isDegreeGranting || ALL}
             onValueChange={(v) =>
               onChange({
                 ...filters,
-                isDegreeGranting: (v as any) || undefined
+                isDegreeGranting: v === ALL ? undefined : (v as any)
               })
             }
           >
@@ -365,7 +380,7 @@ function FiltersUI({
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               <SelectItem value="non">Non diplômant</SelectItem>
               <SelectItem value="oui">Diplômant</SelectItem>
             </SelectContent>
@@ -375,16 +390,19 @@ function FiltersUI({
         <div className="space-y-2">
           <Label>Fiabilité</Label>
           <Select
-            value={filters.reliabilityStatus || ""}
+            value={filters.reliabilityStatus || ALL}
             onValueChange={(v) =>
-              onChange({ ...filters, reliabilityStatus: (v as any) || undefined })
+              onChange({
+                ...filters,
+                reliabilityStatus: v === ALL ? undefined : (v as any)
+              })
             }
           >
             <SelectTrigger className="rounded-xl">
               <SelectValue placeholder="Tous" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value={ALL}>Tous</SelectItem>
               <SelectItem value="confirmed">Confirmé</SelectItem>
               <SelectItem value="to_confirm">À confirmer</SelectItem>
               <SelectItem value="incomplete">Information incomplète</SelectItem>
@@ -399,4 +417,3 @@ function FiltersUI({
     </div>
   )
 }
-
