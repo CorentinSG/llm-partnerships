@@ -16,8 +16,10 @@ export function SubmitInformationForm() {
   >("idle")
   const [errorMessage, setErrorMessage] = React.useState<string>("")
 
+  // Production: configured via Vercel env var.
+  // Fallback: keep a default endpoint so the form still works if the env var is missing.
   const formspreeEndpoint =
-    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || ""
+    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/mvzlqvdw"
 
   return (
     <PageShell
