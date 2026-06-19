@@ -3,19 +3,19 @@
 import Link from "next/link"
 import { ExternalLink, FileText, Info } from "lucide-react"
 
+import { PartnershipDialog } from "@/components/partnership-dialog"
 import { ReliabilityBadge } from "@/components/reliability-badge"
 import { TuitionBadges } from "@/components/tuition-badges"
-import { PartnershipDialog } from "@/components/partnership-dialog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
 
 export function PartnershipCard({ partnership }: { partnership: Partnership }) {
-  const showNanterreStudentBadge =
-    partnership.frenchUniversity === "Université Paris Nanterre" &&
-    (partnership.sourceType || "").includes("student_shared_unofficial_document")
+  const showStudentSourceBadge = (partnership.sourceType || "").includes(
+    "student_shared_unofficial_document"
+  )
+
   const tests =
     partnership.languageTests?.length > 0
       ? partnership.languageTests
@@ -43,7 +43,7 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             status={partnership.reliabilityStatus}
             sourceType={partnership.sourceType}
           />
-          {showNanterreStudentBadge ? (
+          {showStudentSourceBadge ? (
             <Badge
               variant="outline"
               className="border-amber-400/30 bg-amber-400/10 text-amber-200"
@@ -62,12 +62,11 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
         <div className="text-sm text-muted-foreground">
           {partnership.partnerCountry}
           {partnership.partnerCity ? ` (${partnership.partnerCity})` : ""} •{" "}
-          {partnership.continent} •{" "}
-          {partnership.programType}
+          {partnership.continent} • {partnership.programType}
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <p className="text-sm text-muted-foreground line-clamp-3">
+        <p className="line-clamp-3 text-sm text-muted-foreground">
           {partnership.shortDescription}
         </p>
         <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
@@ -120,11 +119,7 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
           ) : null}
           {partnership.officialLink ? (
             <Button asChild variant="ghost" size="sm">
-              <a
-                href={partnership.officialLink}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={partnership.officialLink} target="_blank" rel="noreferrer">
                 <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
                 Source
               </a>

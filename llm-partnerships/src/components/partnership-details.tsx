@@ -27,9 +27,13 @@ function Field({ label, value }: { label: string; value: ReactNode }) {
 }
 
 export function PartnershipDetails({ partnership }: { partnership: Partnership }) {
-  const isNanterre =
-    partnership.frenchUniversity === "Université Paris Nanterre" &&
-    (partnership.sourceType || "").includes("student_shared_unofficial_document")
+  const isStudentShared = (partnership.sourceType || "").includes(
+    "student_shared_unofficial_document"
+  )
+  const isNanterre = partnership.frenchUniversity === "Université Paris Nanterre"
+  const studentWarning = isNanterre
+    ? "Les informations relatives aux partenariats de l’Université Paris Nanterre sont issues d’un document étudiant non officiel et peuvent varier selon les promotions. Les universités partenaires, le nombre de places, les bourses et les modalités doivent être confirmés auprès du master ou de l’université."
+    : `Les informations relatives à ${partnership.frenchUniversity} proviennent d’un retour étudiant non officiel et doivent être confirmées auprès de l’université ou du programme avant d’être tenues pour définitives.`
   const tests =
     partnership.languageTests?.length > 0
       ? partnership.languageTests
@@ -56,7 +60,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                 status={partnership.reliabilityStatus}
                 sourceType={partnership.sourceType}
               />
-              {isNanterre ? (
+              {isStudentShared ? (
                 <Badge
                   variant="outline"
                   className="border-amber-400/30 bg-amber-400/10 text-amber-200"
@@ -68,12 +72,9 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {isNanterre ? (
+          {isStudentShared ? (
             <div className="rounded-2xl border border-amber-400/20 bg-amber-400/10 p-4 text-sm text-muted-foreground">
-              Les informations relatives aux partenariats de l’Université Paris Nanterre
-              sont issues d’un document étudiant non officiel et peuvent varier selon les
-              promotions. Les universités partenaires, le nombre de places, les bourses et
-              les modalités doivent être confirmés auprès du master ou de l’université.
+              {studentWarning}
             </div>
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">

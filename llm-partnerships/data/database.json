@@ -167,6 +167,18 @@
         "lng": 2.2100
       },
       "dataStatus": "to_confirm"
+    },
+    {
+      "id": "nice-cote-azur",
+      "name": "Université Côte d’Azur (Nice)",
+      "faculty": "Faculté de droit et science politique, à confirmer",
+      "city": "Nice",
+      "country": "France",
+      "coordinates": {
+        "lat": 43.7102,
+        "lng": 7.2620
+      },
+      "dataStatus": "to_confirm"
     }
   ],
   "partnerships": [
@@ -2381,6 +2393,60 @@
         "Impact exact sur l’éligibilité au New York Bar"
       ],
       "notes": "À afficher avec une distinction très claire entre échange non diplômant et LL.M. Ne pas présenter l’échange UC Davis comme un LL.M."
+    },
+    {
+      "id": "nice-st-johns-llm",
+      "frenchUniversityId": "nice-cote-azur",
+      "frenchUniversity": "Université Côte d’Azur (Nice)",
+      "partnerUniversity": "St. John's University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "New York",
+      "partnerState": "New York",
+      "partnerCoordinates": {
+        "lat": 40.7214,
+        "lng": -73.9550
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M partenaire",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "U.S. Legal Studies",
+        "Transnational Legal Practice"
+      ],
+      "requiredLevel": "M1 ou M2, à confirmer",
+      "applicationYear": "Pendant le M1 ou le M2, à confirmer",
+      "programLanguage": "Anglais",
+      "duration": "1 an",
+      "applicationProcess": "internal",
+      "officialLink": "",
+      "shortDescription": "Selon un retour d’étudiante, l’Université Côte d’Azur (Nice) dispose d’un partenariat LL.M avec St. John’s University School of Law, avec réduction d’environ 50 % des frais de scolarité.",
+      "admissionConditions": "Sélection gérée directement par Nice, sans LSAC selon le retour étudiant. Dossier académique requis ; seuil indicatif de 12/20 pour que le dossier soit examiné ; entretien possible mais non obligatoire ; TOEFL minimum 80. La difficulté pratique signalée est aussi d’obtenir l’accord pédagogique du professeur de M1 ou M2 concerné.",
+      "languageTests": [
+        {
+          "test": "TOEFL",
+          "minimumScore": "80",
+          "details": "Seuil communiqué par une étudiante du programme."
+        }
+      ],
+      "availableSeatsDisplay": "Pas de nombre de places fixe communiqué. Une seule étudiante est partie sur la cohorte mentionnée ; aucune l’année précédente, selon le retour étudiant.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Réduction d’environ 50 % des frais de scolarité à St. John’s University School of Law.",
+      "financialAid": "Réduction de frais d’environ 50 %, selon le retour étudiant.",
+      "applicationDeadline": "Non communiqué",
+      "reliabilityStatus": "to_confirm",
+      "sourceType": "student_shared_unofficial_document",
+      "sourceNote": "Informations issues d’un échange LinkedIn avec une étudiante du programme ; l’université communiquerait peu publiquement sur ce partenariat.",
+      "missingInformation": [
+        "Lien officiel",
+        "Nom exact de la faculté française impliquée",
+        "Nombre habituel de départs",
+        "Date limite de candidature",
+        "Niveau exact de départ",
+        "Conditions précises d’éligibilité au barreau de New York"
+      ],
+      "notes": "Selon l’étudiante, les candidats peuvent choisir entre deux LL.M : U.S. Legal Studies et Transnational Legal Practice. Les deux permettraient en principe d’être éligible au barreau de New York, mais ce point doit être confirmé officiellement."
     }
   ],
   "researchQueue": [

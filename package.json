@@ -6,8 +6,7 @@
   ],
   "scripts": {
     "dev": "npm --workspace llm-partnerships run dev",
-    "build": "npm --workspace llm-partnerships run build",
+    "build": "npm --workspace llm-partnerships run build && node scripts/sync-next-output.mjs",
     "start": "npm --workspace llm-partnerships run start"
   }
 }
-
