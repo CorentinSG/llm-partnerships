@@ -1,0 +1,1238 @@
+{
+  "updatedAt": "2026-06-19",
+  "currency": "USD",
+  "title": "Estimations de coût total d’un LL.M. aux États-Unis",
+  "disclaimer": "Ces chiffres sont des estimations construites à partir de pages officielles d’écoles de droit ou d’universités. Ils doivent être lus comme des ordres de grandeur, pas comme un devis contractuel. Les montants peuvent varier selon l’année, le type de logement, l’assurance santé, le visa, le style de vie et les frais annexes.",
+  "commonCosts": [
+    {
+      "label": "Logement",
+      "description": "Loyer ou résidence, parfois avec charges."
+    },
+    {
+      "label": "Nourriture",
+      "description": "Repas, courses et dépenses alimentaires courantes."
+    },
+    {
+      "label": "Livres et fournitures",
+      "description": "Manuels, bases de données, impressions et matériel."
+    },
+    {
+      "label": "Transport",
+      "description": "Transports locaux, parfois hors billets d’avion internationaux."
+    },
+    {
+      "label": "Assurance santé",
+      "description": "Souvent obligatoire pour les étudiants internationaux."
+    },
+    {
+      "label": "Dépenses personnelles",
+      "description": "Téléphone, vêtements, hygiène, loisirs et imprévus."
+    }
+  ],
+  "estimates": [
+    {
+      "id": "new-york-st-johns",
+      "displayCity": "New York, NY",
+      "city": "New York",
+      "state": "New York",
+      "referenceSchool": "St. John's University School of Law",
+      "coveredUniversities": [
+        "St. John's University School of Law",
+        "Fordham University School of Law",
+        "Cardozo School of Law / Yeshiva University",
+        "Pace University",
+        "Brooklyn Law School",
+        "Columbia University"
+      ],
+      "academicYear": "2025-2026 / 2026-2027",
+      "methodologyNote": "La tuition provient de la page LL.M. 2026-2027 de St. John’s. Les autres postes utilisent la ventilation officielle de coût de présence de la law school pour un étudiant full-time hors campus. Pour Fordham, Cardozo, Pace, Brooklyn ou Columbia, le coût réel peut différer.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition LL.M.)",
+          "amountUsd": 75720,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 1572,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 2878,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 19560,
+          "kind": "other"
+        },
+        {
+          "label": "Repas",
+          "amountUsd": 6940,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 2048,
+          "kind": "other"
+        },
+        {
+          "label": "Transport local",
+          "amountUsd": 1088,
+          "kind": "other"
+        },
+        {
+          "label": "Loan fees estimés",
+          "amountUsd": 214,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "St. John’s — LL.M. Tuition and Scholarships",
+          "url": "https://www.stjohns.edu/law/admissions/llm-admissions/llm-tuition-and-scholarships"
+        },
+        {
+          "label": "St. John’s — Financing Your Legal Education",
+          "url": "https://www.stjohns.edu/law/admissions/jd-admissions/financing-your-legal-education"
+        }
+      ]
+    },
+    {
+      "id": "boston-bu",
+      "displayCity": "Boston, MA",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "referenceSchool": "Boston University School of Law",
+      "coveredUniversities": [
+        "Boston University School of Law",
+        "Boston College Law School",
+        "Université à Boston (nom exact à confirmer)"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle de coût LL.M./graduate de Boston University. Le coût réel de Boston College peut différer.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 73024,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 1558,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1462,
+          "kind": "other"
+        },
+        {
+          "label": "Logement et nourriture",
+          "amountUsd": 16250,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 1120,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 3292,
+          "kind": "other"
+        },
+        {
+          "label": "Loan fees estimés",
+          "amountUsd": 214,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Boston University Law — Tuition and Fees for LL.M.",
+          "url": "https://www.bu.edu/law/admissions-aid/tuition-and-fees/tuition-and-fees-for-llm-and-other-graduate-programs/"
+        }
+      ]
+    },
+    {
+      "id": "chicago-chicago-kent",
+      "displayCity": "Chicago, IL",
+      "city": "Chicago",
+      "state": "Illinois",
+      "referenceSchool": "Chicago-Kent College of Law",
+      "coveredUniversities": [
+        "Chicago-Kent College of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "La tuition LL.M. vient de Chicago-Kent. Les coûts de vie utilisent la projection officielle d’Illinois Tech pour ses étudiants en droit, ce qui donne une estimation raisonnable pour Chicago.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition LL.M.)",
+          "amountUsd": 44000,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 250,
+          "kind": "other"
+        },
+        {
+          "label": "Assurance santé",
+          "amountUsd": 2286,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1816,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 21600,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 2900,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 3600,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Chicago-Kent — LL.M. Tuition and Fees",
+          "url": "https://kentlaw.iit.edu/law/admissions/financing-your-education/tuition-fees/llm-tuition-and-fees"
+        },
+        {
+          "label": "Illinois Tech — Law Cost Estimates",
+          "url": "https://www.iit.edu/financial-aid/tuition-fees-and-costs"
+        }
+      ]
+    },
+    {
+      "id": "san-francisco-uc-law-sf",
+      "displayCity": "San Francisco, CA",
+      "city": "San Francisco",
+      "state": "California",
+      "referenceSchool": "University of California College of the Law, San Francisco",
+      "coveredUniversities": [
+        "University of California College of the Law, San Francisco"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Ventilation officielle LL.M. + estimation officielle de vie à San Francisco communiquée par l’école.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition LL.M.)",
+          "amountUsd": 55000,
+          "kind": "tuition"
+        },
+        {
+          "label": "Student activity fee",
+          "amountUsd": 157,
+          "kind": "other"
+        },
+        {
+          "label": "MBE support fee",
+          "amountUsd": 120,
+          "kind": "other"
+        },
+        {
+          "label": "Health services fee",
+          "amountUsd": 965,
+          "kind": "other"
+        },
+        {
+          "label": "Assurance santé",
+          "amountUsd": 6895,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1698,
+          "kind": "other"
+        },
+        {
+          "label": "Logement et charges",
+          "amountUsd": 21600,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 3781,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 3000,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 1989,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "UC Law SF — LL.M. Tuition",
+          "url": "https://www.uclawsf.edu/admissions/llm-admissions/llmtuition/"
+        }
+      ]
+    },
+    {
+      "id": "bloomington-indiana",
+      "displayCity": "Bloomington, IN",
+      "city": "Bloomington",
+      "state": "Indiana",
+      "referenceSchool": "Indiana University Maurer School of Law",
+      "coveredUniversities": [
+        "Indiana University Maurer School of Law"
+      ],
+      "academicYear": "2023-2024 / 2025-2026",
+      "methodologyNote": "L’université publie une estimation LL.M. officielle plus ancienne, utilisée ici comme ordre de grandeur. Les montants plus récents peuvent avoir évolué.",
+      "components": [
+        {
+          "label": "Frais d’inscription et frais universitaires",
+          "amountUsd": 50753,
+          "kind": "tuition"
+        },
+        {
+          "label": "Logement et nourriture",
+          "amountUsd": 12717,
+          "kind": "other"
+        },
+        {
+          "label": "Assurance santé",
+          "amountUsd": 1820,
+          "kind": "other"
+        },
+        {
+          "label": "Autres dépenses",
+          "amountUsd": 2064,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Indiana Maurer — LL.M. Financial Information",
+          "url": "https://law.indiana.edu/graduate-apply/llm/financial-info.html"
+        },
+        {
+          "label": "Indiana Maurer — JD Financial Information",
+          "url": "https://law.indiana.edu/admission/jd-apply/financial-info/index.html"
+        }
+      ]
+    },
+    {
+      "id": "charlottesville-uva",
+      "displayCity": "Charlottesville, VA",
+      "city": "Charlottesville",
+      "state": "Virginia",
+      "referenceSchool": "University of Virginia School of Law",
+      "coveredUniversities": [
+        "University of Virginia School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation bâtie sur la page officielle Graduate Studies de UVA Law.",
+      "components": [
+        {
+          "label": "Tuition et frais obligatoires",
+          "amountUsd": 84900,
+          "kind": "tuition"
+        },
+        {
+          "label": "Dépenses de vie",
+          "amountUsd": 27720,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1800,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "UVA Law — Tuition and Cost of Attendance",
+          "url": "https://www.law.virginia.edu/graduatestudies/tuition-and-cost-attendance-graduate-studies"
+        }
+      ]
+    },
+    {
+      "id": "notre-dame-notre-dame",
+      "displayCity": "Notre Dame, IN",
+      "city": "Notre Dame",
+      "state": "Indiana",
+      "referenceSchool": "University of Notre Dame Law School",
+      "coveredUniversities": [
+        "University of Notre Dame Law School"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LL.M. de Notre Dame.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 37892,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 520,
+          "kind": "other"
+        },
+        {
+          "label": "Logement et nourriture",
+          "amountUsd": 17820,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1750,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 6720,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 2700,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Notre Dame Law — LL.M. Information",
+          "url": "https://law.nd.edu/academics/llm-at-notre-dame/"
+        },
+        {
+          "label": "Notre Dame Law — LL.M. in International Human Rights Law Admissions",
+          "url": "https://law.nd.edu/academics/llm-international-human-rights-law/admissions/"
+        }
+      ]
+    },
+    {
+      "id": "philadelphia-penn",
+      "displayCity": "Philadelphia, PA",
+      "city": "Philadelphia",
+      "state": "Pennsylvania",
+      "referenceSchool": "University of Pennsylvania Carey Law School",
+      "coveredUniversities": [
+        "University of Pennsylvania Carey Law School"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle de coût Penn Carey Law 2026-2027.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 87908,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 701,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 19962,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 5768,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 2464,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3754,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 4196,
+          "kind": "other"
+        },
+        {
+          "label": "Loan fees estimés",
+          "amountUsd": 246,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Penn Carey Law — Tuition and Financing",
+          "url": "https://www.law.upenn.edu/admissions/grad/financing-your-education.php"
+        },
+        {
+          "label": "Penn SRFS — Penn Carey Law Costs",
+          "url": "https://srfs.upenn.edu/costs-budgeting/law"
+        }
+      ]
+    },
+    {
+      "id": "ithaca-cornell",
+      "displayCity": "Ithaca, NY",
+      "city": "Ithaca",
+      "state": "New York",
+      "referenceSchool": "Cornell Law School",
+      "coveredUniversities": [
+        "Cornell Law School"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle de coût Cornell Law.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 87908,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais universitaires",
+          "amountUsd": 701,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 19962,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 5768,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 2464,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3754,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 4196,
+          "kind": "other"
+        },
+        {
+          "label": "Loan fees estimés",
+          "amountUsd": 246,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Cornell Law — JD Tuition and Financial Aid",
+          "url": "https://www.lawschool.cornell.edu/admissions/jd-admissions/jd-tuition-and-financial-aid/"
+        }
+      ]
+    },
+    {
+      "id": "baton-rouge-lsu",
+      "displayCity": "Baton Rouge, LA",
+      "city": "Baton Rouge",
+      "state": "Louisiana",
+      "referenceSchool": "Louisiana State University Law Center",
+      "coveredUniversities": [
+        "Louisiana State University Law Center",
+        "Louisiana State University Paul M. Hebert Law Center"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LSU Law.",
+      "components": [
+        {
+          "label": "Tuition et frais",
+          "amountUsd": 41406.4,
+          "kind": "tuition"
+        },
+        {
+          "label": "Logement et nourriture",
+          "amountUsd": 12050,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1700,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles et repas supplémentaires",
+          "amountUsd": 9444,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3840,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "LSU Law — Tuition and Fees",
+          "url": "https://law.lsu.edu/admissions/tuitionfees/"
+        }
+      ]
+    },
+    {
+      "id": "minneapolis-minnesota",
+      "displayCity": "Minneapolis, MN",
+      "city": "Minneapolis",
+      "state": "Minnesota",
+      "referenceSchool": "University of Minnesota Law School",
+      "coveredUniversities": [
+        "University of Minnesota Law School"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LL.M. de Minnesota.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 65300,
+          "kind": "tuition"
+        },
+        {
+          "label": "Assurance et frais obligatoires",
+          "amountUsd": 6650,
+          "kind": "other"
+        },
+        {
+          "label": "Vie courante et livres",
+          "amountUsd": 20600,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Minnesota Law — How to Apply (LL.M.)",
+          "url": "https://law.umn.edu/academics/degree-programs/llm/how-apply"
+        }
+      ]
+    },
+    {
+      "id": "cincinnati-cincinnati",
+      "displayCity": "Cincinnati, OH",
+      "city": "Cincinnati",
+      "state": "Ohio",
+      "referenceSchool": "University of Cincinnati College of Law",
+      "coveredUniversities": [
+        "University of Cincinnati College of Law"
+      ],
+      "academicYear": "2025-2026",
+      "methodologyNote": "Estimation fondée sur la page officielle de coût LLM de Cincinnati. Une hausse modérée peut intervenir l’année suivante.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 29010,
+          "kind": "tuition"
+        },
+        {
+          "label": "Professional Development Fee",
+          "amountUsd": 800,
+          "kind": "other"
+        },
+        {
+          "label": "Student Success Fee",
+          "amountUsd": 700,
+          "kind": "other"
+        },
+        {
+          "label": "International Student Fee",
+          "amountUsd": 250,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1500,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 17526,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3038,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses diverses",
+          "amountUsd": 4892,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "University of Cincinnati Law — Tuition & Cost of Attendance",
+          "url": "https://www.law.uc.edu/admissions-aid/tuition-and-aid/tuition---cost-of-attendance.html"
+        }
+      ]
+    },
+    {
+      "id": "pittsburgh-pitt",
+      "displayCity": "Pittsburgh, PA",
+      "city": "Pittsburgh",
+      "state": "Pennsylvania",
+      "referenceSchool": "University of Pittsburgh School of Law",
+      "coveredUniversities": [
+        "University of Pittsburgh School of Law"
+      ],
+      "academicYear": "2025-2026",
+      "methodologyNote": "Estimation fondée sur la page officielle Graduate LL.M. de Pittsburgh.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 45452,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais obligatoires",
+          "amountUsd": 1630,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 9476,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 5872,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1334,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 1008,
+          "kind": "other"
+        },
+        {
+          "label": "Loan fees estimés",
+          "amountUsd": 218,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 2656,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Pitt Law — Tuition",
+          "url": "https://www.tuition.pitt.edu/graduate/tuition/school-law"
+        }
+      ]
+    },
+    {
+      "id": "washington-dc-georgetown",
+      "displayCity": "Washington, DC",
+      "city": "Washington",
+      "state": "District of Columbia",
+      "referenceSchool": "Georgetown University Law Center",
+      "coveredUniversities": [
+        "Georgetown University Law Center",
+        "American University Washington College of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LL.M. de Georgetown. Pour American University WCL, la structure réelle peut différer, mais cet ordre de grandeur reste utile pour Washington, DC.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 89916,
+          "kind": "tuition"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1341,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 16020,
+          "kind": "other"
+        },
+        {
+          "label": "Utilities et internet",
+          "amountUsd": 2700,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 4293,
+          "kind": "other"
+        },
+        {
+          "label": "Assurance santé",
+          "amountUsd": 4785,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 3735,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3880,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Georgetown Law — Tuition & Cost of Attendance",
+          "url": "https://www.law.georgetown.edu/admissions-aid/financial-aid/tuition-cost-of-attendance/"
+        },
+        {
+          "label": "American University WCL — Tuition and Fees",
+          "url": "https://catalog.wcl.american.edu/content.php?catoid=7&navoid=78"
+        }
+      ]
+    },
+    {
+      "id": "los-angeles-usc",
+      "displayCity": "Los Angeles, CA",
+      "city": "Los Angeles",
+      "state": "California",
+      "referenceSchool": "University of Southern California Gould School of Law",
+      "coveredUniversities": [
+        "University of Southern California Gould School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LL.M. USC Gould. Le total officiel off-campus exclut l’assurance si elle est valablement waived ; l’assurance est donc indiquée séparément dans la note, pas intégrée ici.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 86472,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais obligatoires",
+          "amountUsd": 2139,
+          "kind": "other"
+        },
+        {
+          "label": "Livres et fournitures",
+          "amountUsd": 2200,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 14760,
+          "kind": "other"
+        },
+        {
+          "label": "Repas",
+          "amountUsd": 8438,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 2020,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 1190,
+          "kind": "other"
+        }
+      ],
+      "optionalNotes": [
+        "USC indique aussi une assurance santé d’environ 3 522 $ si elle n’est pas waived."
+      ],
+      "sources": [
+        {
+          "label": "USC Gould — LL.M. Cost of Attendance",
+          "url": "https://gould.usc.edu/academics/degrees/llm-1-year/tuition/cost/"
+        }
+      ]
+    },
+    {
+      "id": "san-diego-usd",
+      "displayCity": "San Diego, CA",
+      "city": "San Diego",
+      "state": "California",
+      "referenceSchool": "University of San Diego School of Law",
+      "coveredUniversities": [
+        "University of San Diego School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle University of San Diego.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 69290,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais obligatoires",
+          "amountUsd": 801,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 2130,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 20050,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 7421,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3150,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 5168,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "University of San Diego Law — Cost of Attendance",
+          "url": "https://www.sandiego.edu/law/financial-aid/cost-of-attendance/"
+        }
+      ]
+    },
+    {
+      "id": "south-royalton-vermont",
+      "displayCity": "South Royalton, VT",
+      "city": "South Royalton",
+      "state": "Vermont",
+      "referenceSchool": "Vermont Law and Graduate School",
+      "coveredUniversities": [
+        "Vermont Law and Graduate School"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Vermont publie clairement ses coûts indirects résidentiels sur 12 mois. Le poste tuition utilisé ici repose sur la page officielle de tuition publiée par l’école comme proxy, car le détail LL.M. exact n’était pas central dans les données disponibles.",
+      "components": [
+        {
+          "label": "Tuition de référence",
+          "amountUsd": 57320,
+          "kind": "tuition"
+        },
+        {
+          "label": "Livres et équipement",
+          "amountUsd": 2250,
+          "kind": "other"
+        },
+        {
+          "label": "Loyer",
+          "amountUsd": 12000,
+          "kind": "other"
+        },
+        {
+          "label": "Charges",
+          "amountUsd": 3708,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 7200,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 4800,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 3600,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Vermont Law — Cost of Attendance",
+          "url": "https://www.vermontlaw.edu/admissions/tuition-and-financial-aid/cost-of-attendance"
+        },
+        {
+          "label": "Vermont Law — Tuition & Fees",
+          "url": "https://www.vermontlaw.edu/admissions/tuition-and-financial-aid/tuition-fees"
+        }
+      ]
+    },
+    {
+      "id": "st-louis-washu",
+      "displayCity": "St. Louis, MO",
+      "city": "St. Louis",
+      "state": "Missouri",
+      "referenceSchool": "Washington University in St. Louis School of Law",
+      "coveredUniversities": [
+        "Washington University in St. Louis School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle WashU Law. Le parking optionnel n’est pas inclus.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 75600,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais obligatoires",
+          "amountUsd": 989,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 13617,
+          "kind": "other"
+        },
+        {
+          "label": "Nourriture",
+          "amountUsd": 3780,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 1500,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses diverses",
+          "amountUsd": 5000,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 1521,
+          "kind": "other"
+        },
+        {
+          "label": "Assurance santé",
+          "amountUsd": 2712,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "WashU Law — Tuition & Financial Aid",
+          "url": "https://law.washu.edu/admissions/tuition-financial-aid/"
+        }
+      ]
+    },
+    {
+      "id": "st-louis-slu",
+      "displayCity": "St. Louis, MO",
+      "city": "St. Louis",
+      "state": "Missouri",
+      "referenceSchool": "Saint Louis University School of Law",
+      "coveredUniversities": [
+        "Saint Louis University School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle de cost-of-attendance de SLU Law. Très utile pour les partenariats Dauphine ↔ SLU.",
+      "components": [
+        {
+          "label": "Frais d’inscription (tuition)",
+          "amountUsd": 58860,
+          "kind": "tuition"
+        },
+        {
+          "label": "Frais obligatoires",
+          "amountUsd": 930,
+          "kind": "other"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 16360,
+          "kind": "other"
+        },
+        {
+          "label": "Livres et fournitures",
+          "amountUsd": 1420,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3220,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses diverses",
+          "amountUsd": 5670,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Saint Louis University School of Law — Tuition and Fees",
+          "url": "https://www.slu.edu/law/student-services/financial/tuition-fees/index.php"
+        },
+        {
+          "label": "Saint Louis University — LL.M. in American Law for Foreign Lawyers",
+          "url": "https://catalog.slu.edu/colleges-schools/law/american-law-foreign-lawyers-llm/"
+        }
+      ]
+    },
+    {
+      "id": "cleveland-case",
+      "displayCity": "Cleveland, OH",
+      "city": "Cleveland",
+      "state": "Ohio",
+      "referenceSchool": "Case Western Reserve University School of Law",
+      "coveredUniversities": [
+        "Case Western Reserve University School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle Student Financial Services de Case Western pour SJD/LLM/ML. Les loan fees varient et ne sont pas intégrés.",
+      "components": [
+        {
+          "label": "Tuition et frais",
+          "amountUsd": 71544.5,
+          "kind": "tuition"
+        },
+        {
+          "label": "Logement",
+          "amountUsd": 10984,
+          "kind": "other"
+        },
+        {
+          "label": "Repas",
+          "amountUsd": 3854,
+          "kind": "other"
+        },
+        {
+          "label": "Livres",
+          "amountUsd": 2064,
+          "kind": "other"
+        },
+        {
+          "label": "Transport et dépenses personnelles",
+          "amountUsd": 10802,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Case Western — School of Law Tuition and COA",
+          "url": "https://case.edu/studentaccounts/tuition-fees/graduateprofessional-tuition-fees/school-law"
+        }
+      ]
+    },
+    {
+      "id": "davis-ucd",
+      "displayCity": "Davis, CA",
+      "city": "Davis",
+      "state": "California",
+      "referenceSchool": "UC Davis School of Law",
+      "coveredUniversities": [
+        "UC Davis School of Law"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation fondée sur la page officielle LL.M. UC Davis.",
+      "components": [
+        {
+          "label": "Tuition et frais",
+          "amountUsd": 69008,
+          "kind": "tuition"
+        },
+        {
+          "label": "Assurance santé SHIP",
+          "amountUsd": 8820,
+          "kind": "other"
+        },
+        {
+          "label": "Livres et fournitures",
+          "amountUsd": 2273,
+          "kind": "other"
+        },
+        {
+          "label": "Coût de vie estimé",
+          "amountUsd": 24740,
+          "kind": "other"
+        },
+        {
+          "label": "International student administrative fee",
+          "amountUsd": 414,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "UC Davis Law — Cost of Tuition",
+          "url": "https://law.ucdavis.edu/international/llm/cost-of-tuition"
+        }
+      ]
+    },
+    {
+      "id": "wilmington-delaware",
+      "displayCity": "Wilmington, DE",
+      "city": "Wilmington",
+      "state": "Delaware",
+      "referenceSchool": "Delaware Law School of Widener University",
+      "coveredUniversities": [
+        "Delaware Law School of Widener University"
+      ],
+      "academicYear": "2026-2027",
+      "methodologyNote": "Estimation dérivée de la page officielle Delaware Law : 1 999 $ par crédit et hypothèse de 24 crédits, soit environ 8 cours. Le coût exact du partenariat peut varier.",
+      "components": [
+        {
+          "label": "Frais d’inscription estimés (24 crédits x 1 999 $)",
+          "amountUsd": 47976,
+          "kind": "tuition"
+        },
+        {
+          "label": "University fees",
+          "amountUsd": 238,
+          "kind": "other"
+        },
+        {
+          "label": "Livres (hypothèse 8 cours)",
+          "amountUsd": 1280,
+          "kind": "other"
+        },
+        {
+          "label": "Logement et nourriture",
+          "amountUsd": 15138,
+          "kind": "other"
+        },
+        {
+          "label": "Transport",
+          "amountUsd": 3915,
+          "kind": "other"
+        },
+        {
+          "label": "Dépenses personnelles",
+          "amountUsd": 4932,
+          "kind": "other"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Delaware Law — Cost of Attendance",
+          "url": "https://delawarelaw.widener.edu/prospective-students/jd-program/tuition-and-financial-aid/cost-of-attendance/"
+        }
+      ]
+    }
+  ]
+}

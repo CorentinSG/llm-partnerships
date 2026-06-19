@@ -1,22 +1,22 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import type { ReactNode } from "react"
-import { IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google"
+import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google"
 
 import { SiteHeader } from "@/components/site-header"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 
-const sans = IBM_Plex_Sans({
+const sans = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-sans"
 })
 
-const serif = IBM_Plex_Serif({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
-  variable: "--font-serif"
+  variable: "--font-mono"
 })
 
 export const metadata: Metadata = {
@@ -28,14 +28,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`${sans.variable} ${serif.variable}`}>
+      <body className={`${sans.variable} ${mono.variable}`}>
         <ThemeProvider>
           <div className="min-h-dvh bg-background app-surface">
             <GoogleAnalytics />
             <SiteHeader />
             {children}
-            <footer className="container pb-10 pt-10">
-              <div className="glass-panel rounded-2xl px-5 py-4 text-xs leading-relaxed text-muted-foreground">
+            <footer className="container pb-10 pt-12">
+              <div className="rounded-2xl border bg-card/82 px-5 py-4 text-xs leading-relaxed text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
                 <span className="font-medium text-foreground/80">
                   Avertissement :
                 </span>{" "}
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 barreaux) avant toute candidature. Ce contenu ne constitue pas un
                 conseil juridique.
 
-                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
+                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 border-t pt-3 text-[11px]">
                   <span className="text-foreground/75">
                     Créé par Corentin Saint‑Girons, avocat au barreau de New York.
                   </span>

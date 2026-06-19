@@ -15,10 +15,10 @@ export function PageShell({
   className?: string
 }) {
   return (
-    <main className={cn("container py-10", className)}>
+    <main className={cn("container py-10 motion-rise", className)}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h1 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
             {title}
           </h1>
           {description ? (

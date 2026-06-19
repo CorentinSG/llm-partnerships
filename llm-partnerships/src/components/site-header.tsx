@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { Menu, Send } from "lucide-react"
 
 import { LogoMark } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -11,18 +11,18 @@ export function SiteHeader({ className }: { className?: string }) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 border-b bg-background/55 shadow-[0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/45 dark:shadow-none",
+        "sticky top-0 z-40 border-b bg-background/88 backdrop-blur-xl supports-[backdrop-filter]:bg-background/76",
         className
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/90 text-primary-foreground shadow-sm ring-1 ring-white/15">
+        <Link href="/" className="group flex items-center gap-2 rounded-xl focus-ring">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[0_8px_24px_-18px_hsl(var(--primary)/0.95)] transition-transform duration-150 ease-out group-hover:scale-[1.03]">
             <LogoMark className="h-4 w-4" />
           </div>
           <div className="leading-tight">
             <div className="text-sm font-semibold tracking-tight">LL.M Partnerships</div>
-            <div className="text-xs text-muted-foreground">Annuaire des partenariats</div>
+            <div className="font-mono-ui text-[11px] text-muted-foreground">Annuaire des partenariats</div>
           </div>
         </Link>
 
@@ -37,14 +37,17 @@ export function SiteHeader({ className }: { className?: string }) {
             <Button asChild variant="ghost" size="sm">
               <Link href="/alternatives">Parcours alternatifs</Link>
             </Button>
-            <Button asChild variant="secondary" size="sm">
-              <Link href="/submit">Proposer une info</Link>
+            <Button asChild variant="default" size="sm">
+              <Link href="/submit">
+                <Send className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
+                Proposer une info
+              </Link>
             </Button>
             <ThemeToggle />
           </div>
 
           <div className="flex items-center gap-2 md:hidden">
-            <Button asChild variant="secondary" size="sm" className="h-9 rounded-full px-3">
+            <Button asChild variant="default" size="sm" className="h-9 px-3">
               <Link href="/submit">Proposer</Link>
             </Button>
             <ThemeToggle />
@@ -55,7 +58,7 @@ export function SiteHeader({ className }: { className?: string }) {
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="h-9 w-9 rounded-full"
+                  className="h-9 w-9 rounded-lg"
                   aria-label="Menu"
                 >
                   <Menu className="h-5 w-5" aria-hidden="true" />

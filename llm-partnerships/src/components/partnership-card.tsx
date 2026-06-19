@@ -29,15 +29,15 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
     .map((t) => (
       <span
         key={t}
-        className="glass-button rounded-full px-2 py-0.5 text-[11px] text-muted-foreground"
+        className="rounded-full border bg-secondary px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
       >
         {t}
       </span>
     ))
 
   return (
-    <Card className="transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[0_1px_0_rgba(255,255,255,0.6),0_26px_80px_rgba(0,0,0,0.14)]">
-      <CardHeader className="space-y-2">
+    <Card className="group">
+      <CardHeader className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <ReliabilityBadge
             status={partnership.reliabilityStatus}
@@ -46,9 +46,9 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
           {showStudentSourceBadge ? (
             <Badge
               variant="outline"
-              className="border-amber-400/30 bg-amber-400/10 text-amber-200"
+              className="border-amber-500/35 bg-amber-500/12 text-amber-800 dark:text-amber-200"
             >
-              À confirmer – source étudiante non officielle
+              À confirmer - source étudiante non officielle
             </Badge>
           ) : null}
           <div className="flex flex-wrap gap-2">
@@ -56,31 +56,31 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             {testsBadges}
           </div>
         </div>
-        <CardTitle className="text-[16px] leading-snug tracking-tight">
+        <CardTitle className="text-[16px] leading-snug tracking-tight transition-colors group-hover:text-primary">
           {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
         </CardTitle>
         <div className="text-sm text-muted-foreground">
           {partnership.partnerCountry}
-          {partnership.partnerCity ? ` (${partnership.partnerCity})` : ""} •{" "}
-          {partnership.continent} • {partnership.programType}
+          {partnership.partnerCity ? ` (${partnership.partnerCity})` : ""} ·{" "}
+          {partnership.continent} · {partnership.programType}
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        <p className="line-clamp-3 text-sm text-muted-foreground">
+        <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">
           {partnership.shortDescription}
         </p>
-        <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+        <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground">
           <span>Niveau : {String(partnership.requiredLevel)}</span>
-          <span>•</span>
+          <span aria-hidden="true">·</span>
           <span>
             Places :{" "}
             {partnership.availableSeatsDisplay
               ? partnership.availableSeatsDisplay
               : String(partnership.availableSeats)}
           </span>
-          <span>•</span>
+          <span aria-hidden="true">·</span>
           <span>Langue : {partnership.programLanguage}</span>
-          <span>•</span>
+          <span aria-hidden="true">·</span>
           <span>
             Candidature :{" "}
             {partnership.applicationProcess === "internal"
@@ -91,8 +91,8 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
           </span>
         </div>
       </CardContent>
-      <CardFooter className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
+      <CardFooter className="flex flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-center">
+        <div className="flex flex-wrap items-center gap-2">
           <PartnershipDialog partnership={partnership}>
             <Button variant="secondary" size="sm">
               <Info className="mr-2 h-4 w-4" aria-hidden="true" />
@@ -103,7 +103,7 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
             <Link href={`/partnership/${partnership.id}`}>Ouvrir</Link>
           </Button>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="flex flex-wrap items-center gap-1">
           {partnership.attachments && partnership.attachments.length > 0 ? (
             <Button asChild variant="ghost" size="sm">
               <a

@@ -2432,8 +2432,8 @@
       "availableSeatsMin": null,
       "availableSeatsMax": null,
       "tuitionCategory": "reduced_tuition",
-      "tuitionDisplay": "Réduction d’environ 50 % des frais de scolarité à St. John’s University School of Law.",
-      "financialAid": "Réduction de frais d’environ 50 %, selon le retour étudiant.",
+      "tuitionDisplay": "Estimation tuition seulement : environ 75 720 $ de frais d’inscription LL.M. au tarif public 2026-2027 de St. John’s University School of Law, puis environ 37 860 $ après réduction estimée de 50 % grâce au partenariat. Cette estimation ne comprend ni logement, ni assurance, ni transport, ni visa.",
+      "financialAid": "Réduction de frais d’environ 50 %, soit une tuition estimée autour de 37 860 $ au lieu d’environ 75 720 $, selon le retour étudiant et le tarif public St. John’s 2026-2027.",
       "applicationDeadline": "Non communiqué",
       "reliabilityStatus": "to_confirm",
       "sourceType": "student_shared_unofficial_document",
@@ -2446,7 +2446,7 @@
         "Niveau exact de départ",
         "Conditions précises d’éligibilité au barreau de New York"
       ],
-      "notes": "Selon l’étudiante, les candidats peuvent choisir entre deux LL.M : U.S. Legal Studies et Transnational Legal Practice. Les deux permettraient en principe d’être éligible au barreau de New York, mais ce point doit être confirmé officiellement."
+      "notes": "Selon l’étudiante, les candidats peuvent choisir entre deux LL.M : U.S. Legal Studies et Transnational Legal Practice. Les deux permettraient en principe d’être éligible au barreau de New York, mais ce point doit être confirmé officiellement. L’estimation tuition repose sur la page officielle St. John’s LL.M. 2026-2027."
     }
   ],
   "researchQueue": [

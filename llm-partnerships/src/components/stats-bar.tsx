@@ -61,7 +61,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
     .sort((a, b) => a.localeCompare(b))
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr]">
+    <div className="grid items-start gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr]">
       <Dialog>
         <DialogTrigger asChild>
           <Card className="cursor-pointer">

@@ -93,10 +93,8 @@ export function UsLawyerPath({ className }: { className?: string }) {
               <Card
                 key={step.title}
                 className={cn(
-                  "transition-[transform,box-shadow] hover:-translate-y-0.5",
-                  open
-                    ? "shadow-[0_1px_0_rgba(255,255,255,0.55),0_26px_90px_rgba(0,0,0,0.16)]"
-                    : "shadow-[0_1px_0_rgba(255,255,255,0.45),0_18px_60px_rgba(0,0,0,0.12)]"
+                  "transition-[border-color,box-shadow,transform]",
+                  open ? "border-primary/25" : ""
                 )}
               >
                 <button
@@ -142,7 +140,7 @@ export function UsLawyerPath({ className }: { className?: string }) {
                           </div>
                         ))}
                         {step.footnote ? (
-                          <div className="mt-2 rounded-xl border border-white/15 bg-background/35 p-3 text-xs text-muted-foreground dark:bg-background/20">
+                          <div className="mt-2 rounded-xl border bg-secondary/45 p-3 text-xs text-muted-foreground">
                             {step.footnote}
                           </div>
                         ) : null}

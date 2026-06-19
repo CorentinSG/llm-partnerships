@@ -107,7 +107,7 @@ export function UsMap({
         </button>
       </div>
 
-      <div className="glass-panel mt-3 rounded-3xl p-4">
+      <div className="glass-panel mt-3 rounded-2xl p-4 motion-rise">
         <div className="relative">
           <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
             <button

@@ -30,7 +30,7 @@ export function AlternativesPage() {
           </p>
         </div>
 
-        <div className="mt-6 glass-panel rounded-3xl p-5 sm:p-6">
+        <div className="mt-6 glass-panel rounded-2xl p-5 motion-rise sm:p-6">
           <div className="text-sm font-medium">Recherche</div>
           <div className="mt-2 relative">
             <Search
@@ -53,7 +53,7 @@ export function AlternativesPage() {
           <AlternativeCard key={item.id} item={item} />
         ))}
         {filtered.length === 0 ? (
-          <div className="glass-panel rounded-3xl p-6 text-sm text-muted-foreground">
+          <div className="glass-panel rounded-2xl p-6 text-sm text-muted-foreground">
             Aucun résultat.
           </div>
         ) : null}
@@ -61,4 +61,3 @@ export function AlternativesPage() {
     </main>
   )
 }
-

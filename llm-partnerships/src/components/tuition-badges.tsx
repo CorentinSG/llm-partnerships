@@ -25,4 +25,3 @@ export function TuitionBadges({
 
   return <Badge variant={variant}>{label}</Badge>
 }
-

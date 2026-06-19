@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 
 export function AlternativeCard({ item }: { item: AlternativeItem }) {
   return (
-    <div className="glass-panel rounded-3xl p-5 sm:p-6">
+    <div className="glass-panel interactive-lift rounded-2xl p-5 sm:p-6">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -47,25 +47,25 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
-        <div className="rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="rounded-xl border bg-secondary/45 p-4">
           <div className="text-xs font-medium text-muted-foreground">Format</div>
           <div className="mt-1 text-sm">
             {item.programType} • {item.credits}
           </div>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="rounded-xl border bg-secondary/45 p-4">
           <div className="text-xs font-medium text-muted-foreground">Langue</div>
           <div className="mt-1 text-sm">{item.language}</div>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="rounded-xl border bg-secondary/45 p-4">
           <div className="text-xs font-medium text-muted-foreground">Rythme</div>
           <div className="mt-1 text-sm">{item.studyMode.join(" • ")}</div>
         </div>
       </div>
 
-      <div className="mt-5 rounded-2xl border border-amber-400/20 bg-amber-400/10 p-4">
+      <div className="mt-5 rounded-xl border border-amber-500/25 bg-amber-500/10 p-4">
         <div className="flex items-start gap-3">
-          <div className="mt-0.5 rounded-full bg-amber-400/20 p-1.5 text-amber-200">
+          <div className="mt-0.5 rounded-full bg-amber-500/15 p-1.5 text-amber-800 dark:text-amber-200">
             <ShieldAlert className="h-4 w-4" aria-hidden="true" />
           </div>
           <div className="space-y-1">
@@ -79,7 +79,7 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="rounded-xl border bg-secondary/45 p-4">
           <div className="text-sm font-medium">Conditions d’admission (extrait)</div>
           <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
             <li>{item.admissionConditions.degreeRequirement}</li>
@@ -87,7 +87,7 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
             <li>{item.admissionConditions.languageRequirement}</li>
           </ul>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="rounded-xl border bg-secondary/45 p-4">
           <div className="text-sm font-medium">Frais (estimations officielles)</div>
           <div className="mt-2 space-y-2 text-sm text-muted-foreground">
             <div>
@@ -106,7 +106,7 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
       </div>
 
       {item.missingInformation?.length ? (
-        <div className="mt-5 rounded-2xl border border-white/10 bg-muted/10 p-4">
+        <div className="mt-5 rounded-xl border bg-secondary/45 p-4">
           <div className="text-sm font-medium">À compléter</div>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
             {item.missingInformation.map((m) => (
@@ -118,4 +118,3 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
     </div>
   )
 }
-

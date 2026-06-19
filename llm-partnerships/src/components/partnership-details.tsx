@@ -16,6 +16,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
+import {
+  formatUsd,
+  getCostEstimateForPartnership,
+  getEstimateSummary
+} from "@/lib/us-cost-estimates"
 
 function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
@@ -27,6 +32,8 @@ function Field({ label, value }: { label: string; value: ReactNode }) {
 }
 
 export function PartnershipDetails({ partnership }: { partnership: Partnership }) {
+  const costEstimate = getCostEstimateForPartnership(partnership)
+  const costSummary = costEstimate ? getEstimateSummary(costEstimate) : null
   const isStudentShared = (partnership.sourceType || "").includes(
     "student_shared_unofficial_document"
   )
@@ -388,6 +395,42 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             </div>
           </CardContent>
         </Card>
+
+        {costEstimate && costSummary ? (
+          <Card>
+            <CardContent className="space-y-4 p-6">
+              <div className="text-sm font-medium">Estimation de coût total</div>
+              <div className="text-sm text-muted-foreground">
+                Référence utilisée : {costEstimate.referenceSchool} à{" "}
+                {costEstimate.displayCity}.
+              </div>
+              <div className="grid gap-3">
+                <div className="rounded-2xl border bg-muted/20 p-3">
+                  <div className="text-xs text-muted-foreground">Tuition estimée</div>
+                  <div className="mt-1 text-lg font-semibold">
+                    {formatUsd(costSummary.tuitionUsd)}
+                  </div>
+                </div>
+                <div className="rounded-2xl border bg-muted/20 p-3">
+                  <div className="text-xs text-muted-foreground">Autres coûts estimés</div>
+                  <div className="mt-1 text-lg font-semibold">
+                    {formatUsd(costSummary.otherCostsUsd)}
+                  </div>
+                </div>
+                <div className="rounded-2xl border bg-muted/20 p-3">
+                  <div className="text-xs text-muted-foreground">Total estimatif</div>
+                  <div className="mt-1 text-lg font-semibold">
+                    {formatUsd(costSummary.totalUsd)}
+                  </div>
+                </div>
+              </div>
+              <div className="text-xs leading-6 text-muted-foreground">
+                Estimation indicative uniquement. Le coût réel dépend de l’école,
+                de l’année, du logement, de l’assurance et du mode de vie.
+              </div>
+            </CardContent>
+          </Card>
+        ) : null}
       </div>
     </div>
   )

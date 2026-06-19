@@ -18,7 +18,7 @@ const SheetOverlay = React.forwardRef<
   <SheetPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/20 backdrop-blur-md dark:bg-black/55",
+      "fixed inset-0 z-50 bg-slate-950/28 data-[state=open]:motion-fade dark:bg-black/62",
       className
     )}
     {...props}
@@ -37,16 +37,16 @@ const SheetContent = React.forwardRef<
     <SheetPrimitive.Content
       ref={ref}
       className={cn(
-        "glass-panel fixed z-50 h-full w-full max-w-md p-6",
+        "glass-panel fixed z-50 h-full w-full max-w-md overflow-y-auto p-6 shadow-[0_28px_80px_-38px_hsl(222_47%_10%/0.72)] transition-transform duration-200 ease-out data-[state=closed]:opacity-0",
         side === "right"
-          ? "right-0 top-0"
-          : "left-0 top-0",
+          ? "right-0 top-0 data-[state=closed]:translate-x-full data-[state=open]:translate-x-0"
+          : "left-0 top-0 data-[state=closed]:-translate-x-full data-[state=open]:translate-x-0",
         className
       )}
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+      <SheetPrimitive.Close className="glass-button absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground ring-offset-background transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
         <X className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
