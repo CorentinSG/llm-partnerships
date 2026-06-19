@@ -6,12 +6,13 @@ import { PartnershipDetails } from "@/components/partnership-details"
 import { Button } from "@/components/ui/button"
 import { getPartnershipById } from "@/lib/data"
 
-export default function PartnershipDetailPage({
+export default async function PartnershipDetailPage({
   params
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  const partnership = getPartnershipById(params.id)
+  const { id } = await params
+  const partnership = getPartnershipById(id)
   if (!partnership) notFound()
 
   return (

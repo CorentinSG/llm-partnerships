@@ -7,6 +7,13 @@
   "scripts": {
     "dev": "npm --workspace llm-partnerships run dev",
     "build": "npm --workspace llm-partnerships run build && node scripts/sync-next-output.mjs",
-    "start": "npm --workspace llm-partnerships run start"
+    "start": "npm --workspace llm-partnerships run start",
+    "designer:verify": "npm --workspace llm-partnerships run designer:verify"
+  },
+  "overrides": {
+    "postcss": "^8.5.15",
+    "next": {
+      "postcss": "^8.5.15"
+    }
   }
 }

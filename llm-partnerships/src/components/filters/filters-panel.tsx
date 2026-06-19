@@ -1,6 +1,7 @@
 "use client"
 
 import type { FiltersState } from "@/lib/filters"
+import type { ReliabilityStatus } from "@/lib/types"
 
 import { MultiSelectFilter } from "@/components/filters/multi-select-filter"
 import { SelectFilter } from "@/components/filters/select-filter"
@@ -144,10 +145,11 @@ export function FiltersPanel({
           </div>
           <Select
             value={(filters.reliabilityStatus ?? "__all__") as string}
-            onValueChange={(v) =>
+            onValueChange={(v: string) =>
               onChange({
                 ...filters,
-                reliabilityStatus: v === "__all__" ? undefined : (v as any)
+                reliabilityStatus:
+                  v === "__all__" ? undefined : (v as ReliabilityStatus)
               })
             }
           >

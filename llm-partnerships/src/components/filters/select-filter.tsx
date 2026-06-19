@@ -20,7 +20,7 @@ export function SelectFilter({
       <div className="text-xs font-medium text-muted-foreground">{label}</div>
       <Select
         value={value ?? "__all__"}
-        onValueChange={(v) => onChange(v === "__all__" ? undefined : v)}
+        onValueChange={(v: string) => onChange(v === "__all__" ? undefined : v)}
       >
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />
