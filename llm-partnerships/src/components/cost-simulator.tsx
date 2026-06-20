@@ -37,103 +37,124 @@ import {
 
 const copy = {
   fr: {
-    badge: "Budget annuel",
-    title: "Budget annuel d'un LL.M. aux États-Unis",
-    intro: "Compare la tuition publique, l'offre du partenariat et les dépenses de vie que tu peux ajuster selon ton profil.",
-    city: "Ville partenaire",
+    badge: "Simulateur étudiant",
+    title: "Combien coûte vraiment ton LL.M. ?",
+    intro:
+      "Choisis une ville, un partenariat et une offre. Le simulateur compare la tuition publique avec la tuition après partenariat, puis te laisse ajuster seulement les dépenses qui dépendent de toi.",
+    city: "1. Ville",
     school: "École de référence",
-    partnership: "Partenariat appliqué",
-    normalTuition: "Tuition annuelle normale",
-    partnerTuition: "Tuition annuelle via partenariat",
-    savings: "Économie estimée",
-    annualTotal: "Total annuel estimé",
-    normalTotal: "Sans partenariat",
-    partnerTotal: "Avec partenariat",
-    simulator: "Simulateur interactif",
-    offer: "Offre de partenariat",
-    studentCosts: "Dépenses modifiables",
-    costBreakdown: "Postes annuels inclus",
+    partnership: "2. Partenariat",
+    offer: "3. Offre appliquée",
+    noPartnership: "Aucun partenariat précis",
+    noOffer: "Tarif public",
+    publicTuition: "Tuition publique annuelle",
+    partnerTuition: "Tuition grâce au partenariat",
+    savings: "Économie sur la tuition",
+    fixedCosts: "Frais fixes annuels",
+    livingCosts: "Dépenses de vie ajustables",
+    publicTotal: "Budget annuel sans partenariat",
+    partnerTotal: "Budget annuel avec partenariat",
+    studentCosts: "Ajuste ton mode de vie",
+    studentCostsHelp:
+      "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance ou dépenses personnelles.",
+    lean: "sobre",
+    reference: "référence",
+    comfortable: "confort",
+    costBreakdown: "Détail du calcul annuel",
+    fixedHint: "Tuition, livres et frais imposés restent fixes. Seules les dépenses de vie ci-dessus sont interactives.",
     methodology: "Méthodologie",
     cityPartners: "Ville et partenaires concernés",
     otherCosts: "Postes de vie courants",
     sources: "Sources officielles",
-    booksHelp: "Livres/fournitures = manuels, supports de cours, impressions, bases de données ou matériel demandé par l'école.",
-    livingHelp: "Ajuste seulement les postes qui dépendent de ton mode de vie : logement, repas, transport, assurance ou dépenses personnelles.",
-    tuitionNote: "La tuition vient des données officielles et du partenariat. Quand plusieurs places ou remises sont mentionnées, choisis l'offre correspondante.",
-    noPartnership: "Aucun partenariat précis sélectionné",
-    noOffer: "Tarif public",
+    booksHelp:
+      "Ce poste correspond aux livres et fournitures académiques : manuels obligatoires, supports de cours, impressions, accès à des bases de données ou matériel demandé par l'école. Il ne s'agit pas d'une dépense de vie librement ajustable.",
     freeSeat: "Place sans frais de scolarité partenaire",
     reducedSeat: "Place à frais réduits",
     scholarshipSeat: "Bourse ou remise possible",
     percentSeat: "Remise de {percent}%",
-    referenceAmount: "montant de référence",
-    fixedHint: "Tuition, livres et frais imposés restent fixes dans ce calcul."
+    referenceAmount: "montant indiqué",
+    publicRate: "Prix public normal",
+    partnerRate: "Prix après partenariat"
   },
   en: {
-    badge: "Annual budget",
-    title: "Annual LL.M. budget in the United States",
-    intro: "Compare public tuition, the partnership offer, and editable living expenses based on your profile.",
-    city: "Partner city",
+    badge: "Student simulator",
+    title: "What would your LL.M. actually cost?",
+    intro:
+      "Choose a city, partnership, and offer. The simulator compares public tuition with partnership tuition, then lets you adjust only student-dependent living costs.",
+    city: "1. City",
     school: "Reference school",
-    partnership: "Applied partnership",
-    normalTuition: "Standard annual tuition",
-    partnerTuition: "Annual tuition via partnership",
-    savings: "Estimated savings",
-    annualTotal: "Estimated annual total",
-    normalTotal: "Without partnership",
-    partnerTotal: "With partnership",
-    simulator: "Interactive simulator",
-    offer: "Partnership offer",
-    studentCosts: "Editable living costs",
-    costBreakdown: "Annual cost items",
+    partnership: "2. Partnership",
+    offer: "3. Applied offer",
+    noPartnership: "No specific partnership",
+    noOffer: "Public rate",
+    publicTuition: "Annual public tuition",
+    partnerTuition: "Tuition with partnership",
+    savings: "Tuition savings",
+    fixedCosts: "Annual fixed costs",
+    livingCosts: "Editable living costs",
+    publicTotal: "Annual budget without partnership",
+    partnerTotal: "Annual budget with partnership",
+    studentCosts: "Adjust your lifestyle",
+    studentCostsHelp:
+      "These sliders only change costs driven by your housing, meals, transport, insurance, or personal spending choices.",
+    lean: "lean",
+    reference: "reference",
+    comfortable: "comfortable",
+    costBreakdown: "Annual calculation details",
+    fixedHint: "Tuition, books, and mandatory fees stay fixed. Only the living costs above are interactive.",
     methodology: "Methodology",
     cityPartners: "City and matching partners",
     otherCosts: "Common living costs",
     sources: "Official sources",
-    booksHelp: "Books/supplies means textbooks, course materials, printing, databases, or equipment required by the school.",
-    livingHelp: "Adjust only costs driven by your lifestyle: housing, meals, transport, insurance, or personal expenses.",
-    tuitionNote: "Tuition is based on official and partnership data. When several seats or discounts are mentioned, choose the matching offer.",
-    noPartnership: "No specific partnership selected",
-    noOffer: "Public rate",
+    booksHelp:
+      "This item covers academic books and supplies: required textbooks, course materials, printing, database access, or equipment required by the school. It is not a freely adjustable living expense.",
     freeSeat: "Partner tuition-free seat",
     reducedSeat: "Reduced tuition seat",
     scholarshipSeat: "Scholarship or discount possible",
     percentSeat: "{percent}% discount",
-    referenceAmount: "reference amount",
-    fixedHint: "Tuition, books, and mandatory fees stay fixed in this estimate."
+    referenceAmount: "published amount",
+    publicRate: "Normal public price",
+    partnerRate: "Price after partnership"
   },
   es: {
-    badge: "Presupuesto anual",
-    title: "Presupuesto anual de un LL.M. en Estados Unidos",
-    intro: "Compara la matrícula pública, la oferta del convenio y los gastos de vida que puedes ajustar según tu perfil.",
-    city: "Ciudad asociada",
+    badge: "Simulador estudiante",
+    title: "¿Cuánto costaría realmente tu LL.M.?",
+    intro:
+      "Elige ciudad, convenio y oferta. El simulador compara la matrícula pública con la matrícula tras convenio, y permite ajustar solo los gastos que dependen del estudiante.",
+    city: "1. Ciudad",
     school: "Escuela de referencia",
-    partnership: "Convenio aplicado",
-    normalTuition: "Matrícula anual normal",
-    partnerTuition: "Matrícula anual con convenio",
-    savings: "Ahorro estimado",
-    annualTotal: "Total anual estimado",
-    normalTotal: "Sin convenio",
-    partnerTotal: "Con convenio",
-    simulator: "Simulador interactivo",
-    offer: "Oferta del convenio",
-    studentCosts: "Costes modificables",
-    costBreakdown: "Partidas anuales incluidas",
+    partnership: "2. Convenio",
+    offer: "3. Oferta aplicada",
+    noPartnership: "Ningún convenio específico",
+    noOffer: "Tarifa pública",
+    publicTuition: "Matrícula pública anual",
+    partnerTuition: "Matrícula con convenio",
+    savings: "Ahorro en matrícula",
+    fixedCosts: "Costes fijos anuales",
+    livingCosts: "Gastos de vida ajustables",
+    publicTotal: "Presupuesto anual sin convenio",
+    partnerTotal: "Presupuesto anual con convenio",
+    studentCosts: "Ajusta tu estilo de vida",
+    studentCostsHelp:
+      "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro o gastos personales.",
+    lean: "sobrio",
+    reference: "referencia",
+    comfortable: "cómodo",
+    costBreakdown: "Detalle del cálculo anual",
+    fixedHint: "Matrícula, libros y tasas obligatorias permanecen fijas. Solo los gastos de vida anteriores son interactivos.",
     methodology: "Metodología",
     cityPartners: "Ciudad y convenios relacionados",
     otherCosts: "Costes de vida habituales",
     sources: "Fuentes oficiales",
-    booksHelp: "Libros/materiales incluye manuales, materiales de curso, impresiones, bases de datos o equipo requerido por la escuela.",
-    livingHelp: "Ajusta solo los costes que dependen de tu estilo de vida: vivienda, comidas, transporte, seguro o gastos personales.",
-    tuitionNote: "La matrícula se basa en datos oficiales y del convenio. Cuando haya varias plazas o reducciones, elige la oferta correspondiente.",
-    noPartnership: "Ningún convenio específico seleccionado",
-    noOffer: "Tarifa pública",
+    booksHelp:
+      "Este concepto cubre libros y materiales académicos: manuales obligatorios, materiales de curso, impresiones, acceso a bases de datos o equipo requerido por la escuela. No es un gasto de vida libremente ajustable.",
     freeSeat: "Plaza sin matrícula de la universidad asociada",
     reducedSeat: "Plaza con matrícula reducida",
     scholarshipSeat: "Beca o reducción posible",
     percentSeat: "Reducción de {percent}%",
-    referenceAmount: "importe de referencia",
-    fixedHint: "Matrícula, libros y tasas obligatorias permanecen fijas en esta estimación."
+    referenceAmount: "importe indicado",
+    publicRate: "Precio público normal",
+    partnerRate: "Precio tras convenio"
   }
 } as const
 
@@ -214,7 +235,7 @@ function parsePercent(text: string) {
 function inferOfferOptions(partnership: Partnership | undefined, normalTuition: number, language: UiLanguage) {
   const t = copy[language]
   const options: OfferOption[] = [
-    { id: "public", label: t.noOffer, tuitionUsd: normalTuition }
+    { id: "public", label: t.noOffer, tuitionUsd: normalTuition, note: t.publicRate }
   ]
 
   if (!partnership) return options
@@ -232,7 +253,12 @@ function inferOfferOptions(partnership: Partnership | undefined, normalTuition: 
   const percent = parsePercent(lower)
 
   if (category === "sans frais" || lower.includes("sans frais") || lower.includes("full scholarship")) {
-    options.push({ id: "free", label: t.freeSeat, tuitionUsd: 0, note: cleanText(partnership.availableSeatsDisplay) })
+    options.push({
+      id: "free",
+      label: t.freeSeat,
+      tuitionUsd: 0,
+      note: cleanText(partnership.availableSeatsDisplay || partnership.tuitionDisplay)
+    })
   }
 
   if (percent && percent > 0 && percent < 100) {
@@ -244,8 +270,7 @@ function inferOfferOptions(partnership: Partnership | undefined, normalTuition: 
     })
   }
 
-  const likelyAmounts = Array.from(new Set(amounts)).sort((a, b) => a - b).slice(0, 3)
-  likelyAmounts.forEach((amount, index) => {
+  Array.from(new Set(amounts)).sort((a, b) => a - b).slice(0, 3).forEach((amount, index) => {
     options.push({
       id: `amount-${index}-${amount}`,
       label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
@@ -260,13 +285,22 @@ function inferOfferOptions(partnership: Partnership | undefined, normalTuition: 
       id: `fallback-${fallbackPercent}`,
       label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
       tuitionUsd: Math.round(normalTuition * (1 - fallbackPercent / 100)),
-      note: t.referenceAmount
+      note: t.partnerRate
     })
   }
 
   return options.filter(
-    (option, index, all) => all.findIndex((item) => item.tuitionUsd === option.tuitionUsd && item.label === option.label) === index
+    (option, index, all) =>
+      all.findIndex((item) => item.tuitionUsd === option.tuitionUsd && item.label === option.label) === index
   )
+}
+
+function sliderMin(amount: number) {
+  return Math.max(0, Math.round((amount * 0.55) / 100) * 100)
+}
+
+function sliderMax(amount: number) {
+  return Math.max(1000, Math.round((amount * 1.65) / 100) * 100)
 }
 
 export function CostSimulator({
@@ -304,27 +338,34 @@ export function CostSimulator({
   const [customCosts, setCustomCosts] = React.useState<Record<string, number>>({})
 
   React.useEffect(() => {
-    const first = partnershipsInCity[0]
+    const freeFirst = partnershipsInCity.find((partnership) => cleanText(partnership.tuitionCategory).toLowerCase() === "sans frais")
+    const first = freeFirst || partnershipsInCity[0]
     setSelectedPartnershipId(first?.id ?? "")
   }, [partnershipsInCity])
 
   const selectedPartnership = partnershipsInCity.find((partnership) => partnership.id === selectedPartnershipId)
 
-  if (!selectedEstimate) return null
-
-  const summary = getEstimateSummary(selectedEstimate)
+  const summary = selectedEstimate ? getEstimateSummary(selectedEstimate) : { tuitionUsd: 0, otherCostsUsd: 0, totalUsd: 0 }
   const normalTuition = summary.tuitionUsd
-  const offerOptions = inferOfferOptions(selectedPartnership, normalTuition, language)
+  const offerOptions = React.useMemo(
+    () => inferOfferOptions(selectedPartnership, normalTuition, language),
+    [selectedPartnership, normalTuition, language]
+  )
   const selectedOffer = offerOptions.find((offer) => offer.id === selectedOfferId) || offerOptions[0]
 
   React.useEffect(() => {
-    setSelectedOfferId("public")
-  }, [selectedPartnershipId, selectedEstimateId])
+    const bestOffer = offerOptions.find((offer) => offer.id !== "public") || offerOptions[0]
+    setSelectedOfferId(bestOffer?.id ?? "public")
+  }, [offerOptions])
 
-  const fixedComponents = selectedEstimate.components.filter(
-    (component) => !isTuitionComponent(component) && !isEditableLivingComponent(component)
+  const fixedComponents = React.useMemo(
+    () => selectedEstimate?.components.filter((component) => !isTuitionComponent(component) && !isEditableLivingComponent(component)) ?? [],
+    [selectedEstimate]
   )
-  const editableComponents = selectedEstimate.components.filter(isEditableLivingComponent)
+  const editableComponents = React.useMemo(
+    () => selectedEstimate?.components.filter(isEditableLivingComponent) ?? [],
+    [selectedEstimate]
+  )
 
   React.useEffect(() => {
     setCustomCosts((current) => {
@@ -334,7 +375,9 @@ export function CostSimulator({
       }
       return next
     })
-  }, [selectedEstimate.id])
+  }, [editableComponents])
+
+  if (!selectedEstimate || !selectedOffer) return null
 
   const fixedOtherCosts = fixedComponents.reduce((total, component) => total + component.amountUsd, 0)
   const editableOtherCosts = editableComponents.reduce(
@@ -346,6 +389,8 @@ export function CostSimulator({
   const savings = Math.max(0, normalTuition - partnerTuition)
   const normalTotal = normalTuition + adjustedOtherCosts
   const partnerTotal = partnerTuition + adjustedOtherCosts
+  const fixedCostsLabel = formatUsd(fixedOtherCosts)
+  const livingCostsLabel = formatUsd(editableOtherCosts)
 
   const uniqueUniversitiesInCity = Array.from(
     new Set(partnershipsInCity.map((partnership) => cleanText(partnership.partnerUniversity)))
@@ -355,22 +400,28 @@ export function CostSimulator({
     <section className="budget-section py-10 sm:py-14">
       <div className="container">
         <Card className="overflow-hidden rounded-2xl border-primary/10">
-          <CardHeader className="space-y-5 p-4 sm:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-4">
+          <CardHeader className="space-y-6 p-4 sm:p-8">
+            <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_460px]">
               <div className="max-w-3xl space-y-3">
-                <Badge className="w-fit rounded-full bg-primary/12 px-3 py-1 text-primary shadow-none">{t.badge}</Badge>
+                <Badge className="w-fit rounded-full bg-primary/12 px-3 py-1 text-primary shadow-none">
+                  {t.badge}
+                </Badge>
                 <CardTitle className="text-2xl tracking-tight sm:text-3xl">{t.title}</CardTitle>
                 <p className="text-sm leading-7 text-muted-foreground sm:text-base">{t.intro}</p>
               </div>
 
-              <div className="grid w-full gap-3 rounded-2xl border bg-secondary/45 p-3 sm:max-w-[460px] sm:p-4">
+              <div className="grid gap-3 rounded-2xl border bg-secondary/45 p-3 sm:p-4">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground">{t.city}</label>
                     <Select value={selectedCity} onValueChange={setSelectedCity}>
-                      <SelectTrigger className="h-11" aria-label={t.city}><SelectValue /></SelectTrigger>
+                      <SelectTrigger className="h-11" aria-label={t.city}>
+                        <SelectValue />
+                      </SelectTrigger>
                       <SelectContent>
-                        {cities.map((city) => <SelectItem key={city} value={city}>{city}</SelectItem>)}
+                        {cities.map((city) => (
+                          <SelectItem key={city} value={city}>{city}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -378,7 +429,9 @@ export function CostSimulator({
                   <div className="space-y-2">
                     <label className="text-xs font-medium text-muted-foreground">{t.school}</label>
                     <Select value={selectedEstimate.id} onValueChange={setSelectedEstimateId}>
-                      <SelectTrigger className="h-11" aria-label={t.school}><SelectValue /></SelectTrigger>
+                      <SelectTrigger className="h-11" aria-label={t.school}>
+                        <SelectValue />
+                      </SelectTrigger>
                       <SelectContent>
                         {cityEstimates.map((estimate) => (
                           <SelectItem key={estimate.id} value={estimate.id}>{cleanText(estimate.referenceSchool)}</SelectItem>
@@ -391,7 +444,9 @@ export function CostSimulator({
                 <div className="space-y-2">
                   <label className="text-xs font-medium text-muted-foreground">{t.partnership}</label>
                   <Select value={selectedPartnershipId || "none"} onValueChange={(value: string) => setSelectedPartnershipId(value === "none" ? "" : value)}>
-                    <SelectTrigger className="h-11" aria-label={t.partnership}><SelectValue /></SelectTrigger>
+                    <SelectTrigger className="h-11" aria-label={t.partnership}>
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="none">{t.noPartnership}</SelectItem>
                       {partnershipsInCity.map((partnership) => (
@@ -402,25 +457,43 @@ export function CostSimulator({
                     </SelectContent>
                   </Select>
                 </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-muted-foreground">{t.offer}</label>
+                  <Select value={selectedOffer.id} onValueChange={setSelectedOfferId}>
+                    <SelectTrigger className="h-11" aria-label={t.offer}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {offerOptions.map((offer) => (
+                        <SelectItem key={offer.id} value={offer.id}>{offer.label} - {formatUsd(offer.tuitionUsd)}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {selectedOffer.note ? <p className="text-xs leading-5 text-muted-foreground">{selectedOffer.note}</p> : null}
+                </div>
               </div>
             </div>
 
             <div className="grid gap-3 md:grid-cols-4">
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.normalTuition}</div>
+                <div className="text-xs text-muted-foreground">{t.publicTuition}</div>
                 <div className="mt-2 text-2xl font-semibold">{formatUsd(normalTuition)}</div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{t.publicRate}</div>
               </div>
-              <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
+              <div className="rounded-xl border border-primary/15 bg-primary/10 p-4 sm:rounded-2xl">
                 <div className="text-xs text-muted-foreground">{t.partnerTuition}</div>
                 <div className="mt-2 text-2xl font-semibold">{formatUsd(partnerTuition)}</div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{t.partnerRate}</div>
               </div>
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
                 <div className="text-xs text-muted-foreground">{t.savings}</div>
                 <div className="mt-2 text-2xl font-semibold text-success">{formatUsd(savings)}</div>
               </div>
-              <div className="rounded-xl border border-primary/15 bg-primary/10 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.annualTotal}</div>
-                <div className="mt-2 text-2xl font-semibold">{formatUsd(partnerTotal)}</div>
+              <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
+                <div className="text-xs text-muted-foreground">{t.livingCosts}</div>
+                <div className="mt-2 text-2xl font-semibold">{livingCostsLabel}</div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{t.fixedCosts} : {fixedCostsLabel}</div>
               </div>
             </div>
           </CardHeader>
@@ -431,50 +504,51 @@ export function CostSimulator({
                 <div className="rounded-xl border bg-secondary/45 p-4 sm:rounded-2xl sm:p-5">
                   <div className="flex items-center gap-2 text-sm font-medium">
                     <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
-                    {t.simulator}
+                    {t.studentCosts}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{t.tuitionNote}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{t.studentCostsHelp}</p>
 
-                  <div className="mt-4 space-y-4">
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">{t.offer}</label>
-                      <Select value={selectedOffer.id} onValueChange={setSelectedOfferId}>
-                        <SelectTrigger className="h-11" aria-label={t.offer}><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                          {offerOptions.map((offer) => (
-                            <SelectItem key={offer.id} value={offer.id}>{offer.label} - {formatUsd(offer.tuitionUsd)}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      {selectedOffer.note ? <p className="text-xs leading-5 text-muted-foreground">{selectedOffer.note}</p> : null}
-                    </div>
-
-                    <div className="rounded-xl border bg-card/80 p-4">
-                      <div className="mb-3 flex items-center justify-between gap-3">
-                        <div className="text-sm font-medium">{t.studentCosts}</div>
-                        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full border text-[11px] text-muted-foreground" title={t.livingHelp}>?</span>
-                      </div>
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        {editableComponents.map((component) => (
-                          <label key={component.label} className="space-y-1.5">
-                            <span className="text-xs text-muted-foreground">{cleanText(component.label)}</span>
-                            <input
-                              type="number"
-                              min={0}
-                              step={100}
-                              value={customCosts[component.label] ?? component.amountUsd}
-                              onChange={(event) => setCustomCosts((current) => ({ ...current, [component.label]: Number(event.target.value) || 0 }))}
-                              className="h-10 w-full rounded-lg border bg-background px-3 text-sm font-medium outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
-                            />
-                          </label>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="mt-5 space-y-5">
+                    {editableComponents.map((component) => {
+                      const value = customCosts[component.label] ?? component.amountUsd
+                      const min = sliderMin(component.amountUsd)
+                      const max = sliderMax(component.amountUsd)
+                      return (
+                        <label key={component.label} className="block rounded-xl border bg-card/80 p-4">
+                          <div className="mb-3 flex items-start justify-between gap-3">
+                            <div>
+                              <div className="text-sm font-medium">{cleanText(component.label)}</div>
+                              <div className="mt-1 text-xs text-muted-foreground">
+                                {t.reference} : {formatUsd(component.amountUsd)}
+                              </div>
+                            </div>
+                            <div className="font-mono-ui text-sm font-semibold text-primary">{formatUsd(value)}</div>
+                          </div>
+                          <input
+                            type="range"
+                            min={min}
+                            max={max}
+                            step={100}
+                            value={value}
+                            onChange={(event) => setCustomCosts((current) => ({
+                              ...current,
+                              [component.label]: Number(event.target.value)
+                            }))}
+                            className="w-full accent-primary"
+                          />
+                          <div className="mt-1 flex justify-between text-[11px] text-muted-foreground">
+                            <span>{t.lean}</span>
+                            <span>{t.reference}</span>
+                            <span>{t.comfortable}</span>
+                          </div>
+                        </label>
+                      )
+                    })}
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <div className="rounded-xl border bg-card/80 p-4">
-                      <div className="text-xs text-muted-foreground">{t.normalTotal}</div>
+                      <div className="text-xs text-muted-foreground">{t.publicTotal}</div>
                       <div className="mt-2 text-xl font-semibold">{formatUsd(normalTotal)}</div>
                     </div>
                     <div className="rounded-xl border border-primary/15 bg-primary/10 p-4">
@@ -501,7 +575,7 @@ export function CostSimulator({
                             {isBooksComponent(component.label) ? (
                               <BooksHelpTooltip text={t.booksHelp} />
                             ) : editable ? (
-                              <Badge variant="outline" className="rounded-full text-[10px]">{t.studentCosts}</Badge>
+                              <Badge variant="outline" className="rounded-full text-[10px]">{t.livingCosts}</Badge>
                             ) : null}
                           </div>
                           <div className="mt-2 text-lg font-semibold">{formatUsd(amount)}</div>
