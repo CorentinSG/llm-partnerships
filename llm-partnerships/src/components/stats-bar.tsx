@@ -1,12 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import {
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer
-} from "recharts"
+import { Cell, Pie, PieChart } from "recharts"
 import { CheckCircle2, Flag, Globe, HelpCircle, School } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
@@ -31,7 +25,6 @@ function isPlaceholder(p: Partnership) {
 }
 
 export function StatsBar({ all }: { all: Partnership[] }) {
-  const [isMounted, setIsMounted] = useState(false)
   const real = all.filter((p) => !isPlaceholder(p))
   const frenchUniCount = countUnique(all.map((p) => p.frenchUniversity))
   const partnershipCount = real.length
@@ -61,10 +54,6 @@ export function StatsBar({ all }: { all: Partnership[] }) {
     .filter((p) => p.reliabilityStatus === "to_confirm")
     .map((p) => `${p.frenchUniversity} ↔ ${p.partnerUniversity}`)
     .sort((a, b) => a.localeCompare(b))
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
 
   return (
     <div className="grid items-start gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_1.4fr]">
@@ -223,29 +212,26 @@ export function StatsBar({ all }: { all: Partnership[] }) {
               </PopoverContent>
             </Popover>
           </div>
-          <div className="mt-3 h-[72px]">
-            {isMounted ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={chartData}
-                    dataKey="value"
-                    nameKey="name"
-                    innerRadius={22}
-                    outerRadius={34}
-                    paddingAngle={3}
-                    stroke="rgba(255,255,255,0.15)"
-                    strokeWidth={1}
-                  >
-                    {chartData.map((d) => (
-                      <Cell key={d.name} fill={d.color} />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
-            ) : (
-              <div className="h-full rounded-xl bg-primary/10" />
-            )}
+          <div className="mt-3 flex h-[72px] items-center justify-center status-orbit">
+            <PieChart width={132} height={72}>
+              <Pie
+                data={chartData}
+                dataKey="value"
+                nameKey="name"
+                cx={66}
+                cy={36}
+                innerRadius={22}
+                outerRadius={34}
+                paddingAngle={3}
+                stroke="rgba(255,255,255,0.15)"
+                strokeWidth={1}
+                isAnimationActive={false}
+              >
+                {chartData.map((d) => (
+                  <Cell key={d.name} fill={d.color} />
+                ))}
+              </Pie>
+            </PieChart>
           </div>
           <Dialog>
             <DialogTrigger asChild>

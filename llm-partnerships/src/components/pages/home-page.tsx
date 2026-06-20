@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Filter, Search } from "lucide-react"
+import { ArrowRight, Filter, Gauge, Search, ShieldCheck, Sparkles } from "lucide-react"
 
 import { CostSimulator } from "@/components/cost-simulator"
 import { FiltersPanel } from "@/components/filters/filters-panel"
@@ -55,6 +55,18 @@ export function HomePage() {
     ((filters.specialties || []).length > 0 ? 1 : 0) +
     ((filters.languageTests || []).length > 0 ? 1 : 0)
 
+  const activeLabels = [
+    filters.frenchUniversity,
+    filters.partnerCountry,
+    filters.partnerState,
+    filters.programType,
+    filters.partnershipType,
+    filters.tuitionCategory,
+    filters.reliabilityStatus,
+    ...(filters.specialties || []),
+    ...(filters.languageTests || [])
+  ].filter(Boolean) as string[]
+
   function resetAll() {
     setSearchQuery("")
     setFilters(emptyFilters())
@@ -62,6 +74,7 @@ export function HomePage() {
 
   return (
     <main>
+      <div className="scroll-progress" aria-hidden="true" />
       <section className="container py-12 sm:py-16">
         <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
           <div className="motion-rise max-w-4xl space-y-6">
@@ -71,7 +84,7 @@ export function HomePage() {
               France vers international
             </div>
             <div className="space-y-4">
-              <h1 className="text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[60px]">
+              <h1 className="text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[58px]">
                 Comparer les partenariats LL.M sans repartir de zéro.
               </h1>
               <p className="max-w-3xl text-pretty text-base leading-8 text-muted-foreground sm:text-lg">
@@ -79,6 +92,17 @@ export function HomePage() {
                 places, tests d&apos;anglais, conditions de sélection et sources
                 officielles pour choisir un parcours avec plus de clarté.
               </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Button asChild className="rounded-xl">
+                <a href="#workspace">
+                  Explorer les résultats
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
+              <Button asChild variant="secondary" className="rounded-xl">
+                <a href="#cost-estimator">Estimer le coût</a>
+              </Button>
             </div>
             <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
               <div className="scanline rounded-2xl border bg-card/78 p-4 motion-pop">
@@ -102,7 +126,7 @@ export function HomePage() {
             </div>
           </div>
 
-          <div className="motion-glow motion-rise-slow rounded-2xl border bg-card p-4 shadow-[0_24px_70px_-46px_hsl(222_47%_10%/0.48)]">
+          <div className="hero-command motion-glow motion-rise-slow rounded-2xl border p-4 shadow-[0_24px_70px_-46px_hsl(222_47%_10%/0.48)]">
             <div className="rounded-xl border bg-secondary/45 p-3">
               <div className="font-mono-ui mb-3 flex items-center justify-between text-[11px] text-muted-foreground">
                 <span>Workspace de comparaison</span>
@@ -142,6 +166,21 @@ export function HomePage() {
                   ))}
                 </div>
               </div>
+              <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                {[
+                  ["Sources", "PDF + liens", ShieldCheck],
+                  ["Coûts", "simulateur", Gauge],
+                  ["Tri", "filtres live", Sparkles]
+                ].map(([label, value, Icon]) => (
+                  <div key={String(label)} className="rounded-lg border bg-card/72 p-3">
+                    <Icon className="mb-2 h-4 w-4 text-accent" aria-hidden="true" />
+                    <div className="text-xs font-medium">{label}</div>
+                    <div className="font-mono-ui mt-1 text-[10px] text-muted-foreground">
+                      {value}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -152,10 +191,12 @@ export function HomePage() {
       </section>
 
       <section className="pb-14">
-        <CostSimulator partnerships={all} />
+        <div id="cost-estimator" className="scroll-mt-24">
+          <CostSimulator partnerships={all} />
+        </div>
 
-        <div className="container pt-8">
-          <div className="glass-panel motion-rise rounded-2xl p-4 sm:p-5">
+        <div id="workspace" className="container scroll-mt-24 pt-8">
+          <div className="glass-panel motion-rise sticky top-[76px] z-30 rounded-2xl p-4 sm:p-5">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="w-full max-w-3xl space-y-2">
                 <div className="flex items-center justify-between gap-3">
@@ -178,6 +219,52 @@ export function HomePage() {
                     className="h-12 rounded-xl pl-9"
                     aria-label="Recherche globale"
                   />
+                </div>
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  {activeLabels.length > 0 ? (
+                    activeLabels.slice(0, 5).map((label) => (
+                      <span
+                        key={label}
+                        className="rounded-full border bg-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary"
+                      >
+                        {label}
+                      </span>
+                    ))
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        onClick={() => setSearchQuery("TOEFL")}
+                      >
+                        TOEFL
+                      </button>
+                      <button
+                        type="button"
+                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        onClick={() =>
+                          setFilters((prev) => ({
+                            ...prev,
+                            tuitionCategory: "frais réduits"
+                          }))
+                        }
+                      >
+                        frais réduits
+                      </button>
+                      <button
+                        type="button"
+                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        onClick={() =>
+                          setFilters((prev) => ({
+                            ...prev,
+                            reliabilityStatus: "confirmed"
+                          }))
+                        }
+                      >
+                        confirmés
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -289,8 +376,8 @@ export function HomePage() {
                   </span>{" "}
                   résultat(s)
                 </div>
-                <div className="text-xs text-muted-foreground">
-                  Ouvre en modal ou sur une page dédiée.
+                <div className="font-mono-ui rounded-full border bg-card/70 px-2.5 py-1 text-[11px] text-muted-foreground">
+                  Modal rapide · page dédiée · source officielle
                 </div>
               </div>
 

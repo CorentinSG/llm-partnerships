@@ -35,8 +35,15 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
       </span>
     ))
 
+  const applicationProcess =
+    partnership.applicationProcess === "internal"
+      ? "Interne"
+      : partnership.applicationProcess === "lsac"
+        ? "LSAC"
+        : "Non communiqué"
+
   return (
-    <Card className="group">
+    <Card className="group result-card interactive-lift">
       <CardHeader className="space-y-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <ReliabilityBadge
@@ -59,7 +66,7 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
         <CardTitle className="text-[16px] leading-snug tracking-tight transition-colors group-hover:text-primary">
           {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
         </CardTitle>
-        <div className="text-sm text-muted-foreground">
+        <div className="font-mono-ui text-[11px] text-muted-foreground">
           {partnership.partnerCountry}
           {partnership.partnerCity ? ` (${partnership.partnerCity})` : ""} ·{" "}
           {partnership.continent} · {partnership.programType}
@@ -69,25 +76,25 @@ export function PartnershipCard({ partnership }: { partnership: Partnership }) {
         <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">
           {partnership.shortDescription}
         </p>
-        <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-muted-foreground">
-          <span>Niveau : {String(partnership.requiredLevel)}</span>
-          <span aria-hidden="true">·</span>
-          <span>
-            Places :{" "}
-            {partnership.availableSeatsDisplay
-              ? partnership.availableSeatsDisplay
-              : String(partnership.availableSeats)}
+        <div className="soft-divider" />
+        <div className="grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
+          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
+            Niveau :{" "}
+            <span className="text-foreground">{String(partnership.requiredLevel)}</span>
           </span>
-          <span aria-hidden="true">·</span>
-          <span>Langue : {partnership.programLanguage}</span>
-          <span aria-hidden="true">·</span>
-          <span>
-            Candidature :{" "}
-            {partnership.applicationProcess === "internal"
-              ? "Interne"
-              : partnership.applicationProcess === "lsac"
-                ? "LSAC"
-                : "Non communiqué"}
+          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
+            Places :{" "}
+            <span className="text-foreground">
+              {partnership.availableSeatsDisplay
+                ? partnership.availableSeatsDisplay
+                : String(partnership.availableSeats)}
+            </span>
+          </span>
+          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
+            Langue : <span className="text-foreground">{partnership.programLanguage}</span>
+          </span>
+          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
+            Candidature : <span className="text-foreground">{applicationProcess}</span>
           </span>
         </div>
       </CardContent>
