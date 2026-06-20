@@ -11,7 +11,6 @@ import { UsMap } from "@/components/us-map"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Sheet,
   SheetContent,
@@ -24,6 +23,8 @@ import { Separator } from "@/components/ui/separator"
 import { emptyFilters, filterPartnerships, type FiltersState } from "@/lib/filters"
 import { getAllPartnerships, getFilterOptions, getFrenchUniversitiesPoints } from "@/lib/data"
 
+const RESULTS_PAGE_SIZE = 12
+
 export function HomePage() {
   const all = React.useMemo(() => getAllPartnerships(), [])
   const options = React.useMemo(() => getFilterOptions(), [])
@@ -32,11 +33,19 @@ export function HomePage() {
   const [searchQuery, setSearchQuery] = React.useState("")
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
   const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
+  const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE)
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
     [all, searchQuery, filters]
   )
+
+  React.useEffect(() => {
+    setVisibleCount(RESULTS_PAGE_SIZE)
+  }, [searchQuery, filters])
+
+  const visiblePartnerships = filtered.slice(0, visibleCount)
+  const remainingCount = Math.max(filtered.length - visiblePartnerships.length, 0)
 
   const activeCount =
     (filters.frenchUniversity ? 1 : 0) +
@@ -160,7 +169,7 @@ export function HomePage() {
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
-                            tuitionCategory: "frais réduits"
+                            tuitionCategory: "frais r\u00e9duits"
                           }))
                         }
                       >
@@ -252,7 +261,7 @@ export function HomePage() {
                   onSelectState={(state) =>
                     setFilters((prev) => ({
                       ...prev,
-                      partnerCountry: "États-Unis",
+                      partnerCountry: "\u00c9tats-Unis",
                       partnerState: state
                     }))
                   }
@@ -292,13 +301,19 @@ export function HomePage() {
                   resultat(s)
                 </div>
                 <div className="font-mono-ui rounded-full border bg-card/70 px-2.5 py-1 text-[11px] text-muted-foreground">
-                  Modal rapide · page dediee · source officielle
+                  {visiblePartnerships.length} affiches sur {filtered.length}
                 </div>
               </div>
 
-              <ScrollArea className="glass-panel h-[64dvh] rounded-2xl sm:h-[70dvh] lg:h-[78dvh]">
-                <div className="space-y-3 p-2 motion-stagger sm:p-3">
-                  {filtered.map((p) => (
+              <div className="glass-panel rounded-2xl p-2 sm:p-3">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-secondary/45 px-3 py-2 text-xs text-muted-foreground">
+                  <span>Defilement naturel de la page</span>
+                  <a className="font-medium text-foreground hover:text-primary" href="#workspace">
+                    Retour recherche
+                  </a>
+                </div>
+                <div className="space-y-3 motion-stagger">
+                  {visiblePartnerships.map((p) => (
                     <PartnershipCard key={p.id} partnership={p} />
                   ))}
                   {filtered.length === 0 ? (
@@ -307,7 +322,30 @@ export function HomePage() {
                     </div>
                   ) : null}
                 </div>
-              </ScrollArea>
+                {remainingCount > 0 ? (
+                  <div className="mt-4 flex flex-col gap-2 rounded-xl border bg-secondary/45 p-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="text-sm text-muted-foreground">
+                      Encore {remainingCount} resultat(s) a parcourir.
+                    </div>
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="h-11 rounded-xl"
+                      onClick={() =>
+                        setVisibleCount((count) =>
+                          Math.min(count + RESULTS_PAGE_SIZE, filtered.length)
+                        )
+                      }
+                    >
+                      Afficher 12 de plus
+                    </Button>
+                  </div>
+                ) : filtered.length > RESULTS_PAGE_SIZE ? (
+                  <div className="mt-4 rounded-xl border bg-secondary/45 p-3 text-sm text-muted-foreground">
+                    Tous les resultats correspondants sont affiches.
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
