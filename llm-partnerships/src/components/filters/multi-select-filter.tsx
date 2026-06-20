@@ -1,18 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check, Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList
-} from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { cleanText } from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
 
 export function MultiSelectFilter({
@@ -29,7 +22,19 @@ export function MultiSelectFilter({
   onChange: (next: string[]) => void
 }) {
   const [open, setOpen] = React.useState(false)
+  const [query, setQuery] = React.useState("")
   const selected = new Set(values.filter(Boolean))
+  const normalizedQuery = cleanText(query).toLowerCase()
+  const filteredOptions = options.filter((option) =>
+    cleanText(option).toLowerCase().includes(normalizedQuery)
+  )
+
+  function toggle(option: string) {
+    const next = new Set(selected)
+    if (next.has(option)) next.delete(option)
+    else next.add(option)
+    onChange(Array.from(next))
+  }
 
   return (
     <div className="space-y-1">
@@ -43,45 +48,57 @@ export function MultiSelectFilter({
             className="w-full justify-between"
           >
             <span className="truncate text-left">
-              {values.length > 0
-                ? `${values.length} selected`
-                : placeholder}
+              {values.length > 0 ? `${values.length} sélectionnée(s)` : placeholder}
             </span>
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <span className="ml-2 text-xs text-muted-foreground">⌄</span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[320px] p-0" align="start">
-          <Command>
-            <CommandInput placeholder={`Rechercher (${label.toLowerCase()})…`} />
-            <CommandList>
-              <CommandEmpty>Aucun résultat.</CommandEmpty>
-              <CommandGroup>
-                {options.map((option) => {
-                  const isSelected = selected.has(option)
-                  return (
-                    <CommandItem
-                      key={option}
-                      value={option}
-                      onSelect={() => {
-                        const next = new Set(selected)
-                        if (isSelected) next.delete(option)
-                        else next.add(option)
-                        onChange(Array.from(next))
-                      }}
+        <PopoverContent className="w-[min(340px,calc(100vw-2rem))] p-0" align="start">
+          <div className="border-b p-2">
+            <label className="flex h-10 items-center gap-2 rounded-lg border bg-background px-3">
+              <Search className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+              <input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder={`Rechercher (${label.toLowerCase()})...`}
+                className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+              />
+            </label>
+          </div>
+          <div className="max-h-72 overflow-y-auto p-1">
+            {filteredOptions.length > 0 ? (
+              filteredOptions.map((option) => {
+                const isSelected = selected.has(option)
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    className={cn(
+                      "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary",
+                      isSelected && "bg-primary/10 text-primary"
+                    )}
+                    onClick={() => toggle(option)}
+                  >
+                    <span
+                      className={cn(
+                        "flex h-4 w-4 shrink-0 items-center justify-center rounded border",
+                        isSelected
+                          ? "border-primary bg-primary text-primary-foreground"
+                          : "border-border"
+                      )}
                     >
-                      <Check
-                        className={cn(
-                          "mr-2 h-4 w-4",
-                          isSelected ? "opacity-100" : "opacity-0"
-                        )}
-                      />
-                      <span className="truncate">{option}</span>
-                    </CommandItem>
-                  )
-                })}
-              </CommandGroup>
-            </CommandList>
-          </Command>
+                      {isSelected ? <Check className="h-3 w-3" aria-hidden="true" /> : null}
+                    </span>
+                    <span className="min-w-0 flex-1 truncate">{cleanText(option)}</span>
+                  </button>
+                )
+              })
+            ) : (
+              <div className="px-3 py-6 text-center text-sm text-muted-foreground">
+                Aucun résultat.
+              </div>
+            )}
+          </div>
           <div className="border-t p-2">
             <Button
               type="button"
@@ -90,6 +107,7 @@ export function MultiSelectFilter({
               className="w-full"
               onClick={() => {
                 onChange([])
+                setQuery("")
                 setOpen(false)
               }}
             >

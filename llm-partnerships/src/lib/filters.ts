@@ -69,9 +69,7 @@ export function filterPartnerships(
 
     if (activeSpecialties.length > 0) {
       const set = new Set(p.specialties || [])
-      for (const spec of activeSpecialties) {
-        if (!set.has(spec)) return false
-      }
+      if (!activeSpecialties.some((spec) => set.has(spec))) return false
     }
 
     if (activeTests.length > 0) {

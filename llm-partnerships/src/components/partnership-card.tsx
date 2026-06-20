@@ -14,6 +14,7 @@ import { cleanText, type UiLanguage } from "@/lib/text-utils"
 
 const copy = {
   fr: {
+    fees: "Frais",
     level: "Niveau",
     seats: "Places",
     language: "Langue",
@@ -26,6 +27,7 @@ const copy = {
     internal: "Interne"
   },
   en: {
+    fees: "Fees",
     level: "Level",
     seats: "Seats",
     language: "Language",
@@ -38,6 +40,7 @@ const copy = {
     internal: "Internal"
   },
   es: {
+    fees: "Coste",
     level: "Nivel",
     seats: "Plazas",
     language: "Idioma",
@@ -89,6 +92,19 @@ export function PartnershipCard({
   return (
     <Card className="group result-card interactive-lift">
       <CardHeader className="space-y-3">
+        <div className="rounded-xl border border-primary/15 bg-primary/10 px-3 py-2">
+          <div className="flex flex-wrap gap-2">
+            <TuitionBadges
+              tuitionCategory={partnership.tuitionCategory}
+              language={language}
+            />
+            {testsBadges}
+          </div>
+          <div className="mt-2 text-xs leading-5 text-muted-foreground">
+            <span className="font-medium text-foreground">{t.fees} : </span>
+            {cleanText(partnership.tuitionDisplay || partnership.tuition || t.notShared)}
+          </div>
+        </div>
         <div className="flex flex-wrap items-center justify-between gap-2">
           <ReliabilityBadge
             status={partnership.reliabilityStatus}
@@ -103,13 +119,6 @@ export function PartnershipCard({
               {t.studentSource}
             </Badge>
           ) : null}
-          <div className="flex flex-wrap gap-2">
-            <TuitionBadges
-              tuitionCategory={partnership.tuitionCategory}
-              language={language}
-            />
-            {testsBadges}
-          </div>
         </div>
         <CardTitle className="text-[16px] leading-snug tracking-tight transition-colors group-hover:text-primary">
           {cleanText(partnership.frenchUniversity)} {"\u2194"}{" "}

@@ -34,7 +34,7 @@ const pageCopy = {
     intro:
       "Le LL.M US est souvent la voie vers le barreau de New York. Annuaire des partenariats entre facs françaises et law schools US.",
     searchCta: "Rechercher un partenariat",
-    costCta: "Estimer le coût",
+    costCta: "Calculer mon budget annuel",
     searchTitle: "Recherche globale",
     searchHint: "Cherche une ville, une école ou un test, puis affine avec les filtres.",
     searchPlaceholder: "Université, pays, test, programme...",
@@ -53,7 +53,7 @@ const pageCopy = {
     noResult: "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
     legendTitle: "Statuts des offres",
     language: "Langue",
-    quickReduced: "Frais réduits",
+    quickReduced: "Sans frais d'inscription",
     quickConfirmed: "Confirmés",
     france: "France",
     unitedStates: "États-Unis",
@@ -66,7 +66,7 @@ const pageCopy = {
     intro:
       "A US LL.M is often the path toward the New York Bar. Directory of partnerships between French universities and US law schools.",
     searchCta: "Search partnerships",
-    costCta: "Estimate cost",
+    costCta: "Calculate annual budget",
     searchTitle: "Global search",
     searchHint: "Search by city, school, or test, then refine with filters.",
     searchPlaceholder: "University, country, test, program...",
@@ -85,7 +85,7 @@ const pageCopy = {
     noResult: "No result. Try removing filters or broadening the search.",
     legendTitle: "Offer status legend",
     language: "Language",
-    quickReduced: "Reduced tuition",
+    quickReduced: "No partner tuition",
     quickConfirmed: "Confirmed",
     france: "France",
     unitedStates: "United States",
@@ -98,7 +98,7 @@ const pageCopy = {
     intro:
       "Un LL.M en EE. UU. suele ser la vía hacia la barra de Nueva York. Directorio de convenios entre universidades francesas y law schools estadounidenses.",
     searchCta: "Buscar convenios",
-    costCta: "Estimar coste",
+    costCta: "Calcular presupuesto anual",
     searchTitle: "Búsqueda global",
     searchHint: "Busca por ciudad, escuela o examen, y afina con filtros.",
     searchPlaceholder: "Universidad, país, examen, programa...",
@@ -117,7 +117,7 @@ const pageCopy = {
     noResult: "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
     legendTitle: "Leyenda de estados",
     language: "Idioma",
-    quickReduced: "Matrícula reducida",
+    quickReduced: "Sin matrícula",
     quickConfirmed: "Confirmados",
     france: "Francia",
     unitedStates: "Estados Unidos",
@@ -287,7 +287,7 @@ export function HomePage() {
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
-                            tuitionCategory: "frais r\u00e9duits"
+                            tuitionCategory: "sans frais"
                           }))
                         }
                       >

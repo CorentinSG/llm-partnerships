@@ -2,6 +2,7 @@ import databaseRaw from "../../data/database.json"
 
 import type { PartnershipsDatabase } from "@/lib/database-schema"
 import type { FrenchUniversityPoint, Partnership } from "@/lib/types"
+import { cleanText } from "@/lib/text-utils"
 
 const database = databaseRaw as PartnershipsDatabase
 
@@ -42,16 +43,21 @@ function mapTuitionCategory(category: string, unknownValue: string) {
 }
 
 function normalizeRequiredLevel(value: string, unknownValue: string) {
-  const v = (value || "").trim()
+  const v = cleanText(value).trim()
   if (!v) return unknownValue
   const n = v.toLowerCase()
+  if (n.includes("non communiqu")) return unknownValue
+  if (n.includes("accessible dès m1") || n.includes("accessible des m1")) return "M1"
+  if (n.includes("m1 ou m2")) return "M1 ou M2"
+  if (n.includes("4 années") || n.includes("4 annees")) return "M1 ou M2"
   if (
     n === "m2" ||
     n.includes("m2 (") ||
     n.includes("fin de master") ||
     n.includes("master 2 de droit") ||
     n === "master 2" ||
-    n === "master 2 de droit"
+    n === "master 2 de droit" ||
+    n.includes("master juriste trilingue")
   ) {
     return "M2"
   }
