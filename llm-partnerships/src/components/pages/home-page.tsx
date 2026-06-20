@@ -1,13 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, Filter, Gauge, Search, ShieldCheck, Sparkles } from "lucide-react"
+import { ArrowRight, Filter, Search } from "lucide-react"
 
 import { CostSimulator } from "@/components/cost-simulator"
 import { FiltersPanel } from "@/components/filters/filters-panel"
 import { FranceMap } from "@/components/france-map"
 import { PartnershipCard } from "@/components/partnership-card"
-import { StatsBar } from "@/components/stats-bar"
 import { UsMap } from "@/components/us-map"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -75,123 +74,38 @@ export function HomePage() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <section className="container py-8 sm:py-16">
-        <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
-          <div className="motion-rise max-w-4xl space-y-6">
+      <section className="container py-6 sm:py-9">
+        <div className="motion-rise max-w-5xl space-y-5">
             <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
-              Annuaire comparatif LL.M
+              Barreau de New York
               <span className="h-1.5 w-1.5 rounded-full bg-accent motion-glow" aria-hidden="true" />
-              France vers international
+              LL.M aux Etats-Unis
             </div>
-            <div className="space-y-4">
-              <h1 className="text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[58px]">
-                Comparer les partenariats LL.M sans repartir de zéro.
+            <div className="space-y-3">
+              <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[56px]">
+                Trouve ton LL.M americain via une fac francaise.
               </h1>
-              <p className="max-w-3xl text-pretty text-base leading-8 text-muted-foreground sm:text-lg">
-                Centralise les universités partenaires, frais, réductions,
-                places, tests d&apos;anglais, conditions de sélection et sources
-                officielles pour choisir un parcours avec plus de clarté.
+              <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
+                Le LL.M US est souvent la voie vers le barreau de New York.
+                Annuaire des partenariats entre facs francaises et law schools US.
               </p>
             </div>
             <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
               <Button asChild className="h-11 rounded-xl">
                 <a href="#workspace">
-                  Explorer les résultats
+                  Rechercher un partenariat
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </a>
               </Button>
               <Button asChild variant="secondary" className="h-11 rounded-xl">
-                <a href="#cost-estimator">Estimer le coût</a>
+                <a href="#cost-estimator">Estimer le cout</a>
               </Button>
             </div>
-            <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
-              <div className="scanline rounded-2xl border bg-card/78 p-4 motion-pop">
-                <div className="metric-figure text-2xl font-semibold text-foreground">
-                  {all.length}
-                </div>
-                <div className="mt-1">fiches dans la base</div>
-              </div>
-              <div className="scanline rounded-2xl border bg-card/78 p-4 motion-pop [animation-delay:80ms]">
-                <div className="metric-figure text-2xl font-semibold text-foreground">
-                  {activeCount}
-                </div>
-                <div className="mt-1">filtre(s) actif(s)</div>
-              </div>
-              <div className="scanline rounded-2xl border bg-card/78 p-4 motion-pop [animation-delay:160ms]">
-                <div className="metric-figure text-2xl font-semibold text-foreground">
-                  {filtered.length}
-                </div>
-                <div className="mt-1">résultat(s) visibles</div>
-              </div>
-            </div>
           </div>
-
-          <div className="hero-command motion-glow motion-rise-slow hidden rounded-2xl border p-4 shadow-[0_24px_70px_-46px_hsl(222_47%_10%/0.48)] md:block">
-            <div className="rounded-xl border bg-secondary/45 p-3">
-              <div className="font-mono-ui mb-3 flex items-center justify-between text-[11px] text-muted-foreground">
-                <span>Workspace de comparaison</span>
-                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-primary">
-                  Live filters
-                </span>
-              </div>
-              <div className="space-y-2">
-                {["Université française", "Frais", "Test de langue"].map(
-                  (label, index) => (
-                    <div
-                      key={label}
-                      className="scanline flex items-center justify-between rounded-lg border bg-card px-3 py-2 motion-pop"
-                      style={{ animationDelay: `${index * 70 + 120}ms` }}
-                    >
-                      <span className="text-sm font-medium">{label}</span>
-                      <span className="h-2 w-16 rounded-full bg-primary/20" />
-                    </div>
-                  )
-                )}
-              </div>
-              <div className="mt-3 rounded-lg border bg-card p-3">
-                <div className="font-mono-ui mb-2 flex items-center justify-between text-[11px] text-muted-foreground">
-                  <span>Signal de fiabilité</span>
-                  <span>{filtered.length} lignes</span>
-                </div>
-                <div className="grid grid-cols-12 gap-1">
-                  {Array.from({ length: 36 }).map((_, index) => (
-                    <span
-                      key={index}
-                      className="h-8 rounded-md bg-primary/10 motion-pop"
-                      style={{
-                        animationDelay: `${index * 12}ms`,
-                        opacity: index % 5 === 0 ? 1 : 0.42 + (index % 4) * 0.12
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className="mt-3 grid gap-2 sm:grid-cols-3">
-                {[
-                  ["Sources", "PDF + liens", ShieldCheck],
-                  ["Coûts", "simulateur", Gauge],
-                  ["Tri", "filtres live", Sparkles]
-                ].map(([label, value, Icon]) => (
-                  <div key={String(label)} className="rounded-lg border bg-card/72 p-3">
-                    <Icon className="mb-2 h-4 w-4 text-accent" aria-hidden="true" />
-                    <div className="text-xs font-medium">{label}</div>
-                    <div className="font-mono-ui mt-1 text-[10px] text-muted-foreground">
-                      {value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 hidden motion-stagger sm:block">
-          <StatsBar all={all} />
-        </div>
       </section>
 
       <section className="pb-14">
-        <div id="workspace" className="container scroll-mt-24 pt-2 sm:pt-6">
+        <div id="workspace" className="container scroll-mt-24 pt-0">
           <div className="glass-panel motion-rise rounded-2xl p-3 sm:p-5 lg:sticky lg:top-[76px] lg:z-30">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="w-full max-w-3xl space-y-2">
@@ -199,7 +113,7 @@ export function HomePage() {
                   <div>
                     <div className="text-sm font-medium">Recherche globale</div>
                     <div className="mt-0.5 text-xs text-muted-foreground sm:hidden">
-                      Cherche une ville, une école ou un test, puis affine avec les filtres.
+                      Cherche une ville, une ecole ou un test, puis affine avec les filtres.
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground">
@@ -216,7 +130,7 @@ export function HomePage() {
                   <Input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Université, pays, test, programme..."
+                    placeholder="Universite, pays, test, programme..."
                     className="h-12 rounded-xl pl-9 text-base sm:text-sm"
                     aria-label="Recherche globale"
                   />
@@ -250,7 +164,7 @@ export function HomePage() {
                           }))
                         }
                       >
-                        frais réduits
+                        frais reduits
                       </button>
                       <button
                         type="button"
@@ -262,7 +176,7 @@ export function HomePage() {
                           }))
                         }
                       >
-                        confirmés
+                        confirmes
                       </button>
                     </>
                   )}
@@ -281,7 +195,7 @@ export function HomePage() {
                     <SheetHeader>
                       <SheetTitle>Filtres</SheetTitle>
                       <SheetDescription>
-                        Affine les résultats. Réinitialise à tout moment.
+                        Affine les resultats. Reinitialise a tout moment.
                       </SheetDescription>
                     </SheetHeader>
                     <div className="mt-6">
@@ -296,7 +210,7 @@ export function HomePage() {
                 </Sheet>
 
                 <Button variant="outline" className="h-11" onClick={resetAll}>
-                  Réinitialiser
+                  Reinitialiser
                 </Button>
               </div>
             </div>
@@ -319,7 +233,7 @@ export function HomePage() {
                   onClick={() => setMapMode("us")}
                   className="rounded-lg"
                 >
-                  États-Unis
+                  Etats-Unis
                 </Button>
               </div>
 
@@ -355,7 +269,7 @@ export function HomePage() {
                       </div>
                     </div>
                     <Button variant="secondary" size="sm" onClick={resetAll}>
-                      Réinitialiser
+                      Reinitialiser
                     </Button>
                   </div>
                   <Separator className="my-4" />
@@ -375,10 +289,10 @@ export function HomePage() {
                   <span className="metric-figure font-semibold text-foreground">
                     {filtered.length}
                   </span>{" "}
-                  résultat(s)
+                  resultat(s)
                 </div>
                 <div className="font-mono-ui rounded-full border bg-card/70 px-2.5 py-1 text-[11px] text-muted-foreground">
-                  Modal rapide · page dédiée · source officielle
+                  Modal rapide · page dediee · source officielle
                 </div>
               </div>
 
@@ -389,7 +303,7 @@ export function HomePage() {
                   ))}
                   {filtered.length === 0 ? (
                     <div className="rounded-xl border bg-muted/30 p-6 text-sm text-muted-foreground">
-                      Aucun résultat. Essaie d&apos;enlever des filtres ou d&apos;élargir la recherche.
+                      Aucun resultat. Essaie d&apos;enlever des filtres ou d&apos;elargir la recherche.
                     </div>
                   ) : null}
                 </div>
