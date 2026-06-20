@@ -37,9 +37,11 @@ const pageCopy = {
   fr: {
     chipA: "Objectif barreau US",
     chipB: "LL.M partenaire",
-    title: "Trouve ton LL.M américain via une fac française.",
+    title: "Annuaire des partenariats LL.M France–États-Unis",
     intro:
-      "Le LL.M US est souvent la voie vers le barreau de New York. Annuaire des partenariats entre facs françaises et law schools US.",
+      "Un LL.M effectué aux États-Unis est un diplôme de droit d’un an qui peut permettre aux juristes formés à l’étranger de présenter certains barreaux américains, notamment New York.",
+    intro2:
+      "Les frais de scolarité sont souvent le premier coût d’un LL.M américain. Ce site recense les partenariats entre universités françaises et law schools américaines permettant d’obtenir des frais réduits, des bourses ou parfois une exonération totale.",
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     searchTitle: "Recherche globale",
@@ -73,7 +75,9 @@ const pageCopy = {
     chipB: "Partner LL.M",
     title: "Find a US LL.M through a French university.",
     intro:
-      "A US LL.M is often the path toward the New York Bar. Directory of partnerships between French universities and US law schools.",
+      "A U.S. LL.M. is a one-year law degree that can allow foreign-trained lawyers to sit for certain U.S. bar exams, especially New York.",
+    intro2:
+      "Tuition is often the main cost of a U.S. LL.M. This site tracks partnerships between French universities and U.S. law schools offering reduced tuition, scholarships, or sometimes full waivers.",
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     searchTitle: "Global search",
@@ -105,7 +109,9 @@ const pageCopy = {
     chipB: "LL.M con convenio",
     title: "Encuentra un LL.M estadounidense vía una universidad francesa.",
     intro:
-      "Un LL.M en EE. UU. suele ser la vía hacia la barra de Nueva York. Directorio de convenios entre universidades francesas y law schools estadounidenses.",
+      "Un LL.M en Estados Unidos es un título jurídico de un año que puede permitir a juristas formados en el extranjero presentarse a ciertos colegios de abogados estadounidenses, especialmente Nueva York.",
+    intro2:
+      "La matrícula suele ser el primer gran coste de un LL.M estadounidense. Este sitio recopila convenios entre universidades francesas y law schools estadounidenses con reducciones, becas o incluso exenciones totales.",
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     searchTitle: "Búsqueda global",
@@ -216,6 +222,9 @@ export function HomePage() {
             </h1>
             <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
               {t.intro}
+            </p>
+            <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
+              {t.intro2}
             </p>
           </div>
           <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">

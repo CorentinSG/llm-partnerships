@@ -1,3 +1,4 @@
+import { FounderFaq } from "@/components/founder-faq"
 import { PageShell } from "@/components/page-shell"
 import { UsLawyerPath } from "@/components/us-lawyer-path"
 
@@ -8,7 +9,7 @@ export default function GuidePage() {
       description="Un parcours type (MVP) pour comprendre les étapes clés après des études de droit en France."
     >
       <UsLawyerPath className="mt-0" />
+      <FounderFaq />
     </PageShell>
   )
 }
-
