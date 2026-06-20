@@ -5,6 +5,7 @@ import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google"
 
 import { SiteHeader } from "@/components/site-header"
 import { GoogleAnalytics } from "@/components/analytics/google-analytics"
+import { LanguageProvider } from "@/components/language-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const sans = Space_Grotesk({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="fr" suppressHydrationWarning>
       <body className={`${sans.variable} ${mono.variable}`}>
         <ThemeProvider>
+          <LanguageProvider>
           <div className="min-h-dvh bg-background app-surface">
             <GoogleAnalytics />
             <SiteHeader />
@@ -71,6 +73,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </div>
             </footer>
           </div>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

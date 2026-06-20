@@ -6,6 +6,7 @@ import { ArrowRight, Filter, Search } from "lucide-react"
 import { CostSimulator } from "@/components/cost-simulator"
 import { FiltersPanel } from "@/components/filters/filters-panel"
 import { FranceMap } from "@/components/france-map"
+import { useLanguage } from "@/components/language-provider"
 import { PartnershipCard } from "@/components/partnership-card"
 import { UsMap } from "@/components/us-map"
 import { Button } from "@/components/ui/button"
@@ -134,7 +135,7 @@ export function HomePage() {
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
   const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
   const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE)
-  const [language, setLanguage] = React.useState<UiLanguage>("fr")
+  const { language } = useLanguage()
   const t = pageCopy[language]
 
   const filtered = React.useMemo(
@@ -210,23 +211,6 @@ export function HomePage() {
               <Button asChild variant="secondary" className="h-11 rounded-xl">
                 <a href="#cost-estimator">{t.costCta}</a>
               </Button>
-              <div className="glass-panel inline-flex h-11 items-center gap-1 rounded-xl p-1">
-                <span className="px-2 text-xs text-muted-foreground">{t.language}</span>
-                {(["fr", "en", "es"] as UiLanguage[]).map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
-                      language === item
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
-                    }`}
-                    onClick={() => setLanguage(item)}
-                  >
-                    {item.toUpperCase()}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
       </section>

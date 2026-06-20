@@ -1,11 +1,71 @@
-import Link from "next/link"
-import { Menu, Send } from "lucide-react"
+"use client"
 
+import Link from "next/link"
+import { Languages, Menu, Send } from "lucide-react"
+
+import { useLanguage } from "@/components/language-provider"
 import { LogoMark } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import type { UiLanguage } from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
+
+const languageLabels: Record<UiLanguage, string> = {
+  fr: "FR",
+  en: "EN",
+  es: "ES"
+}
+
+const languageNames: Record<UiLanguage, string> = {
+  fr: "Français",
+  en: "English",
+  es: "Español"
+}
+
+function LanguageSwitch({ compact = false }: { compact?: boolean }) {
+  const { language, setLanguage } = useLanguage()
+
+  return (
+    <div
+      className={cn(
+        "glass-panel inline-flex items-center gap-1 rounded-xl p-1",
+        compact ? "w-full justify-between" : "h-9"
+      )}
+      aria-label="Changer la langue"
+    >
+      <span
+        className={cn(
+          "inline-flex items-center gap-1.5 px-2 text-xs text-muted-foreground",
+          compact ? "min-w-20" : ""
+        )}
+      >
+        <Languages className="h-3.5 w-3.5" aria-hidden="true" />
+        {compact ? "Langue" : null}
+      </span>
+      <div className="flex items-center gap-1">
+        {(["fr", "en", "es"] as UiLanguage[]).map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={cn(
+              "rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors focus-ring",
+              language === item
+                ? "bg-primary text-primary-foreground"
+                : "text-muted-foreground hover:bg-secondary hover:text-foreground",
+              compact ? "min-w-14" : ""
+            )}
+            aria-pressed={language === item}
+            aria-label={languageNames[item]}
+            onClick={() => setLanguage(item)}
+          >
+            {compact ? languageNames[item] : languageLabels[item]}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function SiteHeader({ className }: { className?: string }) {
   return (
@@ -43,6 +103,7 @@ export function SiteHeader({ className }: { className?: string }) {
                 Proposer une info
               </Link>
             </Button>
+            <LanguageSwitch />
             <ThemeToggle />
           </div>
 
@@ -81,6 +142,9 @@ export function SiteHeader({ className }: { className?: string }) {
                   <Button asChild variant="ghost" className="justify-start">
                     <Link href="/alternatives">Parcours alternatifs</Link>
                   </Button>
+                  <div className="pt-3">
+                    <LanguageSwitch compact />
+                  </div>
                 </div>
               </SheetContent>
             </Sheet>
