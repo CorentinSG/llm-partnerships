@@ -21,7 +21,7 @@ export function ThemeToggle() {
       size="icon"
       aria-label={isDark ? "Activer le mode clair" : "Activer le mode sombre"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="glass-button"
+      className="glass-button h-10 min-h-10 w-10 min-w-10 sm:h-11 sm:min-h-11 sm:w-11 sm:min-w-11 md:h-10 md:min-h-10 md:w-10 md:min-w-10"
     >
       {isDark ? (
         <Sun className="h-4 w-4" aria-hidden="true" />
@@ -31,4 +31,3 @@ export function ThemeToggle() {
     </Button>
   )
 }
-

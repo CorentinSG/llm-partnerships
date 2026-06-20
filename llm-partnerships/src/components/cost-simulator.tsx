@@ -9,7 +9,7 @@ import {
   House,
   Info,
   MapPin,
-  SlidersHorizontal
+  SlidersHorizontal,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -19,7 +19,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
@@ -32,7 +32,7 @@ import {
   getEstimatesForDisplayCity,
   getPartnershipsInEstimateCity,
   getDisplayCities,
-  type CostComponent
+  type CostComponent,
 } from "@/lib/us-cost-estimates"
 
 const copy = {
@@ -63,7 +63,8 @@ const copy = {
     reference: "référence",
     comfortable: "confort",
     costBreakdown: "Détail du calcul annuel",
-    fixedHint: "Tuition, livres et frais imposés restent fixes. Seules les dépenses de vie ci-dessus sont interactives.",
+    fixedHint:
+      "Tuition, livres et frais imposés restent fixes. Seules les dépenses de vie ci-dessus sont interactives.",
     methodology: "Méthodologie",
     cityPartners: "Ville et partenaires concernés",
     otherCosts: "Postes de vie courants",
@@ -83,7 +84,7 @@ const copy = {
     visaSevisOnly: "SEVIS uniquement",
     visaRenewal: "Renouvellement visa : MRV",
     visaNote:
-      "Estimation basée sur MRV 185 $ et SEVIS I-901 : F/M 350 $, J 220 $. Les frais de délivrance éventuels dépendent de la nationalité."
+      "Estimation basée sur MRV 185 $ et SEVIS I-901 : F/M 350 $, J 220 $. Les frais de délivrance éventuels dépendent de la nationalité.",
   },
   en: {
     badge: "Student simulator",
@@ -112,7 +113,8 @@ const copy = {
     reference: "reference",
     comfortable: "comfortable",
     costBreakdown: "Annual calculation details",
-    fixedHint: "Tuition, books, and mandatory fees stay fixed. Only the living costs above are interactive.",
+    fixedHint:
+      "Tuition, books, and mandatory fees stay fixed. Only the living costs above are interactive.",
     methodology: "Methodology",
     cityPartners: "City and matching partners",
     otherCosts: "Common living costs",
@@ -132,7 +134,7 @@ const copy = {
     visaSevisOnly: "SEVIS only",
     visaRenewal: "Visa renewal: MRV",
     visaNote:
-      "Estimate based on MRV $185 and SEVIS I-901: F/M $350, J $220. Any visa issuance fee depends on nationality."
+      "Estimate based on MRV $185 and SEVIS I-901: F/M $350, J $220. Any visa issuance fee depends on nationality.",
   },
   es: {
     badge: "Simulador estudiante",
@@ -161,7 +163,8 @@ const copy = {
     reference: "referencia",
     comfortable: "cómodo",
     costBreakdown: "Detalle del cálculo anual",
-    fixedHint: "Matrícula, libros y tasas obligatorias permanecen fijas. Solo los gastos de vida anteriores son interactivos.",
+    fixedHint:
+      "Matrícula, libros y tasas obligatorias permanecen fijas. Solo los gastos de vida anteriores son interactivos.",
     methodology: "Metodología",
     cityPartners: "Ciudad y convenios relacionados",
     otherCosts: "Costes de vida habituales",
@@ -181,8 +184,8 @@ const copy = {
     visaSevisOnly: "Solo SEVIS",
     visaRenewal: "Renovación de visa: MRV",
     visaNote:
-      "Estimación basada en MRV 185 $ y SEVIS I-901: F/M 350 $, J 220 $. Las tasas de emisión dependen de la nacionalidad."
-  }
+      "Estimación basada en MRV 185 $ y SEVIS I-901: F/M 350 $, J 220 $. Las tasas de emisión dependen de la nacionalidad.",
+  },
 } as const
 
 type OfferOption = {
@@ -206,7 +209,7 @@ function getVisaOptions(language: UiLanguage): VisaOption[] {
     { id: "f1-initial", label: t.visaF1, amountUsd: 535 },
     { id: "j1-initial", label: t.visaJ1, amountUsd: 405 },
     { id: "sevis-only", label: t.visaSevisOnly, amountUsd: 350 },
-    { id: "renewal", label: t.visaRenewal, amountUsd: 185 }
+    { id: "renewal", label: t.visaRenewal, amountUsd: 185 },
   ]
 }
 
@@ -220,7 +223,7 @@ function BooksHelpTooltip({ text }: { text: string }) {
     <span className="group/tooltip relative inline-flex">
       <button
         type="button"
-        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border bg-background text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-background text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:h-5 sm:w-5"
         aria-label={text}
       >
         ?
@@ -243,8 +246,14 @@ function isTuitionComponent(component: CostComponent) {
 function isEditableLivingComponent(component: CostComponent) {
   const label = cleanText(component.label).toLowerCase()
   if (component.kind === "tuition" || isBooksComponent(label)) return false
-  if (label.includes("frais universitaire") || label.includes("activity fee")) return false
-  if (label.includes("loan fee") || label.includes("mbe support") || label.includes("health services fee")) return false
+  if (label.includes("frais universitaire") || label.includes("activity fee"))
+    return false
+  if (
+    label.includes("loan fee") ||
+    label.includes("mbe support") ||
+    label.includes("health services fee")
+  )
+    return false
 
   return (
     label.includes("logement") ||
@@ -262,7 +271,9 @@ function isEditableLivingComponent(component: CostComponent) {
 
 function parseDollarAmounts(text: string) {
   const amounts: number[] = []
-  const matches = text.matchAll(/(?:\$|usd|dollars?)\s*([0-9][0-9\s.,]*)|([0-9][0-9\s.,]*)\s*(?:\$|usd|dollars?)/gi)
+  const matches = text.matchAll(
+    /(?:\$|usd|dollars?)\s*([0-9][0-9\s.,]*)|([0-9][0-9\s.,]*)\s*(?:\$|usd|dollars?)/gi,
+  )
   for (const match of matches) {
     const raw = match[1] || match[2]
     const value = Number(raw.replace(/[\s,]/g, ""))
@@ -277,32 +288,51 @@ function parsePercent(text: string) {
   return Math.min(Math.max(Number(match[1]), 0), 100)
 }
 
-function inferOfferOptions(partnership: Partnership | undefined, normalTuition: number, language: UiLanguage) {
+function inferOfferOptions(
+  partnership: Partnership | undefined,
+  normalTuition: number,
+  language: UiLanguage,
+) {
   const t = copy[language]
   const options: OfferOption[] = [
-    { id: "public", label: t.noOffer, tuitionUsd: normalTuition, note: t.publicRate }
+    {
+      id: "public",
+      label: t.noOffer,
+      tuitionUsd: normalTuition,
+      note: t.publicRate,
+    },
   ]
 
   if (!partnership) return options
 
   const category = cleanText(partnership.tuitionCategory).toLowerCase()
-  const text = cleanText([
-    partnership.availableSeatsDisplay,
-    partnership.tuitionDisplay,
-    partnership.financialAid,
-    partnership.shortDescription,
-    partnership.notes
-  ].join(" "))
+  const text = cleanText(
+    [
+      partnership.availableSeatsDisplay,
+      partnership.tuitionDisplay,
+      partnership.financialAid,
+      partnership.shortDescription,
+      partnership.notes,
+    ].join(" "),
+  )
   const lower = text.toLowerCase()
-  const amounts = parseDollarAmounts(lower).filter((amount) => amount < normalTuition)
+  const amounts = parseDollarAmounts(lower).filter(
+    (amount) => amount < normalTuition,
+  )
   const percent = parsePercent(lower)
 
-  if (category === "sans frais" || lower.includes("sans frais") || lower.includes("full scholarship")) {
+  if (
+    category === "sans frais" ||
+    lower.includes("sans frais") ||
+    lower.includes("full scholarship")
+  ) {
     options.push({
       id: "free",
       label: t.freeSeat,
       tuitionUsd: 0,
-      note: cleanText(partnership.availableSeatsDisplay || partnership.tuitionDisplay)
+      note: cleanText(
+        partnership.availableSeatsDisplay || partnership.tuitionDisplay,
+      ),
     })
   }
 
@@ -311,32 +341,43 @@ function inferOfferOptions(partnership: Partnership | undefined, normalTuition: 
       id: `percent-${percent}`,
       label: t.percentSeat.replace("{percent}", String(percent)),
       tuitionUsd: Math.round(normalTuition * (1 - percent / 100)),
-      note: cleanText(partnership.financialAid || partnership.tuitionDisplay)
+      note: cleanText(partnership.financialAid || partnership.tuitionDisplay),
     })
   }
 
-  Array.from(new Set(amounts)).sort((a, b) => a - b).slice(0, 3).forEach((amount, index) => {
-    options.push({
-      id: `amount-${index}-${amount}`,
-      label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
-      tuitionUsd: Math.round(amount),
-      note: `${formatUsd(amount)} ${t.referenceAmount}`
+  Array.from(new Set(amounts))
+    .sort((a, b) => a - b)
+    .slice(0, 3)
+    .forEach((amount, index) => {
+      options.push({
+        id: `amount-${index}-${amount}`,
+        label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
+        tuitionUsd: Math.round(amount),
+        note: `${formatUsd(amount)} ${t.referenceAmount}`,
+      })
     })
-  })
 
-  if (options.length === 1 && (category.includes("réduits") || category.includes("reduit") || category.includes("bourse"))) {
+  if (
+    options.length === 1 &&
+    (category.includes("réduits") ||
+      category.includes("reduit") ||
+      category.includes("bourse"))
+  ) {
     const fallbackPercent = category.includes("bourse") ? 25 : 50
     options.push({
       id: `fallback-${fallbackPercent}`,
       label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
       tuitionUsd: Math.round(normalTuition * (1 - fallbackPercent / 100)),
-      note: t.partnerRate
+      note: t.partnerRate,
     })
   }
 
   return options.filter(
     (option, index, all) =>
-      all.findIndex((item) => item.tuitionUsd === option.tuitionUsd && item.label === option.label) === index
+      all.findIndex(
+        (item) =>
+          item.tuitionUsd === option.tuitionUsd && item.label === option.label,
+      ) === index,
   )
 }
 
@@ -350,7 +391,7 @@ function sliderMax(amount: number) {
 
 export function CostSimulator({
   partnerships,
-  language = "fr"
+  language = "fr",
 }: {
   partnerships: Partnership[]
   language?: UiLanguage
@@ -361,8 +402,13 @@ export function CostSimulator({
   const cities = React.useMemo(() => getDisplayCities(), [])
 
   const [selectedCity, setSelectedCity] = React.useState(cities[0] ?? "")
-  const cityEstimates = React.useMemo(() => getEstimatesForDisplayCity(selectedCity), [selectedCity])
-  const [selectedEstimateId, setSelectedEstimateId] = React.useState(cityEstimates[0]?.id ?? "")
+  const cityEstimates = React.useMemo(
+    () => getEstimatesForDisplayCity(selectedCity),
+    [selectedCity],
+  )
+  const [selectedEstimateId, setSelectedEstimateId] = React.useState(
+    cityEstimates[0]?.id ?? "",
+  )
 
   React.useEffect(() => {
     if (!cityEstimates.some((estimate) => estimate.id === selectedEstimateId)) {
@@ -371,48 +417,71 @@ export function CostSimulator({
   }, [cityEstimates, selectedEstimateId])
 
   const selectedEstimate =
-    cityEstimates.find((estimate) => estimate.id === selectedEstimateId) || cityEstimates[0] || allEstimates[0]
+    cityEstimates.find((estimate) => estimate.id === selectedEstimateId) ||
+    cityEstimates[0] ||
+    allEstimates[0]
 
   const partnershipsInCity = React.useMemo(
-    () => (selectedEstimate ? getPartnershipsInEstimateCity(partnerships, selectedEstimate) : []),
-    [partnerships, selectedEstimate]
+    () =>
+      selectedEstimate
+        ? getPartnershipsInEstimateCity(partnerships, selectedEstimate)
+        : [],
+    [partnerships, selectedEstimate],
   )
 
   const [selectedPartnershipId, setSelectedPartnershipId] = React.useState("")
   const [selectedOfferId, setSelectedOfferId] = React.useState("public")
   const [selectedVisaId, setSelectedVisaId] = React.useState("f1-initial")
-  const [customCosts, setCustomCosts] = React.useState<Record<string, number>>({})
+  const [customCosts, setCustomCosts] = React.useState<Record<string, number>>(
+    {},
+  )
 
   React.useEffect(() => {
-    const freeFirst = partnershipsInCity.find((partnership) => cleanText(partnership.tuitionCategory).toLowerCase() === "sans frais")
+    const freeFirst = partnershipsInCity.find(
+      (partnership) =>
+        cleanText(partnership.tuitionCategory).toLowerCase() === "sans frais",
+    )
     const first = freeFirst || partnershipsInCity[0]
     setSelectedPartnershipId(first?.id ?? "")
   }, [partnershipsInCity])
 
-  const selectedPartnership = partnershipsInCity.find((partnership) => partnership.id === selectedPartnershipId)
+  const selectedPartnership = partnershipsInCity.find(
+    (partnership) => partnership.id === selectedPartnershipId,
+  )
 
-  const summary = selectedEstimate ? getEstimateSummary(selectedEstimate) : { tuitionUsd: 0, otherCostsUsd: 0, totalUsd: 0 }
+  const summary = selectedEstimate
+    ? getEstimateSummary(selectedEstimate)
+    : { tuitionUsd: 0, otherCostsUsd: 0, totalUsd: 0 }
   const normalTuition = summary.tuitionUsd
   const offerOptions = React.useMemo(
     () => inferOfferOptions(selectedPartnership, normalTuition, language),
-    [selectedPartnership, normalTuition, language]
+    [selectedPartnership, normalTuition, language],
   )
-  const selectedOffer = offerOptions.find((offer) => offer.id === selectedOfferId) || offerOptions[0]
+  const selectedOffer =
+    offerOptions.find((offer) => offer.id === selectedOfferId) ||
+    offerOptions[0]
   const visaOptions = React.useMemo(() => getVisaOptions(language), [language])
-  const selectedVisa = visaOptions.find((option) => option.id === selectedVisaId) || visaOptions[0]
+  const selectedVisa =
+    visaOptions.find((option) => option.id === selectedVisaId) || visaOptions[0]
 
   React.useEffect(() => {
-    const bestOffer = offerOptions.find((offer) => offer.id !== "public") || offerOptions[0]
+    const bestOffer =
+      offerOptions.find((offer) => offer.id !== "public") || offerOptions[0]
     setSelectedOfferId(bestOffer?.id ?? "public")
   }, [offerOptions])
 
   const fixedComponents = React.useMemo(
-    () => selectedEstimate?.components.filter((component) => !isTuitionComponent(component) && !isEditableLivingComponent(component)) ?? [],
-    [selectedEstimate]
+    () =>
+      selectedEstimate?.components.filter(
+        (component) =>
+          !isTuitionComponent(component) &&
+          !isEditableLivingComponent(component),
+      ) ?? [],
+    [selectedEstimate],
   )
   const editableComponents = React.useMemo(
     () => selectedEstimate?.components.filter(isEditableLivingComponent) ?? [],
-    [selectedEstimate]
+    [selectedEstimate],
   )
 
   React.useEffect(() => {
@@ -427,10 +496,14 @@ export function CostSimulator({
 
   if (!selectedEstimate || !selectedOffer) return null
 
-  const fixedOtherCosts = fixedComponents.reduce((total, component) => total + component.amountUsd, 0)
+  const fixedOtherCosts = fixedComponents.reduce(
+    (total, component) => total + component.amountUsd,
+    0,
+  )
   const editableOtherCosts = editableComponents.reduce(
-    (total, component) => total + (customCosts[component.label] ?? component.amountUsd),
-    0
+    (total, component) =>
+      total + (customCosts[component.label] ?? component.amountUsd),
+    0,
   )
   const adjustedOtherCosts = fixedOtherCosts + editableOtherCosts
   const visaCosts = selectedVisa.amountUsd
@@ -442,7 +515,11 @@ export function CostSimulator({
   const livingCostsLabel = formatUsd(editableOtherCosts)
 
   const uniqueUniversitiesInCity = Array.from(
-    new Set(partnershipsInCity.map((partnership) => cleanText(partnership.partnerUniversity)))
+    new Set(
+      partnershipsInCity.map((partnership) =>
+        cleanText(partnership.partnerUniversity),
+      ),
+    ),
   ).sort((a, b) => a.localeCompare(b))
 
   return (
@@ -455,35 +532,53 @@ export function CostSimulator({
                 <Badge className="w-fit rounded-full bg-primary/12 px-3 py-1 text-primary shadow-none">
                   {t.badge}
                 </Badge>
-                <CardTitle className="text-2xl tracking-tight sm:text-3xl">{t.title}</CardTitle>
-                <p className="text-sm leading-7 text-muted-foreground sm:text-base">{t.intro}</p>
+                <CardTitle className="text-2xl tracking-tight sm:text-3xl">
+                  {t.title}
+                </CardTitle>
+                <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+                  {t.intro}
+                </p>
               </div>
 
               <div className="grid gap-3 rounded-2xl border bg-secondary/45 p-3 sm:p-4">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="space-y-2">
-                    <label className="text-xs font-medium text-muted-foreground">{t.city}</label>
-                    <Select value={selectedCity} onValueChange={setSelectedCity}>
+                    <label className="text-xs font-medium text-muted-foreground">
+                      {t.city}
+                    </label>
+                    <Select
+                      value={selectedCity}
+                      onValueChange={setSelectedCity}
+                    >
                       <SelectTrigger className="h-11" aria-label={t.city}>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                         {cities.map((city) => (
-                          <SelectItem key={city} value={city}>{city}</SelectItem>
+                          <SelectItem key={city} value={city}>
+                            {city}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-medium text-muted-foreground">{t.school}</label>
-                    <Select value={selectedEstimate.id} onValueChange={setSelectedEstimateId}>
+                    <label className="text-xs font-medium text-muted-foreground">
+                      {t.school}
+                    </label>
+                    <Select
+                      value={selectedEstimate.id}
+                      onValueChange={setSelectedEstimateId}
+                    >
                       <SelectTrigger className="h-11" aria-label={t.school}>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                         {cityEstimates.map((estimate) => (
-                          <SelectItem key={estimate.id} value={estimate.id}>{cleanText(estimate.referenceSchool)}</SelectItem>
+                          <SelectItem key={estimate.id} value={estimate.id}>
+                            {cleanText(estimate.referenceSchool)}
+                          </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -491,8 +586,15 @@ export function CostSimulator({
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground">{t.partnership}</label>
-                  <Select value={selectedPartnershipId || "none"} onValueChange={(value: string) => setSelectedPartnershipId(value === "none" ? "" : value)}>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    {t.partnership}
+                  </label>
+                  <Select
+                    value={selectedPartnershipId || "none"}
+                    onValueChange={(value: string) =>
+                      setSelectedPartnershipId(value === "none" ? "" : value)
+                    }
+                  >
                     <SelectTrigger className="h-11" aria-label={t.partnership}>
                       <SelectValue />
                     </SelectTrigger>
@@ -500,7 +602,8 @@ export function CostSimulator({
                       <SelectItem value="none">{t.noPartnership}</SelectItem>
                       {partnershipsInCity.map((partnership) => (
                         <SelectItem key={partnership.id} value={partnership.id}>
-                          {cleanText(partnership.frenchUniversity)} → {cleanText(partnership.partnerUniversity)}
+                          {cleanText(partnership.frenchUniversity)} →{" "}
+                          {cleanText(partnership.partnerUniversity)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -508,23 +611,39 @@ export function CostSimulator({
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground">{t.offer}</label>
-                  <Select value={selectedOffer.id} onValueChange={setSelectedOfferId}>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    {t.offer}
+                  </label>
+                  <Select
+                    value={selectedOffer.id}
+                    onValueChange={setSelectedOfferId}
+                  >
                     <SelectTrigger className="h-11" aria-label={t.offer}>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {offerOptions.map((offer) => (
-                        <SelectItem key={offer.id} value={offer.id}>{offer.label} - {formatUsd(offer.tuitionUsd)}</SelectItem>
+                        <SelectItem key={offer.id} value={offer.id}>
+                          {offer.label} - {formatUsd(offer.tuitionUsd)}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  {selectedOffer.note ? <p className="text-xs leading-5 text-muted-foreground">{selectedOffer.note}</p> : null}
+                  {selectedOffer.note ? (
+                    <p className="text-xs leading-5 text-muted-foreground">
+                      {selectedOffer.note}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-medium text-muted-foreground">{t.visa}</label>
-                  <Select value={selectedVisa.id} onValueChange={setSelectedVisaId}>
+                  <label className="text-xs font-medium text-muted-foreground">
+                    {t.visa}
+                  </label>
+                  <Select
+                    value={selectedVisa.id}
+                    onValueChange={setSelectedVisaId}
+                  >
                     <SelectTrigger className="h-11" aria-label={t.visa}>
                       <SelectValue />
                     </SelectTrigger>
@@ -536,35 +655,63 @@ export function CostSimulator({
                       ))}
                     </SelectContent>
                   </Select>
-                  <p className="text-xs leading-5 text-muted-foreground">{t.visaNote}</p>
+                  <p className="text-xs leading-5 text-muted-foreground">
+                    {t.visaNote}
+                  </p>
                 </div>
               </div>
             </div>
 
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.publicTuition}</div>
-                <div className="mt-2 text-2xl font-semibold">{formatUsd(normalTuition)}</div>
-                <div className="mt-1 text-[11px] text-muted-foreground">{t.publicRate}</div>
+                <div className="text-xs text-muted-foreground">
+                  {t.publicTuition}
+                </div>
+                <div className="mt-2 text-2xl font-semibold">
+                  {formatUsd(normalTuition)}
+                </div>
+                <div className="mt-1 text-[11px] text-muted-foreground">
+                  {t.publicRate}
+                </div>
               </div>
               <div className="rounded-xl border border-primary/15 bg-primary/10 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.partnerTuition}</div>
-                <div className="mt-2 text-2xl font-semibold">{formatUsd(partnerTuition)}</div>
-                <div className="mt-1 text-[11px] text-muted-foreground">{t.partnerRate}</div>
+                <div className="text-xs text-muted-foreground">
+                  {t.partnerTuition}
+                </div>
+                <div className="mt-2 text-2xl font-semibold">
+                  {formatUsd(partnerTuition)}
+                </div>
+                <div className="mt-1 text-[11px] text-muted-foreground">
+                  {t.partnerRate}
+                </div>
               </div>
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
                 <div className="text-xs text-muted-foreground">{t.savings}</div>
-                <div className="mt-2 text-2xl font-semibold text-success">{formatUsd(savings)}</div>
+                <div className="mt-2 text-2xl font-semibold text-success">
+                  {formatUsd(savings)}
+                </div>
               </div>
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.livingCosts}</div>
-                <div className="mt-2 text-2xl font-semibold">{livingCostsLabel}</div>
-                <div className="mt-1 text-[11px] text-muted-foreground">{t.fixedCosts} : {fixedCostsLabel}</div>
+                <div className="text-xs text-muted-foreground">
+                  {t.livingCosts}
+                </div>
+                <div className="mt-2 text-2xl font-semibold">
+                  {livingCostsLabel}
+                </div>
+                <div className="mt-1 text-[11px] text-muted-foreground">
+                  {t.fixedCosts} : {fixedCostsLabel}
+                </div>
               </div>
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
-                <div className="text-xs text-muted-foreground">{t.visaCosts}</div>
-                <div className="mt-2 text-2xl font-semibold">{formatUsd(visaCosts)}</div>
-                <div className="mt-1 text-[11px] text-muted-foreground">{selectedVisa.label}</div>
+                <div className="text-xs text-muted-foreground">
+                  {t.visaCosts}
+                </div>
+                <div className="mt-2 text-2xl font-semibold">
+                  {formatUsd(visaCosts)}
+                </div>
+                <div className="mt-1 text-[11px] text-muted-foreground">
+                  {selectedVisa.label}
+                </div>
               </div>
             </div>
           </CardHeader>
@@ -577,23 +724,33 @@ export function CostSimulator({
                     <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
                     {t.studentCosts}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{t.studentCostsHelp}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {t.studentCostsHelp}
+                  </p>
 
                   <div className="mt-5 space-y-5">
                     {editableComponents.map((component) => {
-                      const value = customCosts[component.label] ?? component.amountUsd
+                      const value =
+                        customCosts[component.label] ?? component.amountUsd
                       const min = sliderMin(component.amountUsd)
                       const max = sliderMax(component.amountUsd)
                       return (
-                        <label key={component.label} className="block rounded-xl border bg-card/80 p-4">
+                        <label
+                          key={component.label}
+                          className="block rounded-xl border bg-card/80 p-4"
+                        >
                           <div className="mb-3 flex items-start justify-between gap-3">
                             <div>
-                              <div className="text-sm font-medium">{cleanText(component.label)}</div>
+                              <div className="text-sm font-medium">
+                                {cleanText(component.label)}
+                              </div>
                               <div className="mt-1 text-xs text-muted-foreground">
                                 {t.reference} : {formatUsd(component.amountUsd)}
                               </div>
                             </div>
-                            <div className="font-mono-ui text-sm font-semibold text-primary">{formatUsd(value)}</div>
+                            <div className="font-mono-ui text-sm font-semibold text-primary">
+                              {formatUsd(value)}
+                            </div>
                           </div>
                           <input
                             type="range"
@@ -601,10 +758,12 @@ export function CostSimulator({
                             max={max}
                             step={100}
                             value={value}
-                            onChange={(event) => setCustomCosts((current) => ({
-                              ...current,
-                              [component.label]: Number(event.target.value)
-                            }))}
+                            onChange={(event) =>
+                              setCustomCosts((current) => ({
+                                ...current,
+                                [component.label]: Number(event.target.value),
+                              }))
+                            }
                             className="w-full accent-primary"
                           />
                           <div className="mt-1 flex justify-between text-[11px] text-muted-foreground">
@@ -619,12 +778,20 @@ export function CostSimulator({
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     <div className="rounded-xl border bg-card/80 p-4">
-                      <div className="text-xs text-muted-foreground">{t.publicTotal}</div>
-                      <div className="mt-2 text-xl font-semibold">{formatUsd(normalTotal)}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {t.publicTotal}
+                      </div>
+                      <div className="mt-2 text-xl font-semibold">
+                        {formatUsd(normalTotal)}
+                      </div>
                     </div>
                     <div className="rounded-xl border border-primary/15 bg-primary/10 p-4">
-                      <div className="text-xs text-muted-foreground">{t.partnerTotal}</div>
-                      <div className="mt-2 text-xl font-semibold">{formatUsd(partnerTotal)}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {t.partnerTotal}
+                      </div>
+                      <div className="mt-2 text-xl font-semibold">
+                        {formatUsd(partnerTotal)}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -634,32 +801,55 @@ export function CostSimulator({
                     <Calculator className="h-4 w-4 text-muted-foreground" />
                     {t.costBreakdown}
                   </div>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{t.fixedHint}</p>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                    {t.fixedHint}
+                  </p>
                   <div className="mt-4 grid gap-2 sm:grid-cols-2 sm:gap-3">
                     {selectedEstimate.components.map((component) => {
                       const editable = isEditableLivingComponent(component)
-                      const amount = editable ? customCosts[component.label] ?? component.amountUsd : component.amountUsd
+                      const amount = editable
+                        ? (customCosts[component.label] ?? component.amountUsd)
+                        : component.amountUsd
                       return (
-                        <div key={`${selectedEstimate.id}-${component.label}`} className="rounded-xl border bg-card/80 p-3 motion-pop sm:p-4">
+                        <div
+                          key={`${selectedEstimate.id}-${component.label}`}
+                          className="rounded-xl border bg-card/80 p-3 motion-pop sm:p-4"
+                        >
                           <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
                             <span>{cleanText(component.label)}</span>
                             {isBooksComponent(component.label) ? (
                               <BooksHelpTooltip text={t.booksHelp} />
                             ) : editable ? (
-                              <Badge variant="outline" className="rounded-full text-[10px]">{t.livingCosts}</Badge>
+                              <Badge
+                                variant="outline"
+                                className="rounded-full text-[10px]"
+                              >
+                                {t.livingCosts}
+                              </Badge>
                             ) : null}
                           </div>
-                          <div className="mt-2 text-lg font-semibold">{formatUsd(amount)}</div>
+                          <div className="mt-2 text-lg font-semibold">
+                            {formatUsd(amount)}
+                          </div>
                         </div>
                       )
                     })}
                     <div className="rounded-xl border bg-card/80 p-3 motion-pop sm:p-4">
                       <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
                         <span>{t.visaCosts}</span>
-                        <Badge variant="outline" className="rounded-full text-[10px]">{t.fixedCosts}</Badge>
+                        <Badge
+                          variant="outline"
+                          className="rounded-full text-[10px]"
+                        >
+                          {t.fixedCosts}
+                        </Badge>
                       </div>
-                      <div className="mt-2 text-lg font-semibold">{formatUsd(visaCosts)}</div>
-                      <div className="mt-1 text-xs text-muted-foreground">{selectedVisa.label}</div>
+                      <div className="mt-2 text-lg font-semibold">
+                        {formatUsd(visaCosts)}
+                      </div>
+                      <div className="mt-1 text-xs text-muted-foreground">
+                        {selectedVisa.label}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -671,11 +861,16 @@ export function CostSimulator({
                     <Info className="h-4 w-4 text-muted-foreground" />
                     {t.methodology}
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{cleanText(selectedEstimate.methodologyNote)}</p>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {cleanText(selectedEstimate.methodologyNote)}
+                  </p>
                   {selectedEstimate.optionalNotes?.length ? (
                     <div className="mt-3 space-y-2">
                       {selectedEstimate.optionalNotes.map((note) => (
-                        <div key={note} className="rounded-xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm text-amber-950 dark:text-amber-100">
+                        <div
+                          key={note}
+                          className="rounded-xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm text-amber-950 dark:text-amber-100"
+                        >
                           {cleanText(note)}
                         </div>
                       ))}
@@ -689,11 +884,20 @@ export function CostSimulator({
                     {t.cityPartners}
                   </div>
                   <div className="mt-3 text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">{cleanText(selectedEstimate.displayCity)}</span> · {cleanText(selectedEstimate.referenceSchool)}
+                    <span className="font-medium text-foreground">
+                      {cleanText(selectedEstimate.displayCity)}
+                    </span>{" "}
+                    · {cleanText(selectedEstimate.referenceSchool)}
                   </div>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {uniqueUniversitiesInCity.map((university) => (
-                      <Badge key={university} variant="outline" className="rounded-full bg-card">{university}</Badge>
+                      <Badge
+                        key={university}
+                        variant="outline"
+                        className="rounded-full bg-card"
+                      >
+                        {university}
+                      </Badge>
                     ))}
                   </div>
                 </div>
@@ -708,9 +912,16 @@ export function CostSimulator({
                       <div key={cost.label}>
                         <div className="flex items-center gap-1.5 text-sm font-medium">
                           {cleanText(cost.label)}
-                          {isBooksComponent(cost.label) ? <HelpCircle className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" /> : null}
+                          {isBooksComponent(cost.label) ? (
+                            <HelpCircle
+                              className="h-3.5 w-3.5 text-muted-foreground"
+                              aria-hidden="true"
+                            />
+                          ) : null}
                         </div>
-                        <div className="text-sm text-muted-foreground">{cleanText(cost.description)}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {cleanText(cost.description)}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -723,7 +934,13 @@ export function CostSimulator({
                   </div>
                   <div className="mt-4 space-y-3">
                     {selectedEstimate.sources.map((source) => (
-                      <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="flex items-start justify-between gap-3 rounded-xl border bg-card/80 px-4 py-3 text-sm transition-colors hover:bg-card">
+                      <a
+                        key={source.url}
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-start justify-between gap-3 rounded-xl border bg-card/80 px-4 py-3 text-sm transition-colors hover:bg-card"
+                      >
                         <span>{cleanText(source.label)}</span>
                         <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                       </a>

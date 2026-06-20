@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { ArrowRight, Filter, Search } from "lucide-react";
+import * as React from "react"
+import { ArrowRight, Filter, Search } from "lucide-react"
 
-import { CostSimulator } from "@/components/cost-simulator";
-import { FiltersPanel } from "@/components/filters/filters-panel";
-import { FranceMap } from "@/components/france-map";
-import { useLanguage } from "@/components/language-provider";
-import { PartnershipCard } from "@/components/partnership-card";
-import { UsMap } from "@/components/us-map";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { CostSimulator } from "@/components/cost-simulator"
+import { FiltersPanel } from "@/components/filters/filters-panel"
+import { FranceMap } from "@/components/france-map"
+import { useLanguage } from "@/components/language-provider"
+import { PartnershipCard } from "@/components/partnership-card"
+import { UsMap } from "@/components/us-map"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Sheet,
   SheetContent,
@@ -18,20 +18,20 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 import {
   emptyFilters,
   filterPartnerships,
   type FiltersState,
-} from "@/lib/filters";
+} from "@/lib/filters"
 import {
   getAllPartnerships,
   getFilterOptions,
   getFrenchUniversitiesPoints,
-} from "@/lib/data";
-import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils";
+} from "@/lib/data"
+import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils"
 
-const RESULTS_PAGE_SIZE = 12;
+const RESULTS_PAGE_SIZE = 12
 
 const pageCopy = {
   fr: {
@@ -139,36 +139,36 @@ const pageCopy = {
     unitedStates: "Estados Unidos",
     sheetHint: "Afina los resultados. Reinicia cuando quieras.",
   },
-} as const;
+} as const
 
 export function HomePage() {
-  const all = React.useMemo(() => getAllPartnerships(), []);
-  const options = React.useMemo(() => getFilterOptions(), []);
-  const points = React.useMemo(() => getFrenchUniversitiesPoints(), []);
+  const all = React.useMemo(() => getAllPartnerships(), [])
+  const options = React.useMemo(() => getFilterOptions(), [])
+  const points = React.useMemo(() => getFrenchUniversitiesPoints(), [])
 
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState("")
   const [filters, setFilters] = React.useState<FiltersState>(() =>
     emptyFilters(),
-  );
-  const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr");
-  const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE);
-  const { language } = useLanguage();
-  const t = pageCopy[language];
+  )
+  const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
+  const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE)
+  const { language } = useLanguage()
+  const t = pageCopy[language]
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
     [all, searchQuery, filters],
-  );
+  )
 
   React.useEffect(() => {
-    setVisibleCount(RESULTS_PAGE_SIZE);
-  }, [searchQuery, filters]);
+    setVisibleCount(RESULTS_PAGE_SIZE)
+  }, [searchQuery, filters])
 
-  const visiblePartnerships = filtered.slice(0, visibleCount);
+  const visiblePartnerships = filtered.slice(0, visibleCount)
   const remainingCount = Math.max(
     filtered.length - visiblePartnerships.length,
     0,
-  );
+  )
 
   const activeCount =
     (filters.frenchUniversity ? 1 : 0) +
@@ -184,7 +184,7 @@ export function HomePage() {
     (filters.availableSeats ? 1 : 0) +
     (filters.reliabilityStatus ? 1 : 0) +
     ((filters.specialties || []).length > 0 ? 1 : 0) +
-    ((filters.languageTests || []).length > 0 ? 1 : 0);
+    ((filters.languageTests || []).length > 0 ? 1 : 0)
 
   const activeLabels = [
     filters.frenchUniversity,
@@ -196,17 +196,17 @@ export function HomePage() {
     filters.reliabilityStatus,
     ...(filters.specialties || []),
     ...(filters.languageTests || []),
-  ].filter(Boolean) as string[];
+  ].filter(Boolean) as string[]
 
   function resetAll() {
-    setSearchQuery("");
-    setFilters(emptyFilters());
+    setSearchQuery("")
+    setFilters(emptyFilters())
   }
 
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <section className="container py-6 sm:py-9">
+      <section className="container py-7 sm:py-9">
         <div className="motion-rise max-w-5xl space-y-5">
           <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
             {t.chipA}
@@ -217,7 +217,7 @@ export function HomePage() {
             {t.chipB}
           </div>
           <div className="space-y-3">
-            <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[56px]">
+            <h1 className="max-w-4xl text-balance text-[32px] font-bold leading-[1.04] tracking-tight sm:text-5xl lg:text-[56px]">
               {t.title}
             </h1>
             <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
@@ -228,13 +228,17 @@ export function HomePage() {
             </p>
           </div>
           <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
-            <Button asChild className="h-11 rounded-xl">
+            <Button asChild className="h-12 rounded-xl sm:h-11">
               <a href="#workspace">
                 {t.searchCta}
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </Button>
-            <Button asChild variant="secondary" className="h-11 rounded-xl">
+            <Button
+              asChild
+              variant="secondary"
+              className="h-12 rounded-xl sm:h-11"
+            >
               <a href="#cost-estimator">{t.costCta}</a>
             </Button>
           </div>
@@ -243,7 +247,7 @@ export function HomePage() {
 
       <section className="pb-14">
         <div id="workspace" className="container scroll-mt-24 pt-0">
-          <div className="glass-panel motion-rise rounded-2xl p-3 sm:p-5 lg:sticky lg:top-[76px] lg:z-30">
+          <div className="glass-panel motion-rise rounded-2xl p-4 sm:p-5 lg:sticky lg:top-[76px] lg:z-30">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="w-full max-w-3xl space-y-2">
                 <div className="flex items-center justify-between gap-3">
@@ -286,14 +290,14 @@ export function HomePage() {
                     <>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
+                        className="glass-button min-h-10 rounded-full px-3.5 py-2 text-xs text-muted-foreground sm:min-h-0 sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() => setSearchQuery("TOEFL")}
                       >
                         TOEFL
                       </button>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
+                        className="glass-button min-h-10 rounded-full px-3.5 py-2 text-xs text-muted-foreground sm:min-h-0 sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
@@ -305,7 +309,7 @@ export function HomePage() {
                       </button>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
+                        className="glass-button min-h-10 rounded-full px-3.5 py-2 text-xs text-muted-foreground sm:min-h-0 sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
@@ -358,7 +362,7 @@ export function HomePage() {
                   variant={mapMode === "fr" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setMapMode("fr")}
-                  className="rounded-lg"
+                  className="h-10 rounded-lg sm:h-9"
                 >
                   {t.france}
                 </Button>
@@ -366,7 +370,7 @@ export function HomePage() {
                   variant={mapMode === "us" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setMapMode("us")}
-                  className="rounded-lg"
+                  className="h-10 rounded-lg sm:h-9"
                 >
                   {t.unitedStates}
                 </Button>
@@ -440,11 +444,11 @@ export function HomePage() {
                 </div>
               </div>
 
-              <div className="glass-panel rounded-2xl p-2 sm:p-3">
-                <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-secondary/45 px-3 py-2 text-xs text-muted-foreground">
+              <div className="glass-panel rounded-2xl p-3 sm:p-3">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-secondary/45 px-3 py-2.5 text-xs text-muted-foreground">
                   <span>{t.naturalScroll}</span>
                   <a
-                    className="font-medium text-foreground hover:text-primary"
+                    className="inline-flex min-h-10 items-center font-medium text-foreground hover:text-primary sm:min-h-0"
                     href="#workspace"
                   >
                     {t.backToSearch}
@@ -497,5 +501,5 @@ export function HomePage() {
         </div>
       </section>
     </main>
-  );
+  )
 }

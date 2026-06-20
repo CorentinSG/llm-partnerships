@@ -6,7 +6,7 @@ export function PageShell({
   description,
   actions,
   children,
-  className
+  className,
 }: {
   title: string
   description?: string
@@ -15,7 +15,7 @@ export function PageShell({
   className?: string
 }) {
   return (
-    <main className={cn("container py-10 motion-rise", className)}>
+    <main className={cn("container py-8 motion-rise sm:py-10", className)}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-1">
           <h1 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -30,7 +30,7 @@ export function PageShell({
         {actions ? <div className="shrink-0">{actions}</div> : null}
       </div>
 
-      <div className="mt-8">{children}</div>
+      <div className="mt-6 sm:mt-8">{children}</div>
     </main>
   )
 }

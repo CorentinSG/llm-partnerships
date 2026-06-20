@@ -22,7 +22,7 @@ const mapCopy = {
     reset: "Reset",
     aria: "Carte de France avec points des universités",
     selection: "Sélection :",
-    tip: "Conseil : clique sur un point pour filtrer la liste (sur mobile : pince pour zoomer)."
+    tip: "Conseil : clique sur un point pour filtrer la liste (sur mobile : pince pour zoomer).",
   },
   en: {
     title: "Map (France)",
@@ -33,7 +33,7 @@ const mapCopy = {
     reset: "Reset",
     aria: "Map of France with university points",
     selection: "Selection:",
-    tip: "Tip: click a point to filter the list (on mobile: pinch to zoom)."
+    tip: "Tip: click a point to filter the list (on mobile: pinch to zoom).",
   },
   es: {
     title: "Mapa (Francia)",
@@ -44,8 +44,8 @@ const mapCopy = {
     reset: "Reset",
     aria: "Mapa de Francia con puntos universitarios",
     selection: "Selección:",
-    tip: "Consejo: toca un punto para filtrar la lista (en móvil: pellizca para ampliar)."
-  }
+    tip: "Consejo: toca un punto para filtrar la lista (en móvil: pellizca para ampliar).",
+  },
 } as const
 
 export function FranceMap({
@@ -53,7 +53,7 @@ export function FranceMap({
   selectedFrenchUniversity,
   onSelect,
   className,
-  language = "fr"
+  language = "fr",
 }: {
   points: FrenchUniversityPoint[]
   selectedFrenchUniversity?: string
@@ -74,9 +74,9 @@ export function FranceMap({
       projection.fitExtent(
         [
           [padding, padding],
-          [width - padding, height - padding]
+          [width - padding, height - padding],
         ],
-        franceFeature
+        franceFeature,
       )
     }
     const pathGen = geoPath(projection)
@@ -106,7 +106,7 @@ export function FranceMap({
       return {
         p,
         x: x + Math.cos(angle) * radius,
-        y: y + Math.sin(angle) * radius
+        y: y + Math.sin(angle) * radius,
       }
     })
   }, [points, projectPoint])
@@ -117,7 +117,7 @@ export function FranceMap({
         <div className="text-sm font-medium">{copy.title}</div>
         <button
           type="button"
-          className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          className="inline-flex min-h-10 items-center text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground sm:min-h-0"
           onClick={() => onSelect(undefined)}
         >
           {copy.clear}
@@ -129,7 +129,7 @@ export function FranceMap({
           <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
             <button
               type="button"
-              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              className="glass-button inline-flex h-11 w-11 items-center justify-center rounded-full text-sm text-foreground sm:h-9 sm:w-9"
               onClick={controls.zoomIn}
               aria-label={copy.zoomIn}
             >
@@ -137,7 +137,7 @@ export function FranceMap({
             </button>
             <button
               type="button"
-              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              className="glass-button inline-flex h-11 w-11 items-center justify-center rounded-full text-sm text-foreground sm:h-9 sm:w-9"
               onClick={controls.zoomOut}
               aria-label={copy.zoomOut}
             >
@@ -145,7 +145,7 @@ export function FranceMap({
             </button>
             <button
               type="button"
-              className="glass-button inline-flex h-9 items-center justify-center rounded-full px-3 text-xs text-foreground"
+              className="glass-button inline-flex h-11 items-center justify-center rounded-full px-4 text-xs text-foreground sm:h-9 sm:px-3"
               onClick={controls.reset}
               aria-label={copy.resetZoom}
             >
@@ -163,10 +163,24 @@ export function FranceMap({
           >
             <defs>
               <linearGradient id="frFill" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stopColor="hsl(var(--muted))" stopOpacity="1" />
-                <stop offset="1" stopColor="hsl(var(--muted))" stopOpacity="0.55" />
+                <stop
+                  offset="0"
+                  stopColor="hsl(var(--muted))"
+                  stopOpacity="1"
+                />
+                <stop
+                  offset="1"
+                  stopColor="hsl(var(--muted))"
+                  stopOpacity="0.55"
+                />
               </linearGradient>
-              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <filter
+                id="softShadow"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+              >
                 <feDropShadow
                   dx="0"
                   dy="8"
@@ -176,10 +190,16 @@ export function FranceMap({
               </filter>
             </defs>
 
-            <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
+            <g
+              transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}
+            >
               {svgPath ? (
                 <>
-                  <path d={svgPath} fill="url(#frFill)" filter="url(#softShadow)" />
+                  <path
+                    d={svgPath}
+                    fill="url(#frFill)"
+                    filter="url(#softShadow)"
+                  />
                   <path
                     d={svgPath}
                     fill="transparent"
@@ -212,19 +232,23 @@ export function FranceMap({
                 opacity="0.25"
               />
 
-            {displayPoints.map(({ p, x, y }) => {
-              const selected = p.frenchUniversity === selectedFrenchUniversity
-              const isHovered = hovered === p.frenchUniversity
-              return (
-                <g
-                  key={p.frenchUniversity}
-                  data-panzoom-ignore="true"
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => onSelect(selected ? undefined : p.frenchUniversity)}
-                  onMouseEnter={() => setHovered(p.frenchUniversity)}
-                  onMouseLeave={() =>
-                      setHovered((prev) => (prev === p.frenchUniversity ? null : prev))
+              {displayPoints.map(({ p, x, y }) => {
+                const selected = p.frenchUniversity === selectedFrenchUniversity
+                const isHovered = hovered === p.frenchUniversity
+                return (
+                  <g
+                    key={p.frenchUniversity}
+                    data-panzoom-ignore="true"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() =>
+                      onSelect(selected ? undefined : p.frenchUniversity)
+                    }
+                    onMouseEnter={() => setHovered(p.frenchUniversity)}
+                    onMouseLeave={() =>
+                      setHovered((prev) =>
+                        prev === p.frenchUniversity ? null : prev,
+                      )
                     }
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
@@ -295,12 +319,12 @@ export function FranceMap({
       {selectedFrenchUniversity ? (
         <div className="mt-3 text-sm text-muted-foreground">
           {copy.selection}{" "}
-          <span className="font-medium text-foreground">{selectedFrenchUniversity}</span>
+          <span className="font-medium text-foreground">
+            {selectedFrenchUniversity}
+          </span>
         </div>
       ) : (
-        <div className="mt-3 text-sm text-muted-foreground">
-          {copy.tip}
-        </div>
+        <div className="mt-3 text-sm text-muted-foreground">{copy.tip}</div>
       )}
     </div>
   )

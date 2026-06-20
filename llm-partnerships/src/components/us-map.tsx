@@ -23,7 +23,7 @@ const mapCopy = {
     partnership: "partenariat(s)",
     approximate: "position approximative",
     selectedState: "État sélectionné :",
-    tip: "Conseil : clique sur un État avec un chiffre pour filtrer (sur mobile : pince pour zoomer)."
+    tip: "Conseil : clique sur un État avec un chiffre pour filtrer (sur mobile : pince pour zoomer).",
   },
   en: {
     title: "Map (United States)",
@@ -36,7 +36,7 @@ const mapCopy = {
     partnership: "partnership(s)",
     approximate: "approximate position",
     selectedState: "Selected state:",
-    tip: "Tip: click a numbered state to filter (on mobile: pinch to zoom)."
+    tip: "Tip: click a numbered state to filter (on mobile: pinch to zoom).",
   },
   es: {
     title: "Mapa (Estados Unidos)",
@@ -49,8 +49,8 @@ const mapCopy = {
     partnership: "convenio(s)",
     approximate: "posición aproximada",
     selectedState: "Estado seleccionado:",
-    tip: "Consejo: toca un estado con cifra para filtrar (en móvil: pellizca para ampliar)."
-  }
+    tip: "Consejo: toca un estado con cifra para filtrar (en móvil: pellizca para ampliar).",
+  },
 } as const
 
 function groupPartnerUniversities(partnerships: Partnership[]) {
@@ -78,12 +78,12 @@ function groupPartnerUniversities(partnerships: Partnership[]) {
         partnerState: state,
         partnerCity: p.partnerCity,
         partnerCoordinates: p.partnerCoordinates,
-        count: 1
+        count: 1,
       })
   }
 
   return Array.from(byUni.values()).sort((a, b) =>
-    a.partnerUniversity.localeCompare(b.partnerUniversity)
+    a.partnerUniversity.localeCompare(b.partnerUniversity),
   )
 }
 
@@ -92,7 +92,7 @@ export function UsMap({
   selectedState,
   onSelectState,
   className,
-  language = "fr"
+  language = "fr",
 }: {
   partnerships: Partnership[]
   selectedState?: string
@@ -108,17 +108,20 @@ export function UsMap({
 
   const universities = React.useMemo(
     () => groupPartnerUniversities(partnerships),
-    [partnerships]
+    [partnerships],
   )
 
   const { pathFor, centroidFor, projection } = React.useMemo(() => {
-    const proj = geoAlbersUsa().translate([width / 2, height / 2]).scale(650)
+    const proj = geoAlbersUsa()
+      .translate([width / 2, height / 2])
+      .scale(650)
     const pathGen = geoPath(proj as any)
-    const centroid = (feature: any) => pathGen.centroid(feature) as [number, number]
+    const centroid = (feature: any) =>
+      pathGen.centroid(feature) as [number, number]
     return {
       projection: proj,
       pathFor: (feature: any) => pathGen(feature) as string,
-      centroidFor: centroid
+      centroidFor: centroid,
     }
   }, [width, height])
 
@@ -146,7 +149,7 @@ export function UsMap({
         <div className="text-sm font-medium">{copy.title}</div>
         <button
           type="button"
-          className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          className="inline-flex min-h-10 items-center text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground sm:min-h-0"
           onClick={() => onSelectState(undefined)}
         >
           {copy.clear}
@@ -158,7 +161,7 @@ export function UsMap({
           <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
             <button
               type="button"
-              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              className="glass-button inline-flex h-11 w-11 items-center justify-center rounded-full text-sm text-foreground sm:h-9 sm:w-9"
               onClick={controls.zoomIn}
               aria-label={copy.zoomIn}
             >
@@ -166,7 +169,7 @@ export function UsMap({
             </button>
             <button
               type="button"
-              className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
+              className="glass-button inline-flex h-11 w-11 items-center justify-center rounded-full text-sm text-foreground sm:h-9 sm:w-9"
               onClick={controls.zoomOut}
               aria-label={copy.zoomOut}
             >
@@ -174,7 +177,7 @@ export function UsMap({
             </button>
             <button
               type="button"
-              className="glass-button inline-flex h-9 items-center justify-center rounded-full px-3 text-xs text-foreground"
+              className="glass-button inline-flex h-11 items-center justify-center rounded-full px-4 text-xs text-foreground sm:h-9 sm:px-3"
               onClick={controls.reset}
               aria-label={copy.resetZoom}
             >
@@ -192,12 +195,22 @@ export function UsMap({
           >
             <defs>
               <linearGradient id="usFill" x1="0" x2="1" y1="0" y2="1">
-                <stop offset="0" stopColor="hsl(var(--muted))" stopOpacity="1" />
-                <stop offset="1" stopColor="hsl(var(--muted))" stopOpacity="0.55" />
+                <stop
+                  offset="0"
+                  stopColor="hsl(var(--muted))"
+                  stopOpacity="1"
+                />
+                <stop
+                  offset="1"
+                  stopColor="hsl(var(--muted))"
+                  stopOpacity="0.55"
+                />
               </linearGradient>
             </defs>
 
-            <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
+            <g
+              transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}
+            >
               {usStates.features.map((f: any) => {
                 const name = String(f.properties?.name || "")
                 const selected = name && name === selectedState
@@ -221,7 +234,9 @@ export function UsMap({
                   >
                     <title>
                       {name}
-                      {hasData ? ` · ${stateCounts.get(name)} ${copy.partnership}` : ""}
+                      {hasData
+                        ? ` · ${stateCounts.get(name)} ${copy.partnership}`
+                        : ""}
                     </title>
                   </path>
                 )
@@ -236,18 +251,18 @@ export function UsMap({
                 let y = base.y
 
                 if (u.partnerCoordinates) {
-                  const p = projection([u.partnerCoordinates.lng, u.partnerCoordinates.lat]) as
-                    | [number, number]
-                    | null
+                  const p = projection([
+                    u.partnerCoordinates.lng,
+                    u.partnerCoordinates.lat,
+                  ]) as [number, number] | null
                   if (p) {
                     x = p[0]
                     y = p[1]
                   }
                 } else {
-                  const seed = Array.from(`${u.partnerUniversity}-${u.partnerState}`).reduce(
-                    (acc, ch) => acc + ch.charCodeAt(0),
-                    0
-                  )
+                  const seed = Array.from(
+                    `${u.partnerUniversity}-${u.partnerState}`,
+                  ).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
                   const angle = (seed % 360) * (Math.PI / 180)
                   const radius = 10 + (seed % 12)
                   x = base.x + Math.cos(angle) * radius
@@ -262,7 +277,9 @@ export function UsMap({
                   <g
                     key={`${u.partnerUniversity}-${u.partnerState}`}
                     data-panzoom-ignore="true"
-                    onClick={() => onSelectState(selected ? undefined : u.partnerState)}
+                    onClick={() =>
+                      onSelectState(selected ? undefined : u.partnerState)
+                    }
                     onMouseEnter={() => setHovered(u.partnerState)}
                     style={{ cursor: "pointer" }}
                   >
@@ -287,36 +304,36 @@ export function UsMap({
                 )
               })}
 
-              {hovered ? (
-                (() => {
-                  const count = stateCounts.get(hovered) || 0
-                  const label = count ? `${hovered} • ${count}` : hovered
-                  return (
-                    <g>
-                      <rect
-                        x={12}
-                        y={12}
-                        width={220}
-                        height={30}
-                        rx={10}
-                        fill="hsl(var(--background))"
-                        opacity={0.96}
-                        stroke="hsl(var(--border))"
-                      />
-                      <text
-                        x={22}
-                        y={32}
-                        textAnchor="start"
-                        fontSize="12"
-                        fill="hsl(var(--foreground))"
-                        style={{ fontWeight: 600 }}
-                      >
-                        {label}
-                      </text>
-                    </g>
-                  )
-                })()
-              ) : null}
+              {hovered
+                ? (() => {
+                    const count = stateCounts.get(hovered) || 0
+                    const label = count ? `${hovered} • ${count}` : hovered
+                    return (
+                      <g>
+                        <rect
+                          x={12}
+                          y={12}
+                          width={220}
+                          height={30}
+                          rx={10}
+                          fill="hsl(var(--background))"
+                          opacity={0.96}
+                          stroke="hsl(var(--border))"
+                        />
+                        <text
+                          x={22}
+                          y={32}
+                          textAnchor="start"
+                          fontSize="12"
+                          fill="hsl(var(--foreground))"
+                          style={{ fontWeight: 600 }}
+                        >
+                          {label}
+                        </text>
+                      </g>
+                    )
+                  })()
+                : null}
             </g>
           </svg>
         </div>
@@ -328,9 +345,7 @@ export function UsMap({
           <span className="font-medium text-foreground">{selectedState}</span>
         </div>
       ) : (
-        <div className="mt-3 text-sm text-muted-foreground">
-          {copy.tip}
-        </div>
+        <div className="mt-3 text-sm text-muted-foreground">{copy.tip}</div>
       )}
     </div>
   )

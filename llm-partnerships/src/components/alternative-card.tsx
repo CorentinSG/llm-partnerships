@@ -26,7 +26,12 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
         </div>
 
         {item.officialLink ? (
-          <Button asChild variant="secondary" size="sm" className="shrink-0">
+          <Button
+            asChild
+            variant="secondary"
+            size="sm"
+            className="h-10 shrink-0 sm:h-9"
+          >
             <Link href={item.officialLink} target="_blank" rel="noreferrer">
               Source officielle
               <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
@@ -37,28 +42,40 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <div>
-          <div className="text-xs font-medium text-muted-foreground">Résumé</div>
-          <div className="mt-1 text-sm leading-relaxed">{item.shortDescription}</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            Résumé
+          </div>
+          <div className="mt-1 text-sm leading-relaxed">
+            {item.shortDescription}
+          </div>
         </div>
         <div>
-          <div className="text-xs font-medium text-muted-foreground">Pourquoi c’est pertinent</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            Pourquoi c’est pertinent
+          </div>
           <div className="mt-1 text-sm leading-relaxed">{item.whyRelevant}</div>
         </div>
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl border bg-secondary/45 p-4">
-          <div className="text-xs font-medium text-muted-foreground">Format</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            Format
+          </div>
           <div className="mt-1 text-sm">
             {item.programType} • {item.credits}
           </div>
         </div>
         <div className="rounded-xl border bg-secondary/45 p-4">
-          <div className="text-xs font-medium text-muted-foreground">Langue</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            Langue
+          </div>
           <div className="mt-1 text-sm">{item.language}</div>
         </div>
         <div className="rounded-xl border bg-secondary/45 p-4">
-          <div className="text-xs font-medium text-muted-foreground">Rythme</div>
+          <div className="text-xs font-medium text-muted-foreground">
+            Rythme
+          </div>
           <div className="mt-1 text-sm">{item.studyMode.join(" • ")}</div>
         </div>
       </div>
@@ -73,14 +90,18 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
             <div className="text-sm text-muted-foreground">
               {item.barEligibilityWarning}
             </div>
-            <div className="text-xs text-muted-foreground/80">{item.displayWarning}</div>
+            <div className="text-xs text-muted-foreground/80">
+              {item.displayWarning}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <div className="rounded-xl border bg-secondary/45 p-4">
-          <div className="text-sm font-medium">Conditions d’admission (extrait)</div>
+          <div className="text-sm font-medium">
+            Conditions d’admission (extrait)
+          </div>
           <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
             <li>{item.admissionConditions.degreeRequirement}</li>
             <li>{item.admissionConditions.minimumAverage}</li>
@@ -88,7 +109,9 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
           </ul>
         </div>
         <div className="rounded-xl border bg-secondary/45 p-4">
-          <div className="text-sm font-medium">Frais (estimations officielles)</div>
+          <div className="text-sm font-medium">
+            Frais (estimations officielles)
+          </div>
           <div className="mt-2 space-y-2 text-sm text-muted-foreground">
             <div>
               <span className="font-medium text-foreground/80">
@@ -97,10 +120,14 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
               {item.tuition.frenchOrBelgianFrancophoneStudents}
             </div>
             <div>
-              <span className="font-medium text-foreground/80">Internationaux :</span>{" "}
+              <span className="font-medium text-foreground/80">
+                Internationaux :
+              </span>{" "}
               {item.tuition.internationalStudents}
             </div>
-            <div className="text-xs text-muted-foreground/80">{item.tuition.note}</div>
+            <div className="text-xs text-muted-foreground/80">
+              {item.tuition.note}
+            </div>
           </div>
         </div>
       </div>
