@@ -157,6 +157,28 @@ body {
   animation: command-sweep 5.6s var(--ease-in-out) infinite;
 }
 
+.budget-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(620px 280px at 18% 0%, hsl(var(--accent) / 0.13), transparent 62%),
+    radial-gradient(620px 280px at 88% 22%, hsl(var(--primary) / 0.12), transparent 66%),
+    linear-gradient(180deg, hsl(var(--background) / 0), hsl(var(--secondary) / 0.62) 18%, hsl(var(--secondary) / 0.48) 82%, hsl(var(--background) / 0));
+  border-block: 1px solid hsl(var(--border) / 0.72);
+}
+
+.budget-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, hsl(var(--foreground) / 0.035) 1px, transparent 1px),
+    linear-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+}
+
 .signal-grid {
   position: relative;
   overflow: hidden;

@@ -75,7 +75,7 @@ export function HomePage() {
   return (
     <main>
       <div className="scroll-progress" aria-hidden="true" />
-      <section className="container py-12 sm:py-16">
+      <section className="container py-8 sm:py-16">
         <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-end">
           <div className="motion-rise max-w-4xl space-y-6">
             <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
@@ -93,14 +93,14 @@ export function HomePage() {
                 officielles pour choisir un parcours avec plus de clarté.
               </p>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Button asChild className="rounded-xl">
+            <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
+              <Button asChild className="h-11 rounded-xl">
                 <a href="#workspace">
                   Explorer les résultats
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </a>
               </Button>
-              <Button asChild variant="secondary" className="rounded-xl">
+              <Button asChild variant="secondary" className="h-11 rounded-xl">
                 <a href="#cost-estimator">Estimer le coût</a>
               </Button>
             </div>
@@ -126,7 +126,7 @@ export function HomePage() {
             </div>
           </div>
 
-          <div className="hero-command motion-glow motion-rise-slow rounded-2xl border p-4 shadow-[0_24px_70px_-46px_hsl(222_47%_10%/0.48)]">
+          <div className="hero-command motion-glow motion-rise-slow hidden rounded-2xl border p-4 shadow-[0_24px_70px_-46px_hsl(222_47%_10%/0.48)] md:block">
             <div className="rounded-xl border bg-secondary/45 p-3">
               <div className="font-mono-ui mb-3 flex items-center justify-between text-[11px] text-muted-foreground">
                 <span>Workspace de comparaison</span>
@@ -185,22 +185,23 @@ export function HomePage() {
           </div>
         </div>
 
-        <div className="mt-8 motion-stagger">
+        <div className="mt-8 hidden motion-stagger sm:block">
           <StatsBar all={all} />
         </div>
       </section>
 
       <section className="pb-14">
-        <div id="cost-estimator" className="scroll-mt-24">
-          <CostSimulator partnerships={all} />
-        </div>
-
-        <div id="workspace" className="container scroll-mt-24 pt-8">
-          <div className="glass-panel motion-rise sticky top-[76px] z-30 rounded-2xl p-4 sm:p-5">
+        <div id="workspace" className="container scroll-mt-24 pt-2 sm:pt-6">
+          <div className="glass-panel motion-rise rounded-2xl p-3 sm:p-5 lg:sticky lg:top-[76px] lg:z-30">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
               <div className="w-full max-w-3xl space-y-2">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="text-sm font-medium">Recherche globale</div>
+                  <div>
+                    <div className="text-sm font-medium">Recherche globale</div>
+                    <div className="mt-0.5 text-xs text-muted-foreground sm:hidden">
+                      Cherche une ville, une école ou un test, puis affine avec les filtres.
+                    </div>
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     {activeCount > 0
                       ? `${activeCount} filtre(s) actif(s)`
@@ -215,8 +216,8 @@ export function HomePage() {
                   <Input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Rechercher : universités, pays, programmes, spécialités, remarques..."
-                    className="h-12 rounded-xl pl-9"
+                    placeholder="Université, pays, test, programme..."
+                    className="h-12 rounded-xl pl-9 text-base sm:text-sm"
                     aria-label="Recherche globale"
                   />
                 </div>
@@ -225,7 +226,7 @@ export function HomePage() {
                     activeLabels.slice(0, 5).map((label) => (
                       <span
                         key={label}
-                        className="rounded-full border bg-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary"
+                        className="rounded-full border bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:px-2.5 sm:py-1 sm:text-[11px]"
                       >
                         {label}
                       </span>
@@ -234,14 +235,14 @@ export function HomePage() {
                     <>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() => setSearchQuery("TOEFL")}
                       >
                         TOEFL
                       </button>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
@@ -253,7 +254,7 @@ export function HomePage() {
                       </button>
                       <button
                         type="button"
-                        className="glass-button rounded-full px-2.5 py-1 text-[11px] text-muted-foreground"
+                        className="glass-button rounded-full px-3 py-1.5 text-xs text-muted-foreground sm:px-2.5 sm:py-1 sm:text-[11px]"
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
@@ -268,15 +269,15 @@ export function HomePage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center">
                 <Sheet>
                   <SheetTrigger asChild>
-                    <Button variant="secondary" className="lg:hidden">
+                    <Button variant="secondary" className="h-11 lg:hidden">
                       <Filter className="mr-2 h-4 w-4" aria-hidden="true" />
                       Filtres {activeCount > 0 ? `(${activeCount})` : ""}
                     </Button>
                   </SheetTrigger>
-                  <SheetContent>
+                  <SheetContent className="w-[92vw] overflow-y-auto sm:max-w-md">
                     <SheetHeader>
                       <SheetTitle>Filtres</SheetTitle>
                       <SheetDescription>
@@ -294,7 +295,7 @@ export function HomePage() {
                   </SheetContent>
                 </Sheet>
 
-                <Button variant="outline" onClick={resetAll}>
+                <Button variant="outline" className="h-11" onClick={resetAll}>
                   Réinitialiser
                 </Button>
               </div>
@@ -302,7 +303,7 @@ export function HomePage() {
           </div>
 
           <div className="mt-6 grid gap-6 lg:mt-8 lg:grid-cols-[400px_minmax(0,1fr)]">
-            <div className="space-y-5 motion-stagger">
+            <div className="order-2 space-y-5 motion-stagger lg:order-1">
               <div className="glass-panel inline-flex items-center gap-1 rounded-xl p-1">
                 <Button
                   variant={mapMode === "fr" ? "default" : "ghost"}
@@ -368,7 +369,7 @@ export function HomePage() {
               </Card>
             </div>
 
-            <div className="space-y-4 motion-rise">
+            <div className="order-1 space-y-4 motion-rise lg:order-2">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-sm text-muted-foreground">
                   <span className="metric-figure font-semibold text-foreground">
@@ -381,8 +382,8 @@ export function HomePage() {
                 </div>
               </div>
 
-              <ScrollArea className="glass-panel h-[62dvh] rounded-2xl sm:h-[70dvh] lg:h-[78dvh]">
-                <div className="space-y-3 p-3 motion-stagger">
+              <ScrollArea className="glass-panel h-[64dvh] rounded-2xl sm:h-[70dvh] lg:h-[78dvh]">
+                <div className="space-y-3 p-2 motion-stagger sm:p-3">
                   {filtered.map((p) => (
                     <PartnershipCard key={p.id} partnership={p} />
                   ))}
@@ -395,6 +396,10 @@ export function HomePage() {
               </ScrollArea>
             </div>
           </div>
+        </div>
+
+        <div id="cost-estimator" className="scroll-mt-24 pt-10 sm:pt-14">
+          <CostSimulator partnerships={all} />
         </div>
       </section>
     </main>
