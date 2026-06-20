@@ -29,8 +29,8 @@ const RESULTS_PAGE_SIZE = 12
 
 const pageCopy = {
   fr: {
-    chipA: "Barreau de New York",
-    chipB: "LL.M aux États-Unis",
+    chipA: "Objectif barreau US",
+    chipB: "LL.M partenaire",
     title: "Trouve ton LL.M américain via une fac française.",
     intro:
       "Le LL.M US est souvent la voie vers le barreau de New York. Annuaire des partenariats entre facs françaises et law schools US.",
@@ -61,8 +61,8 @@ const pageCopy = {
     sheetHint: "Affine les résultats. Réinitialise à tout moment."
   },
   en: {
-    chipA: "New York Bar",
-    chipB: "LL.M in the United States",
+    chipA: "US bar pathway",
+    chipB: "Partner LL.M",
     title: "Find a US LL.M through a French university.",
     intro:
       "A US LL.M is often the path toward the New York Bar. Directory of partnerships between French universities and US law schools.",
@@ -93,8 +93,8 @@ const pageCopy = {
     sheetHint: "Refine results. Reset at any time."
   },
   es: {
-    chipA: "Barra de Nueva York",
-    chipB: "LL.M en Estados Unidos",
+    chipA: "Objetivo barra de EE. UU.",
+    chipB: "LL.M con convenio",
     title: "Encuentra un LL.M estadounidense vía una universidad francesa.",
     intro:
       "Un LL.M en EE. UU. suele ser la vía hacia la barra de Nueva York. Directorio de convenios entre universidades francesas y law schools estadounidenses.",
