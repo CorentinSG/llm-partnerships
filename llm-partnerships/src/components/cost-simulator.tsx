@@ -40,17 +40,19 @@ const copy = {
     badge: "Simulateur étudiant",
     title: "Budget annuel LL.M. : public vs partenariat",
     intro:
-      "Choisis une ville, un partenariat et une offre. Le simulateur compare la tuition publique avec la tuition après partenariat, puis te laisse ajuster seulement les dépenses qui dépendent de toi.",
+      "Les frais d'inscription peuvent être le premier poste d'un LL.M. aux États-Unis, mais ils ne sont jamais seuls : visa, livres, logement, repas, transport et assurance peuvent aussi peser lourd. Compare le prix public, le prix avec partenariat, puis ajuste les dépenses qui dépendent de toi.",
     city: "1. Ville",
     school: "École de référence",
     partnership: "2. Partenariat",
     offer: "3. Offre appliquée",
+    visa: "4. Situation visa",
     noPartnership: "Aucun partenariat précis",
     noOffer: "Tarif public",
     publicTuition: "Tuition publique annuelle",
     partnerTuition: "Tuition grâce au partenariat",
     savings: "Économie sur la tuition",
     fixedCosts: "Frais fixes annuels",
+    visaCosts: "Frais visa estimés",
     livingCosts: "Dépenses de vie ajustables",
     publicTotal: "Budget annuel sans partenariat",
     partnerTotal: "Budget annuel avec partenariat",
@@ -74,23 +76,32 @@ const copy = {
     percentSeat: "Remise de {percent}%",
     referenceAmount: "montant indiqué",
     publicRate: "Prix public normal",
-    partnerRate: "Prix après partenariat"
+    partnerRate: "Prix après partenariat",
+    visaNone: "Pas de visa à prévoir",
+    visaF1: "F-1 initial : MRV + SEVIS",
+    visaJ1: "J-1 initial : MRV + SEVIS",
+    visaSevisOnly: "SEVIS uniquement",
+    visaRenewal: "Renouvellement visa : MRV",
+    visaNote:
+      "Estimation basée sur MRV 185 $ et SEVIS I-901 : F/M 350 $, J 220 $. Les frais de délivrance éventuels dépendent de la nationalité."
   },
   en: {
     badge: "Student simulator",
     title: "Annual LL.M. budget: public vs partnership",
     intro:
-      "Choose a city, partnership, and offer. The simulator compares public tuition with partnership tuition, then lets you adjust only student-dependent living costs.",
+      "Tuition can be the largest line item for a U.S. LL.M., but it is not the only one: visa, books, housing, meals, transport, and insurance can also be significant. Compare the public price, the partnership price, then adjust the costs driven by your own choices.",
     city: "1. City",
     school: "Reference school",
     partnership: "2. Partnership",
     offer: "3. Applied offer",
+    visa: "4. Visa situation",
     noPartnership: "No specific partnership",
     noOffer: "Public rate",
     publicTuition: "Annual public tuition",
     partnerTuition: "Tuition with partnership",
     savings: "Tuition savings",
     fixedCosts: "Annual fixed costs",
+    visaCosts: "Estimated visa fees",
     livingCosts: "Editable living costs",
     publicTotal: "Annual budget without partnership",
     partnerTotal: "Annual budget with partnership",
@@ -114,23 +125,32 @@ const copy = {
     percentSeat: "{percent}% discount",
     referenceAmount: "published amount",
     publicRate: "Normal public price",
-    partnerRate: "Price after partnership"
+    partnerRate: "Price after partnership",
+    visaNone: "No visa cost to include",
+    visaF1: "Initial F-1: MRV + SEVIS",
+    visaJ1: "Initial J-1: MRV + SEVIS",
+    visaSevisOnly: "SEVIS only",
+    visaRenewal: "Visa renewal: MRV",
+    visaNote:
+      "Estimate based on MRV $185 and SEVIS I-901: F/M $350, J $220. Any visa issuance fee depends on nationality."
   },
   es: {
     badge: "Simulador estudiante",
     title: "Presupuesto anual LL.M.: público vs convenio",
     intro:
-      "Elige ciudad, convenio y oferta. El simulador compara la matrícula pública con la matrícula tras convenio, y permite ajustar solo los gastos que dependen del estudiante.",
+      "La matrícula puede ser el mayor coste de un LL.M. en Estados Unidos, pero no es el único: visa, libros, vivienda, comidas, transporte y seguro también pueden ser elevados. Compara el precio público, el precio con convenio y ajusta los gastos que dependen de ti.",
     city: "1. Ciudad",
     school: "Escuela de referencia",
     partnership: "2. Convenio",
     offer: "3. Oferta aplicada",
+    visa: "4. Situación de visa",
     noPartnership: "Ningún convenio específico",
     noOffer: "Tarifa pública",
     publicTuition: "Matrícula pública anual",
     partnerTuition: "Matrícula con convenio",
     savings: "Ahorro en matrícula",
     fixedCosts: "Costes fijos anuales",
+    visaCosts: "Costes estimados de visa",
     livingCosts: "Gastos de vida ajustables",
     publicTotal: "Presupuesto anual sin convenio",
     partnerTotal: "Presupuesto anual con convenio",
@@ -154,7 +174,14 @@ const copy = {
     percentSeat: "Reducción de {percent}%",
     referenceAmount: "importe indicado",
     publicRate: "Precio público normal",
-    partnerRate: "Precio tras convenio"
+    partnerRate: "Precio tras convenio",
+    visaNone: "Sin coste de visa",
+    visaF1: "F-1 inicial: MRV + SEVIS",
+    visaJ1: "J-1 inicial: MRV + SEVIS",
+    visaSevisOnly: "Solo SEVIS",
+    visaRenewal: "Renovación de visa: MRV",
+    visaNote:
+      "Estimación basada en MRV 185 $ y SEVIS I-901: F/M 350 $, J 220 $. Las tasas de emisión dependen de la nacionalidad."
   }
 } as const
 
@@ -163,6 +190,24 @@ type OfferOption = {
   label: string
   tuitionUsd: number
   note?: string
+}
+
+type VisaOption = {
+  id: string
+  label: string
+  amountUsd: number
+}
+
+function getVisaOptions(language: UiLanguage): VisaOption[] {
+  const t = copy[language]
+
+  return [
+    { id: "none", label: t.visaNone, amountUsd: 0 },
+    { id: "f1-initial", label: t.visaF1, amountUsd: 535 },
+    { id: "j1-initial", label: t.visaJ1, amountUsd: 405 },
+    { id: "sevis-only", label: t.visaSevisOnly, amountUsd: 350 },
+    { id: "renewal", label: t.visaRenewal, amountUsd: 185 }
+  ]
 }
 
 function isBooksComponent(label: string) {
@@ -335,6 +380,7 @@ export function CostSimulator({
 
   const [selectedPartnershipId, setSelectedPartnershipId] = React.useState("")
   const [selectedOfferId, setSelectedOfferId] = React.useState("public")
+  const [selectedVisaId, setSelectedVisaId] = React.useState("f1-initial")
   const [customCosts, setCustomCosts] = React.useState<Record<string, number>>({})
 
   React.useEffect(() => {
@@ -352,6 +398,8 @@ export function CostSimulator({
     [selectedPartnership, normalTuition, language]
   )
   const selectedOffer = offerOptions.find((offer) => offer.id === selectedOfferId) || offerOptions[0]
+  const visaOptions = React.useMemo(() => getVisaOptions(language), [language])
+  const selectedVisa = visaOptions.find((option) => option.id === selectedVisaId) || visaOptions[0]
 
   React.useEffect(() => {
     const bestOffer = offerOptions.find((offer) => offer.id !== "public") || offerOptions[0]
@@ -385,10 +433,11 @@ export function CostSimulator({
     0
   )
   const adjustedOtherCosts = fixedOtherCosts + editableOtherCosts
+  const visaCosts = selectedVisa.amountUsd
   const partnerTuition = selectedOffer.tuitionUsd
   const savings = Math.max(0, normalTuition - partnerTuition)
-  const normalTotal = normalTuition + adjustedOtherCosts
-  const partnerTotal = partnerTuition + adjustedOtherCosts
+  const normalTotal = normalTuition + adjustedOtherCosts + visaCosts
+  const partnerTotal = partnerTuition + adjustedOtherCosts + visaCosts
   const fixedCostsLabel = formatUsd(fixedOtherCosts)
   const livingCostsLabel = formatUsd(editableOtherCosts)
 
@@ -472,10 +521,27 @@ export function CostSimulator({
                   </Select>
                   {selectedOffer.note ? <p className="text-xs leading-5 text-muted-foreground">{selectedOffer.note}</p> : null}
                 </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-muted-foreground">{t.visa}</label>
+                  <Select value={selectedVisa.id} onValueChange={setSelectedVisaId}>
+                    <SelectTrigger className="h-11" aria-label={t.visa}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {visaOptions.map((option) => (
+                        <SelectItem key={option.id} value={option.id}>
+                          {option.label} - {formatUsd(option.amountUsd)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs leading-5 text-muted-foreground">{t.visaNote}</p>
+                </div>
               </div>
             </div>
 
-            <div className="grid gap-3 md:grid-cols-4">
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
               <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
                 <div className="text-xs text-muted-foreground">{t.publicTuition}</div>
                 <div className="mt-2 text-2xl font-semibold">{formatUsd(normalTuition)}</div>
@@ -494,6 +560,11 @@ export function CostSimulator({
                 <div className="text-xs text-muted-foreground">{t.livingCosts}</div>
                 <div className="mt-2 text-2xl font-semibold">{livingCostsLabel}</div>
                 <div className="mt-1 text-[11px] text-muted-foreground">{t.fixedCosts} : {fixedCostsLabel}</div>
+              </div>
+              <div className="rounded-xl border bg-card/80 p-4 sm:rounded-2xl">
+                <div className="text-xs text-muted-foreground">{t.visaCosts}</div>
+                <div className="mt-2 text-2xl font-semibold">{formatUsd(visaCosts)}</div>
+                <div className="mt-1 text-[11px] text-muted-foreground">{selectedVisa.label}</div>
               </div>
             </div>
           </CardHeader>
@@ -582,6 +653,14 @@ export function CostSimulator({
                         </div>
                       )
                     })}
+                    <div className="rounded-xl border bg-card/80 p-3 motion-pop sm:p-4">
+                      <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
+                        <span>{t.visaCosts}</span>
+                        <Badge variant="outline" className="rounded-full text-[10px]">{t.fixedCosts}</Badge>
+                      </div>
+                      <div className="mt-2 text-lg font-semibold">{formatUsd(visaCosts)}</div>
+                      <div className="mt-1 text-xs text-muted-foreground">{selectedVisa.label}</div>
+                    </div>
                   </div>
                 </div>
               </div>
