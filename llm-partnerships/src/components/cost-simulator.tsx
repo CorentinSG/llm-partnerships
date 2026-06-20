@@ -38,7 +38,7 @@ import {
 const copy = {
   fr: {
     badge: "Simulateur étudiant",
-    title: "Combien coûte vraiment ton LL.M. ?",
+    title: "Budget annuel LL.M. : public vs partenariat",
     intro:
       "Choisis une ville, un partenariat et une offre. Le simulateur compare la tuition publique avec la tuition après partenariat, puis te laisse ajuster seulement les dépenses qui dépendent de toi.",
     city: "1. Ville",
@@ -78,7 +78,7 @@ const copy = {
   },
   en: {
     badge: "Student simulator",
-    title: "What would your LL.M. actually cost?",
+    title: "Annual LL.M. budget: public vs partnership",
     intro:
       "Choose a city, partnership, and offer. The simulator compares public tuition with partnership tuition, then lets you adjust only student-dependent living costs.",
     city: "1. City",
@@ -118,7 +118,7 @@ const copy = {
   },
   es: {
     badge: "Simulador estudiante",
-    title: "¿Cuánto costaría realmente tu LL.M.?",
+    title: "Presupuesto anual LL.M.: público vs convenio",
     intro:
       "Elige ciudad, convenio y oferta. El simulador compara la matrícula pública con la matrícula tras convenio, y permite ajustar solo los gastos que dependen del estudiante.",
     city: "1. Ciudad",
