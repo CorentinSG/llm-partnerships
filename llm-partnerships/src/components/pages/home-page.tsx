@@ -1,31 +1,37 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ArrowRight, Filter, Search } from "lucide-react"
+import * as React from "react";
+import { ArrowRight, Filter, Search } from "lucide-react";
 
-import { CostSimulator } from "@/components/cost-simulator"
-import { FiltersPanel } from "@/components/filters/filters-panel"
-import { FranceMap } from "@/components/france-map"
-import { useLanguage } from "@/components/language-provider"
-import { PartnershipCard } from "@/components/partnership-card"
-import { UsMap } from "@/components/us-map"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { CostSimulator } from "@/components/cost-simulator";
+import { FiltersPanel } from "@/components/filters/filters-panel";
+import { FranceMap } from "@/components/france-map";
+import { useLanguage } from "@/components/language-provider";
+import { PartnershipCard } from "@/components/partnership-card";
+import { UsMap } from "@/components/us-map";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
-} from "@/components/ui/sheet"
-import { Separator } from "@/components/ui/separator"
-import { emptyFilters, filterPartnerships, type FiltersState } from "@/lib/filters"
-import { getAllPartnerships, getFilterOptions, getFrenchUniversitiesPoints } from "@/lib/data"
-import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils"
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  emptyFilters,
+  filterPartnerships,
+  type FiltersState,
+} from "@/lib/filters";
+import {
+  getAllPartnerships,
+  getFilterOptions,
+  getFrenchUniversitiesPoints,
+} from "@/lib/data";
+import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils";
 
-const RESULTS_PAGE_SIZE = 12
+const RESULTS_PAGE_SIZE = 12;
 
 const pageCopy = {
   fr: {
@@ -37,7 +43,8 @@ const pageCopy = {
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     searchTitle: "Recherche globale",
-    searchHint: "Cherche une ville, une école ou un test, puis affine avec les filtres.",
+    searchHint:
+      "Cherche une ville, une école ou un test, puis affine avec les filtres.",
     searchPlaceholder: "Université, pays, test, programme...",
     filters: "Filtres",
     reset: "Réinitialiser",
@@ -51,14 +58,15 @@ const pageCopy = {
     moreSuffix: "résultat(s) à parcourir.",
     showMore: "Afficher 12 de plus",
     allShown: "Tous les résultats correspondants sont affichés.",
-    noResult: "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
+    noResult:
+      "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
     legendTitle: "Statuts des offres",
     language: "Langue",
     quickReduced: "Sans frais d'inscription",
     quickConfirmed: "Confirmés",
     france: "France",
     unitedStates: "États-Unis",
-    sheetHint: "Affine les résultats. Réinitialise à tout moment."
+    sheetHint: "Affine les résultats. Réinitialise à tout moment.",
   },
   en: {
     chipA: "US bar pathway",
@@ -90,7 +98,7 @@ const pageCopy = {
     quickConfirmed: "Confirmed",
     france: "France",
     unitedStates: "United States",
-    sheetHint: "Refine results. Reset at any time."
+    sheetHint: "Refine results. Reset at any time.",
   },
   es: {
     chipA: "Objetivo barra de EE. UU.",
@@ -115,40 +123,46 @@ const pageCopy = {
     moreSuffix: "resultado(s) por revisar.",
     showMore: "Mostrar 12 más",
     allShown: "Todos los resultados correspondientes están visibles.",
-    noResult: "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
+    noResult:
+      "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
     legendTitle: "Leyenda de estados",
     language: "Idioma",
     quickReduced: "Sin matrícula",
     quickConfirmed: "Confirmados",
     france: "Francia",
     unitedStates: "Estados Unidos",
-    sheetHint: "Afina los resultados. Reinicia cuando quieras."
-  }
-} as const
+    sheetHint: "Afina los resultados. Reinicia cuando quieras.",
+  },
+} as const;
 
 export function HomePage() {
-  const all = React.useMemo(() => getAllPartnerships(), [])
-  const options = React.useMemo(() => getFilterOptions(), [])
-  const points = React.useMemo(() => getFrenchUniversitiesPoints(), [])
+  const all = React.useMemo(() => getAllPartnerships(), []);
+  const options = React.useMemo(() => getFilterOptions(), []);
+  const points = React.useMemo(() => getFrenchUniversitiesPoints(), []);
 
-  const [searchQuery, setSearchQuery] = React.useState("")
-  const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
-  const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
-  const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE)
-  const { language } = useLanguage()
-  const t = pageCopy[language]
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const [filters, setFilters] = React.useState<FiltersState>(() =>
+    emptyFilters(),
+  );
+  const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr");
+  const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE);
+  const { language } = useLanguage();
+  const t = pageCopy[language];
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
-    [all, searchQuery, filters]
-  )
+    [all, searchQuery, filters],
+  );
 
   React.useEffect(() => {
-    setVisibleCount(RESULTS_PAGE_SIZE)
-  }, [searchQuery, filters])
+    setVisibleCount(RESULTS_PAGE_SIZE);
+  }, [searchQuery, filters]);
 
-  const visiblePartnerships = filtered.slice(0, visibleCount)
-  const remainingCount = Math.max(filtered.length - visiblePartnerships.length, 0)
+  const visiblePartnerships = filtered.slice(0, visibleCount);
+  const remainingCount = Math.max(
+    filtered.length - visiblePartnerships.length,
+    0,
+  );
 
   const activeCount =
     (filters.frenchUniversity ? 1 : 0) +
@@ -164,7 +178,7 @@ export function HomePage() {
     (filters.availableSeats ? 1 : 0) +
     (filters.reliabilityStatus ? 1 : 0) +
     ((filters.specialties || []).length > 0 ? 1 : 0) +
-    ((filters.languageTests || []).length > 0 ? 1 : 0)
+    ((filters.languageTests || []).length > 0 ? 1 : 0);
 
   const activeLabels = [
     filters.frenchUniversity,
@@ -175,12 +189,12 @@ export function HomePage() {
     filters.tuitionCategory,
     filters.reliabilityStatus,
     ...(filters.specialties || []),
-    ...(filters.languageTests || [])
-  ].filter(Boolean) as string[]
+    ...(filters.languageTests || []),
+  ].filter(Boolean) as string[];
 
   function resetAll() {
-    setSearchQuery("")
-    setFilters(emptyFilters())
+    setSearchQuery("");
+    setFilters(emptyFilters());
   }
 
   return (
@@ -188,31 +202,34 @@ export function HomePage() {
       <div className="scroll-progress" aria-hidden="true" />
       <section className="container py-6 sm:py-9">
         <div className="motion-rise max-w-5xl space-y-5">
-            <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
-              {t.chipA}
-              <span className="h-1.5 w-1.5 rounded-full bg-accent motion-glow" aria-hidden="true" />
-              {t.chipB}
-            </div>
-            <div className="space-y-3">
-              <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[56px]">
-                {t.title}
-              </h1>
-              <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
-                {t.intro}
-              </p>
-            </div>
-            <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
-              <Button asChild className="h-11 rounded-xl">
-                <a href="#workspace">
-                  {t.searchCta}
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </a>
-              </Button>
-              <Button asChild variant="secondary" className="h-11 rounded-xl">
-                <a href="#cost-estimator">{t.costCta}</a>
-              </Button>
-            </div>
+          <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
+            {t.chipA}
+            <span
+              className="h-1.5 w-1.5 rounded-full bg-accent motion-glow"
+              aria-hidden="true"
+            />
+            {t.chipB}
           </div>
+          <div className="space-y-3">
+            <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[56px]">
+              {t.title}
+            </h1>
+            <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
+              {t.intro}
+            </p>
+          </div>
+          <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
+            <Button asChild className="h-11 rounded-xl">
+              <a href="#workspace">
+                {t.searchCta}
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+              </a>
+            </Button>
+            <Button asChild variant="secondary" className="h-11 rounded-xl">
+              <a href="#cost-estimator">{t.costCta}</a>
+            </Button>
+          </div>
+        </div>
       </section>
 
       <section className="pb-14">
@@ -271,7 +288,7 @@ export function HomePage() {
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
-                            tuitionCategory: "sans frais"
+                            tuitionCategory: "sans frais",
                           }))
                         }
                       >
@@ -283,7 +300,7 @@ export function HomePage() {
                         onClick={() =>
                           setFilters((prev) => ({
                             ...prev,
-                            reliabilityStatus: "confirmed"
+                            reliabilityStatus: "confirmed",
                           }))
                         }
                       >
@@ -363,51 +380,42 @@ export function HomePage() {
                     setFilters((prev) => ({
                       ...prev,
                       partnerCountry: "\u00c9tats-Unis",
-                      partnerState: state
+                      partnerState: state,
                     }))
                   }
                   language={language}
                 />
               )}
 
-              <Card className="hidden lg:block">
-                <CardContent className="p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="text-sm font-medium">Filtres</div>
-                      <div className="mt-1 text-sm text-muted-foreground">
-                        Filtre pour comparer rapidement.
-                      </div>
-                    </div>
-                    <Button variant="secondary" size="sm" onClick={resetAll}>
-                      {t.reset}
-                    </Button>
-                  </div>
-                  <Separator className="my-4" />
-                  <FiltersPanel
-                    options={options}
-                    filters={filters}
-                    onChange={setFilters}
-                    onReset={() => setFilters(emptyFilters())}
-                  />
-                </CardContent>
-              </Card>
+              <div className="hidden lg:block">
+                <FiltersPanel
+                  options={options}
+                  filters={filters}
+                  onChange={setFilters}
+                  onReset={() => setFilters(emptyFilters())}
+                />
+              </div>
             </div>
 
             <div className="order-1 space-y-4 motion-rise lg:order-2">
               <div className="rounded-2xl border bg-card/80 p-4">
                 <div className="text-sm font-medium">{t.legendTitle}</div>
                 <div className="mt-3 grid gap-2 sm:grid-cols-3">
-                  {(["confirmed", "to_confirm", "incomplete"] as const).map((status) => (
-                    <div key={status} className="rounded-xl border bg-secondary/45 p-3">
-                      <div className="text-xs font-semibold text-foreground">
-                        {reliabilityCopy[language][status].label}
+                  {(["confirmed", "to_confirm", "incomplete"] as const).map(
+                    (status) => (
+                      <div
+                        key={status}
+                        className="rounded-xl border bg-secondary/45 p-3"
+                      >
+                        <div className="text-xs font-semibold text-foreground">
+                          {reliabilityCopy[language][status].label}
+                        </div>
+                        <div className="mt-1 text-xs leading-5 text-muted-foreground">
+                          {reliabilityCopy[language][status].description}
+                        </div>
                       </div>
-                      <div className="mt-1 text-xs leading-5 text-muted-foreground">
-                        {reliabilityCopy[language][status].description}
-                      </div>
-                    </div>
-                  ))}
+                    ),
+                  )}
                 </div>
               </div>
 
@@ -426,13 +434,20 @@ export function HomePage() {
               <div className="glass-panel rounded-2xl p-2 sm:p-3">
                 <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-secondary/45 px-3 py-2 text-xs text-muted-foreground">
                   <span>{t.naturalScroll}</span>
-                  <a className="font-medium text-foreground hover:text-primary" href="#workspace">
+                  <a
+                    className="font-medium text-foreground hover:text-primary"
+                    href="#workspace"
+                  >
                     {t.backToSearch}
                   </a>
                 </div>
                 <div className="space-y-3 motion-stagger">
                   {visiblePartnerships.map((p) => (
-                    <PartnershipCard key={p.id} partnership={p} language={language} />
+                    <PartnershipCard
+                      key={p.id}
+                      partnership={p}
+                      language={language}
+                    />
                   ))}
                   {filtered.length === 0 ? (
                     <div className="rounded-xl border bg-muted/30 p-6 text-sm text-muted-foreground">
@@ -451,7 +466,7 @@ export function HomePage() {
                       className="h-11 rounded-xl"
                       onClick={() =>
                         setVisibleCount((count) =>
-                          Math.min(count + RESULTS_PAGE_SIZE, filtered.length)
+                          Math.min(count + RESULTS_PAGE_SIZE, filtered.length),
                         )
                       }
                     >
@@ -473,5 +488,5 @@ export function HomePage() {
         </div>
       </section>
     </main>
-  )
+  );
 }

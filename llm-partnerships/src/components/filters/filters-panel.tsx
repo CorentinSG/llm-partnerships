@@ -1,181 +1,279 @@
-"use client"
+"use client";
 
-import type { FiltersState } from "@/lib/filters"
-import type { ReliabilityStatus } from "@/lib/types"
+import {
+  BadgeDollarSign,
+  GraduationCap,
+  MapPinned,
+  RotateCcw,
+  SearchCheck,
+  ShieldCheck,
+} from "lucide-react";
 
-import { MultiSelectFilter } from "@/components/filters/multi-select-filter"
-import { SelectFilter } from "@/components/filters/select-filter"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+import type { FiltersState } from "@/lib/filters";
+import type { ReliabilityStatus } from "@/lib/types";
+
+import { MultiSelectFilter } from "@/components/filters/multi-select-filter";
+import { SelectFilter } from "@/components/filters/select-filter";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from "@/components/ui/select"
+  SelectValue,
+} from "@/components/ui/select";
 
 export function FiltersPanel({
   options,
   filters,
   onChange,
   onReset,
-  showFrenchUniversityFilter = true
+  showFrenchUniversityFilter = true,
 }: {
   options: {
-    frenchUniversities: string[]
-    partnerCountries: string[]
-    partnerStates: string[]
-    continents: string[]
-    partnerUniversities: string[]
-    programTypes: string[]
-    partnershipTypes: string[]
-    specialties: string[]
-    requiredLevels: string[]
-    programLanguages: string[]
-    languageTests: string[]
-    tuitionCategories: string[]
-    seats: string[]
-    reliabilityStatuses: string[]
-  }
-  filters: FiltersState
-  onChange: (next: FiltersState) => void
-  onReset: () => void
-  showFrenchUniversityFilter?: boolean
+    frenchUniversities: string[];
+    partnerCountries: string[];
+    partnerStates: string[];
+    continents: string[];
+    partnerUniversities: string[];
+    programTypes: string[];
+    partnershipTypes: string[];
+    specialties: string[];
+    requiredLevels: string[];
+    programLanguages: string[];
+    languageTests: string[];
+    tuitionCategories: string[];
+    seats: string[];
+    reliabilityStatuses: string[];
+  };
+  filters: FiltersState;
+  onChange: (next: FiltersState) => void;
+  onReset: () => void;
+  showFrenchUniversityFilter?: boolean;
 }) {
+  const activeCount =
+    (filters.frenchUniversity ? 1 : 0) +
+    (filters.partnerCountry ? 1 : 0) +
+    (filters.continent ? 1 : 0) +
+    (filters.partnerUniversity ? 1 : 0) +
+    (filters.partnerState ? 1 : 0) +
+    (filters.programType ? 1 : 0) +
+    (filters.partnershipType ? 1 : 0) +
+    (filters.requiredLevel ? 1 : 0) +
+    (filters.programLanguage ? 1 : 0) +
+    (filters.tuitionCategory ? 1 : 0) +
+    (filters.availableSeats ? 1 : 0) +
+    (filters.reliabilityStatus ? 1 : 0) +
+    ((filters.specialties || []).length > 0 ? 1 : 0) +
+    ((filters.languageTests || []).length > 0 ? 1 : 0);
+
   return (
-    <div className="space-y-4">
-      <div className="grid gap-3 sm:grid-cols-2">
-        {showFrenchUniversityFilter ? (
-          <SelectFilter
-            label="Université française"
-            placeholder="Tous"
-            value={filters.frenchUniversity}
-            options={options.frenchUniversities}
-            onChange={(v) => onChange({ ...filters, frenchUniversity: v })}
-          />
-        ) : null}
-        <SelectFilter
-          label="Pays partenaire"
-          placeholder="Tous"
-          value={filters.partnerCountry}
-          options={options.partnerCountries}
-          onChange={(v) => onChange({ ...filters, partnerCountry: v })}
-        />
-        <SelectFilter
-          label="Continent"
-          placeholder="Tous"
-          value={filters.continent}
-          options={options.continents}
-          onChange={(v) => onChange({ ...filters, continent: v })}
-        />
-        <SelectFilter
-          label="Université partenaire"
-          placeholder="Tous"
-          value={filters.partnerUniversity}
-          options={options.partnerUniversities}
-          onChange={(v) => onChange({ ...filters, partnerUniversity: v })}
-        />
-        <SelectFilter
-          label="État (USA)"
-          placeholder="Tous"
-          value={filters.partnerState}
-          options={options.partnerStates}
-          onChange={(v) => onChange({ ...filters, partnerState: v })}
-        />
-        <SelectFilter
-          label="Type de programme"
-          placeholder="Tous"
-          value={filters.programType}
-          options={options.programTypes}
-          onChange={(v) => onChange({ ...filters, programType: v })}
-        />
-        <SelectFilter
-          label="Type de partenariat"
-          placeholder="Tous"
-          value={filters.partnershipType}
-          options={options.partnershipTypes}
-          onChange={(v) => onChange({ ...filters, partnershipType: v })}
-        />
-        <MultiSelectFilter
-          label="Spécialités"
-          placeholder="Toutes"
-          values={filters.specialties || []}
-          options={options.specialties}
-          onChange={(v) => onChange({ ...filters, specialties: v })}
-        />
-        <SelectFilter
-          label="Niveau requis"
-          placeholder="Tous"
-          value={filters.requiredLevel}
-          options={options.requiredLevels}
-          onChange={(v) => onChange({ ...filters, requiredLevel: v })}
-        />
-        <SelectFilter
-          label="Langue du programme"
-          placeholder="Tous"
-          value={filters.programLanguage}
-          options={options.programLanguages}
-          onChange={(v) => onChange({ ...filters, programLanguage: v })}
-        />
-        <MultiSelectFilter
-          label="Test de langue"
-          placeholder="Tous"
-          values={filters.languageTests || []}
-          options={options.languageTests}
-          onChange={(v) => onChange({ ...filters, languageTests: v })}
-        />
-        <SelectFilter
-          label="Frais"
-          placeholder="Tous"
-          value={filters.tuitionCategory}
-          options={options.tuitionCategories}
-          onChange={(v) => onChange({ ...filters, tuitionCategory: v })}
-        />
-        <SelectFilter
-          label="Nombre de places"
-          placeholder="Tous"
-          value={filters.availableSeats}
-          options={options.seats}
-          onChange={(v) => onChange({ ...filters, availableSeats: v })}
-        />
-        <div className="space-y-1">
-          <div className="text-xs font-medium text-muted-foreground">
-            Statut de fiabilité
+    <div className="rounded-2xl border bg-card/72 p-3 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.06)]">
+      <div className="mb-4 rounded-xl border bg-secondary/50 px-3 py-3">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 text-sm font-semibold">
+              <SearchCheck
+                className="h-4 w-4 text-primary"
+                aria-hidden="true"
+              />
+              Filtres de recherche
+            </div>
+            <p className="mt-1 text-xs leading-5 text-muted-foreground">
+              Affine par destination, programme, admission et conditions
+              financières.
+            </p>
           </div>
-          <Select
-            value={(filters.reliabilityStatus ?? "__all__") as string}
-            onValueChange={(v: string) =>
-              onChange({
-                ...filters,
-                reliabilityStatus:
-                  v === "__all__" ? undefined : (v as ReliabilityStatus)
-              })
-            }
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Tous" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="__all__">Tous</SelectItem>
-              <SelectItem value="confirmed">Confirmé</SelectItem>
-              <SelectItem value="to_confirm">À confirmer</SelectItem>
-              <SelectItem value="incomplete">Information incomplète</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="rounded-full border bg-card px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+            {activeCount > 0 ? `${activeCount} actifs` : "Aucun actif"}
+          </div>
         </div>
       </div>
 
-      <Separator />
+      <div className="space-y-3">
+        <section className="rounded-xl border bg-background/58 p-3">
+          <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-foreground">
+            <MapPinned
+              className="h-3.5 w-3.5 text-primary"
+              aria-hidden="true"
+            />
+            Destination
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {showFrenchUniversityFilter ? (
+              <SelectFilter
+                label="Université française"
+                placeholder="Tous"
+                value={filters.frenchUniversity}
+                options={options.frenchUniversities}
+                onChange={(v) => onChange({ ...filters, frenchUniversity: v })}
+              />
+            ) : null}
+            <SelectFilter
+              label="Pays partenaire"
+              placeholder="Tous"
+              value={filters.partnerCountry}
+              options={options.partnerCountries}
+              onChange={(v) => onChange({ ...filters, partnerCountry: v })}
+            />
+            <SelectFilter
+              label="Continent"
+              placeholder="Tous"
+              value={filters.continent}
+              options={options.continents}
+              onChange={(v) => onChange({ ...filters, continent: v })}
+            />
+            <SelectFilter
+              label="Université partenaire"
+              placeholder="Tous"
+              value={filters.partnerUniversity}
+              options={options.partnerUniversities}
+              onChange={(v) => onChange({ ...filters, partnerUniversity: v })}
+            />
+            <SelectFilter
+              label="État (USA)"
+              placeholder="Tous"
+              value={filters.partnerState}
+              options={options.partnerStates}
+              onChange={(v) => onChange({ ...filters, partnerState: v })}
+            />
+          </div>
+        </section>
 
-      <div className="flex items-center justify-between gap-3">
-        <Button type="button" variant="secondary" onClick={onReset}>
+        <section className="rounded-xl border bg-background/58 p-3">
+          <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-foreground">
+            <GraduationCap
+              className="h-3.5 w-3.5 text-primary"
+              aria-hidden="true"
+            />
+            Programme
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <SelectFilter
+              label="Type de programme"
+              placeholder="Tous"
+              value={filters.programType}
+              options={options.programTypes}
+              onChange={(v) => onChange({ ...filters, programType: v })}
+            />
+            <SelectFilter
+              label="Type de partenariat"
+              placeholder="Tous"
+              value={filters.partnershipType}
+              options={options.partnershipTypes}
+              onChange={(v) => onChange({ ...filters, partnershipType: v })}
+            />
+            <MultiSelectFilter
+              label="Spécialités"
+              placeholder="Toutes"
+              values={filters.specialties || []}
+              options={options.specialties}
+              onChange={(v) => onChange({ ...filters, specialties: v })}
+            />
+          </div>
+        </section>
+
+        <section className="rounded-xl border bg-background/58 p-3">
+          <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-foreground">
+            <ShieldCheck
+              className="h-3.5 w-3.5 text-primary"
+              aria-hidden="true"
+            />
+            Admission
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <SelectFilter
+              label="Niveau requis"
+              placeholder="Tous"
+              value={filters.requiredLevel}
+              options={options.requiredLevels}
+              onChange={(v) => onChange({ ...filters, requiredLevel: v })}
+            />
+            <SelectFilter
+              label="Langue du programme"
+              placeholder="Tous"
+              value={filters.programLanguage}
+              options={options.programLanguages}
+              onChange={(v) => onChange({ ...filters, programLanguage: v })}
+            />
+            <MultiSelectFilter
+              label="Test de langue"
+              placeholder="Tous"
+              values={filters.languageTests || []}
+              options={options.languageTests}
+              onChange={(v) => onChange({ ...filters, languageTests: v })}
+            />
+          </div>
+        </section>
+
+        <section className="rounded-xl border bg-background/58 p-3">
+          <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-foreground">
+            <BadgeDollarSign
+              className="h-3.5 w-3.5 text-primary"
+              aria-hidden="true"
+            />
+            Coût & fiabilité
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <SelectFilter
+              label="Frais"
+              placeholder="Tous"
+              value={filters.tuitionCategory}
+              options={options.tuitionCategories}
+              onChange={(v) => onChange({ ...filters, tuitionCategory: v })}
+            />
+            <SelectFilter
+              label="Nombre de places"
+              placeholder="Tous"
+              value={filters.availableSeats}
+              options={options.seats}
+              onChange={(v) => onChange({ ...filters, availableSeats: v })}
+            />
+            <div className="space-y-1">
+              <div className="text-xs font-medium text-muted-foreground">
+                Statut de fiabilité
+              </div>
+              <Select
+                value={(filters.reliabilityStatus ?? "__all__") as string}
+                onValueChange={(v: string) =>
+                  onChange({
+                    ...filters,
+                    reliabilityStatus:
+                      v === "__all__" ? undefined : (v as ReliabilityStatus),
+                  })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Tous" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="__all__">Tous</SelectItem>
+                  <SelectItem value="confirmed">Confirmé</SelectItem>
+                  <SelectItem value="to_confirm">À confirmer</SelectItem>
+                  <SelectItem value="incomplete">
+                    Information incomplète
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="mt-4 flex flex-col gap-3 rounded-xl border bg-secondary/45 p-3 sm:flex-row sm:items-center sm:justify-between">
+        <Button
+          type="button"
+          variant="secondary"
+          className="h-10 justify-center gap-2"
+          onClick={onReset}
+        >
+          <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
           Réinitialiser
         </Button>
-        <div className="text-xs text-muted-foreground">
+        <div className="text-xs leading-5 text-muted-foreground">
           Conseil : la recherche globale couvre tous les champs.
         </div>
       </div>
     </div>
-  )
+  );
 }
