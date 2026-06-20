@@ -149,6 +149,27 @@ function isBooksComponent(label: string) {
   return normalized.includes("livres") || normalized.includes("books")
 }
 
+function BooksHelpTooltip({ text }: { text: string }) {
+  return (
+    <span className="group/tooltip relative inline-flex">
+      <button
+        type="button"
+        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border bg-background text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+        aria-label={text}
+      >
+        ?
+      </button>
+      <span
+        role="tooltip"
+        className="pointer-events-none absolute right-0 top-7 z-30 w-72 translate-y-1 rounded-xl border bg-popover px-3.5 py-3 text-left text-xs leading-5 text-popover-foreground opacity-0 shadow-xl shadow-black/15 transition duration-150 group-hover/tooltip:translate-y-0 group-hover/tooltip:opacity-100 group-focus-within/tooltip:translate-y-0 group-focus-within/tooltip:opacity-100"
+      >
+        <span className="absolute -top-1.5 right-3 h-3 w-3 rotate-45 border-l border-t bg-popover" />
+        {text}
+      </span>
+    </span>
+  )
+}
+
 function isTuitionComponent(component: CostComponent) {
   return component.kind === "tuition"
 }
@@ -478,7 +499,7 @@ export function CostSimulator({
                           <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
                             <span>{cleanText(component.label)}</span>
                             {isBooksComponent(component.label) ? (
-                              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[11px]" title={t.booksHelp}>?</span>
+                              <BooksHelpTooltip text={t.booksHelp} />
                             ) : editable ? (
                               <Badge variant="outline" className="rounded-full text-[10px]">{t.studentCosts}</Badge>
                             ) : null}

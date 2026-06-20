@@ -15,42 +15,27 @@ import { cleanText, type UiLanguage } from "@/lib/text-utils"
 const copy = {
   fr: {
     fees: "Frais",
-    level: "Niveau",
-    seats: "Places",
-    language: "Langue",
-    application: "Candidature",
     details: "Détails",
     open: "Ouvrir",
     source: "Source",
     notShared: "Non communiqué",
-    studentSource: "À confirmer - source étudiante non officielle",
-    internal: "Interne"
+    studentSource: "À confirmer - source étudiante non officielle"
   },
   en: {
     fees: "Fees",
-    level: "Level",
-    seats: "Seats",
-    language: "Language",
-    application: "Application",
     details: "Details",
     open: "Open",
     source: "Source",
     notShared: "Not disclosed",
-    studentSource: "To confirm - unofficial student source",
-    internal: "Internal"
+    studentSource: "To confirm - unofficial student source"
   },
   es: {
     fees: "Coste",
-    level: "Nivel",
-    seats: "Plazas",
-    language: "Idioma",
-    application: "Solicitud",
     details: "Detalles",
     open: "Abrir",
     source: "Fuente",
     notShared: "No comunicado",
-    studentSource: "Por confirmar - fuente estudiantil no oficial",
-    internal: "Interna"
+    studentSource: "Por confirmar - fuente estudiantil no oficial"
   }
 } as const
 
@@ -65,47 +50,13 @@ export function PartnershipCard({
   const showStudentSourceBadge = (partnership.sourceType || "").includes(
     "student_shared_unofficial_document"
   )
-
-  const tests =
-    partnership.languageTests?.length > 0
-      ? partnership.languageTests
-          .map((test) => cleanText(test.test))
-          .filter((test) => test && test !== "Non communiqué")
-      : []
-
-  const testsBadges = tests.slice(0, 2).map((test) => (
-    <span
-      key={test}
-      className="rounded-full border bg-secondary px-2 py-0.5 text-[11px] font-medium text-muted-foreground"
-    >
-      {test}
-    </span>
-  ))
-
-  const applicationProcess =
-    partnership.applicationProcess === "internal"
-      ? t.internal
-      : partnership.applicationProcess === "lsac"
-        ? "LSAC"
-        : t.notShared
+  const feeText = cleanText(partnership.tuitionDisplay || partnership.tuition || t.notShared)
 
   return (
     <Card className="group result-card interactive-lift">
-      <CardHeader className="space-y-3">
-        <div className="rounded-xl border border-primary/15 bg-primary/10 px-3 py-2">
-          <div className="flex flex-wrap gap-2">
-            <TuitionBadges
-              tuitionCategory={partnership.tuitionCategory}
-              language={language}
-            />
-            {testsBadges}
-          </div>
-          <div className="mt-2 text-xs leading-5 text-muted-foreground">
-            <span className="font-medium text-foreground">{t.fees} : </span>
-            {cleanText(partnership.tuitionDisplay || partnership.tuition || t.notShared)}
-          </div>
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      <CardHeader className="space-y-3 pb-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <TuitionBadges tuitionCategory={partnership.tuitionCategory} language={language} />
           <ReliabilityBadge
             status={partnership.reliabilityStatus}
             sourceType={partnership.sourceType}
@@ -120,44 +71,27 @@ export function PartnershipCard({
             </Badge>
           ) : null}
         </div>
+
         <CardTitle className="text-[16px] leading-snug tracking-tight transition-colors group-hover:text-primary">
           {cleanText(partnership.frenchUniversity)} {"\u2194"}{" "}
           {cleanText(partnership.partnerUniversity)}
         </CardTitle>
+
         <div className="font-mono-ui text-[11px] text-muted-foreground">
           {cleanText(partnership.partnerCountry)}
           {partnership.partnerCity ? ` (${cleanText(partnership.partnerCity)})` : ""} ·{" "}
-          {cleanText(partnership.continent)} · {cleanText(partnership.programType)}
+          {cleanText(partnership.programType)}
+        </div>
+
+        <div className="text-xs leading-5 text-muted-foreground">
+          <span className="font-medium text-foreground">{t.fees} : </span>
+          <span className="line-clamp-1 align-bottom">{feeText}</span>
         </div>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <p className="line-clamp-3 text-sm leading-6 text-muted-foreground">
-          {cleanText(partnership.shortDescription)}
-        </p>
-        <div className="soft-divider" />
-        <div className="grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
-          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
-            {t.level} :{" "}
-            <span className="text-foreground">{cleanText(partnership.requiredLevel)}</span>
-          </span>
-          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
-            {t.seats} :{" "}
-            <span className="text-foreground">
-              {partnership.availableSeatsDisplay
-                ? cleanText(partnership.availableSeatsDisplay)
-                : cleanText(partnership.availableSeats)}
-            </span>
-          </span>
-          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
-            {t.language} :{" "}
-            <span className="text-foreground">{cleanText(partnership.programLanguage)}</span>
-          </span>
-          <span className="rounded-lg bg-secondary/55 px-2.5 py-2">
-            {t.application} : <span className="text-foreground">{applicationProcess}</span>
-          </span>
-        </div>
-      </CardContent>
-      <CardFooter className="flex flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-center">
+
+      <CardContent className="hidden" />
+
+      <CardFooter className="flex flex-col items-stretch justify-between gap-3 pt-2 sm:flex-row sm:items-center">
         <div className="flex flex-wrap items-center gap-2">
           <PartnershipDialog partnership={partnership}>
             <Button variant="secondary" size="sm">
