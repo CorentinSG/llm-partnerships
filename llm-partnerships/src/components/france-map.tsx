@@ -5,28 +5,68 @@ import { geoMercator, geoPath } from "d3-geo"
 
 import franceGeojsonRaw from "../../data/france-metropolitan.json"
 import type { FrenchUniversityPoint } from "@/lib/types"
+import type { UiLanguage } from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
 import { usePanZoom } from "@/lib/use-pan-zoom"
 
 const franceGeojson = franceGeojsonRaw as any
 const franceFeature = franceGeojson.features?.[0]
 
+const mapCopy = {
+  fr: {
+    title: "Carte (France)",
+    clear: "Effacer",
+    zoomIn: "Zoom avant",
+    zoomOut: "Zoom arrière",
+    resetZoom: "Réinitialiser le zoom",
+    reset: "Reset",
+    aria: "Carte de France avec points des universités",
+    selection: "Sélection :",
+    tip: "Conseil : clique sur un point pour filtrer la liste (sur mobile : pince pour zoomer)."
+  },
+  en: {
+    title: "Map (France)",
+    clear: "Clear",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    resetZoom: "Reset zoom",
+    reset: "Reset",
+    aria: "Map of France with university points",
+    selection: "Selection:",
+    tip: "Tip: click a point to filter the list (on mobile: pinch to zoom)."
+  },
+  es: {
+    title: "Mapa (Francia)",
+    clear: "Borrar",
+    zoomIn: "Acercar",
+    zoomOut: "Alejar",
+    resetZoom: "Restablecer zoom",
+    reset: "Reset",
+    aria: "Mapa de Francia con puntos universitarios",
+    selection: "Selección:",
+    tip: "Consejo: toca un punto para filtrar la lista (en móvil: pellizca para ampliar)."
+  }
+} as const
+
 export function FranceMap({
   points,
   selectedFrenchUniversity,
   onSelect,
-  className
+  className,
+  language = "fr"
 }: {
   points: FrenchUniversityPoint[]
   selectedFrenchUniversity?: string
   onSelect: (frenchUniversity: string | undefined) => void
   className?: string
+  language?: UiLanguage
 }) {
   const width = 440
   const height = 520
   const padding = 26
   const [hovered, setHovered] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
+  const copy = mapCopy[language]
 
   const { svgPath, projectPoint } = React.useMemo(() => {
     const projection = geoMercator()
@@ -74,13 +114,13 @@ export function FranceMap({
   return (
     <div className={cn("w-full", className)}>
       <div className="flex items-center justify-between gap-3">
-        <div className="text-sm font-medium">Carte (France)</div>
+        <div className="text-sm font-medium">{copy.title}</div>
         <button
           type="button"
           className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
           onClick={() => onSelect(undefined)}
         >
-          Effacer
+          {copy.clear}
         </button>
       </div>
 
@@ -91,7 +131,7 @@ export function FranceMap({
               type="button"
               className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
               onClick={controls.zoomIn}
-              aria-label="Zoom avant"
+              aria-label={copy.zoomIn}
             >
               +
             </button>
@@ -99,7 +139,7 @@ export function FranceMap({
               type="button"
               className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
               onClick={controls.zoomOut}
-              aria-label="Zoom arrière"
+              aria-label={copy.zoomOut}
             >
               −
             </button>
@@ -107,9 +147,9 @@ export function FranceMap({
               type="button"
               className="glass-button inline-flex h-9 items-center justify-center rounded-full px-3 text-xs text-foreground"
               onClick={controls.reset}
-              aria-label="Réinitialiser le zoom"
+              aria-label={copy.resetZoom}
             >
-              Reset
+              {copy.reset}
             </button>
           </div>
 
@@ -117,7 +157,7 @@ export function FranceMap({
             viewBox={`0 0 ${width} ${height}`}
             className="h-[320px] w-full sm:h-[380px]"
             role="img"
-            aria-label="Carte de France avec points des universités"
+            aria-label={copy.aria}
             style={{ touchAction: "none" }}
             {...bind}
           >
@@ -254,12 +294,12 @@ export function FranceMap({
 
       {selectedFrenchUniversity ? (
         <div className="mt-3 text-sm text-muted-foreground">
-          Sélection :{" "}
+          {copy.selection}{" "}
           <span className="font-medium text-foreground">{selectedFrenchUniversity}</span>
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">
-          Conseil : clique sur un point pour filtrer la liste (sur mobile : pince pour zoomer).
+          {copy.tip}
         </div>
       )}
     </div>

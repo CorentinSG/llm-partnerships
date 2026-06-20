@@ -22,8 +22,108 @@ import {
 import { Separator } from "@/components/ui/separator"
 import { emptyFilters, filterPartnerships, type FiltersState } from "@/lib/filters"
 import { getAllPartnerships, getFilterOptions, getFrenchUniversitiesPoints } from "@/lib/data"
+import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils"
 
 const RESULTS_PAGE_SIZE = 12
+
+const pageCopy = {
+  fr: {
+    chipA: "Barreau de New York",
+    chipB: "LL.M aux États-Unis",
+    title: "Trouve ton LL.M américain via une fac française.",
+    intro:
+      "Le LL.M US est souvent la voie vers le barreau de New York. Annuaire des partenariats entre facs françaises et law schools US.",
+    searchCta: "Rechercher un partenariat",
+    costCta: "Estimer le coût",
+    searchTitle: "Recherche globale",
+    searchHint: "Cherche une ville, une école ou un test, puis affine avec les filtres.",
+    searchPlaceholder: "Université, pays, test, programme...",
+    filters: "Filtres",
+    reset: "Réinitialiser",
+    noFilter: "Aucun filtre actif",
+    activeFilters: "filtre(s) actif(s)",
+    results: "résultat(s)",
+    shown: "affichés sur",
+    naturalScroll: "Défilement naturel de la page",
+    backToSearch: "Retour recherche",
+    morePrefix: "Encore",
+    moreSuffix: "résultat(s) à parcourir.",
+    showMore: "Afficher 12 de plus",
+    allShown: "Tous les résultats correspondants sont affichés.",
+    noResult: "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
+    legendTitle: "Statuts des offres",
+    language: "Langue",
+    quickReduced: "Frais réduits",
+    quickConfirmed: "Confirmés",
+    france: "France",
+    unitedStates: "États-Unis",
+    sheetHint: "Affine les résultats. Réinitialise à tout moment."
+  },
+  en: {
+    chipA: "New York Bar",
+    chipB: "LL.M in the United States",
+    title: "Find a US LL.M through a French university.",
+    intro:
+      "A US LL.M is often the path toward the New York Bar. Directory of partnerships between French universities and US law schools.",
+    searchCta: "Search partnerships",
+    costCta: "Estimate cost",
+    searchTitle: "Global search",
+    searchHint: "Search by city, school, or test, then refine with filters.",
+    searchPlaceholder: "University, country, test, program...",
+    filters: "Filters",
+    reset: "Reset",
+    noFilter: "No active filter",
+    activeFilters: "active filter(s)",
+    results: "result(s)",
+    shown: "shown of",
+    naturalScroll: "Natural page scrolling",
+    backToSearch: "Back to search",
+    morePrefix: "",
+    moreSuffix: "result(s) remaining.",
+    showMore: "Show 12 more",
+    allShown: "All matching results are shown.",
+    noResult: "No result. Try removing filters or broadening the search.",
+    legendTitle: "Offer status legend",
+    language: "Language",
+    quickReduced: "Reduced tuition",
+    quickConfirmed: "Confirmed",
+    france: "France",
+    unitedStates: "United States",
+    sheetHint: "Refine results. Reset at any time."
+  },
+  es: {
+    chipA: "Barra de Nueva York",
+    chipB: "LL.M en Estados Unidos",
+    title: "Encuentra un LL.M estadounidense vía una universidad francesa.",
+    intro:
+      "Un LL.M en EE. UU. suele ser la vía hacia la barra de Nueva York. Directorio de convenios entre universidades francesas y law schools estadounidenses.",
+    searchCta: "Buscar convenios",
+    costCta: "Estimar coste",
+    searchTitle: "Búsqueda global",
+    searchHint: "Busca por ciudad, escuela o examen, y afina con filtros.",
+    searchPlaceholder: "Universidad, país, examen, programa...",
+    filters: "Filtros",
+    reset: "Reiniciar",
+    noFilter: "Sin filtros activos",
+    activeFilters: "filtro(s) activo(s)",
+    results: "resultado(s)",
+    shown: "mostrados de",
+    naturalScroll: "Desplazamiento natural de la página",
+    backToSearch: "Volver a búsqueda",
+    morePrefix: "Quedan",
+    moreSuffix: "resultado(s) por revisar.",
+    showMore: "Mostrar 12 más",
+    allShown: "Todos los resultados correspondientes están visibles.",
+    noResult: "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
+    legendTitle: "Leyenda de estados",
+    language: "Idioma",
+    quickReduced: "Matrícula reducida",
+    quickConfirmed: "Confirmados",
+    france: "Francia",
+    unitedStates: "Estados Unidos",
+    sheetHint: "Afina los resultados. Reinicia cuando quieras."
+  }
+} as const
 
 export function HomePage() {
   const all = React.useMemo(() => getAllPartnerships(), [])
@@ -34,6 +134,8 @@ export function HomePage() {
   const [filters, setFilters] = React.useState<FiltersState>(() => emptyFilters())
   const [mapMode, setMapMode] = React.useState<"fr" | "us">("fr")
   const [visibleCount, setVisibleCount] = React.useState(RESULTS_PAGE_SIZE)
+  const [language, setLanguage] = React.useState<UiLanguage>("fr")
+  const t = pageCopy[language]
 
   const filtered = React.useMemo(
     () => filterPartnerships(all, searchQuery, filters),
@@ -86,29 +188,45 @@ export function HomePage() {
       <section className="container py-6 sm:py-9">
         <div className="motion-rise max-w-5xl space-y-5">
             <div className="font-mono-ui inline-flex w-fit items-center gap-2 rounded-full border bg-card/70 px-3 py-1 text-[11px] font-medium text-muted-foreground shadow-[0_1px_1px_hsl(222_47%_10%/0.04)]">
-              Barreau de New York
+              {t.chipA}
               <span className="h-1.5 w-1.5 rounded-full bg-accent motion-glow" aria-hidden="true" />
-              LL.M aux Etats-Unis
+              {t.chipB}
             </div>
             <div className="space-y-3">
               <h1 className="max-w-4xl text-balance text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl lg:text-[56px]">
-                Trouve ton LL.M americain via une fac francaise.
+                {t.title}
               </h1>
               <p className="max-w-3xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg">
-                Le LL.M US est souvent la voie vers le barreau de New York.
-                Annuaire des partenariats entre facs francaises et law schools US.
+                {t.intro}
               </p>
             </div>
             <div className="grid gap-2 sm:flex sm:flex-wrap sm:items-center">
               <Button asChild className="h-11 rounded-xl">
                 <a href="#workspace">
-                  Rechercher un partenariat
+                  {t.searchCta}
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </a>
               </Button>
               <Button asChild variant="secondary" className="h-11 rounded-xl">
-                <a href="#cost-estimator">Estimer le cout</a>
+                <a href="#cost-estimator">{t.costCta}</a>
               </Button>
+              <div className="glass-panel inline-flex h-11 items-center gap-1 rounded-xl p-1">
+                <span className="px-2 text-xs text-muted-foreground">{t.language}</span>
+                {(["fr", "en", "es"] as UiLanguage[]).map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    className={`rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
+                      language === item
+                        ? "bg-primary text-primary-foreground"
+                        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                    }`}
+                    onClick={() => setLanguage(item)}
+                  >
+                    {item.toUpperCase()}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
       </section>
@@ -120,15 +238,15 @@ export function HomePage() {
               <div className="w-full max-w-3xl space-y-2">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <div className="text-sm font-medium">Recherche globale</div>
+                    <div className="text-sm font-medium">{t.searchTitle}</div>
                     <div className="mt-0.5 text-xs text-muted-foreground sm:hidden">
-                      Cherche une ville, une ecole ou un test, puis affine avec les filtres.
+                      {t.searchHint}
                     </div>
                   </div>
                   <div className="text-xs text-muted-foreground">
                     {activeCount > 0
-                      ? `${activeCount} filtre(s) actif(s)`
-                      : "Aucun filtre actif"}
+                      ? `${activeCount} ${t.activeFilters}`
+                      : t.noFilter}
                   </div>
                 </div>
                 <div className="relative">
@@ -139,7 +257,7 @@ export function HomePage() {
                   <Input
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Universite, pays, test, programme..."
+                    placeholder={t.searchPlaceholder}
                     className="h-12 rounded-xl pl-9 text-base sm:text-sm"
                     aria-label="Recherche globale"
                   />
@@ -173,7 +291,7 @@ export function HomePage() {
                           }))
                         }
                       >
-                        frais reduits
+                        {t.quickReduced}
                       </button>
                       <button
                         type="button"
@@ -185,7 +303,7 @@ export function HomePage() {
                           }))
                         }
                       >
-                        confirmes
+                        {t.quickConfirmed}
                       </button>
                     </>
                   )}
@@ -197,15 +315,13 @@ export function HomePage() {
                   <SheetTrigger asChild>
                     <Button variant="secondary" className="h-11 lg:hidden">
                       <Filter className="mr-2 h-4 w-4" aria-hidden="true" />
-                      Filtres {activeCount > 0 ? `(${activeCount})` : ""}
+                      {t.filters} {activeCount > 0 ? `(${activeCount})` : ""}
                     </Button>
                   </SheetTrigger>
                   <SheetContent className="w-[92vw] overflow-y-auto sm:max-w-md">
                     <SheetHeader>
                       <SheetTitle>Filtres</SheetTitle>
-                      <SheetDescription>
-                        Affine les resultats. Reinitialise a tout moment.
-                      </SheetDescription>
+                      <SheetDescription>{t.sheetHint}</SheetDescription>
                     </SheetHeader>
                     <div className="mt-6">
                       <FiltersPanel
@@ -219,7 +335,7 @@ export function HomePage() {
                 </Sheet>
 
                 <Button variant="outline" className="h-11" onClick={resetAll}>
-                  Reinitialiser
+                  {t.reset}
                 </Button>
               </div>
             </div>
@@ -234,7 +350,7 @@ export function HomePage() {
                   onClick={() => setMapMode("fr")}
                   className="rounded-lg"
                 >
-                  France
+                  {t.france}
                 </Button>
                 <Button
                   variant={mapMode === "us" ? "default" : "ghost"}
@@ -242,7 +358,7 @@ export function HomePage() {
                   onClick={() => setMapMode("us")}
                   className="rounded-lg"
                 >
-                  Etats-Unis
+                  {t.unitedStates}
                 </Button>
               </div>
 
@@ -253,6 +369,7 @@ export function HomePage() {
                   onSelect={(u) =>
                     setFilters((prev) => ({ ...prev, frenchUniversity: u }))
                   }
+                  language={language}
                 />
               ) : (
                 <UsMap
@@ -265,6 +382,7 @@ export function HomePage() {
                       partnerState: state
                     }))
                   }
+                  language={language}
                 />
               )}
 
@@ -278,7 +396,7 @@ export function HomePage() {
                       </div>
                     </div>
                     <Button variant="secondary" size="sm" onClick={resetAll}>
-                      Reinitialiser
+                      {t.reset}
                     </Button>
                   </div>
                   <Separator className="my-4" />
@@ -293,39 +411,55 @@ export function HomePage() {
             </div>
 
             <div className="order-1 space-y-4 motion-rise lg:order-2">
+              <div className="rounded-2xl border bg-card/80 p-4">
+                <div className="text-sm font-medium">{t.legendTitle}</div>
+                <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                  {(["confirmed", "to_confirm", "incomplete"] as const).map((status) => (
+                    <div key={status} className="rounded-xl border bg-secondary/45 p-3">
+                      <div className="text-xs font-semibold text-foreground">
+                        {reliabilityCopy[language][status].label}
+                      </div>
+                      <div className="mt-1 text-xs leading-5 text-muted-foreground">
+                        {reliabilityCopy[language][status].description}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-sm text-muted-foreground">
                   <span className="metric-figure font-semibold text-foreground">
                     {filtered.length}
                   </span>{" "}
-                  resultat(s)
+                  {t.results}
                 </div>
                 <div className="font-mono-ui rounded-full border bg-card/70 px-2.5 py-1 text-[11px] text-muted-foreground">
-                  {visiblePartnerships.length} affiches sur {filtered.length}
+                  {visiblePartnerships.length} {t.shown} {filtered.length}
                 </div>
               </div>
 
               <div className="glass-panel rounded-2xl p-2 sm:p-3">
                 <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-xl border bg-secondary/45 px-3 py-2 text-xs text-muted-foreground">
-                  <span>Defilement naturel de la page</span>
+                  <span>{t.naturalScroll}</span>
                   <a className="font-medium text-foreground hover:text-primary" href="#workspace">
-                    Retour recherche
+                    {t.backToSearch}
                   </a>
                 </div>
                 <div className="space-y-3 motion-stagger">
                   {visiblePartnerships.map((p) => (
-                    <PartnershipCard key={p.id} partnership={p} />
+                    <PartnershipCard key={p.id} partnership={p} language={language} />
                   ))}
                   {filtered.length === 0 ? (
                     <div className="rounded-xl border bg-muted/30 p-6 text-sm text-muted-foreground">
-                      Aucun resultat. Essaie d&apos;enlever des filtres ou d&apos;elargir la recherche.
+                      {t.noResult}
                     </div>
                   ) : null}
                 </div>
                 {remainingCount > 0 ? (
                   <div className="mt-4 flex flex-col gap-2 rounded-xl border bg-secondary/45 p-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="text-sm text-muted-foreground">
-                      Encore {remainingCount} resultat(s) a parcourir.
+                      {t.morePrefix} {remainingCount} {t.moreSuffix}
                     </div>
                     <Button
                       type="button"
@@ -337,12 +471,12 @@ export function HomePage() {
                         )
                       }
                     >
-                      Afficher 12 de plus
+                      {t.showMore}
                     </Button>
                   </div>
                 ) : filtered.length > RESULTS_PAGE_SIZE ? (
                   <div className="mt-4 rounded-xl border bg-secondary/45 p-3 text-sm text-muted-foreground">
-                    Tous les resultats correspondants sont affiches.
+                    {t.allShown}
                   </div>
                 ) : null}
               </div>
@@ -351,7 +485,7 @@ export function HomePage() {
         </div>
 
         <div id="cost-estimator" className="scroll-mt-24 pt-10 sm:pt-14">
-          <CostSimulator partnerships={all} />
+          <CostSimulator partnerships={all} language={language} />
         </div>
       </section>
     </main>

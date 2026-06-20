@@ -1,26 +1,40 @@
 import { Badge } from "@/components/ui/badge"
 import type { ReliabilityStatus } from "@/lib/types"
+import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils"
 
-const map: Record<
+const variants: Record<
   ReliabilityStatus,
-  { label: string; variant: "default" | "secondary" | "muted" | "outline" }
+  "default" | "secondary" | "muted" | "outline"
 > = {
-  confirmed: { label: "Confirmé", variant: "default" },
-  to_confirm: { label: "À confirmer", variant: "secondary" },
-  incomplete: { label: "Information incomplète", variant: "muted" }
+  confirmed: "default",
+  to_confirm: "secondary",
+  incomplete: "muted"
 }
 
 export function ReliabilityBadge({
   status,
-  sourceType
+  sourceType,
+  language = "fr"
 }: {
   status: ReliabilityStatus
   sourceType?: string
+  language?: UiLanguage
 }) {
   const isRecentStudent = (sourceType || "").includes("recent_student_confirmation")
-  const item = map[status]
+  const item = reliabilityCopy[language][status]
+
   if (status === "confirmed" && isRecentStudent) {
-    return <Badge variant="outline">Confirmé (retour étudiant récent)</Badge>
+    return (
+      <Badge variant="outline">
+        {item.label}
+        {language === "fr"
+          ? " (retour étudiant récent)"
+          : language === "en"
+            ? " (recent student feedback)"
+            : " (testimonio reciente)"}
+      </Badge>
+    )
   }
-  return <Badge variant={item.variant}>{item.label}</Badge>
+
+  return <Badge variant={variants[status]}>{item.label}</Badge>
 }

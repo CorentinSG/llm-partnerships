@@ -1,25 +1,43 @@
 import { Badge } from "@/components/ui/badge"
 import type { TuitionCategory } from "@/lib/types"
+import { cleanText, type UiLanguage } from "@/lib/text-utils"
 
-export function TuitionBadges({
-  tuitionCategory
-}: {
-  tuitionCategory?: TuitionCategory | string
-}) {
-  if (!tuitionCategory || tuitionCategory === "Non communiqué") return null
-
-  const labelMap: Record<string, string> = {
+const labels: Record<UiLanguage, Record<string, string>> = {
+  fr: {
     "sans frais": "Sans frais",
     "frais réduits": "Frais réduits",
     "frais complets": "Frais complets",
     "bourse possible": "Bourse possible"
+  },
+  en: {
+    "sans frais": "No tuition",
+    "frais réduits": "Reduced tuition",
+    "frais complets": "Full tuition",
+    "bourse possible": "Scholarship possible"
+  },
+  es: {
+    "sans frais": "Sin matrícula",
+    "frais réduits": "Matrícula reducida",
+    "frais complets": "Matrícula completa",
+    "bourse possible": "Beca posible"
   }
-  const label = labelMap[tuitionCategory] || tuitionCategory
+}
 
+export function TuitionBadges({
+  tuitionCategory,
+  language = "fr"
+}: {
+  tuitionCategory?: TuitionCategory | string
+  language?: UiLanguage
+}) {
+  const normalized = cleanText(tuitionCategory)
+  if (!normalized || normalized === "Non communiqué") return null
+
+  const label = labels[language][normalized] || normalized
   const variant =
-    tuitionCategory === "sans frais"
+    normalized === "sans frais"
       ? "default"
-      : tuitionCategory === "frais réduits"
+      : normalized === "frais réduits"
         ? "secondary"
         : "outline"
 

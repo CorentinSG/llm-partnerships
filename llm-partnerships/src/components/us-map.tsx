@@ -5,10 +5,53 @@ import { geoAlbersUsa, geoPath } from "d3-geo"
 
 import usStatesRaw from "../../data/us-states-contiguous.json"
 import type { Partnership } from "@/lib/types"
+import { cleanText, type UiLanguage } from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
 import { usePanZoom } from "@/lib/use-pan-zoom"
 
 const usStates = usStatesRaw as any
+
+const mapCopy = {
+  fr: {
+    title: "Carte (États-Unis)",
+    clear: "Effacer",
+    zoomIn: "Zoom avant",
+    zoomOut: "Zoom arrière",
+    resetZoom: "Réinitialiser le zoom",
+    reset: "Reset",
+    aria: "Carte des États-Unis contigus avec états cliquables",
+    partnership: "partenariat(s)",
+    approximate: "position approximative",
+    selectedState: "État sélectionné :",
+    tip: "Conseil : clique sur un État avec un chiffre pour filtrer (sur mobile : pince pour zoomer)."
+  },
+  en: {
+    title: "Map (United States)",
+    clear: "Clear",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    resetZoom: "Reset zoom",
+    reset: "Reset",
+    aria: "Map of the contiguous United States with clickable states",
+    partnership: "partnership(s)",
+    approximate: "approximate position",
+    selectedState: "Selected state:",
+    tip: "Tip: click a numbered state to filter (on mobile: pinch to zoom)."
+  },
+  es: {
+    title: "Mapa (Estados Unidos)",
+    clear: "Borrar",
+    zoomIn: "Acercar",
+    zoomOut: "Alejar",
+    resetZoom: "Restablecer zoom",
+    reset: "Reset",
+    aria: "Mapa de Estados Unidos continental con estados interactivos",
+    partnership: "convenio(s)",
+    approximate: "posición aproximada",
+    selectedState: "Estado seleccionado:",
+    tip: "Consejo: toca un estado con cifra para filtrar (en móvil: pellizca para ampliar)."
+  }
+} as const
 
 function groupPartnerUniversities(partnerships: Partnership[]) {
   const byUni = new Map<
@@ -23,7 +66,7 @@ function groupPartnerUniversities(partnerships: Partnership[]) {
   >()
 
   for (const p of partnerships) {
-    if (p.partnerCountry !== "États-Unis") continue
+    if (cleanText(p.partnerCountry) !== "États-Unis") continue
     const state = p.partnerState || ""
     if (!state) continue
     const key = `${p.partnerUniversity}__${state}`
@@ -48,17 +91,20 @@ export function UsMap({
   partnerships,
   selectedState,
   onSelectState,
-  className
+  className,
+  language = "fr"
 }: {
   partnerships: Partnership[]
   selectedState?: string
   onSelectState: (state: string | undefined) => void
   className?: string
+  language?: UiLanguage
 }) {
   const width = 520
   const height = 340
   const [hovered, setHovered] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
+  const copy = mapCopy[language]
 
   const universities = React.useMemo(
     () => groupPartnerUniversities(partnerships),
@@ -97,13 +143,13 @@ export function UsMap({
   return (
     <div className={cn("w-full", className)}>
       <div className="flex items-center justify-between gap-3">
-        <div className="text-sm font-medium">Carte (États-Unis)</div>
+        <div className="text-sm font-medium">{copy.title}</div>
         <button
           type="button"
           className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
           onClick={() => onSelectState(undefined)}
         >
-          Effacer
+          {copy.clear}
         </button>
       </div>
 
@@ -114,7 +160,7 @@ export function UsMap({
               type="button"
               className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
               onClick={controls.zoomIn}
-              aria-label="Zoom avant"
+              aria-label={copy.zoomIn}
             >
               +
             </button>
@@ -122,7 +168,7 @@ export function UsMap({
               type="button"
               className="glass-button inline-flex h-9 w-9 items-center justify-center rounded-full text-sm text-foreground"
               onClick={controls.zoomOut}
-              aria-label="Zoom arrière"
+              aria-label={copy.zoomOut}
             >
               −
             </button>
@@ -130,9 +176,9 @@ export function UsMap({
               type="button"
               className="glass-button inline-flex h-9 items-center justify-center rounded-full px-3 text-xs text-foreground"
               onClick={controls.reset}
-              aria-label="Réinitialiser le zoom"
+              aria-label={copy.resetZoom}
             >
-              Reset
+              {copy.reset}
             </button>
           </div>
 
@@ -140,7 +186,7 @@ export function UsMap({
             viewBox={`0 0 ${width} ${height}`}
             className="h-[260px] w-full sm:h-[300px]"
             role="img"
-            aria-label="Carte des États-Unis (contigus) avec états cliquables"
+            aria-label={copy.aria}
             style={{ touchAction: "none" }}
             {...bind}
           >
@@ -175,7 +221,7 @@ export function UsMap({
                   >
                     <title>
                       {name}
-                      {hasData ? ` • ${stateCounts.get(name)} partenariat(s)` : ""}
+                      {hasData ? ` · ${stateCounts.get(name)} ${copy.partnership}` : ""}
                     </title>
                   </path>
                 )
@@ -210,7 +256,7 @@ export function UsMap({
 
                 const r = selected ? 6.5 : 5.2
                 const label = `${u.partnerUniversity} • ${u.partnerState}${
-                  u.partnerCoordinates ? "" : " (position approximative)"
+                  u.partnerCoordinates ? "" : ` (${copy.approximate})`
                 }`
                 return (
                   <g
@@ -278,12 +324,12 @@ export function UsMap({
 
       {selectedState ? (
         <div className="mt-3 text-sm text-muted-foreground">
-          État sélectionné :{" "}
+          {copy.selectedState}{" "}
           <span className="font-medium text-foreground">{selectedState}</span>
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">
-          Conseil : clique sur un état (avec un chiffre) pour filtrer (sur mobile : pince pour zoomer).
+          {copy.tip}
         </div>
       )}
     </div>
