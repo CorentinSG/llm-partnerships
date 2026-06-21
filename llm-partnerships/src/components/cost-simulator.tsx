@@ -55,17 +55,23 @@ const copy = {
     livingCosts: "Dépenses de vie ajustables",
     healthInsurance: "Assurance santé",
     flights: "Billets d'avion France - États-Unis",
+    nyBarExamFee: "NY Bar Exam - inscription candidat étranger",
+    nyBarLaptop: "NY Bar Exam - ordinateur",
+    nyleFee: "NYLE - examen en ligne",
+    mpreFee: "MPRE - éthique professionnelle",
+    barPrep: "Préparation au barreau de New York",
+    barExamLogistics: "Logement et transport pour le barreau",
     publicTotal: "Budget annuel sans partenariat",
     partnerTotal: "Budget annuel avec partenariat",
     studentCosts: "Ajuste ton mode de vie",
     studentCostsHelp:
-      "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance, billets d'avion ou dépenses personnelles.",
+      "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance, billets d'avion, préparation au barreau ou dépenses personnelles.",
     lean: "sobre",
     reference: "référence",
     comfortable: "confort",
     costBreakdown: "Détail du calcul annuel",
     fixedHint:
-      "Tuition, livres et frais imposés restent fixes. Seules les dépenses de vie ci-dessus sont interactives.",
+      "Tuition, livres, visa et frais d'examen imposés restent fixes. Seules les dépenses de vie et de préparation ci-dessus sont interactives.",
     methodology: "Méthodologie",
     cityPartners: "Ville et partenaires concernés",
     otherCosts: "Postes de vie courants",
@@ -107,17 +113,23 @@ const copy = {
     livingCosts: "Editable living costs",
     healthInsurance: "Health insurance",
     flights: "France - U.S. flights",
+    nyBarExamFee: "NY Bar Exam - foreign applicant fee",
+    nyBarLaptop: "NY Bar Exam - laptop fee",
+    nyleFee: "NYLE - online exam",
+    mpreFee: "MPRE - professional responsibility",
+    barPrep: "New York bar preparation",
+    barExamLogistics: "Bar exam lodging and transport",
     publicTotal: "Annual budget without partnership",
     partnerTotal: "Annual budget with partnership",
     studentCosts: "Adjust your lifestyle",
     studentCostsHelp:
-      "These sliders only change costs driven by your housing, meals, transport, insurance, flights, or personal spending choices.",
+      "These sliders only change costs driven by your housing, meals, transport, insurance, flights, bar prep, or personal spending choices.",
     lean: "lean",
     reference: "reference",
     comfortable: "comfortable",
     costBreakdown: "Annual calculation details",
     fixedHint:
-      "Tuition, books, and mandatory fees stay fixed. Only the living costs above are interactive.",
+      "Tuition, books, visa, and mandatory exam fees stay fixed. Only the living and preparation costs above are interactive.",
     methodology: "Methodology",
     cityPartners: "City and matching partners",
     otherCosts: "Common living costs",
@@ -159,17 +171,23 @@ const copy = {
     livingCosts: "Gastos de vida ajustables",
     healthInsurance: "Seguro de salud",
     flights: "Vuelos Francia - Estados Unidos",
+    nyBarExamFee: "NY Bar Exam - tasa candidato extranjero",
+    nyBarLaptop: "NY Bar Exam - tasa ordenador",
+    nyleFee: "NYLE - examen en línea",
+    mpreFee: "MPRE - ética profesional",
+    barPrep: "Preparación para el New York Bar",
+    barExamLogistics: "Alojamiento y transporte para el bar exam",
     publicTotal: "Presupuesto anual sin convenio",
     partnerTotal: "Presupuesto anual con convenio",
     studentCosts: "Ajusta tu estilo de vida",
     studentCostsHelp:
-      "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro, vuelos o gastos personales.",
+      "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro, vuelos, preparación del bar exam o gastos personales.",
     lean: "sobrio",
     reference: "referencia",
     comfortable: "cómodo",
     costBreakdown: "Detalle del cálculo anual",
     fixedHint:
-      "Matrícula, libros y tasas obligatorias permanecen fijas. Solo los gastos de vida anteriores son interactivos.",
+      "Matrícula, libros, visa y tasas obligatorias de examen permanecen fijas. Solo los gastos de vida y preparación anteriores son interactivos.",
     methodology: "Metodología",
     cityPartners: "Ciudad y convenios relacionados",
     otherCosts: "Costes de vida habituales",
@@ -220,6 +238,12 @@ function getVisaOptions(language: UiLanguage): VisaOption[] {
 
 const DEFAULT_HEALTH_INSURANCE_USD = 2800
 const DEFAULT_FLIGHTS_USD = 1200
+const NY_BAR_FOREIGN_APPLICANT_FEE_USD = 750
+const NY_BAR_LAPTOP_FEE_USD = 100
+const NYLE_FEE_USD = 29
+const MPRE_FEE_USD = 185
+const DEFAULT_BAR_PREP_USD = 3000
+const DEFAULT_BAR_EXAM_LOGISTICS_USD = 800
 
 function isInsuranceComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
@@ -237,6 +261,16 @@ function isFlightsComponent(label: string) {
     normalized.includes("avion") ||
     normalized.includes("flight") ||
     normalized.includes("vuelos")
+  )
+}
+
+function isBarPrepComponent(label: string) {
+  const normalized = cleanText(label).toLowerCase()
+  return (
+    normalized.includes("préparation") ||
+    normalized.includes("preparation") ||
+    normalized.includes("bar prep") ||
+    normalized.includes("preparación")
   )
 }
 
@@ -262,6 +296,39 @@ function getSupplementalCostComponents(
       kind: "other",
     })
   }
+
+  supplemental.push(
+    {
+      label: t.nyBarExamFee,
+      amountUsd: NY_BAR_FOREIGN_APPLICANT_FEE_USD,
+      kind: "other",
+    },
+    {
+      label: t.nyBarLaptop,
+      amountUsd: NY_BAR_LAPTOP_FEE_USD,
+      kind: "other",
+    },
+    {
+      label: t.nyleFee,
+      amountUsd: NYLE_FEE_USD,
+      kind: "other",
+    },
+    {
+      label: t.mpreFee,
+      amountUsd: MPRE_FEE_USD,
+      kind: "other",
+    },
+    {
+      label: t.barPrep,
+      amountUsd: DEFAULT_BAR_PREP_USD,
+      kind: "other",
+    },
+    {
+      label: t.barExamLogistics,
+      amountUsd: DEFAULT_BAR_EXAM_LOGISTICS_USD,
+      kind: "other",
+    },
+  )
 
   return supplemental
 }
@@ -315,6 +382,7 @@ function isEditableLivingComponent(component: CostComponent) {
     label.includes("transport") ||
     isInsuranceComponent(label) ||
     isFlightsComponent(label) ||
+    isBarPrepComponent(label) ||
     label.includes("personal") ||
     label.includes("personnelles") ||
     label.includes("housing") ||
