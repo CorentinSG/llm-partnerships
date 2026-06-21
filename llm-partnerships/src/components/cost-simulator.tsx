@@ -220,7 +220,7 @@ function isBooksComponent(label: string) {
 
 function BooksHelpTooltip({ text }: { text: string }) {
   return (
-    <span className="group/tooltip relative inline-flex">
+    <span className="group/tooltip relative z-10 inline-flex hover:z-50 focus-within:z-50">
       <button
         type="button"
         className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-background text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:h-5 sm:w-5"
@@ -230,9 +230,9 @@ function BooksHelpTooltip({ text }: { text: string }) {
       </button>
       <span
         role="tooltip"
-        className="pointer-events-none absolute right-0 top-7 z-30 w-72 translate-y-1 rounded-xl border bg-popover px-3.5 py-3 text-left text-xs leading-5 text-popover-foreground opacity-0 shadow-xl shadow-black/15 transition duration-150 group-hover/tooltip:translate-y-0 group-hover/tooltip:opacity-100 group-focus-within/tooltip:translate-y-0 group-focus-within/tooltip:opacity-100"
+        className="pointer-events-none absolute bottom-full right-0 z-50 mb-2 w-[min(18rem,calc(100vw-2rem))] translate-y-1 rounded-xl border bg-popover px-3.5 py-3 text-left text-xs leading-5 text-popover-foreground opacity-0 shadow-xl shadow-black/15 transition duration-150 group-hover/tooltip:translate-y-0 group-hover/tooltip:opacity-100 group-focus-within/tooltip:translate-y-0 group-focus-within/tooltip:opacity-100"
       >
-        <span className="absolute -top-1.5 right-3 h-3 w-3 rotate-45 border-l border-t bg-popover" />
+        <span className="absolute -bottom-1.5 right-3 h-3 w-3 rotate-45 border-b border-r bg-popover" />
         {text}
       </span>
     </span>
