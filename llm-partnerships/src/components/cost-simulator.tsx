@@ -45,6 +45,7 @@ const copy = {
     partnership: "2. Partenariat",
     offer: "3. Offre appliquée",
     visa: "4. Situation visa",
+    barJurisdiction: "5. Barreau visé",
     noPartnership: "Aucun partenariat précis",
     noOffer: "Tarif public",
     publicTuition: "Tuition publique annuelle",
@@ -59,8 +60,18 @@ const copy = {
     nyBarLaptop: "NY Bar Exam - ordinateur",
     nyleFee: "NYLE - examen en ligne",
     mpreFee: "MPRE - éthique professionnelle",
-    barPrep: "Préparation au barreau de New York",
+    barPrep: "Préparation au barreau",
     barExamLogistics: "Logement et transport pour le barreau",
+    nyleHelp:
+      "Le NYLE est le New York Law Exam : un examen en ligne propre à New York, distinct de l'UBE, à valider pour l'admission au barreau de New York.",
+    mpreHelp:
+      "Le MPRE est l'examen national d'éthique professionnelle requis par de nombreux barreaux américains, dont New York, la Californie, DC et Washington.",
+    laptopHelp:
+      "Ce poste correspond aux frais de logiciel ou d'utilisation d'un ordinateur pour composer l'examen. Le montant varie selon l'État et la session.",
+    barPrepHelp:
+      "La préparation dépend de la formule choisie. Les références les plus utilisées sont Themis et BARBRI ; elles servent ici d'ordre de grandeur. Des réductions ou bourses peuvent exister via certaines law schools partenaires, donc le coût peut fortement varier.",
+    barJurisdictionNote:
+      "L'éligibilité d'un juriste formé à l'étranger dépend de l'État, du premier diplôme de droit, du LL.M. et des matières suivies. Vérifie toujours les règles officielles avant de candidater.",
     publicTotal: "Budget annuel sans partenariat",
     partnerTotal: "Budget annuel avec partenariat",
     studentCosts: "Ajuste ton mode de vie",
@@ -103,6 +114,7 @@ const copy = {
     partnership: "2. Partnership",
     offer: "3. Applied offer",
     visa: "4. Visa situation",
+    barJurisdiction: "5. Target bar",
     noPartnership: "No specific partnership",
     noOffer: "Public rate",
     publicTuition: "Annual public tuition",
@@ -117,8 +129,18 @@ const copy = {
     nyBarLaptop: "NY Bar Exam - laptop fee",
     nyleFee: "NYLE - online exam",
     mpreFee: "MPRE - professional responsibility",
-    barPrep: "New York bar preparation",
+    barPrep: "Bar preparation",
     barExamLogistics: "Bar exam lodging and transport",
+    nyleHelp:
+      "The NYLE is the New York Law Exam: a New York-specific online exam, separate from the UBE, required for New York admission.",
+    mpreHelp:
+      "The MPRE is the national professional responsibility exam required by many U.S. jurisdictions, including New York, California, DC, and Washington.",
+    laptopHelp:
+      "This covers laptop or exam software fees. The amount depends on the jurisdiction and exam administration.",
+    barPrepHelp:
+      "Preparation cost depends on the provider and package. Themis and BARBRI are common reference providers for this estimate. Discounts or scholarships may be available through some U.S. law school partnerships, so the final cost can vary significantly.",
+    barJurisdictionNote:
+      "Eligibility for foreign-trained lawyers depends on the jurisdiction, first law degree, LL.M., and required coursework. Always verify the official rules before applying.",
     publicTotal: "Annual budget without partnership",
     partnerTotal: "Annual budget with partnership",
     studentCosts: "Adjust your lifestyle",
@@ -161,6 +183,7 @@ const copy = {
     partnership: "2. Convenio",
     offer: "3. Oferta aplicada",
     visa: "4. Situación de visa",
+    barJurisdiction: "5. Barra objetivo",
     noPartnership: "Ningún convenio específico",
     noOffer: "Tarifa pública",
     publicTuition: "Matrícula pública anual",
@@ -175,8 +198,18 @@ const copy = {
     nyBarLaptop: "NY Bar Exam - tasa ordenador",
     nyleFee: "NYLE - examen en línea",
     mpreFee: "MPRE - ética profesional",
-    barPrep: "Preparación para el New York Bar",
+    barPrep: "Preparación para el bar exam",
     barExamLogistics: "Alojamiento y transporte para el bar exam",
+    nyleHelp:
+      "El NYLE es el New York Law Exam: un examen en línea específico de Nueva York, separado del UBE, necesario para la admisión en Nueva York.",
+    mpreHelp:
+      "El MPRE es el examen nacional de responsabilidad profesional exigido por muchos estados, incluyendo Nueva York, California, DC y Washington.",
+    laptopHelp:
+      "Este coste corresponde al software o uso de ordenador para el examen. El importe varía según el estado y la sesión.",
+    barPrepHelp:
+      "El coste de preparación depende del proveedor y del paquete. Themis y BARBRI son referencias habituales para esta estimación. Algunas law schools pueden ofrecer descuentos o becas, por lo que el coste final puede variar bastante.",
+    barJurisdictionNote:
+      "La elegibilidad de juristas formados fuera de EE. UU. depende del estado, del primer título de derecho, del LL.M. y de las materias cursadas. Verifica siempre las reglas oficiales antes de aplicar.",
     publicTotal: "Presupuesto anual sin convenio",
     partnerTotal: "Presupuesto anual con convenio",
     studentCosts: "Ajusta tu estilo de vida",
@@ -224,6 +257,27 @@ type VisaOption = {
   amountUsd: number
 }
 
+type BarCostItem = {
+  key:
+    | "barExam"
+    | "laptop"
+    | "nyle"
+    | "mpre"
+    | "character"
+    | "prep"
+    | "logistics"
+  label: string
+  amountUsd: number
+  editable?: boolean
+}
+
+type BarJurisdictionOption = {
+  id: string
+  label: string
+  eligibilityNote: string
+  items: BarCostItem[]
+}
+
 function getVisaOptions(language: UiLanguage): VisaOption[] {
   const t = copy[language]
 
@@ -236,14 +290,181 @@ function getVisaOptions(language: UiLanguage): VisaOption[] {
   ]
 }
 
+function getBarJurisdictionOptions(
+  language: UiLanguage,
+): BarJurisdictionOption[] {
+  const t = copy[language]
+  const notes = {
+    fr: {
+      ny: "Voie la plus courante pour les LL.M. : possible si le diplôme étranger et le LL.M. respectent les exigences de la règle 520.6.",
+      ca: "Possible pour certains diplômés étrangers, après évaluation de l'éducation juridique et/ou compléments requis par le State Bar of California.",
+      dc: "Possible notamment avec 26 crédits dans une law school ABA, concentrés sur les matières testées par l'UBE, sous réserve de validation.",
+      wa: "Possible pour certains diplômés étrangers avec LL.M. ABA et conditions APR 3, notamment selon formation et pratique antérieure.",
+      wi: "Possible pour certains diplômés étrangers avec LL.M. ou autre diplôme de droit avancé d'une law school ABA, sous réserve de l'évaluation et des conditions Wisconsin.",
+    },
+    en: {
+      ny: "The most common LL.M. route: possible if the foreign law degree and LL.M. satisfy Rule 520.6 requirements.",
+      ca: "Possible for some foreign-educated applicants, after legal education evaluation and/or required supplemental study.",
+      dc: "Possible with 26 credits at an ABA-approved law school substantially concentrated on UBE-tested subjects, subject to approval.",
+      wa: "Possible for some foreign law graduates with an ABA LL.M. under APR 3, depending on education and prior practice.",
+      wi: "Possible for some foreign law graduates with an LL.M. or other advanced law degree from an ABA-approved law school, subject to Wisconsin review and conditions.",
+    },
+    es: {
+      ny: "La vía más común para LL.M.: posible si el título extranjero y el LL.M. cumplen la regla 520.6.",
+      ca: "Posible para algunos candidatos formados fuera de EE. UU., tras evaluación y/o estudios complementarios exigidos.",
+      dc: "Posible con 26 créditos en una law school ABA concentrados en materias del UBE, sujeto a validación.",
+      wa: "Posible para algunos graduados extranjeros con LL.M. ABA bajo APR 3, según formación y práctica previa.",
+      wi: "Posible para algunos graduados extranjeros con LL.M. u otro título avanzado de una law school ABA, sujeto a revisión y condiciones de Wisconsin.",
+    },
+  }[language]
+
+  return [
+    {
+      id: "ny",
+      label: "New York",
+      eligibilityNote: notes.ny,
+      items: [
+        { key: "barExam", label: t.nyBarExamFee, amountUsd: 750 },
+        { key: "laptop", label: t.nyBarLaptop, amountUsd: 100 },
+        { key: "nyle", label: t.nyleFee, amountUsd: 29 },
+        { key: "mpre", label: t.mpreFee, amountUsd: 185 },
+        {
+          key: "prep",
+          label: `${t.barPrep} - New York`,
+          amountUsd: 3000,
+          editable: true,
+        },
+        {
+          key: "logistics",
+          label: `${t.barExamLogistics} - New York`,
+          amountUsd: 800,
+          editable: true,
+        },
+      ],
+    },
+    {
+      id: "ca",
+      label: "California",
+      eligibilityNote: notes.ca,
+      items: [
+        {
+          key: "barExam",
+          label: "California Bar Exam - application",
+          amountUsd: 878,
+        },
+        {
+          key: "laptop",
+          label: "California Bar Exam - laptop",
+          amountUsd: 153,
+        },
+        {
+          key: "character",
+          label: "California - moral character",
+          amountUsd: 725,
+        },
+        { key: "mpre", label: t.mpreFee, amountUsd: 185 },
+        {
+          key: "prep",
+          label: `${t.barPrep} - California`,
+          amountUsd: 3000,
+          editable: true,
+        },
+        {
+          key: "logistics",
+          label: `${t.barExamLogistics} - California`,
+          amountUsd: 1000,
+          editable: true,
+        },
+      ],
+    },
+    {
+      id: "dc",
+      label: "District of Columbia",
+      eligibilityNote: notes.dc,
+      items: [
+        { key: "barExam", label: "DC Bar Exam - application", amountUsd: 405 },
+        {
+          key: "laptop",
+          label: "DC Bar Exam - laptop/software",
+          amountUsd: 150,
+        },
+        {
+          key: "character",
+          label: "DC - NCBE investigation estimate",
+          amountUsd: 500,
+          editable: true,
+        },
+        { key: "mpre", label: t.mpreFee, amountUsd: 185 },
+        {
+          key: "prep",
+          label: `${t.barPrep} - DC`,
+          amountUsd: 3000,
+          editable: true,
+        },
+        {
+          key: "logistics",
+          label: `${t.barExamLogistics} - DC`,
+          amountUsd: 800,
+          editable: true,
+        },
+      ],
+    },
+    {
+      id: "wa",
+      label: "Washington State",
+      eligibilityNote: notes.wa,
+      items: [
+        {
+          key: "barExam",
+          label: "Washington Bar Exam - application/exam",
+          amountUsd: 740,
+        },
+        { key: "mpre", label: t.mpreFee, amountUsd: 185 },
+        {
+          key: "prep",
+          label: `${t.barPrep} - Washington`,
+          amountUsd: 3000,
+          editable: true,
+        },
+        {
+          key: "logistics",
+          label: `${t.barExamLogistics} - Washington`,
+          amountUsd: 1200,
+          editable: true,
+        },
+      ],
+    },
+    {
+      id: "wi",
+      label: "Wisconsin",
+      eligibilityNote: notes.wi,
+      items: [
+        {
+          key: "barExam",
+          label: "Wisconsin Bar Exam - application/exam",
+          amountUsd: 450,
+        },
+        { key: "laptop", label: "Wisconsin Bar Exam - laptop", amountUsd: 163 },
+        { key: "mpre", label: t.mpreFee, amountUsd: 185 },
+        {
+          key: "prep",
+          label: `${t.barPrep} - Wisconsin`,
+          amountUsd: 3000,
+          editable: true,
+        },
+        {
+          key: "logistics",
+          label: `${t.barExamLogistics} - Wisconsin`,
+          amountUsd: 900,
+          editable: true,
+        },
+      ],
+    },
+  ]
+}
+
 const DEFAULT_HEALTH_INSURANCE_USD = 2800
 const DEFAULT_FLIGHTS_USD = 1200
-const NY_BAR_FOREIGN_APPLICANT_FEE_USD = 750
-const NY_BAR_LAPTOP_FEE_USD = 100
-const NYLE_FEE_USD = 29
-const MPRE_FEE_USD = 185
-const DEFAULT_BAR_PREP_USD = 3000
-const DEFAULT_BAR_EXAM_LOGISTICS_USD = 800
 
 function isInsuranceComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
@@ -277,6 +498,7 @@ function isBarPrepComponent(label: string) {
 function getSupplementalCostComponents(
   components: CostComponent[],
   language: UiLanguage,
+  barJurisdiction: BarJurisdictionOption,
 ): CostComponent[] {
   const t = copy[language]
   const supplemental: CostComponent[] = []
@@ -297,38 +519,13 @@ function getSupplementalCostComponents(
     })
   }
 
-  supplemental.push(
-    {
-      label: t.nyBarExamFee,
-      amountUsd: NY_BAR_FOREIGN_APPLICANT_FEE_USD,
+  for (const item of barJurisdiction.items) {
+    supplemental.push({
+      label: item.label,
+      amountUsd: item.amountUsd,
       kind: "other",
-    },
-    {
-      label: t.nyBarLaptop,
-      amountUsd: NY_BAR_LAPTOP_FEE_USD,
-      kind: "other",
-    },
-    {
-      label: t.nyleFee,
-      amountUsd: NYLE_FEE_USD,
-      kind: "other",
-    },
-    {
-      label: t.mpreFee,
-      amountUsd: MPRE_FEE_USD,
-      kind: "other",
-    },
-    {
-      label: t.barPrep,
-      amountUsd: DEFAULT_BAR_PREP_USD,
-      kind: "other",
-    },
-    {
-      label: t.barExamLogistics,
-      amountUsd: DEFAULT_BAR_EXAM_LOGISTICS_USD,
-      kind: "other",
-    },
-  )
+    })
+  }
 
   return supplemental
 }
@@ -357,6 +554,25 @@ function BooksHelpTooltip({ text }: { text: string }) {
       </span>
     </span>
   )
+}
+
+function getCostHelpText(label: string, language: UiLanguage) {
+  const t = copy[language]
+  const normalized = cleanText(label).toLowerCase()
+
+  if (normalized.includes("nyle")) return t.nyleHelp
+  if (normalized.includes("mpre")) return t.mpreHelp
+  if (
+    normalized.includes("ordinateur") ||
+    normalized.includes("laptop") ||
+    normalized.includes("software") ||
+    normalized.includes("ordenador")
+  )
+    return t.laptopHelp
+  if (isBarPrepComponent(label)) return t.barPrepHelp
+  if (isBooksComponent(label)) return t.booksHelp
+
+  return undefined
 }
 
 function isTuitionComponent(component: CostComponent) {
@@ -522,8 +738,14 @@ export function CostSimulator({
   const meta = React.useMemo(() => getCostEstimatesMeta(), [])
   const allEstimates = React.useMemo(() => getAllCostEstimates(), [])
   const cities = React.useMemo(() => getDisplayCities(), [])
+  const barJurisdictionOptions = React.useMemo(
+    () => getBarJurisdictionOptions(language),
+    [language],
+  )
 
   const [selectedCity, setSelectedCity] = React.useState(cities[0] ?? "")
+  const [selectedBarJurisdictionId, setSelectedBarJurisdictionId] =
+    React.useState("ny")
   const cityEstimates = React.useMemo(
     () => getEstimatesForDisplayCity(selectedCity),
     [selectedCity],
@@ -542,6 +764,10 @@ export function CostSimulator({
     cityEstimates.find((estimate) => estimate.id === selectedEstimateId) ||
     cityEstimates[0] ||
     allEstimates[0]
+  const selectedBarJurisdiction =
+    barJurisdictionOptions.find(
+      (option) => option.id === selectedBarJurisdictionId,
+    ) || barJurisdictionOptions[0]
   const estimateComponents = React.useMemo(
     () =>
       selectedEstimate
@@ -550,10 +776,11 @@ export function CostSimulator({
             ...getSupplementalCostComponents(
               selectedEstimate.components,
               language,
+              selectedBarJurisdiction,
             ),
           ]
         : [],
-    [selectedEstimate, language],
+    [selectedEstimate, language, selectedBarJurisdiction],
   )
 
   const partnershipsInCity = React.useMemo(
@@ -793,6 +1020,34 @@ export function CostSimulator({
                     {t.visaNote}
                   </p>
                 </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-muted-foreground">
+                    {t.barJurisdiction}
+                  </label>
+                  <Select
+                    value={selectedBarJurisdiction.id}
+                    onValueChange={setSelectedBarJurisdictionId}
+                  >
+                    <SelectTrigger
+                      className="h-11"
+                      aria-label={t.barJurisdiction}
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {barJurisdictionOptions.map((option) => (
+                        <SelectItem key={option.id} value={option.id}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <p className="text-xs leading-5 text-muted-foreground">
+                    {selectedBarJurisdiction.eligibilityNote}{" "}
+                    {t.barJurisdictionNote}
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -868,6 +1123,10 @@ export function CostSimulator({
                         customCosts[component.label] ?? component.amountUsd
                       const min = sliderMin(component.amountUsd)
                       const max = sliderMax(component.amountUsd)
+                      const helpText = getCostHelpText(
+                        component.label,
+                        language,
+                      )
                       return (
                         <label
                           key={component.label}
@@ -875,8 +1134,11 @@ export function CostSimulator({
                         >
                           <div className="mb-3 flex items-start justify-between gap-3">
                             <div>
-                              <div className="text-sm font-medium">
-                                {cleanText(component.label)}
+                              <div className="flex items-center gap-2 text-sm font-medium">
+                                <span>{cleanText(component.label)}</span>
+                                {helpText ? (
+                                  <BooksHelpTooltip text={helpText} />
+                                ) : null}
                               </div>
                               <div className="mt-1 text-xs text-muted-foreground">
                                 {t.reference} : {formatUsd(component.amountUsd)}
@@ -944,6 +1206,10 @@ export function CostSimulator({
                       const amount = editable
                         ? (customCosts[component.label] ?? component.amountUsd)
                         : component.amountUsd
+                      const helpText = getCostHelpText(
+                        component.label,
+                        language,
+                      )
                       return (
                         <div
                           key={`${selectedEstimate.id}-${component.label}`}
@@ -951,8 +1217,8 @@ export function CostSimulator({
                         >
                           <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
                             <span>{cleanText(component.label)}</span>
-                            {isBooksComponent(component.label) ? (
-                              <BooksHelpTooltip text={t.booksHelp} />
+                            {helpText ? (
+                              <BooksHelpTooltip text={helpText} />
                             ) : editable ? (
                               <Badge
                                 variant="outline"
