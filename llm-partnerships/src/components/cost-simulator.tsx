@@ -28,7 +28,6 @@ import {
   formatUsd,
   getAllCostEstimates,
   getCostEstimatesMeta,
-  getEstimateSummary,
   getEstimatesForDisplayCity,
   getPartnershipsInEstimateCity,
   getDisplayCities,
@@ -40,7 +39,7 @@ const copy = {
     badge: "Simulateur étudiant",
     title: "Budget annuel LL.M. : public vs partenariat",
     intro:
-      "Les frais d'inscription peuvent être le premier poste d'un LL.M. aux États-Unis, mais ils ne sont jamais seuls : visa, livres, logement, repas, transport et assurance peuvent aussi peser lourd. Compare le prix public, le prix avec partenariat, puis ajuste les dépenses qui dépendent de toi.",
+      "Les frais d'inscription peuvent être le premier poste d'un LL.M. aux États-Unis, mais ils ne sont jamais seuls : visa, livres, logement, repas, transport, assurance et billets d'avion peuvent aussi peser lourd. Compare le prix public, le prix avec partenariat, puis ajuste les dépenses qui dépendent de toi.",
     city: "1. Ville",
     school: "École de référence",
     partnership: "2. Partenariat",
@@ -54,11 +53,13 @@ const copy = {
     fixedCosts: "Frais fixes annuels",
     visaCosts: "Frais visa estimés",
     livingCosts: "Dépenses de vie ajustables",
+    healthInsurance: "Assurance santé",
+    flights: "Billets d'avion France - États-Unis",
     publicTotal: "Budget annuel sans partenariat",
     partnerTotal: "Budget annuel avec partenariat",
     studentCosts: "Ajuste ton mode de vie",
     studentCostsHelp:
-      "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance ou dépenses personnelles.",
+      "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance, billets d'avion ou dépenses personnelles.",
     lean: "sobre",
     reference: "référence",
     comfortable: "confort",
@@ -90,7 +91,7 @@ const copy = {
     badge: "Student simulator",
     title: "Annual LL.M. budget: public vs partnership",
     intro:
-      "Tuition can be the largest line item for a U.S. LL.M., but it is not the only one: visa, books, housing, meals, transport, and insurance can also be significant. Compare the public price, the partnership price, then adjust the costs driven by your own choices.",
+      "Tuition can be the largest line item for a U.S. LL.M., but it is not the only one: visa, books, housing, meals, transport, insurance, and flights can also be significant. Compare the public price, the partnership price, then adjust the costs driven by your own choices.",
     city: "1. City",
     school: "Reference school",
     partnership: "2. Partnership",
@@ -104,11 +105,13 @@ const copy = {
     fixedCosts: "Annual fixed costs",
     visaCosts: "Estimated visa fees",
     livingCosts: "Editable living costs",
+    healthInsurance: "Health insurance",
+    flights: "France - U.S. flights",
     publicTotal: "Annual budget without partnership",
     partnerTotal: "Annual budget with partnership",
     studentCosts: "Adjust your lifestyle",
     studentCostsHelp:
-      "These sliders only change costs driven by your housing, meals, transport, insurance, or personal spending choices.",
+      "These sliders only change costs driven by your housing, meals, transport, insurance, flights, or personal spending choices.",
     lean: "lean",
     reference: "reference",
     comfortable: "comfortable",
@@ -140,7 +143,7 @@ const copy = {
     badge: "Simulador estudiante",
     title: "Presupuesto anual LL.M.: público vs convenio",
     intro:
-      "La matrícula puede ser el mayor coste de un LL.M. en Estados Unidos, pero no es el único: visa, libros, vivienda, comidas, transporte y seguro también pueden ser elevados. Compara el precio público, el precio con convenio y ajusta los gastos que dependen de ti.",
+      "La matrícula puede ser el mayor coste de un LL.M. en Estados Unidos, pero no es el único: visa, libros, vivienda, comidas, transporte, seguro y vuelos también pueden ser elevados. Compara el precio público, el precio con convenio y ajusta los gastos que dependen de ti.",
     city: "1. Ciudad",
     school: "Escuela de referencia",
     partnership: "2. Convenio",
@@ -154,11 +157,13 @@ const copy = {
     fixedCosts: "Costes fijos anuales",
     visaCosts: "Costes estimados de visa",
     livingCosts: "Gastos de vida ajustables",
+    healthInsurance: "Seguro de salud",
+    flights: "Vuelos Francia - Estados Unidos",
     publicTotal: "Presupuesto anual sin convenio",
     partnerTotal: "Presupuesto anual con convenio",
     studentCosts: "Ajusta tu estilo de vida",
     studentCostsHelp:
-      "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro o gastos personales.",
+      "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro, vuelos o gastos personales.",
     lean: "sobrio",
     reference: "referencia",
     comfortable: "cómodo",
@@ -213,6 +218,54 @@ function getVisaOptions(language: UiLanguage): VisaOption[] {
   ]
 }
 
+const DEFAULT_HEALTH_INSURANCE_USD = 2800
+const DEFAULT_FLIGHTS_USD = 1200
+
+function isInsuranceComponent(label: string) {
+  const normalized = cleanText(label).toLowerCase()
+  return (
+    normalized.includes("assurance") ||
+    normalized.includes("insurance") ||
+    normalized.includes("seguro")
+  )
+}
+
+function isFlightsComponent(label: string) {
+  const normalized = cleanText(label).toLowerCase()
+  return (
+    normalized.includes("billet") ||
+    normalized.includes("avion") ||
+    normalized.includes("flight") ||
+    normalized.includes("vuelos")
+  )
+}
+
+function getSupplementalCostComponents(
+  components: CostComponent[],
+  language: UiLanguage,
+): CostComponent[] {
+  const t = copy[language]
+  const supplemental: CostComponent[] = []
+
+  if (!components.some((component) => isInsuranceComponent(component.label))) {
+    supplemental.push({
+      label: t.healthInsurance,
+      amountUsd: DEFAULT_HEALTH_INSURANCE_USD,
+      kind: "other",
+    })
+  }
+
+  if (!components.some((component) => isFlightsComponent(component.label))) {
+    supplemental.push({
+      label: t.flights,
+      amountUsd: DEFAULT_FLIGHTS_USD,
+      kind: "other",
+    })
+  }
+
+  return supplemental
+}
+
 function isBooksComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
   return normalized.includes("livres") || normalized.includes("books")
@@ -260,7 +313,8 @@ function isEditableLivingComponent(component: CostComponent) {
     label.includes("nourriture") ||
     label.includes("repas") ||
     label.includes("transport") ||
-    label.includes("assurance") ||
+    isInsuranceComponent(label) ||
+    isFlightsComponent(label) ||
     label.includes("personal") ||
     label.includes("personnelles") ||
     label.includes("housing") ||
@@ -420,6 +474,19 @@ export function CostSimulator({
     cityEstimates.find((estimate) => estimate.id === selectedEstimateId) ||
     cityEstimates[0] ||
     allEstimates[0]
+  const estimateComponents = React.useMemo(
+    () =>
+      selectedEstimate
+        ? [
+            ...selectedEstimate.components,
+            ...getSupplementalCostComponents(
+              selectedEstimate.components,
+              language,
+            ),
+          ]
+        : [],
+    [selectedEstimate, language],
+  )
 
   const partnershipsInCity = React.useMemo(
     () =>
@@ -449,10 +516,9 @@ export function CostSimulator({
     (partnership) => partnership.id === selectedPartnershipId,
   )
 
-  const summary = selectedEstimate
-    ? getEstimateSummary(selectedEstimate)
-    : { tuitionUsd: 0, otherCostsUsd: 0, totalUsd: 0 }
-  const normalTuition = summary.tuitionUsd
+  const normalTuition = estimateComponents
+    .filter(isTuitionComponent)
+    .reduce((total, component) => total + component.amountUsd, 0)
   const offerOptions = React.useMemo(
     () => inferOfferOptions(selectedPartnership, normalTuition, language),
     [selectedPartnership, normalTuition, language],
@@ -472,16 +538,16 @@ export function CostSimulator({
 
   const fixedComponents = React.useMemo(
     () =>
-      selectedEstimate?.components.filter(
+      estimateComponents.filter(
         (component) =>
           !isTuitionComponent(component) &&
           !isEditableLivingComponent(component),
-      ) ?? [],
-    [selectedEstimate],
+      ),
+    [estimateComponents],
   )
   const editableComponents = React.useMemo(
-    () => selectedEstimate?.components.filter(isEditableLivingComponent) ?? [],
-    [selectedEstimate],
+    () => estimateComponents.filter(isEditableLivingComponent),
+    [estimateComponents],
   )
 
   React.useEffect(() => {
@@ -805,7 +871,7 @@ export function CostSimulator({
                     {t.fixedHint}
                   </p>
                   <div className="mt-4 grid gap-2 sm:grid-cols-2 sm:gap-3">
-                    {selectedEstimate.components.map((component) => {
+                    {estimateComponents.map((component) => {
                       const editable = isEditableLivingComponent(component)
                       const amount = editable
                         ? (customCosts[component.label] ?? component.amountUsd)
