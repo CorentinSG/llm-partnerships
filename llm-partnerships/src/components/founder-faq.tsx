@@ -134,7 +134,8 @@ export function FounderFaq() {
 
   return (
     <section
-      className="relative mt-12 overflow-hidden rounded-[28px] border bg-card/72 px-4 py-8 shadow-[0_28px_90px_-62px_hsl(var(--primary)/0.72)] sm:px-6 lg:px-8"
+      id="faq"
+      className="relative mt-12 scroll-mt-24 overflow-hidden rounded-[28px] border bg-card/72 px-4 py-8 shadow-[0_28px_90px_-62px_hsl(var(--primary)/0.72)] sm:px-6 lg:px-8"
       aria-label="FAQ sur le parcours LL.M et New York Bar"
     >
       <div className="relative space-y-6">

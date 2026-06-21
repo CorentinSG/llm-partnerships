@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, Filter, Search } from "lucide-react"
+import { ArrowRight, Filter, HelpCircle, Search } from "lucide-react"
 
 import { CostSimulator } from "@/components/cost-simulator"
 import { FiltersPanel } from "@/components/filters/filters-panel"
@@ -44,6 +44,7 @@ const pageCopy = {
       "Les frais de scolarité sont souvent le premier coût d’un LL.M américain. Ce site recense les partenariats entre universités françaises et law schools américaines permettant d’obtenir des frais réduits, des bourses ou parfois une exonération totale.",
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
+    faqCta: "Voir la FAQ",
     searchTitle: "Recherche globale",
     searchHint:
       "Cherche une ville, une école ou un test, puis affine avec les filtres.",
@@ -80,6 +81,7 @@ const pageCopy = {
       "Tuition is often the main cost of a U.S. LL.M. This site tracks partnerships between French universities and U.S. law schools offering reduced tuition, scholarships, or sometimes full waivers.",
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
+    faqCta: "Open FAQ",
     searchTitle: "Global search",
     searchHint: "Search by city, school, or test, then refine with filters.",
     searchPlaceholder: "University, country, test, program...",
@@ -114,6 +116,7 @@ const pageCopy = {
       "La matrícula suele ser el primer gran coste de un LL.M estadounidense. Este sitio recopila convenios entre universidades francesas y law schools estadounidenses con reducciones, becas o incluso exenciones totales.",
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
+    faqCta: "Ver FAQ",
     searchTitle: "Búsqueda global",
     searchHint: "Busca por ciudad, escuela o examen, y afina con filtros.",
     searchPlaceholder: "Universidad, país, examen, programa...",
@@ -240,6 +243,16 @@ export function HomePage() {
               className="h-12 rounded-xl sm:h-11"
             >
               <a href="#cost-estimator">{t.costCta}</a>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              className="h-12 rounded-xl border bg-background/55 sm:h-11"
+            >
+              <a href="/guide#faq">
+                <HelpCircle className="mr-2 h-4 w-4" aria-hidden="true" />
+                {t.faqCta}
+              </a>
             </Button>
           </div>
         </div>
