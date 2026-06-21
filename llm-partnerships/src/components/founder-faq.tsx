@@ -143,18 +143,18 @@ export function FounderFaq() {
         aria-hidden="true"
       >
         <div className="absolute inset-0 bg-[radial-gradient(620px_360px_at_82%_4%,hsl(var(--accent)/0.18),transparent_64%),linear-gradient(135deg,hsl(var(--card)/0.97),hsl(var(--secondary)/0.78))]" />
-        <div className="absolute -right-16 -top-12 h-[460px] w-[118%] opacity-80 [mask-image:radial-gradient(ellipse_at_68%_22%,black_0%,black_38%,transparent_72%)] sm:-right-4 sm:h-[520px] sm:w-[min(58vw,600px)] sm:min-w-[380px] sm:opacity-55 sm:[mask-image:radial-gradient(ellipse_at_center,black_0%,black_44%,transparent_74%)] lg:-right-2">
+        <div className="absolute -right-16 -top-12 h-[460px] w-[118%] opacity-80 [mask-image:radial-gradient(ellipse_at_68%_22%,black_0%,black_38%,transparent_72%)] sm:-right-20 sm:-top-28 sm:h-[720px] sm:w-[min(70vw,820px)] sm:min-w-[560px] sm:opacity-95 sm:[mask-image:radial-gradient(ellipse_at_72%_38%,black_0%,black_62%,transparent_86%)] lg:-right-24">
           <Image
             src="/images/corentin-faq-background.webp"
             alt=""
             fill
             sizes="(min-width: 1024px) 600px, 118vw"
-            className="object-cover object-[58%_4%] opacity-[0.34] grayscale contrast-125 saturate-50 dark:opacity-[0.48] sm:opacity-[0.26] sm:dark:opacity-[0.36]"
+            className="object-cover object-[58%_22%] opacity-[0.34] grayscale contrast-125 saturate-50 dark:opacity-[0.48] sm:object-contain sm:object-right-top sm:opacity-[0.68] sm:contrast-150 sm:dark:opacity-[0.76]"
             priority={false}
           />
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(var(--card)/0.62)_0%,hsl(var(--card)/0.88)_38%,hsl(var(--card)/0.98)_72%)] sm:bg-[linear-gradient(90deg,hsl(var(--card)/0.98)_0%,hsl(var(--card)/0.91)_42%,hsl(var(--card)/0.62)_100%)] dark:bg-[linear-gradient(180deg,hsl(var(--card)/0.46)_0%,hsl(var(--card)/0.78)_38%,hsl(var(--card)/0.96)_72%)] sm:dark:bg-[linear-gradient(90deg,hsl(var(--card)/0.96)_0%,hsl(var(--card)/0.84)_46%,hsl(var(--card)/0.34)_100%)]" />
-        <div className="absolute inset-y-0 right-0 w-full bg-[radial-gradient(420px_420px_at_78%_4%,transparent_0%,hsl(var(--card)/0.08)_42%,hsl(var(--card)/0.78)_100%)] sm:w-[58%] sm:bg-[radial-gradient(440px_540px_at_70%_34%,transparent_0%,hsl(var(--card)/0.28)_58%,hsl(var(--card)/0.82)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,hsl(var(--card)/0.62)_0%,hsl(var(--card)/0.88)_38%,hsl(var(--card)/0.98)_72%)] sm:bg-[linear-gradient(90deg,hsl(var(--card)/0.98)_0%,hsl(var(--card)/0.82)_36%,hsl(var(--card)/0.22)_100%)] dark:bg-[linear-gradient(180deg,hsl(var(--card)/0.46)_0%,hsl(var(--card)/0.78)_38%,hsl(var(--card)/0.96)_72%)] sm:dark:bg-[linear-gradient(90deg,hsl(var(--card)/0.96)_0%,hsl(var(--card)/0.72)_40%,hsl(var(--card)/0.08)_100%)]" />
+        <div className="absolute inset-y-0 right-0 w-full bg-[radial-gradient(420px_420px_at_78%_4%,transparent_0%,hsl(var(--card)/0.08)_42%,hsl(var(--card)/0.78)_100%)] sm:w-[66%] sm:bg-[radial-gradient(540px_640px_at_68%_26%,transparent_0%,hsl(var(--card)/0.08)_48%,hsl(var(--card)/0.48)_100%)]" />
       </div>
 
       <div className="relative space-y-6">
