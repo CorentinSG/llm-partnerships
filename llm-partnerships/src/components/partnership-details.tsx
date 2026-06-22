@@ -6,7 +6,7 @@ import {
   GraduationCap,
   Languages,
   MapPin,
-  Users
+  Users,
 } from "lucide-react"
 import type { ReactNode } from "react"
 
@@ -16,11 +16,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
-import {
-  formatUsd,
-  getCostEstimateForPartnership,
-  getEstimateSummary
-} from "@/lib/us-cost-estimates"
 
 function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
@@ -31,13 +26,16 @@ function Field({ label, value }: { label: string; value: ReactNode }) {
   )
 }
 
-export function PartnershipDetails({ partnership }: { partnership: Partnership }) {
-  const costEstimate = getCostEstimateForPartnership(partnership)
-  const costSummary = costEstimate ? getEstimateSummary(costEstimate) : null
+export function PartnershipDetails({
+  partnership,
+}: {
+  partnership: Partnership
+}) {
   const isStudentShared = (partnership.sourceType || "").includes(
-    "student_shared_unofficial_document"
+    "student_shared_unofficial_document",
   )
-  const isNanterre = partnership.frenchUniversity === "Université Paris Nanterre"
+  const isNanterre =
+    partnership.frenchUniversity === "Université Paris Nanterre"
   const studentWarning = isNanterre
     ? "Les informations relatives aux partenariats de l’Université Paris Nanterre sont issues d’un document étudiant non officiel et peuvent varier selon les promotions. Les universités partenaires, le nombre de places, les bourses et les modalités doivent être confirmés auprès du master ou de l’université."
     : `Les informations relatives à ${partnership.frenchUniversity} proviennent d’un retour étudiant non officiel et doivent être confirmées auprès de l’université ou du programme avant d’être tenues pour définitives.`
@@ -49,7 +47,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               ? "Non communiqué"
               : t.details
                 ? `${t.test} (${t.minimumScore}) — ${t.details}`
-                : `${t.test} (${t.minimumScore})`
+                : `${t.test} (${t.minimumScore})`,
           )
           .join(" • ")
       : "Non communiqué"
@@ -110,7 +108,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             />
             <Field label="Durée" value={partnership.duration} />
             <Field label="Langue" value={partnership.programLanguage} />
-            <Field label="Niveau requis" value={String(partnership.requiredLevel)} />
+            <Field
+              label="Niveau requis"
+              value={String(partnership.requiredLevel)}
+            />
           </div>
 
           <Separator />
@@ -125,7 +126,9 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           {partnership.sourceNote ? (
             <div className="space-y-2">
               <div className="text-sm font-medium">Source (note)</div>
-              <p className="text-sm text-muted-foreground">{partnership.sourceNote}</p>
+              <p className="text-sm text-muted-foreground">
+                {partnership.sourceNote}
+              </p>
             </div>
           ) : null}
 
@@ -160,21 +163,41 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                       Candidats internes
                     </div>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      {partnership.admissionSelection.internalCandidates.program ? (
-                        <div>{partnership.admissionSelection.internalCandidates.program}</div>
-                      ) : null}
-                      {partnership.admissionSelection.internalCandidates.oneSemesterNYRequirement ? (
+                      {partnership.admissionSelection.internalCandidates
+                        .program ? (
                         <div>
-                          {partnership.admissionSelection.internalCandidates.oneSemesterNYRequirement}
+                          {
+                            partnership.admissionSelection.internalCandidates
+                              .program
+                          }
                         </div>
                       ) : null}
-                      {partnership.admissionSelection.internalCandidates.nyBarTrackRequirement ? (
+                      {partnership.admissionSelection.internalCandidates
+                        .oneSemesterNYRequirement ? (
                         <div>
-                          {partnership.admissionSelection.internalCandidates.nyBarTrackRequirement}
+                          {
+                            partnership.admissionSelection.internalCandidates
+                              .oneSemesterNYRequirement
+                          }
                         </div>
                       ) : null}
-                      {partnership.admissionSelection.internalCandidates.note ? (
-                        <div>{partnership.admissionSelection.internalCandidates.note}</div>
+                      {partnership.admissionSelection.internalCandidates
+                        .nyBarTrackRequirement ? (
+                        <div>
+                          {
+                            partnership.admissionSelection.internalCandidates
+                              .nyBarTrackRequirement
+                          }
+                        </div>
+                      ) : null}
+                      {partnership.admissionSelection.internalCandidates
+                        .note ? (
+                        <div>
+                          {
+                            partnership.admissionSelection.internalCandidates
+                              .note
+                          }
+                        </div>
                       ) : null}
                     </div>
                   </div>
@@ -186,19 +209,32 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                       Candidats externes
                     </div>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      {typeof partnership.admissionSelection.externalCandidates.accepted ===
-                      "boolean" ? (
+                      {typeof partnership.admissionSelection.externalCandidates
+                        .accepted === "boolean" ? (
                         <div>
-                          {partnership.admissionSelection.externalCandidates.accepted
+                          {partnership.admissionSelection.externalCandidates
+                            .accepted
                             ? "Candidatures extérieures acceptées"
                             : "Candidatures extérieures non acceptées"}
                         </div>
                       ) : null}
-                      {partnership.admissionSelection.externalCandidates.selectionMethod ? (
-                        <div>{partnership.admissionSelection.externalCandidates.selectionMethod}</div>
+                      {partnership.admissionSelection.externalCandidates
+                        .selectionMethod ? (
+                        <div>
+                          {
+                            partnership.admissionSelection.externalCandidates
+                              .selectionMethod
+                          }
+                        </div>
                       ) : null}
-                      {partnership.admissionSelection.externalCandidates.requirements ? (
-                        <div>{partnership.admissionSelection.externalCandidates.requirements}</div>
+                      {partnership.admissionSelection.externalCandidates
+                        .requirements ? (
+                        <div>
+                          {
+                            partnership.admissionSelection.externalCandidates
+                              .requirements
+                          }
+                        </div>
                       ) : null}
                     </div>
                   </div>
@@ -214,14 +250,20 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             </p>
           </div>
 
-          
-          {partnership.degreesAwarded && partnership.degreesAwarded.length > 0 ? (
+          {partnership.degreesAwarded &&
+          partnership.degreesAwarded.length > 0 ? (
             <div className="space-y-2">
               <div className="text-sm font-medium">Diplômes délivrés</div>
               <div className="space-y-2">
                 {partnership.degreesAwarded.map((d) => (
-                  <div key={d} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <BadgeCheck className="mt-0.5 h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                  <div
+                    key={d}
+                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                  >
+                    <BadgeCheck
+                      className="mt-0.5 h-4 w-4 text-muted-foreground"
+                      aria-hidden="true"
+                    />
                     <span>{d}</span>
                   </div>
                 ))}
@@ -233,20 +275,29 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             <div className="space-y-2">
               <div className="text-sm font-medium">Option New York Bar</div>
               {partnership.nyBarOption.description ? (
-                <p className="text-sm text-muted-foreground">{partnership.nyBarOption.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {partnership.nyBarOption.description}
+                </p>
               ) : null}
               <div className="grid gap-4 sm:grid-cols-2">
                 {partnership.nyBarOption.additionalRequirements ? (
-                  <Field label="Conditions" value={partnership.nyBarOption.additionalRequirements} />
+                  <Field
+                    label="Conditions"
+                    value={partnership.nyBarOption.additionalRequirements}
+                  />
                 ) : null}
                 {partnership.nyBarOption.additionalTuition ? (
-                  <Field label="Frais supplémentaires" value={partnership.nyBarOption.additionalTuition} />
+                  <Field
+                    label="Frais supplémentaires"
+                    value={partnership.nyBarOption.additionalTuition}
+                  />
                 ) : null}
               </div>
             </div>
           ) : null}
 
-          {partnership.applicationDocuments && partnership.applicationDocuments.length > 0 ? (
+          {partnership.applicationDocuments &&
+          partnership.applicationDocuments.length > 0 ? (
             <div className="space-y-2">
               <div className="text-sm font-medium">Pièces à fournir</div>
               <div className="flex flex-wrap gap-2">
@@ -260,12 +311,16 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                 ))}
               </div>
             </div>
-          ) : null}<div className="grid gap-4 sm:grid-cols-2">
+          ) : null}
+          <div className="grid gap-4 sm:grid-cols-2">
             <Field
               label="Tests de langue"
               value={
                 <div className="flex items-center gap-2">
-                  <Languages className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                  <Languages
+                    className="h-4 w-4 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <span className="text-sm">{tests}</span>
                 </div>
               }
@@ -274,7 +329,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               label="Places"
               value={
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+                  <Users
+                    className="h-4 w-4 text-muted-foreground"
+                    aria-hidden="true"
+                  />
                   <span>
                     {partnership.availableSeatsDisplay
                       ? partnership.availableSeatsDisplay
@@ -291,7 +349,9 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               value={
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
-                    <TuitionBadges tuitionCategory={partnership.tuitionCategory} />
+                    <TuitionBadges
+                      tuitionCategory={partnership.tuitionCategory}
+                    />
                   </div>
                   <div className="text-sm text-muted-foreground">
                     {partnership.tuitionDisplay || partnership.tuition}
@@ -303,12 +363,21 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Année de candidature" value={partnership.applicationYear} />
-            <Field label="Date limite" value={partnership.applicationDeadline} />
+            <Field
+              label="Année de candidature"
+              value={partnership.applicationYear}
+            />
+            <Field
+              label="Date limite"
+              value={partnership.applicationDeadline}
+            />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Remarques" value={partnership.notes || "Non communiqué"} />
+            <Field
+              label="Remarques"
+              value={partnership.notes || "Non communiqué"}
+            />
             <Field
               label="Source officielle"
               value={
@@ -334,7 +403,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
               <div className="text-sm font-medium">Documents (PDF)</div>
               <div className="space-y-2">
                 {partnership.attachments.map((a) => (
-                  <div key={`${a.url}-${a.label}`} className="flex flex-col gap-1">
+                  <div
+                    key={`${a.url}-${a.label}`}
+                    className="flex flex-col gap-1"
+                  >
                     <a
                       href={a.url}
                       target="_blank"
@@ -345,7 +417,9 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
                       {a.label}
                     </a>
                     {a.note ? (
-                      <div className="text-xs text-muted-foreground">{a.note}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {a.note}
+                      </div>
                     ) : null}
                   </div>
                 ))}
@@ -353,7 +427,8 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             </div>
           ) : null}
 
-          {partnership.missingInformation && partnership.missingInformation.length > 0 ? (
+          {partnership.missingInformation &&
+          partnership.missingInformation.length > 0 ? (
             <div className="space-y-2">
               <div className="text-sm font-medium">Champs à compléter</div>
               <div className="flex flex-wrap gap-2">
@@ -375,7 +450,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
         <Card>
           <CardContent className="p-6 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
-              <MapPin className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+              <MapPin
+                className="h-4 w-4 text-muted-foreground"
+                aria-hidden="true"
+              />
               Localisation (France)
             </div>
             <div className="text-sm text-muted-foreground">
@@ -387,7 +465,10 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
         <Card>
           <CardContent className="p-6 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium">
-              <GraduationCap className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
+              <GraduationCap
+                className="h-4 w-4 text-muted-foreground"
+                aria-hidden="true"
+              />
               Spécialités
             </div>
             <div className="text-sm text-muted-foreground">
@@ -395,45 +476,7 @@ export function PartnershipDetails({ partnership }: { partnership: Partnership }
             </div>
           </CardContent>
         </Card>
-
-        {costEstimate && costSummary ? (
-          <Card>
-            <CardContent className="space-y-4 p-6">
-              <div className="text-sm font-medium">Estimation de coût total</div>
-              <div className="text-sm text-muted-foreground">
-                Référence utilisée : {costEstimate.referenceSchool} à{" "}
-                {costEstimate.displayCity}.
-              </div>
-              <div className="grid gap-3">
-                <div className="rounded-2xl border bg-muted/20 p-3">
-                  <div className="text-xs text-muted-foreground">Tuition estimée</div>
-                  <div className="mt-1 text-lg font-semibold">
-                    {formatUsd(costSummary.tuitionUsd)}
-                  </div>
-                </div>
-                <div className="rounded-2xl border bg-muted/20 p-3">
-                  <div className="text-xs text-muted-foreground">Autres coûts estimés</div>
-                  <div className="mt-1 text-lg font-semibold">
-                    {formatUsd(costSummary.otherCostsUsd)}
-                  </div>
-                </div>
-                <div className="rounded-2xl border bg-muted/20 p-3">
-                  <div className="text-xs text-muted-foreground">Total estimatif</div>
-                  <div className="mt-1 text-lg font-semibold">
-                    {formatUsd(costSummary.totalUsd)}
-                  </div>
-                </div>
-              </div>
-              <div className="text-xs leading-6 text-muted-foreground">
-                Estimation indicative uniquement. Le coût réel dépend de l’école,
-                de l’année, du logement, de l’assurance et du mode de vie.
-              </div>
-            </CardContent>
-          </Card>
-        ) : null}
       </div>
     </div>
   )
 }
-
-
