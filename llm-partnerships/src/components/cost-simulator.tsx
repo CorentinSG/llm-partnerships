@@ -22,6 +22,11 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import type { Partnership } from "@/lib/types"
 import { cleanText, type UiLanguage } from "@/lib/text-utils"
 import {
@@ -259,13 +264,7 @@ type VisaOption = {
 
 type BarCostItem = {
   key:
-    | "barExam"
-    | "laptop"
-    | "nyle"
-    | "mpre"
-    | "character"
-    | "prep"
-    | "logistics"
+    "barExam" | "laptop" | "nyle" | "mpre" | "character" | "prep" | "logistics"
   label: string
   amountUsd: number
   editable?: boolean
@@ -537,22 +536,27 @@ function isBooksComponent(label: string) {
 
 function BooksHelpTooltip({ text }: { text: string }) {
   return (
-    <span className="group/tooltip relative z-10 inline-flex hover:z-50 focus-within:z-50">
-      <button
-        type="button"
-        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-background text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:h-5 sm:w-5"
-        aria-label={text}
-      >
-        ?
-      </button>
-      <span
+    <Popover>
+      <PopoverTrigger asChild>
+        <button
+          type="button"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:h-7 sm:w-7"
+          aria-label={text}
+        >
+          <HelpCircle className="h-4 w-4" aria-hidden="true" />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent
         role="tooltip"
-        className="pointer-events-none absolute bottom-full right-0 z-50 mb-2 w-[min(18rem,calc(100vw-2rem))] translate-y-1 rounded-xl border bg-popover px-3.5 py-3 text-left text-xs leading-5 text-popover-foreground opacity-0 shadow-xl shadow-black/15 transition duration-150 group-hover/tooltip:translate-y-0 group-hover/tooltip:opacity-100 group-focus-within/tooltip:translate-y-0 group-focus-within/tooltip:opacity-100"
+        side="top"
+        align="end"
+        sideOffset={8}
+        collisionPadding={16}
+        className="w-[min(19rem,calc(100vw-2rem))] border bg-popover p-3.5 text-left text-xs leading-5 text-popover-foreground"
       >
-        <span className="absolute -bottom-1.5 right-3 h-3 w-3 rotate-45 border-b border-r bg-popover" />
         {text}
-      </span>
-    </span>
+      </PopoverContent>
+    </Popover>
   )
 }
 
@@ -1128,7 +1132,7 @@ export function CostSimulator({
                         language,
                       )
                       return (
-                        <label
+                        <div
                           key={component.label}
                           className="block rounded-xl border bg-card/80 p-4"
                         >
@@ -1150,6 +1154,7 @@ export function CostSimulator({
                           </div>
                           <input
                             type="range"
+                            aria-label={cleanText(component.label)}
                             min={min}
                             max={max}
                             step={100}
@@ -1167,7 +1172,7 @@ export function CostSimulator({
                             <span>{t.reference}</span>
                             <span>{t.comfortable}</span>
                           </div>
-                        </label>
+                        </div>
                       )
                     })}
                   </div>
