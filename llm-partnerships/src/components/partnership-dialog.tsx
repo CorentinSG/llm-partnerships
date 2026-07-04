@@ -3,6 +3,7 @@
 import * as React from "react"
 import type { ReactNode } from "react"
 
+import { useLanguage } from "@/components/language-provider"
 import { PartnershipDetails } from "@/components/partnership-details"
 import {
   Dialog,
@@ -10,23 +11,30 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog"
 import type { Partnership } from "@/lib/types"
 
 export function PartnershipDialog({
   partnership,
-  children
+  children,
 }: {
   partnership: Partnership
   children: ReactNode
 }) {
+  const { language } = useLanguage()
+  const title = {
+    fr: "Détails du partenariat",
+    en: "Partnership details",
+    es: "Detalles del convenio",
+  }[language]
+
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-w-3xl">
         <DialogHeader>
-          <DialogTitle>Détails du partenariat</DialogTitle>
+          <DialogTitle>{title}</DialogTitle>
           <DialogDescription>
             {partnership.frenchUniversity} • {partnership.partnerUniversity}
           </DialogDescription>

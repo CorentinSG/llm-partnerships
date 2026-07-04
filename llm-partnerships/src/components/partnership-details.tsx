@@ -1,4 +1,6 @@
-﻿import Link from "next/link"
+"use client"
+
+import Link from "next/link"
 import {
   BadgeCheck,
   ExternalLink,
@@ -10,12 +12,15 @@ import {
 } from "lucide-react"
 import type { ReactNode } from "react"
 
+import { useLanguage } from "@/components/language-provider"
 import { ReliabilityBadge } from "@/components/reliability-badge"
 import { TuitionBadges } from "@/components/tuition-badges"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import type { Partnership } from "@/lib/types"
 import { Badge } from "@/components/ui/badge"
+import { partnershipDetailsCopy } from "@/lib/partnership-details-copy"
+import { translateDataText } from "@/lib/text-utils"
 
 function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
@@ -31,26 +36,30 @@ export function PartnershipDetails({
 }: {
   partnership: Partnership
 }) {
+  const { language } = useLanguage()
+  const t = partnershipDetailsCopy[language]
+  const labels = t.labels
+  const tr = (value: unknown) => translateDataText(value, language)
   const isStudentShared = (partnership.sourceType || "").includes(
     "student_shared_unofficial_document",
   )
   const isNanterre =
     partnership.frenchUniversity === "Université Paris Nanterre"
   const studentWarning = isNanterre
-    ? "Les informations relatives aux partenariats de l’Université Paris Nanterre sont issues d’un document étudiant non officiel et peuvent varier selon les promotions. Les universités partenaires, le nombre de places, les bourses et les modalités doivent être confirmés auprès du master ou de l’université."
-    : `Les informations relatives à ${partnership.frenchUniversity} proviennent d’un retour étudiant non officiel et doivent être confirmées auprès de l’université ou du programme avant d’être tenues pour définitives.`
+    ? t.nanterreWarning
+    : t.studentWarning(partnership.frenchUniversity)
   const tests =
     partnership.languageTests?.length > 0
       ? partnership.languageTests
-          .map((t) =>
-            t.test === "Non communiqué"
-              ? "Non communiqué"
-              : t.details
-                ? `${t.test} (${t.minimumScore}) — ${t.details}`
-                : `${t.test} (${t.minimumScore})`,
+          .map((test) =>
+            test.test === "Non communiqué"
+              ? t.unknown
+              : test.details
+                ? `${test.test} (${test.minimumScore}) — ${tr(test.details)}`
+                : `${test.test} (${test.minimumScore})`,
           )
           .join(" • ")
-      : "Non communiqué"
+      : t.unknown
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -64,13 +73,14 @@ export function PartnershipDetails({
               <ReliabilityBadge
                 status={partnership.reliabilityStatus}
                 sourceType={partnership.sourceType}
+                language={language}
               />
               {isStudentShared ? (
                 <Badge
                   variant="outline"
                   className="border-amber-400/30 bg-amber-400/10 text-amber-200"
                 >
-                  À confirmer – source étudiante non officielle
+                  {t.unofficialBadge}
                 </Badge>
               ) : null}
             </div>
@@ -83,33 +93,46 @@ export function PartnershipDetails({
             </div>
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Faculté" value={partnership.frenchFaculty} />
-            <Field label="Type de programme" value={partnership.programType} />
+            <Field label={labels.faculty} value={partnership.frenchFaculty} />
+            <Field
+              label={labels.programType}
+              value={tr(partnership.programType)}
+            />
             {partnership.programName ? (
-              <Field label="Nom du programme" value={partnership.programName} />
+              <Field
+                label={labels.programName}
+                value={partnership.programName}
+              />
             ) : null}
             <Field
-              label="Type de partenariat"
-              value={partnership.partnershipType || "Non communiqué"}
-            />
-            <Field
-              label="Candidature"
+              label={labels.partnershipType}
               value={
-                partnership.applicationProcess === "internal"
-                  ? "Interne (sélection par l’université française)"
-                  : partnership.applicationProcess === "lsac"
-                    ? "Plateforme LSAC"
-                    : "Non communiqué"
+                partnership.partnershipType
+                  ? tr(partnership.partnershipType)
+                  : t.unknown
               }
             />
             <Field
-              label="Partenaire (pays/continent)"
+              label={labels.application}
+              value={
+                partnership.applicationProcess === "internal"
+                  ? t.internal
+                  : partnership.applicationProcess === "lsac"
+                    ? t.lsac
+                    : t.unknown
+              }
+            />
+            <Field
+              label={labels.partnerRegion}
               value={`${partnership.partnerCountry} • ${partnership.continent}`}
             />
-            <Field label="Durée" value={partnership.duration} />
-            <Field label="Langue" value={partnership.programLanguage} />
+            <Field label={labels.duration} value={tr(partnership.duration)} />
             <Field
-              label="Niveau requis"
+              label={labels.language}
+              value={tr(partnership.programLanguage)}
+            />
+            <Field
+              label={labels.requiredLevel}
               value={String(partnership.requiredLevel)}
             />
           </div>
@@ -117,32 +140,32 @@ export function PartnershipDetails({
           <Separator />
 
           <div className="space-y-2">
-            <div className="text-sm font-medium">Résumé</div>
+            <div className="text-sm font-medium">{labels.summary}</div>
             <p className="text-sm text-muted-foreground">
-              {partnership.shortDescription}
+              {tr(partnership.shortDescription)}
             </p>
           </div>
 
           {partnership.sourceNote ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Source (note)</div>
+              <div className="text-sm font-medium">{labels.sourceNote}</div>
               <p className="text-sm text-muted-foreground">
-                {partnership.sourceNote}
+                {tr(partnership.sourceNote)}
               </p>
             </div>
           ) : null}
 
           {partnership.seatPolicy ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Politique de places</div>
+              <div className="text-sm font-medium">{labels.seatPolicy}</div>
               {partnership.seatPolicy.description ? (
                 <p className="text-sm text-muted-foreground">
-                  {partnership.seatPolicy.description}
+                  {tr(partnership.seatPolicy.description)}
                 </p>
               ) : null}
               {partnership.seatPolicy.reportedCohortSize ? (
                 <p className="text-sm text-muted-foreground">
-                  {partnership.seatPolicy.reportedCohortSize}
+                  {tr(partnership.seatPolicy.reportedCohortSize)}
                 </p>
               ) : null}
             </div>
@@ -150,53 +173,53 @@ export function PartnershipDetails({
 
           {partnership.admissionSelection ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Sélection</div>
+              <div className="text-sm font-medium">{labels.selection}</div>
               {partnership.admissionSelection.selectionBasis ? (
                 <p className="text-sm text-muted-foreground">
-                  {partnership.admissionSelection.selectionBasis}
+                  {tr(partnership.admissionSelection.selectionBasis)}
                 </p>
               ) : null}
               <div className="grid gap-4 sm:grid-cols-2">
                 {partnership.admissionSelection.internalCandidates ? (
                   <div className="space-y-2">
                     <div className="text-xs font-medium text-muted-foreground">
-                      Candidats internes
+                      {labels.internalCandidates}
                     </div>
                     <div className="space-y-1 text-sm text-muted-foreground">
                       {partnership.admissionSelection.internalCandidates
                         .program ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.internalCandidates
-                              .program
-                          }
+                              .program,
+                          )}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.internalCandidates
                         .oneSemesterNYRequirement ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.internalCandidates
-                              .oneSemesterNYRequirement
-                          }
+                              .oneSemesterNYRequirement,
+                          )}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.internalCandidates
                         .nyBarTrackRequirement ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.internalCandidates
-                              .nyBarTrackRequirement
-                          }
+                              .nyBarTrackRequirement,
+                          )}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.internalCandidates
                         .note ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.internalCandidates
-                              .note
-                          }
+                              .note,
+                          )}
                         </div>
                       ) : null}
                     </div>
@@ -206,7 +229,7 @@ export function PartnershipDetails({
                 {partnership.admissionSelection.externalCandidates ? (
                   <div className="space-y-2">
                     <div className="text-xs font-medium text-muted-foreground">
-                      Candidats externes
+                      {labels.externalCandidates}
                     </div>
                     <div className="space-y-1 text-sm text-muted-foreground">
                       {typeof partnership.admissionSelection.externalCandidates
@@ -214,26 +237,26 @@ export function PartnershipDetails({
                         <div>
                           {partnership.admissionSelection.externalCandidates
                             .accepted
-                            ? "Candidatures extérieures acceptées"
-                            : "Candidatures extérieures non acceptées"}
+                            ? t.externalAccepted
+                            : t.externalRejected}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.externalCandidates
                         .selectionMethod ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.externalCandidates
-                              .selectionMethod
-                          }
+                              .selectionMethod,
+                          )}
                         </div>
                       ) : null}
                       {partnership.admissionSelection.externalCandidates
                         .requirements ? (
                         <div>
-                          {
+                          {tr(
                             partnership.admissionSelection.externalCandidates
-                              .requirements
-                          }
+                              .requirements,
+                          )}
                         </div>
                       ) : null}
                     </div>
@@ -244,16 +267,16 @@ export function PartnershipDetails({
           ) : null}
 
           <div className="space-y-2">
-            <div className="text-sm font-medium">Conditions d’admission</div>
+            <div className="text-sm font-medium">{labels.admission}</div>
             <p className="text-sm text-muted-foreground">
-              {partnership.admissionConditions}
+              {tr(partnership.admissionConditions)}
             </p>
           </div>
 
           {partnership.degreesAwarded &&
           partnership.degreesAwarded.length > 0 ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Diplômes délivrés</div>
+              <div className="text-sm font-medium">{labels.degrees}</div>
               <div className="space-y-2">
                 {partnership.degreesAwarded.map((d) => (
                   <div
@@ -264,7 +287,7 @@ export function PartnershipDetails({
                       className="mt-0.5 h-4 w-4 text-muted-foreground"
                       aria-hidden="true"
                     />
-                    <span>{d}</span>
+                    <span>{tr(d)}</span>
                   </div>
                 ))}
               </div>
@@ -273,23 +296,23 @@ export function PartnershipDetails({
 
           {partnership.nyBarOption?.available ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Option New York Bar</div>
+              <div className="text-sm font-medium">{labels.nyBar}</div>
               {partnership.nyBarOption.description ? (
                 <p className="text-sm text-muted-foreground">
-                  {partnership.nyBarOption.description}
+                  {tr(partnership.nyBarOption.description)}
                 </p>
               ) : null}
               <div className="grid gap-4 sm:grid-cols-2">
                 {partnership.nyBarOption.additionalRequirements ? (
                   <Field
-                    label="Conditions"
-                    value={partnership.nyBarOption.additionalRequirements}
+                    label={labels.conditions}
+                    value={tr(partnership.nyBarOption.additionalRequirements)}
                   />
                 ) : null}
                 {partnership.nyBarOption.additionalTuition ? (
                   <Field
-                    label="Frais supplémentaires"
-                    value={partnership.nyBarOption.additionalTuition}
+                    label={labels.extraFees}
+                    value={tr(partnership.nyBarOption.additionalTuition)}
                   />
                 ) : null}
               </div>
@@ -299,14 +322,14 @@ export function PartnershipDetails({
           {partnership.applicationDocuments &&
           partnership.applicationDocuments.length > 0 ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Pièces à fournir</div>
+              <div className="text-sm font-medium">{labels.documents}</div>
               <div className="flex flex-wrap gap-2">
                 {partnership.applicationDocuments.map((d) => (
                   <span
                     key={d}
                     className="rounded-full border bg-muted/30 px-2 py-1 text-xs text-muted-foreground"
                   >
-                    {d}
+                    {tr(d)}
                   </span>
                 ))}
               </div>
@@ -314,7 +337,7 @@ export function PartnershipDetails({
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
             <Field
-              label="Tests de langue"
+              label={labels.languageTests}
               value={
                 <div className="flex items-center gap-2">
                   <Languages
@@ -326,7 +349,7 @@ export function PartnershipDetails({
               }
             />
             <Field
-              label="Places"
+              label={labels.seats}
               value={
                 <div className="flex items-center gap-2">
                   <Users
@@ -335,7 +358,7 @@ export function PartnershipDetails({
                   />
                   <span>
                     {partnership.availableSeatsDisplay
-                      ? partnership.availableSeatsDisplay
+                      ? tr(partnership.availableSeatsDisplay)
                       : String(partnership.availableSeats)}
                   </span>
                 </div>
@@ -345,41 +368,45 @@ export function PartnershipDetails({
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field
-              label="Frais"
+              label={labels.fees}
               value={
                 <div className="space-y-2">
                   <div className="flex flex-wrap gap-2">
                     <TuitionBadges
                       tuitionCategory={partnership.tuitionCategory}
+                      language={language}
                     />
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {partnership.tuitionDisplay || partnership.tuition}
+                    {tr(partnership.tuitionDisplay || partnership.tuition)}
                   </div>
                 </div>
               }
             />
-            <Field label="Aides financières" value={partnership.financialAid} />
+            <Field
+              label={labels.financialAid}
+              value={tr(partnership.financialAid)}
+            />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field
-              label="Année de candidature"
+              label={labels.applicationYear}
               value={partnership.applicationYear}
             />
             <Field
-              label="Date limite"
-              value={partnership.applicationDeadline}
+              label={labels.deadline}
+              value={tr(partnership.applicationDeadline)}
             />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <Field
-              label="Remarques"
-              value={partnership.notes || "Non communiqué"}
+              label={labels.notes}
+              value={partnership.notes ? tr(partnership.notes) : t.unknown}
             />
             <Field
-              label="Source officielle"
+              label={labels.officialSource}
               value={
                 partnership.officialLink ? (
                   <Link
@@ -389,10 +416,10 @@ export function PartnershipDetails({
                     rel="noreferrer"
                   >
                     <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                    Ouvrir
+                    {t.open}
                   </Link>
                 ) : (
-                  "Non communiqué"
+                  t.unknown
                 )
               }
             />
@@ -400,7 +427,7 @@ export function PartnershipDetails({
 
           {partnership.attachments && partnership.attachments.length > 0 ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Documents (PDF)</div>
+              <div className="text-sm font-medium">{labels.pdf}</div>
               <div className="space-y-2">
                 {partnership.attachments.map((a) => (
                   <div
@@ -418,7 +445,7 @@ export function PartnershipDetails({
                     </a>
                     {a.note ? (
                       <div className="text-xs text-muted-foreground">
-                        {a.note}
+                        {tr(a.note)}
                       </div>
                     ) : null}
                   </div>
@@ -430,14 +457,14 @@ export function PartnershipDetails({
           {partnership.missingInformation &&
           partnership.missingInformation.length > 0 ? (
             <div className="space-y-2">
-              <div className="text-sm font-medium">Champs à compléter</div>
+              <div className="text-sm font-medium">{labels.missing}</div>
               <div className="flex flex-wrap gap-2">
                 {partnership.missingInformation.map((m) => (
                   <span
                     key={m}
                     className="rounded-full border bg-muted/30 px-2 py-1 text-xs text-muted-foreground"
                   >
-                    {m}
+                    {tr(m)}
                   </span>
                 ))}
               </div>
@@ -454,7 +481,7 @@ export function PartnershipDetails({
                 className="h-4 w-4 text-muted-foreground"
                 aria-hidden="true"
               />
-              Localisation (France)
+              {labels.location}
             </div>
             <div className="text-sm text-muted-foreground">
               {partnership.city} • {partnership.frenchUniversity}
@@ -469,10 +496,12 @@ export function PartnershipDetails({
                 className="h-4 w-4 text-muted-foreground"
                 aria-hidden="true"
               />
-              Spécialités
+              {labels.specialties}
             </div>
             <div className="text-sm text-muted-foreground">
-              {(partnership.specialties || ["Non communiqué"]).join(" • ")}
+              {(partnership.specialties || [t.unknown])
+                .map((specialty) => tr(specialty))
+                .join(" • ")}
             </div>
           </CardContent>
         </Card>

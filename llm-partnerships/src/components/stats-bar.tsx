@@ -3,6 +3,7 @@
 import { Cell, Pie, PieChart } from "recharts"
 import { CheckCircle2, Flag, Globe, HelpCircle, School } from "lucide-react"
 
+import { useLanguage } from "@/components/language-provider"
 import { Card, CardContent } from "@/components/ui/card"
 import {
   Dialog,
@@ -10,9 +11,13 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import type { Partnership } from "@/lib/types"
 import { countUnique, getReliabilityCounts } from "@/lib/filters"
 
@@ -25,6 +30,82 @@ function isPlaceholder(p: Partnership) {
 }
 
 export function StatsBar({ all }: { all: Partnership[] }) {
+  const { language } = useLanguage()
+  const t = {
+    fr: {
+      frenchUniversities: "Universités françaises",
+      universitiesDescription: "Liste des établissements répertoriés.",
+      partnerships: "Partenariats",
+      partnershipsDescription:
+        "Nombre total de partenariats hors fiches à compléter.",
+      listed: "partenariat(s) répertorié(s).",
+      countries: "Pays partenaires",
+      countriesDescription: "Pays couverts par les partenariats.",
+      confirmed: "Confirmés",
+      confirmedTitle: "Programmes confirmés",
+      confirmedDescription:
+        "Fiches dont les informations sont suffisamment fiables.",
+      none: "Aucun.",
+      noneFeminine: "Aucune.",
+      toConfirm: "À confirmer",
+      toConfirmAria: "Que signifie « À confirmer » ?",
+      toConfirmDescription:
+        "L’information est probable ou partielle, mais elle n’a pas encore été vérifiée avec une source officielle ou la source est trop ancienne. Elle peut donc changer.",
+      viewToConfirm: "Voir la liste des fiches « À confirmer »",
+      toConfirmTitle: "Fiches à confirmer",
+      toConfirmListDescription:
+        "Informations probables ou partielles, mais à vérifier.",
+      incomplete: "Incomplets",
+    },
+    en: {
+      frenchUniversities: "French universities",
+      universitiesDescription: "List of universities in the directory.",
+      partnerships: "Partnerships",
+      partnershipsDescription:
+        "Total number of partnerships excluding incomplete placeholders.",
+      listed: "partnership(s) listed.",
+      countries: "Partner countries",
+      countriesDescription: "Countries covered by the partnerships.",
+      confirmed: "Confirmed",
+      confirmedTitle: "Confirmed programs",
+      confirmedDescription: "Entries supported by sufficiently reliable data.",
+      none: "None.",
+      noneFeminine: "None.",
+      toConfirm: "To confirm",
+      toConfirmAria: "What does “To confirm” mean?",
+      toConfirmDescription:
+        "The information is likely or partial, but has not yet been verified against an official source, or the source is outdated. It may therefore change.",
+      viewToConfirm: "View entries marked “To confirm”",
+      toConfirmTitle: "Entries to confirm",
+      toConfirmListDescription:
+        "Likely or partial information that still requires verification.",
+      incomplete: "Incomplete",
+    },
+    es: {
+      frenchUniversities: "Universidades francesas",
+      universitiesDescription: "Lista de universidades del directorio.",
+      partnerships: "Convenios",
+      partnershipsDescription:
+        "Número total de convenios, sin contar fichas incompletas.",
+      listed: "convenio(s) registrado(s).",
+      countries: "Países asociados",
+      countriesDescription: "Países cubiertos por los convenios.",
+      confirmed: "Confirmados",
+      confirmedTitle: "Programas confirmados",
+      confirmedDescription: "Fichas con información suficientemente fiable.",
+      none: "Ninguno.",
+      noneFeminine: "Ninguna.",
+      toConfirm: "Por confirmar",
+      toConfirmAria: "¿Qué significa «Por confirmar»?",
+      toConfirmDescription:
+        "La información es probable o parcial, pero aún no se ha verificado con una fuente oficial o la fuente es antigua. Puede cambiar.",
+      viewToConfirm: "Ver fichas «Por confirmar»",
+      toConfirmTitle: "Fichas por confirmar",
+      toConfirmListDescription:
+        "Información probable o parcial que todavía debe verificarse.",
+      incomplete: "Incompletos",
+    },
+  }[language]
   const real = all.filter((p) => !isPlaceholder(p))
   const frenchUniCount = countUnique(all.map((p) => p.frenchUniversity))
   const partnershipCount = real.length
@@ -32,17 +113,29 @@ export function StatsBar({ all }: { all: Partnership[] }) {
   const counts = getReliabilityCounts(real)
 
   const chartData = [
-    { name: "Confirmés", value: counts.confirmed, color: "hsl(var(--primary))" },
-    { name: "À confirmer", value: counts.to_confirm, color: "hsl(var(--accent))" },
-    { name: "Incomplets", value: counts.incomplete, color: "hsl(var(--muted-foreground))" }
+    {
+      name: t.confirmed,
+      value: counts.confirmed,
+      color: "hsl(var(--primary))",
+    },
+    {
+      name: t.toConfirm,
+      value: counts.to_confirm,
+      color: "hsl(var(--accent))",
+    },
+    {
+      name: t.incomplete,
+      value: counts.incomplete,
+      color: "hsl(var(--muted-foreground))",
+    },
   ].filter((d) => d.value > 0)
 
   const frenchUniversities = Array.from(
-    new Set(all.map((p) => p.frenchUniversity).filter(Boolean))
+    new Set(all.map((p) => p.frenchUniversity).filter(Boolean)),
   ).sort((a, b) => a.localeCompare(b))
 
   const partnerCountries = Array.from(
-    new Set(real.map((p) => p.partnerCountry).filter(Boolean))
+    new Set(real.map((p) => p.partnerCountry).filter(Boolean)),
   ).sort((a, b) => a.localeCompare(b))
 
   const confirmedList = real
@@ -61,22 +154,27 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         <DialogTrigger asChild>
           <Card className="cursor-pointer">
             <CardContent className="p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-xs text-muted-foreground">
-                Universités françaises
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-muted-foreground">
+                    {t.frenchUniversities}
+                  </div>
+                  <div className="mt-1 text-2xl font-semibold">
+                    {frenchUniCount}
+                  </div>
+                </div>
+                <School
+                  className="h-5 w-5 text-muted-foreground"
+                  aria-hidden="true"
+                />
               </div>
-              <div className="mt-1 text-2xl font-semibold">{frenchUniCount}</div>
-            </div>
-            <School className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          </div>
             </CardContent>
           </Card>
         </DialogTrigger>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Universités françaises</DialogTitle>
-            <DialogDescription>Liste des établissements répertoriés.</DialogDescription>
+            <DialogTitle>{t.frenchUniversities}</DialogTitle>
+            <DialogDescription>{t.universitiesDescription}</DialogDescription>
           </DialogHeader>
           <div className="grid gap-2">
             {frenchUniversities.map((u) => (
@@ -92,25 +190,30 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         <DialogTrigger asChild>
           <Card className="cursor-pointer">
             <CardContent className="p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-xs text-muted-foreground">Partenariats</div>
-              <div className="mt-1 text-2xl font-semibold">{partnershipCount}</div>
-            </div>
-            <Flag className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-muted-foreground">
+                    {t.partnerships}
+                  </div>
+                  <div className="mt-1 text-2xl font-semibold">
+                    {partnershipCount}
+                  </div>
+                </div>
+                <Flag
+                  className="h-5 w-5 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </div>
             </CardContent>
           </Card>
         </DialogTrigger>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Partenariats</DialogTitle>
-            <DialogDescription>
-              Nombre total de partenariats (hors fiches « à compléter »).
-            </DialogDescription>
+            <DialogTitle>{t.partnerships}</DialogTitle>
+            <DialogDescription>{t.partnershipsDescription}</DialogDescription>
           </DialogHeader>
           <div className="text-sm text-muted-foreground">
-            {partnershipCount} partenariat(s) répertorié(s).
+            {partnershipCount} {t.listed}
           </div>
         </DialogContent>
       </Dialog>
@@ -119,20 +222,27 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         <DialogTrigger asChild>
           <Card className="cursor-pointer">
             <CardContent className="p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-xs text-muted-foreground">Pays partenaires</div>
-              <div className="mt-1 text-2xl font-semibold">{countryCount}</div>
-            </div>
-            <Globe className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
-          </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-muted-foreground">
+                    {t.countries}
+                  </div>
+                  <div className="mt-1 text-2xl font-semibold">
+                    {countryCount}
+                  </div>
+                </div>
+                <Globe
+                  className="h-5 w-5 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </div>
             </CardContent>
           </Card>
         </DialogTrigger>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Pays partenaires</DialogTitle>
-            <DialogDescription>Pays couverts par les partenariats.</DialogDescription>
+            <DialogTitle>{t.countries}</DialogTitle>
+            <DialogDescription>{t.countriesDescription}</DialogDescription>
           </DialogHeader>
           <div className="grid gap-2">
             {partnerCountries.map((c) => (
@@ -148,25 +258,27 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         <DialogTrigger asChild>
           <Card className="cursor-pointer">
             <CardContent className="p-5">
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="text-xs text-muted-foreground">Confirmés</div>
-              <div className="mt-1 text-2xl font-semibold">{counts.confirmed}</div>
-            </div>
-            <CheckCircle2
-              className="h-5 w-5 text-muted-foreground"
-              aria-hidden="true"
-            />
-          </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-xs text-muted-foreground">
+                    {t.confirmed}
+                  </div>
+                  <div className="mt-1 text-2xl font-semibold">
+                    {counts.confirmed}
+                  </div>
+                </div>
+                <CheckCircle2
+                  className="h-5 w-5 text-muted-foreground"
+                  aria-hidden="true"
+                />
+              </div>
             </CardContent>
           </Card>
         </DialogTrigger>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Programmes confirmés</DialogTitle>
-            <DialogDescription>
-              Fiches dont les informations sont suffisamment fiables.
-            </DialogDescription>
+            <DialogTitle>{t.confirmedTitle}</DialogTitle>
+            <DialogDescription>{t.confirmedDescription}</DialogDescription>
           </DialogHeader>
           <div className="grid gap-2">
             {confirmedList.length > 0 ? (
@@ -176,7 +288,7 @@ export function StatsBar({ all }: { all: Partnership[] }) {
                 </div>
               ))
             ) : (
-              <div className="text-sm text-muted-foreground">Aucun.</div>
+              <div className="text-sm text-muted-foreground">{t.none}</div>
             )}
           </div>
         </DialogContent>
@@ -186,27 +298,26 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         <CardContent className="p-5">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-xs text-muted-foreground">À confirmer</div>
-              <div className="mt-1 text-2xl font-semibold">{counts.to_confirm}</div>
+              <div className="text-xs text-muted-foreground">{t.toConfirm}</div>
+              <div className="mt-1 text-2xl font-semibold">
+                {counts.to_confirm}
+              </div>
             </div>
             <Popover>
               <PopoverTrigger asChild>
                 <button
                   type="button"
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:text-foreground glass-button"
-                  aria-label="Que signifie « À confirmer » ?"
+                  aria-label={t.toConfirmAria}
                 >
                   <HelpCircle className="h-5 w-5" aria-hidden="true" />
                 </button>
               </PopoverTrigger>
               <PopoverContent align="end" className="w-80">
                 <div className="space-y-2">
-                  <div className="text-sm font-medium">À confirmer</div>
+                  <div className="text-sm font-medium">{t.toConfirm}</div>
                   <p className="text-sm text-muted-foreground">
-                    L’information est <span className="font-medium text-foreground">probable</span>{" "}
-                    ou <span className="font-medium text-foreground">partielle</span>, mais elle n’a pas
-                    encore été vérifiée avec une source officielle (ou la source est trop ancienne).
-                    Elle peut donc changer.
+                    {t.toConfirmDescription}
                   </p>
                 </div>
               </PopoverContent>
@@ -239,14 +350,14 @@ export function StatsBar({ all }: { all: Partnership[] }) {
                 type="button"
                 className="mt-2 w-full rounded-xl px-3 py-2 text-left text-xs text-muted-foreground hover:text-foreground glass-button"
               >
-                Voir la liste des fiches « À confirmer »
+                {t.viewToConfirm}
               </button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Fiches à confirmer</DialogTitle>
+                <DialogTitle>{t.toConfirmTitle}</DialogTitle>
                 <DialogDescription>
-                  Informations probables/partielles, mais à vérifier.
+                  {t.toConfirmListDescription}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-2">
@@ -257,7 +368,9 @@ export function StatsBar({ all }: { all: Partnership[] }) {
                     </div>
                   ))
                 ) : (
-                  <div className="text-sm text-muted-foreground">Aucune.</div>
+                  <div className="text-sm text-muted-foreground">
+                    {t.noneFeminine}
+                  </div>
                 )}
               </div>
             </DialogContent>

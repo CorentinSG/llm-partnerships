@@ -1,16 +1,17 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Check, Search } from "lucide-react";
+import * as React from "react"
+import { Check, Search } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/components/language-provider"
+import { Button } from "@/components/ui/button"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cleanText } from "@/lib/text-utils";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/popover"
+import { cleanText, translateDataText } from "@/lib/text-utils"
+import { cn } from "@/lib/utils"
 
 export function MultiSelectFilter({
   label,
@@ -19,25 +20,46 @@ export function MultiSelectFilter({
   options,
   onChange,
 }: {
-  label: string;
-  placeholder: string;
-  values: string[];
-  options: string[];
-  onChange: (next: string[]) => void;
+  label: string
+  placeholder: string
+  values: string[]
+  options: string[]
+  onChange: (next: string[]) => void
 }) {
-  const [open, setOpen] = React.useState(false);
-  const [query, setQuery] = React.useState("");
-  const selected = new Set(values.filter(Boolean));
-  const normalizedQuery = cleanText(query).toLowerCase();
+  const { language } = useLanguage()
+  const t = {
+    fr: {
+      selected: "sélectionnée(s)",
+      search: "Rechercher",
+      empty: "Aucun résultat.",
+      reset: "Réinitialiser",
+    },
+    en: {
+      selected: "selected",
+      search: "Search",
+      empty: "No results.",
+      reset: "Reset",
+    },
+    es: {
+      selected: "seleccionada(s)",
+      search: "Buscar",
+      empty: "No hay resultados.",
+      reset: "Reiniciar",
+    },
+  }[language]
+  const [open, setOpen] = React.useState(false)
+  const [query, setQuery] = React.useState("")
+  const selected = new Set(values.filter(Boolean))
+  const normalizedQuery = cleanText(query).toLowerCase()
   const filteredOptions = options.filter((option) =>
     cleanText(option).toLowerCase().includes(normalizedQuery),
-  );
+  )
 
   function toggle(option: string) {
-    const next = new Set(selected);
-    if (next.has(option)) next.delete(option);
-    else next.add(option);
-    onChange(Array.from(next));
+    const next = new Set(selected)
+    if (next.has(option)) next.delete(option)
+    else next.add(option)
+    onChange(Array.from(next))
   }
 
   return (
@@ -53,7 +75,7 @@ export function MultiSelectFilter({
           >
             <span className="truncate text-left">
               {values.length > 0
-                ? `${values.length} sélectionnée(s)`
+                ? `${values.length} ${t.selected}`
                 : placeholder}
             </span>
             <span className="ml-2 text-xs text-muted-foreground">⌄</span>
@@ -72,7 +94,7 @@ export function MultiSelectFilter({
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder={`Rechercher (${label.toLowerCase()})...`}
+                placeholder={`${t.search} (${label.toLowerCase()})...`}
                 className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
               />
             </label>
@@ -80,7 +102,7 @@ export function MultiSelectFilter({
           <div className="max-h-72 overflow-y-auto p-1">
             {filteredOptions.length > 0 ? (
               filteredOptions.map((option) => {
-                const isSelected = selected.has(option);
+                const isSelected = selected.has(option)
                 return (
                   <button
                     key={option}
@@ -104,14 +126,14 @@ export function MultiSelectFilter({
                       ) : null}
                     </span>
                     <span className="min-w-0 flex-1 truncate">
-                      {cleanText(option)}
+                      {translateDataText(option, language)}
                     </span>
                   </button>
-                );
+                )
               })
             ) : (
               <div className="px-3 py-6 text-center text-sm text-muted-foreground">
-                Aucun résultat.
+                {t.empty}
               </div>
             )}
           </div>
@@ -122,16 +144,16 @@ export function MultiSelectFilter({
               size="sm"
               className="w-full"
               onClick={() => {
-                onChange([]);
-                setQuery("");
-                setOpen(false);
+                onChange([])
+                setQuery("")
+                setOpen(false)
               }}
             >
-              Réinitialiser
+              {t.reset}
             </Button>
           </div>
         </PopoverContent>
       </Popover>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Select,
@@ -6,7 +6,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/components/ui/select"
+import { useLanguage } from "@/components/language-provider"
+import { translateDataText } from "@/lib/text-utils"
 
 export function SelectFilter({
   label,
@@ -15,12 +17,14 @@ export function SelectFilter({
   options,
   onChange,
 }: {
-  label: string;
-  placeholder: string;
-  value?: string;
-  options: string[];
-  onChange: (next: string | undefined) => void;
+  label: string
+  placeholder: string
+  value?: string
+  options: string[]
+  onChange: (next: string | undefined) => void
 }) {
+  const { language } = useLanguage()
+
   return (
     <div className="space-y-1.5">
       <div className="text-xs font-medium text-muted-foreground">{label}</div>
@@ -32,14 +36,14 @@ export function SelectFilter({
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="__all__">Tous</SelectItem>
+          <SelectItem value="__all__">{placeholder}</SelectItem>
           {options.map((o) => (
             <SelectItem key={o} value={o}>
-              {o}
+              {translateDataText(o, language)}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
     </div>
-  );
+  )
 }

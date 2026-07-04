@@ -31,6 +31,11 @@ const languageNames: Record<UiLanguage, string> = {
 
 function LanguageSwitch({ compact = false }: { compact?: boolean }) {
   const { language, setLanguage } = useLanguage()
+  const copy = {
+    fr: { aria: "Changer la langue", label: "Langue" },
+    en: { aria: "Change language", label: "Language" },
+    es: { aria: "Cambiar idioma", label: "Idioma" },
+  }[language]
 
   return (
     <div
@@ -38,7 +43,7 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
         "glass-panel inline-flex items-center gap-1 rounded-xl p-1",
         compact ? "w-full justify-between" : "h-9",
       )}
-      aria-label="Changer la langue"
+      aria-label={copy.aria}
     >
       <span
         className={cn(
@@ -47,7 +52,7 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
         )}
       >
         <Languages className="h-3.5 w-3.5" aria-hidden="true" />
-        {compact ? "Langue" : null}
+        {compact ? copy.label : null}
       </span>
       <div className="flex items-center gap-1">
         {(["fr", "en", "es"] as UiLanguage[]).map((item) => (
@@ -74,6 +79,40 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
 }
 
 export function SiteHeader({ className }: { className?: string }) {
+  const { language } = useLanguage()
+  const t = {
+    fr: {
+      subtitle: "Annuaire des partenariats",
+      about: "À propos",
+      guide: "Guide USA",
+      alternatives: "Parcours alternatifs",
+      submit: "Proposer une info",
+      submitShort: "Proposer",
+      home: "Accueil",
+      menu: "Menu",
+    },
+    en: {
+      subtitle: "Partnership directory",
+      about: "About",
+      guide: "U.S. guide",
+      alternatives: "Alternative paths",
+      submit: "Submit information",
+      submitShort: "Submit",
+      home: "Home",
+      menu: "Menu",
+    },
+    es: {
+      subtitle: "Directorio de convenios",
+      about: "Acerca del proyecto",
+      guide: "Guía EE. UU.",
+      alternatives: "Vías alternativas",
+      submit: "Proponer información",
+      submitShort: "Proponer",
+      home: "Inicio",
+      menu: "Menú",
+    },
+  }[language]
+
   return (
     <header
       className={cn(
@@ -94,7 +133,7 @@ export function SiteHeader({ className }: { className?: string }) {
               LL.M Partnerships
             </div>
             <div className="font-mono-ui text-[11px] text-muted-foreground">
-              Annuaire des partenariats
+              {t.subtitle}
             </div>
           </div>
         </Link>
@@ -102,18 +141,18 @@ export function SiteHeader({ className }: { className?: string }) {
         <nav className="flex min-w-0 items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
             <Button asChild variant="ghost" size="sm">
-              <Link href="/about">À propos</Link>
+              <Link href="/about">{t.about}</Link>
             </Button>
             <Button asChild variant="ghost" size="sm">
-              <Link href="/guide">Guide USA</Link>
+              <Link href="/guide">{t.guide}</Link>
             </Button>
             <Button asChild variant="ghost" size="sm">
-              <Link href="/alternatives">Parcours alternatifs</Link>
+              <Link href="/alternatives">{t.alternatives}</Link>
             </Button>
             <Button asChild variant="default" size="sm">
               <Link href="/submit">
                 <Send className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
-                Proposer une info
+                {t.submit}
               </Link>
             </Button>
             <LanguageSwitch />
@@ -122,7 +161,7 @@ export function SiteHeader({ className }: { className?: string }) {
 
           <div className="flex min-w-0 items-center gap-1.5 md:hidden">
             <Button asChild variant="default" size="sm" className="h-11 px-3">
-              <Link href="/submit">Proposer</Link>
+              <Link href="/submit">{t.submitShort}</Link>
             </Button>
             <ThemeToggle />
 
@@ -133,14 +172,14 @@ export function SiteHeader({ className }: { className?: string }) {
                   variant="ghost"
                   size="icon"
                   className="h-10 min-h-10 w-10 min-w-10 rounded-xl sm:h-11 sm:min-h-11 sm:w-11 sm:min-w-11"
-                  aria-label="Menu"
+                  aria-label={t.menu}
                 >
                   <Menu className="h-5 w-5" aria-hidden="true" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[88vw] max-w-sm">
                 <SheetHeader>
-                  <SheetTitle>Menu</SheetTitle>
+                  <SheetTitle>{t.menu}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-2">
                   <Button
@@ -148,28 +187,28 @@ export function SiteHeader({ className }: { className?: string }) {
                     variant="ghost"
                     className="h-11 justify-start"
                   >
-                    <Link href="/">Accueil</Link>
+                    <Link href="/">{t.home}</Link>
                   </Button>
                   <Button
                     asChild
                     variant="ghost"
                     className="h-11 justify-start"
                   >
-                    <Link href="/about">À propos</Link>
+                    <Link href="/about">{t.about}</Link>
                   </Button>
                   <Button
                     asChild
                     variant="ghost"
                     className="h-11 justify-start"
                   >
-                    <Link href="/guide">Guide USA</Link>
+                    <Link href="/guide">{t.guide}</Link>
                   </Button>
                   <Button
                     asChild
                     variant="ghost"
                     className="h-11 justify-start"
                   >
-                    <Link href="/alternatives">Parcours alternatifs</Link>
+                    <Link href="/alternatives">{t.alternatives}</Link>
                   </Button>
                   <div className="pt-3">
                     <LanguageSwitch compact />

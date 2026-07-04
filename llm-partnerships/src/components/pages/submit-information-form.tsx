@@ -3,6 +3,7 @@
 import * as React from "react"
 import { CheckCircle2, Info, Loader2, Mail, ShieldCheck } from "lucide-react"
 
+import { useLanguage } from "@/components/language-provider"
 import { PageShell } from "@/components/page-shell"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,11 +15,154 @@ type SubmitStatus = "idle" | "sending" | "success" | "error"
 
 const defaultEndpoint = "https://formspree.io/f/mvzlqvdw"
 
+const copy = {
+  fr: {
+    title: "Proposer une information",
+    description:
+      "Envoie une correction, un complément ou un nouveau partenariat. Le message part directement par email pour relecture avant ajout au site.",
+    requiredError: "Merci de remplir les champs obligatoires avant l’envoi.",
+    configError:
+      "L’envoi email n’est pas configuré pour le moment. Réessaie un peu plus tard.",
+    genericError: "Une erreur est survenue. Réessaie dans un instant.",
+    sendError: "Échec de l’envoi",
+    success: "Merci, ton message a bien été envoyé.",
+    successDetail:
+      "Il sera relu avant toute mise à jour du site. Si besoin, je pourrai vérifier la source ou te recontacter à l’adresse indiquée.",
+    another: "Envoyer une autre information",
+    name: "Nom",
+    namePlaceholder: "Ton nom",
+    email: "Email",
+    frenchUniversity: "Université française concernée",
+    frenchUniversityPlaceholder: "Ex. Paris 1, Assas, Lyon 3…",
+    partnerUniversity: "Université partenaire",
+    partnerUniversityPlaceholder: "Ex. Fordham, Georgetown…",
+    type: "Type d’information proposée",
+    typePlaceholder:
+      "Ex. frais, TOEFL, sélection, nombre de places, suspension du partenariat…",
+    message: "Message",
+    messagePlaceholder:
+      "Explique précisément l’information à ajouter ou corriger, avec le plus de contexte possible.",
+    source: "Lien source",
+    mailNotice:
+      "Le formulaire envoie un email de proposition. Rien n’est publié automatiquement : chaque information doit être relue avant ajout au site.",
+    required:
+      "Champs obligatoires : nom, email, université française, type d’information et message.",
+    sending: "Envoi en cours…",
+    submit: "Envoyer la proposition",
+    canSend: "Ce que tu peux envoyer",
+    sendItems: [
+      "Nouveau partenariat LL.M ou correction d’une fiche existante.",
+      "Tests de langue, frais, bourses, places, calendrier ou processus de sélection.",
+      "Suspension d’un accord, mise à jour officielle ou retour étudiant sourcé.",
+    ],
+    practices: "Bonnes pratiques",
+    practiceItems: [
+      "Ajoute un lien officiel si tu en as un.",
+      "Pour un retour étudiant, précise l’année ou la promotion.",
+      "Si une donnée est incertaine, indique-le clairement au lieu de deviner.",
+    ],
+  },
+  en: {
+    title: "Submit information",
+    description:
+      "Send a correction, additional detail, or new partnership. The message is emailed for review before anything is added to the website.",
+    requiredError: "Please complete all required fields before submitting.",
+    configError:
+      "Email submission is not configured at the moment. Please try again later.",
+    genericError: "Something went wrong. Please try again in a moment.",
+    sendError: "Submission failed",
+    success: "Thank you, your message was sent.",
+    successDetail:
+      "It will be reviewed before the website is updated. I may verify the source or contact you at the email address provided.",
+    another: "Submit another item",
+    name: "Name",
+    namePlaceholder: "Your name",
+    email: "Email",
+    frenchUniversity: "French university concerned",
+    frenchUniversityPlaceholder: "e.g. Paris 1, Assas, Lyon 3",
+    partnerUniversity: "Partner university",
+    partnerUniversityPlaceholder: "e.g. Fordham, Georgetown",
+    type: "Type of information",
+    typePlaceholder:
+      "e.g. tuition, TOEFL, selection, available seats, suspended agreement",
+    message: "Message",
+    messagePlaceholder:
+      "Explain precisely what should be added or corrected, with as much context as possible.",
+    source: "Source link",
+    mailNotice:
+      "The form sends a proposal by email. Nothing is published automatically: every submission is reviewed before being added.",
+    required:
+      "Required fields: name, email, French university, information type, and message.",
+    sending: "Sending…",
+    submit: "Send proposal",
+    canSend: "What you can submit",
+    sendItems: [
+      "A new LL.M partnership or correction to an existing entry.",
+      "Language tests, tuition, scholarships, seats, dates, or selection process.",
+      "Suspended agreements, official updates, or sourced student feedback.",
+    ],
+    practices: "Good practices",
+    practiceItems: [
+      "Add an official link whenever possible.",
+      "For student feedback, specify the year or cohort.",
+      "Clearly mark uncertain information instead of guessing.",
+    ],
+  },
+  es: {
+    title: "Proponer información",
+    description:
+      "Envía una corrección, información adicional o un nuevo convenio. El mensaje se revisa por email antes de añadirlo al sitio.",
+    requiredError: "Completa los campos obligatorios antes de enviar.",
+    configError:
+      "El envío por email no está configurado en este momento. Inténtalo más tarde.",
+    genericError: "Se ha producido un error. Inténtalo de nuevo.",
+    sendError: "Error de envío",
+    success: "Gracias, tu mensaje se ha enviado.",
+    successDetail:
+      "Se revisará antes de actualizar el sitio. Puede que verifique la fuente o te contacte en la dirección indicada.",
+    another: "Enviar otra información",
+    name: "Nombre",
+    namePlaceholder: "Tu nombre",
+    email: "Email",
+    frenchUniversity: "Universidad francesa",
+    frenchUniversityPlaceholder: "Ej. Paris 1, Assas, Lyon 3",
+    partnerUniversity: "Universidad asociada",
+    partnerUniversityPlaceholder: "Ej. Fordham, Georgetown",
+    type: "Tipo de información",
+    typePlaceholder:
+      "Ej. matrícula, TOEFL, selección, plazas, suspensión del convenio",
+    message: "Mensaje",
+    messagePlaceholder:
+      "Explica con precisión la información que debe añadirse o corregirse.",
+    source: "Enlace de la fuente",
+    mailNotice:
+      "El formulario envía una propuesta por email. Nada se publica automáticamente: cada información se revisa antes de añadirse.",
+    required:
+      "Campos obligatorios: nombre, email, universidad francesa, tipo de información y mensaje.",
+    sending: "Enviando…",
+    submit: "Enviar propuesta",
+    canSend: "Qué puedes enviar",
+    sendItems: [
+      "Un nuevo convenio LL.M o una corrección de una ficha existente.",
+      "Pruebas de idioma, matrícula, becas, plazas, calendario o selección.",
+      "Suspensión de un acuerdo, actualización oficial o experiencia estudiantil documentada.",
+    ],
+    practices: "Buenas prácticas",
+    practiceItems: [
+      "Añade un enlace oficial si lo tienes.",
+      "Para una experiencia estudiantil, indica el año o la promoción.",
+      "Marca claramente los datos inciertos en lugar de adivinarlos.",
+    ],
+  },
+} as const
+
 function cleanValue(value: FormDataEntryValue | null) {
   return typeof value === "string" ? value.trim() : ""
 }
 
 export function SubmitInformationForm() {
+  const { language } = useLanguage()
+  const t = copy[language]
   const [submitted, setSubmitted] = React.useState(false)
   const [status, setStatus] = React.useState<SubmitStatus>("idle")
   const [errorMessage, setErrorMessage] = React.useState("")
@@ -51,17 +195,13 @@ export function SubmitInformationForm() {
 
     if (!name || !email || !frenchUniversity || !infoType || !message) {
       setStatus("error")
-      setErrorMessage(
-        "Merci de remplir les champs obligatoires avant l’envoi."
-      )
+      setErrorMessage(t.requiredError)
       return
     }
 
     if (!formspreeEndpoint) {
       setStatus("error")
-      setErrorMessage(
-        "L’envoi email n’est pas configuré pour le moment. Réessaie un peu plus tard."
-      )
+      setErrorMessage(t.configError)
       return
     }
 
@@ -74,9 +214,9 @@ export function SubmitInformationForm() {
       const response = await fetch(formspreeEndpoint, {
         method: "POST",
         headers: {
-          Accept: "application/json"
+          Accept: "application/json",
         },
-        body: formData
+        body: formData,
       })
 
       if (!response.ok) {
@@ -87,11 +227,7 @@ export function SubmitInformationForm() {
             message?: string
             errors?: { message?: string }[]
           }
-          detail =
-            json.error ||
-            json.message ||
-            json.errors?.[0]?.message ||
-            ""
+          detail = json.error || json.message || json.errors?.[0]?.message || ""
         } catch {
           detail = ""
         }
@@ -104,20 +240,15 @@ export function SubmitInformationForm() {
       form.reset()
     } catch (error) {
       const message =
-        error instanceof Error && error.message
-          ? error.message
-          : "Une erreur est survenue. Réessaie dans un instant."
+        error instanceof Error && error.message ? error.message : t.genericError
 
       setStatus("error")
-      setErrorMessage(`Échec de l’envoi : ${message}`)
+      setErrorMessage(`${t.sendError}: ${message}`)
     }
   }
 
   return (
-    <PageShell
-      title="Proposer une information"
-      description="Envoie une correction, un complément ou un nouveau partenariat. Le message part directement par email pour relecture avant ajout au site."
-    >
+    <PageShell title={t.title} description={t.description}>
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <Card>
           <CardContent className="p-5 sm:p-6">
@@ -129,12 +260,9 @@ export function SubmitInformationForm() {
                     aria-hidden="true"
                   />
                   <div className="space-y-1">
-                    <div className="text-lg font-semibold">
-                      Merci, ton message a bien été envoyé.
-                    </div>
+                    <div className="text-lg font-semibold">{t.success}</div>
                     <p className="text-sm text-muted-foreground">
-                      Il sera relu avant toute mise à jour du site. Si besoin, je
-                      pourrai vérifier la source ou te recontacter à l’adresse indiquée.
+                      {t.successDetail}
                     </p>
                   </div>
                 </div>
@@ -147,7 +275,7 @@ export function SubmitInformationForm() {
                     formRef.current?.reset()
                   }}
                 >
-                  Envoyer une autre information
+                  {t.another}
                 </Button>
               </div>
             ) : (
@@ -158,18 +286,18 @@ export function SubmitInformationForm() {
                 noValidate
               >
                 <div className="space-y-2">
-                  <Label htmlFor="name">Nom</Label>
+                  <Label htmlFor="name">{t.name}</Label>
                   <Input
                     id="name"
                     name="name"
                     autoComplete="name"
-                    placeholder="Ton nom"
+                    placeholder={t.namePlaceholder}
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t.email}</Label>
                   <Input
                     id="email"
                     name="email"
@@ -181,46 +309,46 @@ export function SubmitInformationForm() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="frenchUni">Université française concernée</Label>
+                  <Label htmlFor="frenchUni">{t.frenchUniversity}</Label>
                   <Input
                     id="frenchUni"
                     name="frenchUni"
-                    placeholder="Ex. Paris 1, Assas, Lyon 3…"
+                    placeholder={t.frenchUniversityPlaceholder}
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="partnerUni">Université partenaire</Label>
+                  <Label htmlFor="partnerUni">{t.partnerUniversity}</Label>
                   <Input
                     id="partnerUni"
                     name="partnerUni"
-                    placeholder="Ex. Fordham, Georgetown…"
+                    placeholder={t.partnerUniversityPlaceholder}
                   />
                 </div>
 
                 <div className="space-y-2 sm:col-span-2">
-                  <Label htmlFor="type">Type d’information proposée</Label>
+                  <Label htmlFor="type">{t.type}</Label>
                   <Input
                     id="type"
                     name="type"
-                    placeholder="Ex. frais, TOEFL, sélection, nombre de places, suspension du partenariat…"
+                    placeholder={t.typePlaceholder}
                     required
                   />
                 </div>
 
                 <div className="space-y-2 sm:col-span-2">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">{t.message}</Label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Explique précisément l’information à ajouter ou corriger, avec le plus de contexte possible."
+                    placeholder={t.messagePlaceholder}
                     required
                   />
                 </div>
 
                 <div className="space-y-2 sm:col-span-2">
-                  <Label htmlFor="source">Lien source</Label>
+                  <Label htmlFor="source">{t.source}</Label>
                   <Input
                     id="source"
                     name="source"
@@ -240,22 +368,19 @@ export function SubmitInformationForm() {
                   />
                 </div>
 
-                <input type="hidden" name="page" value="Proposer une information" />
-                <input type="hidden" name="_language" value="fr" />
+                <input type="hidden" name="page" value={t.title} />
+                <input type="hidden" name="_language" value={language} />
 
                 <div className="sm:col-span-2 rounded-xl border bg-secondary/45 p-4 text-sm text-muted-foreground">
                   <div className="flex items-start gap-2">
                     <Mail className="mt-0.5 h-4 w-4" aria-hidden="true" />
-                    <span>
-                      Le formulaire envoie un email de proposition. Rien n’est publié
-                      automatiquement: chaque information doit être relue avant ajout au site.
-                    </span>
+                    <span>{t.mailNotice}</span>
                   </div>
                 </div>
 
                 <div className="sm:col-span-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="text-xs text-muted-foreground">
-                    Champs obligatoires: nom, email, université française, type d’information et message.
+                    {t.required}
                   </div>
                   <Button
                     type="submit"
@@ -264,11 +389,14 @@ export function SubmitInformationForm() {
                   >
                     {status === "sending" ? (
                       <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
-                        Envoi en cours…
+                        <Loader2
+                          className="mr-2 h-4 w-4 animate-spin"
+                          aria-hidden="true"
+                        />
+                        {t.sending}
                       </>
                     ) : (
-                      "Envoyer la proposition"
+                      t.submit
                     )}
                   </Button>
                 </div>
@@ -287,13 +415,16 @@ export function SubmitInformationForm() {
           <Card>
             <CardContent className="space-y-3 p-5">
               <div className="flex items-center gap-2 text-sm font-medium">
-                <Info className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-                Ce que tu peux envoyer
+                <Info
+                  className="h-4 w-4 text-muted-foreground"
+                  aria-hidden="true"
+                />
+                {t.canSend}
               </div>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Nouveau partenariat LL.M ou correction d’une fiche existante.</p>
-                <p>Tests de langue, frais, bourses, places, calendrier ou processus de sélection.</p>
-                <p>Suspension d’un accord, mise à jour officielle ou retour étudiant sourcé.</p>
+                {t.sendItems.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -305,12 +436,12 @@ export function SubmitInformationForm() {
                   className="h-4 w-4 text-muted-foreground"
                   aria-hidden="true"
                 />
-                Bonnes pratiques
+                {t.practices}
               </div>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <p>Ajoute un lien officiel si tu en as un.</p>
-                <p>Si c’est un retour étudiant, précise bien l’année ou la promotion.</p>
-                <p>Si une donnée est incertaine, indique-le clairement au lieu de deviner.</p>
+                {t.practiceItems.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
               </div>
             </CardContent>
           </Card>

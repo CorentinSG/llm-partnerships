@@ -1,4 +1,11 @@
+import translationsRaw from "../../data/text-translations.json"
+
 export type UiLanguage = "fr" | "en" | "es"
+
+const dataTranslations = translationsRaw as {
+  en: Record<string, string>
+  es: Record<string, string>
+}
 
 export function cleanText(value: unknown) {
   if (value == null) return ""
@@ -30,48 +37,62 @@ export function cleanText(value: unknown) {
     .replaceAll("Â ", " ")
 }
 
+export function translateDataText(
+  value: unknown,
+  language: UiLanguage,
+): string {
+  if (value == null) return ""
+  const raw = String(value)
+  if (language === "fr") return cleanText(raw)
+  return cleanText(dataTranslations[language][raw] || raw)
+}
+
 export const reliabilityCopy = {
   fr: {
     confirmed: {
       label: "Confirmé",
-      description: "Information confirmée par une source officielle ou récente."
+      description:
+        "Information confirmée par une source officielle ou récente.",
     },
     to_confirm: {
       label: "À confirmer",
-      description: "Information probable, mais source ancienne, partielle ou non officielle."
+      description:
+        "Information probable, mais source ancienne, partielle ou non officielle.",
     },
     incomplete: {
       label: "Information incomplète",
-      description: "Données insuffisantes pour comparer sans vérification complémentaire."
-    }
+      description:
+        "Données insuffisantes pour comparer sans vérification complémentaire.",
+    },
   },
   en: {
     confirmed: {
       label: "Confirmed",
-      description: "Confirmed by an official or recent source."
+      description: "Confirmed by an official or recent source.",
     },
     to_confirm: {
       label: "To confirm",
-      description: "Likely information, but based on an old, partial, or unofficial source."
+      description:
+        "Likely information, but based on an old, partial, or unofficial source.",
     },
     incomplete: {
       label: "Incomplete",
-      description: "Not enough data to compare without further verification."
-    }
+      description: "Not enough data to compare without further verification.",
+    },
   },
   es: {
     confirmed: {
       label: "Confirmado",
-      description: "Confirmado por una fuente oficial o reciente."
+      description: "Confirmado por una fuente oficial o reciente.",
     },
     to_confirm: {
       label: "Por confirmar",
-      description: "Información probable, pero con fuente antigua, parcial o no oficial."
+      description:
+        "Información probable, pero con fuente antigua, parcial o no oficial.",
     },
     incomplete: {
       label: "Información incompleta",
-      description: "Faltan datos para comparar sin verificación adicional."
-    }
-  }
+      description: "Faltan datos para comparar sin verificación adicional.",
+    },
+  },
 } as const
-

@@ -16,7 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import type { Partnership } from "@/lib/types"
-import { cleanText, type UiLanguage } from "@/lib/text-utils"
+import { cleanText, translateDataText, type UiLanguage } from "@/lib/text-utils"
 
 const copy = {
   fr: {
@@ -56,8 +56,9 @@ export function PartnershipCard({
   const showStudentSourceBadge = (partnership.sourceType || "").includes(
     "student_shared_unofficial_document",
   )
-  const feeText = cleanText(
+  const feeText = translateDataText(
     partnership.tuitionDisplay || partnership.tuition || t.notShared,
+    language,
   )
 
   return (
@@ -93,7 +94,7 @@ export function PartnershipCard({
           {partnership.partnerCity
             ? ` (${cleanText(partnership.partnerCity)})`
             : ""}{" "}
-          · {cleanText(partnership.programType)}
+          · {translateDataText(partnership.programType, language)}
         </div>
 
         <div className="text-xs leading-5 text-muted-foreground">

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { ChevronDown, GraduationCap, Scale, UserRound } from "lucide-react"
 
+import { useLanguage } from "@/components/language-provider"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
@@ -11,7 +12,7 @@ type FaqItem = {
   answer: string
 }
 
-const faqItems: FaqItem[] = [
+const faqItemsFr: FaqItem[] = [
   {
     question: "Comment es-tu devenu avocat à New York ?",
     answer:
@@ -129,14 +130,160 @@ const faqItems: FaqItem[] = [
   },
 ]
 
+const questionsEn = [
+  "How did you become a lawyer in New York?",
+  "Is an LL.M enough to sit for the New York Bar?",
+  "Should I pursue a JD or an LL.M?",
+  "Are LL.M programs highly selective?",
+  "How can I reduce the cost of an LL.M?",
+  "Is it difficult to find work in the U.S. after the LL.M and bar exam?",
+  "Can a French law student intern at a U.S. law firm?",
+  "Should I take the French or New York bar first?",
+  "Can I move to the U.S. directly after a French bachelor’s degree?",
+  "Which master’s degree should I choose for a U.S. project?",
+  "How can a partnership apply after I leave the French university?",
+  "How are partnership LL.M applicants selected?",
+  "What are the main ways to pursue a U.S. LL.M?",
+  "What English level is required for an LL.M?",
+  "Is the New York Bar difficult?",
+  "How early should I prepare an LL.M application?",
+  "Is there a professional school after passing the New York Bar?",
+  "Can I practice in other states after passing the New York Bar?",
+  "Can a New York lawyer qualify in France?",
+  "Can I obtain a visa and remain in the U.S. after the LL.M?",
+  "What are the concrete steps of the New York Bar process?",
+]
+
+const answersEn = [
+  "I studied law in Nancy, completed exchanges in Sweden and the Netherlands, earned an M2 at Paris Dauphine, then completed an LL.M at Case Western Reserve through Dauphine’s partnership. I passed the New York Bar on my second attempt and now practice in New York.",
+  "Usually not by itself. A French applicant generally needs a complete prior legal education plus a qualifying U.S. LL.M. Eligibility must always be confirmed with the New York Board of Law Examiners.",
+  "The JD is the standard U.S. degree and strongest route for a long-term U.S. career. The LL.M is shorter and less expensive, and can be a good route to New York Bar eligibility.",
+  "It depends on the university. Grades matter, but so do motivation, project consistency, international experience, English, and the overall application.",
+  "University partnerships are often the best option. University scholarships, Fulbright support, and partial or full tuition waivers may also be available.",
+  "Yes. Networking, events, LinkedIn, and sustained outreach are essential. Immigration and visa constraints create an additional challenge.",
+  "It is difficult, especially early in a French law degree. U.S. firms mainly recruit students trained in U.S. law or profiles already advanced in a U.S. qualification plan.",
+  "If New York is the main objective, one possible sequence is M2, LL.M, New York Bar, then the French Article 100 examination if desired.",
+  "It can be possible for some JD programs. For New York eligibility through an LL.M, completing at least an M1 and often an M2 in France is usually safer.",
+  "Choose a strong degree aligned with your project, ideally one offering U.S. LL.M partnerships. Overall consistency matters more than the degree title alone.",
+  "Selection usually occurs during the M2. The French university nominates selected students before graduation, so the partnership benefit is secured while they are still enrolled.",
+  "Some universities run an internal preselection; others require a direct or LSAC application. Criteria often include grades, English, motivation, international experience, and interviews.",
+  "The main routes are university partnerships, direct applications to U.S. universities, and LSAC-based applications where required.",
+  "A strong academic level is needed, usually demonstrated through TOEFL or IELTS. Perfect bilingual fluency is not required, and students improve quickly on site.",
+  "Yes. It requires several months of intensive preparation. The LL.M itself is often less difficult than the bar examination.",
+  "Start 8 to 12 months before departure to prepare language tests, recommendations, applications, scholarships, and partnership procedures.",
+  "No. Once the exam and other requirements such as MPRE and Character and Fitness are completed, applicants can be admitted without a French-style professional school.",
+  "Not automatically. Each state has its own rules. Some accept UBE score transfers, while others require another exam or additional conditions.",
+  "A New York lawyer may use the French Article 100 examination route. It is a specific pathway, not an automatic equivalence.",
+  "It is possible but never guaranteed. A job offer and an appropriate immigration route are both necessary.",
+  "First confirm eligibility. Then prepare for the two-day exam, complete the MPRE, NYLC and NYLE, submit Character and Fitness materials, and take the oath after approval.",
+]
+
+const questionsEs = [
+  "¿Cómo te convertiste en abogado en Nueva York?",
+  "¿Basta un LL.M para presentarse al New York Bar?",
+  "¿Es mejor un JD o un LL.M?",
+  "¿Son muy selectivos los programas LL.M?",
+  "¿Cómo reducir el coste de un LL.M?",
+  "¿Es difícil encontrar trabajo en EE. UU. después del LL.M y el bar exam?",
+  "¿Puede un estudiante francés hacer prácticas en un despacho estadounidense?",
+  "¿Conviene pasar primero el examen francés o el de Nueva York?",
+  "¿Se puede ir a EE. UU. directamente después de la licence?",
+  "¿Qué máster elegir para un proyecto estadounidense?",
+  "¿Cómo funciona el convenio después de dejar la universidad francesa?",
+  "¿Cómo se seleccionan los candidatos de convenios LL.M?",
+  "¿Cuáles son las vías principales para hacer un LL.M?",
+  "¿Qué nivel de inglés se necesita?",
+  "¿Es difícil el New York Bar?",
+  "¿Con cuánta antelación hay que preparar la candidatura?",
+  "¿Existe una escuela profesional después del New York Bar?",
+  "¿Se puede ejercer en otros estados con el New York Bar?",
+  "¿Puede un abogado de Nueva York ejercer en Francia?",
+  "¿Se puede obtener una visa y quedarse después del LL.M?",
+  "¿Cuáles son las etapas concretas del New York Bar?",
+]
+
+const answersEs = [
+  "Estudié derecho en Nancy, hice intercambios en Suecia y Países Bajos, un M2 en Paris Dauphine y un LL.M en Case Western Reserve mediante el convenio de Dauphine. Aprobé el New York Bar en el segundo intento y hoy ejerzo en Nueva York.",
+  "Normalmente no basta por sí solo. Un candidato francés suele necesitar estudios jurídicos completos y un LL.M estadounidense que cumpla las reglas. Hay que confirmar la elegibilidad con el New York Board of Law Examiners.",
+  "El JD es el título estadounidense estándar y la vía más sólida para una carrera duradera. El LL.M es más corto y económico, y puede permitir acceder al New York Bar.",
+  "Depende de la universidad. Importan las notas, la motivación, la coherencia del proyecto, la experiencia internacional y el nivel de inglés.",
+  "Los convenios universitarios suelen ser la mejor opción. También existen becas universitarias, Fulbright y exenciones parciales o totales.",
+  "Sí. Es esencial hacer networking, asistir a eventos, usar LinkedIn y mantener contactos. Las restricciones de visa añaden dificultad.",
+  "Es complicado, especialmente al inicio de los estudios. Los despachos reclutan principalmente estudiantes formados en derecho estadounidense.",
+  "Si Nueva York es el objetivo principal, una secuencia posible es M2, LL.M, New York Bar y después el examen francés del artículo 100.",
+  "Puede ser posible para ciertos JD. Para acceder al New York Bar mediante un LL.M suele ser más seguro completar al menos un M1 y, a menudo, un M2.",
+  "Elige un buen máster coherente con el proyecto y, si es posible, con convenios LL.M estadounidenses. La coherencia global importa más que el nombre.",
+  "La selección suele realizarse durante el M2. La universidad francesa designa a los estudiantes antes de la graduación.",
+  "Algunas universidades hacen preselección interna; otras exigen candidatura directa o mediante LSAC. Se valoran notas, inglés, motivación y experiencia.",
+  "Las vías principales son los convenios, la candidatura directa y LSAC cuando la universidad lo exige.",
+  "Se necesita un buen nivel académico, normalmente acreditado por TOEFL o IELTS. No es imprescindible ser bilingüe.",
+  "Sí. Requiere varios meses de preparación intensiva y suele ser más difícil que el propio LL.M.",
+  "Conviene empezar entre 8 y 12 meses antes para preparar idioma, recomendaciones, expedientes, becas y convenios.",
+  "No. Tras aprobar el examen y completar MPRE, Character and Fitness y los demás requisitos, se puede solicitar la admisión.",
+  "No automáticamente. Cada estado tiene sus reglas; algunos aceptan transferencias UBE y otros exigen otro examen.",
+  "Un abogado de Nueva York puede utilizar la vía del examen francés del artículo 100. No es una equivalencia automática.",
+  "Es posible, pero nunca está garantizado. Se necesita tanto un empleo como una vía migratoria adecuada.",
+  "Primero se verifica la elegibilidad. Después se prepara el examen de dos días, se completan MPRE, NYLC y NYLE, Character and Fitness y finalmente el juramento.",
+]
+
+const faqCopy = {
+  fr: {
+    aria: "FAQ sur le parcours LL.M et New York Bar",
+    title: "Questions fréquentes sur mon parcours, le LL.M. et le New York Bar",
+    intro:
+      "Cette FAQ répond aux questions que l’on me pose le plus souvent sur mon parcours, les LL.M. américains, le coût, la sélection et le barreau de New York.",
+    journey: "Mon parcours en bref",
+    journeyParagraphs: [
+      "Licence de droit à Nancy, Erasmus en Suède en L3, M1 Droit des affaires à Nancy, puis M2 Droit des affaires internationales à Paris Dauphine avec un Erasmus à Tilburg.",
+      "J’ai ensuite effectué un LL.M. à Case Western Reserve University grâce à un partenariat avec Dauphine, puis passé le barreau de New York.",
+      "Aujourd’hui, je suis avocat à New York et ce site a été créé pour rendre ce parcours plus lisible pour les étudiants en droit français.",
+    ],
+    items: faqItemsFr,
+  },
+  en: {
+    aria: "FAQ about LL.M pathways and the New York Bar",
+    title: "Frequently asked questions about my path, the LL.M, and New York",
+    intro:
+      "Answers to common questions about my background, U.S. LL.M programs, cost, selection, and the New York Bar.",
+    journey: "My path at a glance",
+    journeyParagraphs: [
+      "Law degree in Nancy, Erasmus in Sweden, business law studies in Nancy, then an international business law M2 at Paris Dauphine with an exchange in Tilburg.",
+      "I then completed an LL.M at Case Western Reserve University through Dauphine’s partnership and passed the New York Bar.",
+      "I now practice in New York and created this website to make the path clearer for French law students.",
+    ],
+    items: questionsEn.map((question, index) => ({
+      question,
+      answer: answersEn[index],
+    })),
+  },
+  es: {
+    aria: "Preguntas sobre LL.M y el New York Bar",
+    title: "Preguntas frecuentes sobre mi recorrido, el LL.M y Nueva York",
+    intro:
+      "Respuestas a preguntas habituales sobre mi experiencia, los LL.M estadounidenses, el coste, la selección y el New York Bar.",
+    journey: "Mi recorrido en breve",
+    journeyParagraphs: [
+      "Estudios de derecho en Nancy, Erasmus en Suecia, derecho empresarial en Nancy y un M2 de derecho empresarial internacional en Paris Dauphine con intercambio en Tilburg.",
+      "Después cursé un LL.M en Case Western Reserve University mediante el convenio de Dauphine y aprobé el New York Bar.",
+      "Hoy ejerzo en Nueva York y creé este sitio para facilitar este recorrido a los estudiantes franceses.",
+    ],
+    items: questionsEs.map((question, index) => ({
+      question,
+      answer: answersEs[index],
+    })),
+  },
+} as const
+
 export function FounderFaq() {
+  const { language } = useLanguage()
+  const t = faqCopy[language]
   const [openIndex, setOpenIndex] = React.useState<number>(0)
 
   return (
     <section
       id="faq"
       className="relative mt-12 scroll-mt-24 overflow-hidden rounded-[28px] border bg-card/72 px-4 py-8 shadow-[0_28px_90px_-62px_hsl(var(--primary)/0.72)] sm:px-6 lg:px-8"
-      aria-label="FAQ sur le parcours LL.M et New York Bar"
+      aria-label={t.aria}
     >
       <div className="relative space-y-6">
         <div className="space-y-3">
@@ -145,12 +292,10 @@ export function FounderFaq() {
             FAQ — Corentin Saint-Girons
           </div>
           <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Questions fréquentes sur mon parcours, le LL.M. et le New York Bar
+            {t.title}
           </h2>
           <p className="max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-            Cette FAQ répond aux questions que l’on me pose le plus souvent sur
-            mon parcours, les LL.M. américains, le coût, la sélection et le
-            barreau de New York.
+            {t.intro}
           </p>
         </div>
 
@@ -162,25 +307,13 @@ export function FounderFaq() {
                   className="h-5 w-5 text-primary"
                   aria-hidden="true"
                 />
-                Mon parcours en bref
+                {t.journey}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm leading-7 text-muted-foreground">
-              <p>
-                Licence de droit à Nancy, Erasmus en Suède en L3, M1 Droit des
-                affaires à Nancy, puis M2 Droit des affaires internationales à
-                Paris Dauphine avec un Erasmus à Tilburg.
-              </p>
-              <p>
-                J’ai ensuite effectué un LL.M. à Case Western Reserve University
-                grâce à un partenariat avec Dauphine, puis passé le barreau de
-                New York.
-              </p>
-              <p>
-                Aujourd’hui, je suis avocat à New York — et ce site a été créé
-                pour rendre ce parcours plus lisible pour les étudiants en droit
-                français.
-              </p>
+              {t.journeyParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </CardContent>
           </Card>
 
@@ -192,7 +325,7 @@ export function FounderFaq() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              {faqItems.map((item, index) => {
+              {t.items.map((item, index) => {
                 const isOpen = openIndex === index
 
                 return (

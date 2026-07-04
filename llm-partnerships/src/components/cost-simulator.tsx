@@ -28,7 +28,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import type { Partnership } from "@/lib/types"
-import { cleanText, type UiLanguage } from "@/lib/text-utils"
+import { cleanText, translateDataText, type UiLanguage } from "@/lib/text-utils"
 import {
   formatUsd,
   getAllCostEstimates,
@@ -739,6 +739,7 @@ export function CostSimulator({
   language?: UiLanguage
 }) {
   const t = copy[language]
+  const tr = (value: unknown) => translateDataText(value, language)
   const meta = React.useMemo(() => getCostEstimatesMeta(), [])
   const allEstimates = React.useMemo(() => getAllCostEstimates(), [])
   const cities = React.useMemo(() => getDisplayCities(), [])
@@ -996,7 +997,7 @@ export function CostSimulator({
                   </Select>
                   {selectedOffer.note ? (
                     <p className="text-xs leading-5 text-muted-foreground">
-                      {selectedOffer.note}
+                      {tr(selectedOffer.note)}
                     </p>
                   ) : null}
                 </div>
@@ -1139,7 +1140,7 @@ export function CostSimulator({
                           <div className="mb-3 flex items-start justify-between gap-3">
                             <div>
                               <div className="flex items-center gap-2 text-sm font-medium">
-                                <span>{cleanText(component.label)}</span>
+                                <span>{tr(component.label)}</span>
                                 {helpText ? (
                                   <BooksHelpTooltip text={helpText} />
                                 ) : null}
@@ -1154,7 +1155,7 @@ export function CostSimulator({
                           </div>
                           <input
                             type="range"
-                            aria-label={cleanText(component.label)}
+                            aria-label={tr(component.label)}
                             min={min}
                             max={max}
                             step={100}
@@ -1221,7 +1222,7 @@ export function CostSimulator({
                           className="rounded-xl border bg-card/80 p-3 motion-pop sm:p-4"
                         >
                           <div className="flex items-start justify-between gap-2 text-xs text-muted-foreground">
-                            <span>{cleanText(component.label)}</span>
+                            <span>{tr(component.label)}</span>
                             {helpText ? (
                               <BooksHelpTooltip text={helpText} />
                             ) : editable ? (
@@ -1267,7 +1268,7 @@ export function CostSimulator({
                     {t.methodology}
                   </div>
                   <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    {cleanText(selectedEstimate.methodologyNote)}
+                    {tr(selectedEstimate.methodologyNote)}
                   </p>
                   {selectedEstimate.optionalNotes?.length ? (
                     <div className="mt-3 space-y-2">
@@ -1276,7 +1277,7 @@ export function CostSimulator({
                           key={note}
                           className="rounded-xl border border-amber-500/25 bg-amber-500/10 px-4 py-3 text-sm text-amber-950 dark:text-amber-100"
                         >
-                          {cleanText(note)}
+                          {tr(note)}
                         </div>
                       ))}
                     </div>
@@ -1316,7 +1317,7 @@ export function CostSimulator({
                     {meta.commonCosts.map((cost) => (
                       <div key={cost.label}>
                         <div className="flex items-center gap-1.5 text-sm font-medium">
-                          {cleanText(cost.label)}
+                          {tr(cost.label)}
                           {isBooksComponent(cost.label) ? (
                             <HelpCircle
                               className="h-3.5 w-3.5 text-muted-foreground"
@@ -1325,7 +1326,7 @@ export function CostSimulator({
                           ) : null}
                         </div>
                         <div className="text-sm text-muted-foreground">
-                          {cleanText(cost.description)}
+                          {tr(cost.description)}
                         </div>
                       </div>
                     ))}
@@ -1346,7 +1347,7 @@ export function CostSimulator({
                         rel="noreferrer"
                         className="flex items-start justify-between gap-3 rounded-xl border bg-card/80 px-4 py-3 text-sm transition-colors hover:bg-card"
                       >
-                        <span>{cleanText(source.label)}</span>
+                        <span>{tr(source.label)}</span>
                         <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
                       </a>
                     ))}

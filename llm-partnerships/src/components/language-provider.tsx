@@ -13,10 +13,21 @@ const LanguageContext = React.createContext<LanguageContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = React.useState<UiLanguage>("fr")
+  const [hydrated, setHydrated] = React.useState(false)
+
+  React.useEffect(() => {
+    const stored = window.localStorage.getItem("llm-partnerships-language")
+    if (stored === "fr" || stored === "en" || stored === "es") {
+      setLanguage(stored)
+    }
+    setHydrated(true)
+  }, [])
 
   React.useEffect(() => {
     document.documentElement.lang = language
-  }, [language])
+    if (!hydrated) return
+    window.localStorage.setItem("llm-partnerships-language", language)
+  }, [hydrated, language])
 
   const value = React.useMemo(() => ({ language, setLanguage }), [language])
 
