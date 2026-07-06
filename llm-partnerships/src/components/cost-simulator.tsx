@@ -61,6 +61,8 @@ const copy = {
     livingCosts: "Dépenses de vie ajustables",
     healthInsurance: "Assurance santé",
     flights: "Billets d'avion France - États-Unis",
+    frenchUniversityFees:
+      "Frais éventuels à l'université française",
     nyBarExamFee: "NY Bar Exam - inscription candidat étranger",
     nyBarLaptop: "NY Bar Exam - ordinateur",
     nyleFee: "NYLE - examen en ligne",
@@ -94,6 +96,8 @@ const copy = {
     sources: "Sources officielles",
     booksHelp:
       "Ce poste correspond aux livres et fournitures académiques : manuels obligatoires, supports de cours, impressions, accès à des bases de données ou matériel demandé par l'école. Il ne s'agit pas d'une dépense de vie librement ajustable.",
+    frenchUniversityFeesHelp:
+      "Estimation des frais qui peuvent rester dus côté français : inscription administrative, CVEC éventuelle, frais de dossier, frais de diplôme ou frais locaux selon l'université et le partenariat. Ce poste ne correspond pas à la tuition américaine.",
     freeSeat: "Place sans frais de scolarité partenaire",
     reducedSeat: "Place à frais réduits",
     scholarshipSeat: "Bourse ou remise possible",
@@ -130,6 +134,8 @@ const copy = {
     livingCosts: "Editable living costs",
     healthInsurance: "Health insurance",
     flights: "France - U.S. flights",
+    frenchUniversityFees:
+      "Possible fees at the French university",
     nyBarExamFee: "NY Bar Exam - foreign applicant fee",
     nyBarLaptop: "NY Bar Exam - laptop fee",
     nyleFee: "NYLE - online exam",
@@ -163,6 +169,8 @@ const copy = {
     sources: "Official sources",
     booksHelp:
       "This item covers academic books and supplies: required textbooks, course materials, printing, database access, or equipment required by the school. It is not a freely adjustable living expense.",
+    frenchUniversityFeesHelp:
+      "Estimate for fees that may remain payable to the French university: administrative registration, possible CVEC, application fees, degree fees, or local charges depending on the university and partnership. This is not U.S. tuition.",
     freeSeat: "Partner tuition-free seat",
     reducedSeat: "Reduced tuition seat",
     scholarshipSeat: "Scholarship or discount possible",
@@ -199,6 +207,8 @@ const copy = {
     livingCosts: "Gastos de vida ajustables",
     healthInsurance: "Seguro de salud",
     flights: "Vuelos Francia - Estados Unidos",
+    frenchUniversityFees:
+      "Posibles tasas en la universidad francesa",
     nyBarExamFee: "NY Bar Exam - tasa candidato extranjero",
     nyBarLaptop: "NY Bar Exam - tasa ordenador",
     nyleFee: "NYLE - examen en línea",
@@ -232,6 +242,8 @@ const copy = {
     sources: "Fuentes oficiales",
     booksHelp:
       "Este concepto cubre libros y materiales académicos: manuales obligatorios, materiales de curso, impresiones, acceso a bases de datos o equipo requerido por la escuela. No es un gasto de vida libremente ajustable.",
+    frenchUniversityFeesHelp:
+      "Estimación de tasas que pueden seguir debiéndose a la universidad francesa: inscripción administrativa, posible CVEC, tasas de expediente, diploma o costes locales según la universidad y el convenio. No corresponde a la matrícula estadounidense.",
     freeSeat: "Plaza sin matrícula de la universidad asociada",
     reducedSeat: "Plaza con matrícula reducida",
     scholarshipSeat: "Beca o reducción posible",
@@ -464,6 +476,7 @@ function getBarJurisdictionOptions(
 
 const DEFAULT_HEALTH_INSURANCE_USD = 2800
 const DEFAULT_FLIGHTS_USD = 1200
+const DEFAULT_FRENCH_UNIVERSITY_FEES_USD = 700
 
 function isInsuranceComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
@@ -494,6 +507,16 @@ function isBarPrepComponent(label: string) {
   )
 }
 
+function isFrenchUniversityFeesComponent(label: string) {
+  const normalized = cleanText(label).toLowerCase()
+  return (
+    normalized.includes("universite francaise") ||
+    normalized.includes("université française") ||
+    normalized.includes("french university") ||
+    normalized.includes("universidad francesa")
+  )
+}
+
 function getSupplementalCostComponents(
   components: CostComponent[],
   language: UiLanguage,
@@ -517,6 +540,12 @@ function getSupplementalCostComponents(
       kind: "other",
     })
   }
+
+  supplemental.push({
+    label: t.frenchUniversityFees,
+    amountUsd: DEFAULT_FRENCH_UNIVERSITY_FEES_USD,
+    kind: "other",
+  })
 
   for (const item of barJurisdiction.items) {
     supplemental.push({
@@ -574,6 +603,7 @@ function getCostHelpText(label: string, language: UiLanguage) {
   )
     return t.laptopHelp
   if (isBarPrepComponent(label)) return t.barPrepHelp
+  if (isFrenchUniversityFeesComponent(label)) return t.frenchUniversityFeesHelp
   if (isBooksComponent(label)) return t.booksHelp
 
   return undefined
@@ -602,6 +632,7 @@ function isEditableLivingComponent(component: CostComponent) {
     label.includes("transport") ||
     isInsuranceComponent(label) ||
     isFlightsComponent(label) ||
+    isFrenchUniversityFeesComponent(label) ||
     isBarPrepComponent(label) ||
     label.includes("personal") ||
     label.includes("personnelles") ||
@@ -622,6 +653,96 @@ function parseDollarAmounts(text: string) {
     if (Number.isFinite(value) && value > 0) amounts.push(value)
   }
   return amounts
+}
+
+function getSentences(text: string) {
+  return text
+    .split(/(?<=[.!?])\s+|\s+[;•]\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
+}
+
+function sentenceHasAny(sentence: string, keywords: string[]) {
+  return keywords.some((keyword) => sentence.includes(keyword))
+}
+
+function parseDiscountAmounts(text: string, normalTuition: number) {
+  const discountKeywords = [
+    "bourse",
+    "scholarship",
+    "remise",
+    "discount",
+    "reduction",
+    "réduction",
+    "reduit",
+    "réduit",
+  ]
+  const excludedKeywords = [
+    "assurance",
+    "insurance",
+    "livres",
+    "books",
+    "manual",
+    "manuels",
+    "acceptation",
+    "application",
+    "dossier",
+    "fee",
+    "frais de 250",
+    "frais apres acceptation",
+    "frais après acceptation",
+  ]
+
+  return Array.from(
+    new Set(
+      getSentences(text)
+        .filter((sentence) => sentenceHasAny(sentence, discountKeywords))
+        .filter((sentence) => !sentenceHasAny(sentence, excludedKeywords))
+        .flatMap(parseDollarAmounts)
+        .filter((amount) => amount > 0 && amount < normalTuition),
+    ),
+  )
+}
+
+function parsePartnerTuitionAmounts(text: string, normalTuition: number) {
+  const priceKeywords = [
+    "prix",
+    "cout",
+    "coût",
+    "tuition",
+    "scolarite",
+    "scolarité",
+    "frais reduits",
+    "frais réduits",
+    "a verser",
+    "à verser",
+    "payant",
+    "tarif",
+  ]
+  const excludedKeywords = [
+    "bourse",
+    "scholarship",
+    "remise",
+    "discount",
+    "assurance",
+    "insurance",
+    "livres",
+    "books",
+    "acceptation",
+    "application",
+    "dossier",
+    "lsac",
+  ]
+
+  return Array.from(
+    new Set(
+      getSentences(text)
+        .filter((sentence) => sentenceHasAny(sentence, priceKeywords))
+        .filter((sentence) => !sentenceHasAny(sentence, excludedKeywords))
+        .flatMap(parseDollarAmounts)
+        .filter((amount) => amount > 0 && amount < normalTuition),
+    ),
+  )
 }
 
 function parsePercent(text: string) {
@@ -658,9 +779,11 @@ function inferOfferOptions(
     ].join(" "),
   )
   const lower = text.toLowerCase()
-  const amounts = parseDollarAmounts(lower).filter(
-    (amount) => amount < normalTuition,
+  const partnerTuitionAmounts = parsePartnerTuitionAmounts(
+    lower,
+    normalTuition,
   )
+  const discountAmounts = parseDiscountAmounts(lower, normalTuition)
   const percent = parsePercent(lower)
 
   if (
@@ -687,7 +810,7 @@ function inferOfferOptions(
     })
   }
 
-  Array.from(new Set(amounts))
+  partnerTuitionAmounts
     .sort((a, b) => a - b)
     .slice(0, 3)
     .forEach((amount, index) => {
@@ -696,6 +819,18 @@ function inferOfferOptions(
         label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
         tuitionUsd: Math.round(amount),
         note: `${formatUsd(amount)} ${t.referenceAmount}`,
+      })
+    })
+
+  discountAmounts
+    .sort((a, b) => b - a)
+    .slice(0, 3)
+    .forEach((amount, index) => {
+      options.push({
+        id: `discount-${index}-${amount}`,
+        label: t.scholarshipSeat,
+        tuitionUsd: Math.max(0, Math.round(normalTuition - amount)),
+        note: `${formatUsd(amount)} ${t.savings.toLowerCase()}`,
       })
     })
 
