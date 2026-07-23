@@ -13,6 +13,7 @@ import {
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Select,
@@ -81,6 +82,9 @@ const copy = {
       "L'éligibilité d'un juriste formé à l'étranger dépend de l'État, du premier diplôme de droit, du LL.M. et des matières suivies. Vérifie toujours les règles officielles avant de candidater.",
     publicTotal: "Budget annuel sans partenariat",
     partnerTotal: "Budget annuel avec partenariat",
+    showEuros: "Voir en EUR",
+    showDollars: "Voir en USD",
+    euroEstimateNote: "Conversion indicative : 1 $ ≈ 0,879 €.",
     studentCosts: "Ajuste ton mode de vie",
     studentCostsHelp:
       "Ces curseurs modifient seulement les postes qui varient selon ton choix de logement, repas, transport, assurance, billets d'avion, préparation au barreau ou dépenses personnelles.",
@@ -154,6 +158,9 @@ const copy = {
       "Eligibility for foreign-trained lawyers depends on the jurisdiction, first law degree, LL.M., and required coursework. Always verify the official rules before applying.",
     publicTotal: "Annual budget without partnership",
     partnerTotal: "Annual budget with partnership",
+    showEuros: "Show EUR",
+    showDollars: "Show USD",
+    euroEstimateNote: "Indicative conversion: $1 ≈ €0.879.",
     studentCosts: "Adjust your lifestyle",
     studentCostsHelp:
       "These sliders only change costs driven by your housing, meals, transport, insurance, flights, bar prep, or personal spending choices.",
@@ -227,6 +234,9 @@ const copy = {
       "La elegibilidad de juristas formados fuera de EE. UU. depende del estado, del primer título de derecho, del LL.M. y de las materias cursadas. Verifica siempre las reglas oficiales antes de aplicar.",
     publicTotal: "Presupuesto anual sin convenio",
     partnerTotal: "Presupuesto anual con convenio",
+    showEuros: "Ver en EUR",
+    showDollars: "Ver en USD",
+    euroEstimateNote: "Conversión indicativa: 1 $ ≈ 0,879 €.",
     studentCosts: "Ajusta tu estilo de vida",
     studentCostsHelp:
       "Estos controles solo modifican gastos que dependen de tu vivienda, comidas, transporte, seguro, vuelos, preparación del bar exam o gastos personales.",
@@ -477,6 +487,7 @@ function getBarJurisdictionOptions(
 const DEFAULT_HEALTH_INSURANCE_USD = 2800
 const DEFAULT_FLIGHTS_USD = 1200
 const DEFAULT_FRENCH_UNIVERSITY_FEES_USD = 700
+const USD_TO_EUR_RATE = 0.879
 
 function isInsuranceComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
@@ -751,6 +762,14 @@ function parsePercent(text: string) {
   return Math.min(Math.max(Number(match[1]), 0), 100)
 }
 
+function formatEurFromUsd(amountUsd: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(Math.round(amountUsd * USD_TO_EUR_RATE))
+}
+
 function inferOfferOptions(
   partnership: Partnership | undefined,
   normalTuition: number,
@@ -934,6 +953,7 @@ export function CostSimulator({
   const [selectedPartnershipId, setSelectedPartnershipId] = React.useState("")
   const [selectedOfferId, setSelectedOfferId] = React.useState("public")
   const [selectedVisaId, setSelectedVisaId] = React.useState("f1-initial")
+  const [showTotalsInEur, setShowTotalsInEur] = React.useState(false)
   const [customCosts, setCustomCosts] = React.useState<Record<string, number>>(
     {},
   )
@@ -1313,22 +1333,52 @@ export function CostSimulator({
                     })}
                   </div>
 
-                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-5 flex flex-col gap-3 border-t pt-4 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-xs leading-5 text-muted-foreground">
+                      {showTotalsInEur ? t.euroEstimateNote : t.fixedHint}
+                    </p>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="h-9 w-full rounded-full px-4 text-xs sm:w-auto"
+                      aria-pressed={showTotalsInEur}
+                      onClick={() => setShowTotalsInEur((current) => !current)}
+                    >
+                      {showTotalsInEur ? t.showDollars : t.showEuros}
+                    </Button>
+                  </div>
+
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
                     <div className="rounded-xl border bg-card/80 p-4">
                       <div className="text-xs text-muted-foreground">
                         {t.publicTotal}
                       </div>
                       <div className="mt-2 text-xl font-semibold">
-                        {formatUsd(normalTotal)}
+                        {showTotalsInEur
+                          ? formatEurFromUsd(normalTotal)
+                          : formatUsd(normalTotal)}
                       </div>
+                      {showTotalsInEur ? (
+                        <div className="mt-1 text-[11px] text-muted-foreground">
+                          {formatUsd(normalTotal)}
+                        </div>
+                      ) : null}
                     </div>
                     <div className="rounded-xl border border-primary/15 bg-primary/10 p-4">
                       <div className="text-xs text-muted-foreground">
                         {t.partnerTotal}
                       </div>
                       <div className="mt-2 text-xl font-semibold">
-                        {formatUsd(partnerTotal)}
+                        {showTotalsInEur
+                          ? formatEurFromUsd(partnerTotal)
+                          : formatUsd(partnerTotal)}
                       </div>
+                      {showTotalsInEur ? (
+                        <div className="mt-1 text-[11px] text-muted-foreground">
+                          {formatUsd(partnerTotal)}
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>
