@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "designer:verify": "node scripts/designer-verify.mjs"
+    "designer:verify": "node scripts/designer-verify.mjs",
+    "data:verify:germany": "node scripts/verify-germany-data.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",

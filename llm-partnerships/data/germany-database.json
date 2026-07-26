@@ -1,0 +1,907 @@
+{
+  "schemaVersion": "1.0",
+  "language": "fr",
+  "projectName": "German Law Schools LL.M. Partnerships Database",
+  "unknownValue": "Non communiqué",
+  "statusDefinitions": {
+    "confirmed": "Information confirmée par une source officielle de l’université ou de la law school.",
+    "to_confirm": "Le partenariat est publié, mais une modalité déterminante du parcours LL.M. reste à confirmer.",
+    "incomplete": "Information insuffisante pour publier une fiche complète."
+  },
+  "tuitionCategories": {
+    "no_tuition": "Sans frais de scolarité pendant l’échange",
+    "fixed_fee": "Frais fixes réduits à payer",
+    "reduced_tuition": "Frais de scolarité réduits",
+    "scholarship_possible": "Bourse possible",
+    "full_or_unknown": "Frais complets ou non communiqués",
+    "to_confirm": "À confirmer"
+  },
+  "partnershipTypes": {
+    "reserved_seat": "Place réservée",
+    "preferential_treatment": "Traitement financier préférentiel",
+    "pipeline": "Nomination ou parcours LL.M. facilité, sans admission garantie",
+    "dual_degree": "LL.M. intégré ou double diplôme",
+    "exchange_credit": "Échange créditable vers un LL.M.",
+    "to_confirm": "À confirmer"
+  },
+  "frenchUniversities": [
+    {
+      "id": "augsburg",
+      "name": "Universität Augsburg",
+      "faculty": "Juristische Fakultät",
+      "city": "Augsburg",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 48.3334,
+        "lng": 10.8986
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "fu-berlin",
+      "name": "Freie Universität Berlin",
+      "faculty": "Fachbereich Rechtswissenschaft",
+      "city": "Berlin",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 52.4532,
+        "lng": 13.2895
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "freiburg",
+      "name": "Albert-Ludwigs-Universität Freiburg",
+      "faculty": "Rechtswissenschaftliche Fakultät",
+      "city": "Freiburg im Breisgau",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 47.9978,
+        "lng": 7.8467
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "muenster",
+      "name": "Universität Münster",
+      "faculty": "Rechtswissenschaftliche Fakultät",
+      "city": "Münster",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 51.9635,
+        "lng": 7.6135
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "regensburg",
+      "name": "Universität Regensburg",
+      "faculty": "Fakultät für Rechtswissenschaft",
+      "city": "Regensburg",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 48.9991,
+        "lng": 12.0952
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "mannheim",
+      "name": "Universität Mannheim",
+      "faculty": "Abteilung Rechtswissenschaft",
+      "city": "Mannheim",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 49.4836,
+        "lng": 8.4624
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "duesseldorf",
+      "name": "Heinrich-Heine-Universität Düsseldorf",
+      "faculty": "Juristische Fakultät",
+      "city": "Düsseldorf",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 51.1904,
+        "lng": 6.7946
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "humboldt-berlin",
+      "name": "Humboldt-Universität zu Berlin",
+      "faculty": "Juristische Fakultät",
+      "city": "Berlin",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 52.5186,
+        "lng": 13.3933
+      },
+      "dataStatus": "to_confirm"
+    },
+    {
+      "id": "ebs",
+      "name": "EBS Universität für Wirtschaft und Recht",
+      "faculty": "EBS Law School",
+      "city": "Wiesbaden",
+      "country": "Allemagne",
+      "coordinates": {
+        "lat": 50.078,
+        "lng": 8.2456
+      },
+      "dataStatus": "to_confirm"
+    }
+  ],
+  "partnerships": [
+    {
+      "id": "augsburg-george-washington-exchange-credit",
+      "frenchUniversityId": "augsburg",
+      "frenchUniversity": "Universität Augsburg",
+      "partnerUniversity": "George Washington University Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Washington, D.C.",
+      "partnerState": "District of Columbia",
+      "partnerCoordinates": {
+        "lat": 38.8971,
+        "lng": -77.0459
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange créditable vers un LL.M.",
+      "partnershipType": "exchange_credit",
+      "specialties": [
+        "Intellectual Property Law",
+        "Cours de droit américain"
+      ],
+      "requiredLevel": "Étudiants en droit ayant validé la Zwischenprüfung",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "1 semestre d’échange; un semestre supplémentaire peut permettre de terminer un LL.M., sous réserve des règles de la law school",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.uni-augsburg.de/de/fakultaet/jura/internationales/studium-usa/",
+      "shortDescription": "Échange sans frais de scolarité à George Washington; le semestre peut être pris en compte dans un LL.M. ultérieur, qui n’est pas délivré par l’échange seul.",
+      "admissionConditions": "Sélection interne à Augsburg, puis respect des exigences de la law school partenaire.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué pour cette destination sur la page publique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Frais de scolarité de la law school exonérés pendant le semestre d’échange; autres frais et coût d’un éventuel semestre LL.M. supplémentaire non communiqués.",
+      "financialAid": "Les échanges vers George Washington sont régulièrement soutenus par des bourses DAAD ISAP; attribution et montant individuels non garantis.",
+      "applicationDeadline": "Non communiqué sur la page de présentation; vérifier l’appel annuel d’Augsburg.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle d’Augsburg publie l’échange, l’exonération des frais et la possibilité fréquente de terminer le LL.M. avec un semestre supplémentaire; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre de places par destination",
+        "Crédits exacts transférables au LL.M.",
+        "Coût du semestre LL.M. supplémentaire",
+        "Date limite de la prochaine campagne"
+      ],
+      "notes": "Le LL.M. n’est pas obtenu au terme du seul semestre d’échange. La bourse ISAP est une aide possible et non une prestation automatique."
+    },
+    {
+      "id": "augsburg-pittsburgh-exchange-credit",
+      "frenchUniversityId": "augsburg",
+      "frenchUniversity": "Universität Augsburg",
+      "partnerUniversity": "University of Pittsburgh School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Pittsburgh",
+      "partnerState": "Pennsylvania",
+      "partnerCoordinates": {
+        "lat": 40.4439,
+        "lng": -79.9534
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange créditable vers un LL.M.",
+      "partnershipType": "exchange_credit",
+      "specialties": [
+        "Health Law",
+        "Cours de droit américain"
+      ],
+      "requiredLevel": "Étudiants en droit ayant validé la Zwischenprüfung",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "1 semestre d’échange; possibilité publiée d’imputer le semestre sur un LL.M. à Pittsburgh",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.uni-augsburg.de/de/fakultaet/jura/internationales/studium-usa/",
+      "shortDescription": "Échange sans frais de scolarité à Pitt Law avec possibilité d’imputer le semestre sur un LL.M. ultérieur; l’échange seul ne confère pas le diplôme.",
+      "admissionConditions": "Sélection interne à Augsburg, puis respect des exigences de la law school partenaire.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué pour cette destination sur la page publique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Frais de scolarité de la law school exonérés pendant le semestre d’échange; coût du complément LL.M. non communiqué.",
+      "financialAid": "Aucune bourse propre à cette destination n’est promise sur la page officielle; aides externes possibles.",
+      "applicationDeadline": "Non communiqué sur la page de présentation; vérifier l’appel annuel d’Augsburg.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle d’Augsburg identifie Pittsburgh et l’imputation possible du semestre d’échange sur un LL.M.; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre de places par destination",
+        "Crédits exacts transférables au LL.M.",
+        "Coût du complément LL.M.",
+        "Date limite de la prochaine campagne"
+      ],
+      "notes": "Augsburg ne cite pas Pittsburgh parmi les destinations régulièrement financées par DAAD ISAP; ne pas présenter une bourse comme acquise."
+    },
+    {
+      "id": "augsburg-chicago-kent-exchange-credit",
+      "frenchUniversityId": "augsburg",
+      "frenchUniversity": "Universität Augsburg",
+      "partnerUniversity": "Chicago-Kent College of Law, Illinois Institute of Technology",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Chicago",
+      "partnerState": "Illinois",
+      "partnerCoordinates": {
+        "lat": 41.8777,
+        "lng": -87.6278
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange créditable vers un LL.M.",
+      "partnershipType": "exchange_credit",
+      "specialties": [
+        "Trial Advocacy",
+        "Cours de droit américain"
+      ],
+      "requiredLevel": "Étudiants en droit ayant validé la Zwischenprüfung",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "1 semestre d’échange; possibilité publiée d’imputer le semestre sur un LL.M. à Chicago-Kent",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.uni-augsburg.de/de/fakultaet/jura/internationales/studium-usa/",
+      "shortDescription": "Échange sans frais de scolarité à Chicago-Kent dont les crédits peuvent contribuer à un LL.M. ultérieur; aucun LL.M. n’est délivré par le semestre seul.",
+      "admissionConditions": "Sélection interne à Augsburg, puis respect des exigences de la law school partenaire.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué pour cette destination sur la page publique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Frais de scolarité de la law school exonérés pendant le semestre d’échange; autres frais et coût du complément LL.M. non communiqués.",
+      "financialAid": "Les échanges vers Chicago-Kent sont régulièrement soutenus par des bourses DAAD ISAP; attribution et montant individuels non garantis.",
+      "applicationDeadline": "Non communiqué sur la page de présentation; vérifier l’appel annuel d’Augsburg.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle d’Augsburg publie Chicago-Kent, l’exonération des frais et l’imputation possible sur un LL.M.; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre de places par destination",
+        "Crédits exacts transférables au LL.M.",
+        "Coût du complément LL.M.",
+        "Date limite de la prochaine campagne"
+      ],
+      "notes": "La bourse ISAP est une aide possible et non automatique."
+    },
+    {
+      "id": "augsburg-santa-clara-exchange-credit",
+      "frenchUniversityId": "augsburg",
+      "frenchUniversity": "Universität Augsburg",
+      "partnerUniversity": "Santa Clara University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Santa Clara",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.3496,
+        "lng": -121.939
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange créditable vers un LL.M.",
+      "partnershipType": "exchange_credit",
+      "specialties": [
+        "Intellectual Property Law",
+        "Cours de droit américain"
+      ],
+      "requiredLevel": "Étudiants en droit ayant validé la Zwischenprüfung",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "1 semestre d’échange; possibilité publiée d’imputer le semestre sur un LL.M. à Santa Clara",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.uni-augsburg.de/de/fakultaet/jura/internationales/studium-usa/",
+      "shortDescription": "Échange sans frais de scolarité à Santa Clara avec imputation possible sur un LL.M. ultérieur; le semestre d’échange n’est pas à lui seul un LL.M.",
+      "admissionConditions": "Sélection interne à Augsburg, puis respect des exigences de la law school partenaire.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué pour cette destination sur la page publique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Frais de scolarité de la law school exonérés pendant le semestre d’échange; coût du complément LL.M. non communiqué.",
+      "financialAid": "Aucune bourse propre à cette destination n’est promise sur la page officielle; aides externes possibles.",
+      "applicationDeadline": "Non communiqué sur la page de présentation; vérifier l’appel annuel d’Augsburg.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle d’Augsburg publie Santa Clara et l’imputation possible de l’échange sur un LL.M.; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre de places par destination",
+        "Crédits exacts transférables au LL.M.",
+        "Coût du complément LL.M.",
+        "Date limite de la prochaine campagne"
+      ],
+      "notes": "Augsburg ne cite pas Santa Clara parmi les destinations régulièrement financées par DAAD ISAP; ne pas présenter une bourse comme acquise."
+    },
+    {
+      "id": "fu-berlin-uconn-dual-degree",
+      "frenchUniversityId": "fu-berlin",
+      "frenchUniversity": "Freie Universität Berlin",
+      "partnerUniversity": "University of Connecticut School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Hartford",
+      "partnerState": "Connecticut",
+      "partnerCoordinates": {
+        "lat": 41.773,
+        "lng": -72.7078
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Première épreuve juridique allemande et LL.M. intégré",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Legal Studies",
+        "Human Rights and Social Justice",
+        "Energy and Environmental Law",
+        "Insurance Law",
+        "Governance, Risk Management and Compliance"
+      ],
+      "requiredLevel": "Étudiants FU Berlin satisfaisant aux critères académiques et linguistiques publiés",
+      "applicationYear": "Pendant le cursus allemand ou après le diplôme selon la variante",
+      "programLanguage": "Anglais",
+      "duration": "Une année académique aux États-Unis",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.jura.fu-berlin.de/international/studierendenaustausch/outgoings/partnerunis/uconn_double-degree/index.html",
+      "shortDescription": "LL.M. UConn intégré au cursus de la FU Berlin, avec nomination interne puis décision finale de UConn.",
+      "admissionConditions": "La FU publie notamment des résultats supérieurs à la moyenne et un TOEFL de 100 ou IELTS de 7,5 pour les conditions les plus favorables; UConn conserve la décision d’admission.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100",
+          "details": "Seuil publié par la FU pour le profil ouvrant l’accès aux conditions les plus favorables."
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7,5",
+          "details": "Alternative publiée par la FU."
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué sur la page publique actuelle.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Remise décidée par UConn: jusqu’à 30 % historiquement pour les profils remplissant les critères; 5 à 20 % possible dans certains dossiers moins bien classés.",
+      "financialAid": "Aucune remise n’est automatique; UConn décide de l’admission et du pourcentage après examen du dossier.",
+      "applicationDeadline": "1er décembre pour l’année académique suivante selon la procédure FU publiée; vérifier la campagne visée.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "Les pages officielles FU décrivent le double diplôme, la nomination, les critères linguistiques et les fourchettes historiques de remise; vérifiées en juillet 2026.",
+      "missingInformation": [
+        "Nombre annuel de places",
+        "Pourcentage garanti pour la prochaine cohorte",
+        "Coût net 2026-2027 après décision individuelle"
+      ],
+      "notes": "La remise est individualisée et ne doit pas être présentée comme une bourse de 50 % garantie."
+    },
+    {
+      "id": "fu-berlin-uc-law-sf-dual-degree",
+      "frenchUniversityId": "fu-berlin",
+      "frenchUniversity": "Freie Universität Berlin",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4159
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Première épreuve juridique allemande et LL.M. intégré",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "LL.M. in U.S. Legal Studies"
+      ],
+      "requiredLevel": "Étudiants en droit de la FU Berlin sélectionnés et admis par UC Law SF",
+      "applicationYear": "Troisième année du cursus allemand selon le parcours publié",
+      "programLanguage": "Anglais",
+      "duration": "Une année académique aux États-Unis",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.jura.fu-berlin.de/international/studierendenaustausch/outgoings/partnerunis/hastings_spb_llm/index.html",
+      "shortDescription": "Année LL.M. intégrée et reconnue dans le cursus de la FU Berlin, avec diplôme LL.M. délivré après l’obtention du LL.B. ou de la première épreuve juridique.",
+      "admissionConditions": "Nomination par la FU Berlin, dossier complémentaire auprès de UC Law SF et décision finale de la law school.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué sur la page publique actuelle.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Exonération publiée de 75 % de la tuition LL.M.; les étudiants admis paient 25 % des frais de scolarité, hors autres coûts.",
+      "financialAid": "Remise partenaire de 75 % pour les étudiants nominés puis admis; PROMOS externe possible mais non garanti.",
+      "applicationDeadline": "1er décembre pour l’année académique suivante selon la procédure FU publiée; vérifier la campagne visée.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle FU publie l’intégration au cursus, le processus d’admission et la remise de 75 %; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre annuel de places",
+        "Montant net 2026-2027 après remise",
+        "Autres frais obligatoires"
+      ],
+      "notes": "L’admission finale appartient à UC Law SF; la remise ne supprime ni les frais annexes ni les frais de vie."
+    },
+    {
+      "id": "fu-berlin-miami-dual-degree",
+      "frenchUniversityId": "fu-berlin",
+      "frenchUniversity": "Freie Universität Berlin",
+      "partnerUniversity": "University of Miami School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Coral Gables",
+      "partnerState": "Florida",
+      "partnerCoordinates": {
+        "lat": 25.7202,
+        "lng": -80.2795
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Première épreuve juridique allemande et LL.M. intégré",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "LL.M. programmes proposés par Miami Law"
+      ],
+      "requiredLevel": "Étudiants en droit de la FU Berlin sélectionnés et admis par Miami Law",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "Une année académique, d’août à mai",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.jura.fu-berlin.de/international/studierendenaustausch/outgoings/partnerunis/miami_spb_llm/index.html",
+      "shortDescription": "Double diplôme LL.M. intégré sur une année à Miami Law, avec au maximum deux places et une remise déterminée dossier par dossier.",
+      "admissionConditions": "Sélection par la FU Berlin, nomination puis décision finale de Miami Law.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Jusqu’à 2 places pour une année académique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": 2,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Remise discrétionnaire de 10 à 50 % de la tuition LL.M., fixée individuellement par Miami Law.",
+      "financialAid": "Miami Law décide du taux après évaluation de chaque dossier; aucune remise de 50 % n’est garantie. PROMOS externe possible.",
+      "applicationDeadline": "1er décembre pour l’année académique suivante selon la procédure FU publiée; vérifier la campagne visée.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle FU publie jusqu’à deux places; sa page de coûts publie une remise individualisée de 10 à 50 %; vérifiées en juillet 2026.",
+      "missingInformation": [
+        "Taux de remise individuel avant décision de Miami",
+        "Coût net 2026-2027",
+        "Frais annexes et assurance actualisés"
+      ],
+      "notes": "Le maximum de deux places est un plafond, non une garantie de deux admissions. La remise est entièrement discrétionnaire."
+    },
+    {
+      "id": "freiburg-uconn-llm",
+      "frenchUniversityId": "freiburg",
+      "frenchUniversity": "Albert-Ludwigs-Universität Freiburg",
+      "partnerUniversity": "University of Connecticut School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Hartford",
+      "partnerState": "Connecticut",
+      "partnerCoordinates": {
+        "lat": 41.773,
+        "lng": -72.7078
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. pendant le cursus allemand",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Legal Studies",
+        "Human Rights and Social Justice",
+        "Energy and Environmental Law",
+        "Insurance Law",
+        "Governance, Risk Management and Compliance"
+      ],
+      "requiredLevel": "À partir de la troisième année d’études de droit à Freiburg",
+      "applicationYear": "À partir du 5e semestre",
+      "programLanguage": "Anglais",
+      "duration": "Une année académique; le titre est délivré après réussite de la première épreuve juridique allemande",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.jura.uni-freiburg.de/de/internationales/outgoings/ll-m-studium-an-der-uconn/allgemeine-informationen",
+      "shortDescription": "Freiburg peut nommer chaque année cinq étudiants pour suivre le LL.M. UConn pendant leurs études, avec remise au mérite pouvant atteindre 50 %.",
+      "admissionConditions": "Sélection et nomination par le bureau international de la faculté, puis exigences et admission de UConn.",
+      "languageTests": [],
+      "availableSeatsDisplay": "5 places par an.",
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Remise au mérite pouvant atteindre 50 % des frais de scolarité; le pourcentage individuel n’est pas garanti.",
+      "financialAid": "La nomination donne accès à une remise au mérite allant jusqu’à 50 %, décidée selon le dossier.",
+      "applicationDeadline": "Début janvier chaque année; la date exacte est publiée dans l’appel annuel.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle Freiburg publie cinq places annuelles, l’accès pendant le cursus et une remise maximale de 50 %; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Date exacte de la prochaine campagne",
+        "Pourcentage de remise attribué à chaque candidat",
+        "Coût net 2026-2027"
+      ],
+      "notes": "Le plafond de 50 % n’est pas une remise automatique. Le titre LL.M. est conditionné à la réussite ultérieure de la première épreuve juridique allemande."
+    },
+    {
+      "id": "muenster-uconn-pathway",
+      "frenchUniversityId": "muenster",
+      "frenchUniversity": "Universität Münster",
+      "partnerUniversity": "University of Connecticut School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Hartford",
+      "partnerState": "Connecticut",
+      "partnerCoordinates": {
+        "lat": 41.773,
+        "lng": -72.7078
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Pathway LL.M. par nomination",
+      "partnershipType": "pipeline",
+      "specialties": [
+        "U.S. Legal Studies",
+        "Human Rights and Social Justice",
+        "Energy and Environmental Law",
+        "Insurance Law",
+        "Governance, Risk Management and Compliance"
+      ],
+      "requiredLevel": "Étudiants ou diplômés de la faculté de droit de Münster",
+      "applicationYear": "Pendant ou après le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "Une année de LL.M.",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.uni-muenster.de/Intveroer/en/OeffR-VoelkerR-EuR-sowie-emp-Rechtsforschung/ausland/LLM_UConn.shtml",
+      "shortDescription": "Münster peut nommer jusqu’à sept étudiants et diplômés pour un LL.M. UConn; les nommés deviennent éligibles à une bourse pouvant couvrir 50 % de la tuition.",
+      "admissionConditions": "Bons résultats académiques ou d’examen, très bonnes compétences en anglais et sélection par Münster; admission finale par UConn.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Jusqu’à 7 nominations par campagne.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": 7,
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Bourse UConn pouvant atteindre 50 % des frais de scolarité; ni l’attribution ni le maximum ne sont automatiques.",
+      "financialAid": "Les personnes nommées sont éligibles à une bourse UConn allant jusqu’à 50 %.",
+      "applicationDeadline": "Appel Fall 2026 publié; consulter le formulaire annuel pour l’échéance exacte de la campagne suivante.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle Münster pour 2026-2027 publie jusqu’à sept nominations et une bourse maximale de 50 %; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Date limite de la prochaine campagne",
+        "Nombre de bourses effectivement attribuées",
+        "Pourcentage individuel",
+        "Coût net 2026-2027"
+      ],
+      "notes": "Une nomination crée une éligibilité à la bourse, pas un droit à 50 % ni une garantie d’admission."
+    },
+    {
+      "id": "regensburg-uc-law-sf-students",
+      "frenchUniversityId": "regensburg",
+      "frenchUniversity": "Universität Regensburg",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4159
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. combiné au Schwerpunktbereich",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "LL.M. in U.S. Legal Studies"
+      ],
+      "requiredLevel": "Étudiants Regensburg particulièrement qualifiés, sélectionnés sur leurs résultats intermédiaires",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "Une année de LL.M.; le diplôme est remis après réussite de la première épreuve juridique allemande",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.uni-regensburg.de/rechtswissenschaft/studieren/internationales/partnerprogramm-llm-uc-san-francisco",
+      "shortDescription": "Parcours intégré permettant de valider le Schwerpunktbereich par le LL.M. UC Law SF, avec Leary Scholarship couvrant 75 % de la tuition.",
+      "admissionConditions": "Présélection et nomination par Regensburg, candidature ordinaire à UC Law SF, TOEFL iBT 90 ou IELTS 7 minimum.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90",
+          "details": "Seuil publié par Regensburg."
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7",
+          "details": "Alternative publiée par Regensburg."
+        }
+      ],
+      "availableSeatsDisplay": "Nombre de places non communiqué.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Leary Scholarship: exonération de 75 % de la tuition, valeur actuelle publiée d’environ 41 000 USD.",
+      "financialAid": "Leary Scholarship de 75 % pour les étudiants qualifiés retenus; PROMOS ou aide de voyage Fulbright peuvent être sollicités séparément.",
+      "applicationDeadline": "15 décembre chaque année selon la page officielle; l’année de rentrée associée doit être vérifiée avec la faculté.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle Regensburg, mise à jour en mai 2026, publie la remise de 75 %, la valeur d’environ 41 000 USD et les critères linguistiques.",
+      "missingInformation": [
+        "Nombre annuel de places",
+        "Coût net exact après remise",
+        "Clarification de l’année de rentrée associée au 15 décembre"
+      ],
+      "notes": "La page associe le 15 décembre à une rentrée d’août de la même année, chronologie manifestement ambiguë; confirmer l’année avant toute candidature."
+    },
+    {
+      "id": "regensburg-uc-law-sf-graduates",
+      "frenchUniversityId": "regensburg",
+      "frenchUniversity": "Universität Regensburg",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4159
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. partenaire pour diplômés",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "LL.M. in U.S. Legal Studies"
+      ],
+      "requiredLevel": "Diplômés de Regensburg ayant réussi la première épreuve juridique",
+      "applicationYear": "Après le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "Une année de LL.M.",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.uni-regensburg.de/rechtswissenschaft/studieren/internationales/partnerprogramm-llm-uc-san-francisco",
+      "shortDescription": "Parcours post-examen pour diplômés de Regensburg avec Riesenfeld Scholarship couvrant 50 % de la tuition UC Law SF.",
+      "admissionConditions": "Nomination par Regensburg, candidature ordinaire à UC Law SF, TOEFL iBT 90 ou IELTS 7 minimum.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90",
+          "details": "Seuil publié par Regensburg."
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7",
+          "details": "Alternative publiée par Regensburg."
+        }
+      ],
+      "availableSeatsDisplay": "Nombre de places non communiqué.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Riesenfeld Scholarship: exonération de 50 % de la tuition, valeur actuelle publiée d’environ 25 000 USD.",
+      "financialAid": "Riesenfeld Scholarship de 50 %, généralement cumulable avec d’autres bourses LL.M. allemandes selon la page officielle.",
+      "applicationDeadline": "Nomination possible jusqu’au 1er avril de l’année universitaire concernée; les aides allemandes ont souvent des échéances antérieures.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle Regensburg, mise à jour en mai 2026, publie la remise de 50 %, la valeur d’environ 25 000 USD et le 1er avril.",
+      "missingInformation": [
+        "Nombre annuel de places",
+        "Coût net exact après remise",
+        "Calendrier précis de la candidature UC Law SF"
+      ],
+      "notes": "Ce parcours est distinct du Leary Scholarship étudiant: public, taux de remise et calendrier diffèrent."
+    },
+    {
+      "id": "mannheim-vanderbilt-scholarship",
+      "frenchUniversityId": "mannheim",
+      "frenchUniversity": "Universität Mannheim",
+      "partnerUniversity": "Vanderbilt Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Nashville",
+      "partnerState": "Tennessee",
+      "partnerCoordinates": {
+        "lat": 36.1458,
+        "lng": -86.8008
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. avec bourse partenaire",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "Law and Business",
+        "LL.M. Vanderbilt"
+      ],
+      "requiredLevel": "Diplômés ou futurs diplômés en droit de l’Universität Mannheim présentant un haut niveau académique ou professionnel",
+      "applicationYear": "Après ou à l’issue du diplôme en droit de Mannheim",
+      "programLanguage": "Anglais",
+      "duration": "Une année de LL.M.",
+      "applicationProcess": "internal_and_standard_partner_application",
+      "officialLink": "https://law.vanderbilt.edu/vanderbilt-law-enhances-universitat-mannheim-llm-scholarship-award/",
+      "shortDescription": "Vanderbilt réserve au moins deux bourses de 50 000 USD à des diplômés ou futurs diplômés en droit de Mannheim.",
+      "admissionConditions": "Sélection liée à Mannheim et candidature LL.M. Vanderbilt ordinaire; haut niveau académique et/ou expérience professionnelle en droit.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Au moins 2 bourses.",
+      "availableSeatsMin": 2,
+      "availableSeatsMax": null,
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Bourse de 50 000 USD déduite de la tuition Vanderbilt; solde de tuition et coût de présence à la charge de l’étudiant.",
+      "financialAid": "Universität Mannheim LL.M. Scholarship Award de 50 000 USD pour au moins deux bénéficiaires.",
+      "applicationDeadline": "Non communiqué dans l’annonce du 2 février 2026; respecter également le calendrier LL.M. Vanderbilt.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_us_law_school",
+      "sourceNote": "Vanderbilt Law a publié le 2 février 2026 le montant porté à 50 000 USD et un minimum de deux bourses.",
+      "missingInformation": [
+        "Date limite propre à la sélection Mannheim",
+        "Coût net total après la bourse",
+        "Nombre final de bourses au-delà du minimum"
+      ],
+      "notes": "La bourse ne constitue pas une admission automatique. Une candidature Vanderbilt standard reste obligatoire."
+    },
+    {
+      "id": "duesseldorf-suffolk-exchange-credit",
+      "frenchUniversityId": "duesseldorf",
+      "frenchUniversity": "Heinrich-Heine-Universität Düsseldorf",
+      "partnerUniversity": "Suffolk University Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Boston",
+      "partnerState": "Massachusetts",
+      "partnerCoordinates": {
+        "lat": 42.359,
+        "lng": -71.061
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange créditable vers un LL.M.",
+      "partnershipType": "exchange_credit",
+      "specialties": [
+        "Cours LL.M. de Suffolk",
+        "U.S. Law and Legal Methods"
+      ],
+      "requiredLevel": "Étudiants de Düsseldorf avant la première épreuve juridique",
+      "applicationYear": "Pendant le cursus allemand",
+      "programLanguage": "Anglais",
+      "duration": "Jusqu’à 2 semestres d’échange; jusqu’à 6 des 24 credits LL.M. peuvent être transférés ultérieurement",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.jura.hhu.de/international-studieren/internationale-austauschprogramme/studium-im-ausland-outgoings/vor-der-ersten-juristischen-pruefung/suffolk-university-law-school-boston/news-page-2",
+      "shortDescription": "Échange sans tuition à Suffolk avant l’examen allemand, avec jusqu’à six credits imputables sur un LL.M. ultérieur.",
+      "admissionConditions": "Sélection et nomination par Düsseldorf, puis exigences de Suffolk; 12 credits doivent être suivis par semestre.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué sur la page publique.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Pas de tuition Suffolk pendant l’échange; les frais du LL.M. ultérieur restent dus pour les credits non transférés.",
+      "financialAid": "Exonération de tuition limitée à l’échange; aucune bourse LL.M. automatique attachée à ce parcours.",
+      "applicationDeadline": "15 janvier de l’année de départ; pour un départ au semestre d’été, candidature un an à l’avance.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle HHU publie jusqu’à deux semestres sans tuition, six credits LL.M. transférables et le 15 janvier; vérifiée en juillet 2026.",
+      "missingInformation": [
+        "Nombre de places",
+        "Coût futur par credit LL.M.",
+        "Cours précisément acceptés dans les six credits"
+      ],
+      "notes": "Le séjour d’échange n’accorde pas le LL.M.; il peut réduire de six credits au maximum un LL.M. Suffolk ultérieur."
+    },
+    {
+      "id": "duesseldorf-suffolk-graduate-scholarship",
+      "frenchUniversityId": "duesseldorf",
+      "frenchUniversity": "Heinrich-Heine-Universität Düsseldorf",
+      "partnerUniversity": "Suffolk University Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Boston",
+      "partnerState": "Massachusetts",
+      "partnerCoordinates": {
+        "lat": 42.359,
+        "lng": -71.061
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. post-examen avec bourse partielle",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "Global Law and Technology",
+        "General LL.M.",
+        "Intellectual Property and Information Technology Law",
+        "International Law and Business",
+        "Biomedicine and Health Law"
+      ],
+      "requiredLevel": "Première épreuve juridique obligatoire réussie avant fin avril de l’année de début du LL.M.",
+      "applicationYear": "Après la première épreuve juridique",
+      "programLanguage": "Anglais",
+      "duration": "Environ une année, 24 credits",
+      "applicationProcess": "standard_partner_then_joint_scholarship_decision",
+      "officialLink": "https://www.jura.hhu.de/international-studieren/internationale-austauschprogramme/studium-im-ausland-outgoings/nach-der-ersten-juristischen-pruefung/suffolk-university-law-school-llm-teilstipendien/news-page-2",
+      "shortDescription": "Jusqu’à deux diplômés de Düsseldorf peuvent obtenir une remise partielle pour le LL.M. Suffolk; le niveau dépend des ressources et du nombre de participants.",
+      "admissionConditions": "Candidature LL.M. Suffolk ordinaire, puis décision conjointe HHU-Suffolk pour la bourse.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Jusqu’à 2 bourses par an.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": 2,
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Page HHU: tuition de référence d’environ 42 000 USD; remise possible jusqu’à 50 %, avec environ 10 000 USD régulièrement accordés ces dernières années. Montants à actualiser.",
+      "financialAid": "Bourse partielle dépendant des ressources de Suffolk et du nombre de participants; très probable si deux candidats admissibles au plus, mais non garantie.",
+      "applicationDeadline": "Non communiqué sur la page de bourse; prendre contact tôt et respecter le calendrier LL.M. Suffolk.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle HHU publie deux bénéficiaires possibles, jusqu’à 50 % et l’historique d’environ 10 000 USD; montants anciens signalés comme tels.",
+      "missingInformation": [
+        "Tuition actuelle Suffolk",
+        "Montant accordé à la prochaine cohorte",
+        "Date limite propre à la bourse"
+      ],
+      "notes": "Le chiffre de 42 000 USD et l’historique de 10 000 USD ne sont pas présentés comme tarifs 2026-2027. Ce parcours est distinct de l’échange créditable."
+    },
+    {
+      "id": "humboldt-berlin-minnesota-llm",
+      "frenchUniversityId": "humboldt-berlin",
+      "frenchUniversity": "Humboldt-Universität zu Berlin",
+      "partnerUniversity": "University of Minnesota Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Minneapolis",
+      "partnerState": "Minnesota",
+      "partnerCoordinates": {
+        "lat": 44.9732,
+        "lng": -93.2437
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. via accord de coopération",
+      "partnershipType": "pipeline",
+      "specialties": [
+        "LL.M. University of Minnesota"
+      ],
+      "requiredLevel": "Première épreuve juridique réussie; lien présent ou passé avec la faculté HU utile selon la page de coopération",
+      "applicationYear": "Après la première épreuve juridique",
+      "programLanguage": "Anglais",
+      "duration": "Une année de LL.M., à confirmer pour la prochaine cohorte",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.rewi.hu-berlin.de/de/ip/master-llm/outgoing/coop-master",
+      "shortDescription": "La faculté HU référence Minnesota parmi ses études de master à l’étranger par accord de coopération; les conditions actuelles propres au LL.M. ne sont pas publiées de façon accessible.",
+      "admissionConditions": "Première épreuve juridique réussie et procédure de nomination HU; exigences Minnesota à confirmer.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "to_confirm",
+      "tuitionDisplay": "Non communiqué sur la page officielle actuellement accessible.",
+      "financialAid": "Aucun avantage financier actuel propre au partenariat n’a pu être confirmé sur la page publique.",
+      "applicationDeadline": "Non communiqué pour la prochaine cohorte.",
+      "reliabilityStatus": "to_confirm",
+      "sourceType": "official_german_faculty",
+      "sourceNote": "La page officielle HU des masters par coopération et ses documents Minnesota établissent le parcours historique; le site est actuellement protégé par un contrôle anti-automatisation et les modalités 2026-2027 ne sont pas lisibles publiquement.",
+      "missingInformation": [
+        "Ouverture pour la prochaine cohorte",
+        "Nombre de places",
+        "Montant ou exonération de tuition",
+        "Critères linguistiques",
+        "Date limite"
+      ],
+      "notes": "Ne pas présenter ce parcours comme financé tant que la faculté HU n’a pas confirmé les conditions de la campagne actuelle."
+    },
+    {
+      "id": "ebs-case-western-exchange",
+      "frenchUniversityId": "ebs",
+      "frenchUniversity": "EBS Universität für Wirtschaft und Recht",
+      "partnerUniversity": "Case Western Reserve University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Cleveland",
+      "partnerState": "Ohio",
+      "partnerCoordinates": {
+        "lat": 41.5075,
+        "lng": -81.6084
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Échange juridique; articulation LL.M. à confirmer",
+      "partnershipType": "to_confirm",
+      "specialties": [
+        "Cours de droit à Case Western Reserve"
+      ],
+      "requiredLevel": "Étudiants EBS Law School sélectionnés pour l’échange",
+      "applicationYear": "Pendant le cursus EBS",
+      "programLanguage": "Anglais",
+      "duration": "Un semestre d’échange; toute prolongation ou articulation LL.M. doit être confirmée",
+      "applicationProcess": "internal_then_partner",
+      "officialLink": "https://www.ebs.edu/fileadmin/EBS/Netzwerk/Internationales/Medien/Overview_EBS_partner_universities.pdf",
+      "shortDescription": "EBS et Case Western Reserve publient un accord d’échange en droit; aucun crédit, diplôme LL.M. ou avantage financier propre n’est actuellement détaillé.",
+      "admissionConditions": "Sélection EBS et exigences de Case Western Reserve; détails non publiés dans la liste des partenaires.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Variable selon le semestre et la réciprocité des échanges.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "to_confirm",
+      "tuitionDisplay": "Non communiqué; la liste EBS précise que les places offertes varient selon les semestres.",
+      "financialAid": "Aucune bourse LL.M. ou remise partenaire publiée.",
+      "applicationDeadline": "Non communiqué dans la liste officielle des partenaires.",
+      "reliabilityStatus": "to_confirm",
+      "sourceType": "official_german_university_and_us_law_school",
+      "sourceNote": "La liste EBS mise à jour le 30 janvier 2026 et la page Case Western Reserve confirment l’échange juridique; elles ne confirment pas un LL.M. direct.",
+      "missingInformation": [
+        "Lien formel avec un LL.M.",
+        "Crédits transférables",
+        "Nombre de places",
+        "Tuition et éventuelle remise",
+        "Date limite"
+      ],
+      "notes": "Conserver comme parcours à confirmer et ne pas le présenter comme un LL.M., un double diplôme ou une bourse tant qu’une source officielle plus précise n’est pas publiée."
+    }
+  ]
+}
