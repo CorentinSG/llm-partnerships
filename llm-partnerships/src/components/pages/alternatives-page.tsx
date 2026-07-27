@@ -36,6 +36,15 @@ const copy = {
     aria: "Buscar programas alternativos",
     empty: "No hay resultados.",
   },
+  de: {
+    title: "Alternative Wege zum nordamerikanischen Common Law",
+    intro:
+      "Dieser Bereich stellt häufig französischsprachige oder außerhalb der USA angebotene Programme vor. Sie richten sich an Studierende, die sich mit dem nordamerikanischen Common Law befassen möchten, ohne dass es sich um einen US-amerikanischen LL.M. oder eine direkte Partnerschaft Frankreich–USA handelt.",
+    search: "Suchen",
+    placeholder: "Universität, Programm, Land, Fächer…",
+    aria: "Suchen Sie nach alternativen Programmen",
+    empty: "Keine Ergebnisse.",
+  },
 } as const
 
 export function AlternativesPage() {

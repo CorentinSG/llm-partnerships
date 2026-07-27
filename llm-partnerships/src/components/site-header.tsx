@@ -21,12 +21,14 @@ const languageLabels: Record<UiLanguage, string> = {
   fr: "FR",
   en: "EN",
   es: "ES",
+  de: "DE",
 }
 
 const languageNames: Record<UiLanguage, string> = {
   fr: "Français",
   en: "English",
   es: "Español",
+  de: "Deutsch",
 }
 
 function LanguageSwitch({ compact = false }: { compact?: boolean }) {
@@ -35,6 +37,7 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
     fr: { aria: "Changer la langue", label: "Langue" },
     en: { aria: "Change language", label: "Language" },
     es: { aria: "Cambiar idioma", label: "Idioma" },
+    de: { aria: "Sprache ändern", label: "Sprache" },
   }[language]
 
   return (
@@ -55,7 +58,7 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
         {compact ? copy.label : null}
       </span>
       <div className="flex items-center gap-1">
-        {(["fr", "en", "es"] as UiLanguage[]).map((item) => (
+        {(["fr", "en", "es", "de"] as UiLanguage[]).map((item) => (
           <button
             key={item}
             type="button"
@@ -113,6 +116,17 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "Francia–Estados Unidos",
       germanyUs: "Alemania–Estados Unidos",
       menu: "Menú",
+    },
+    de: {
+      subtitle: "Verzeichnis der Partnerschaften",
+      about: "Über das Projekt",
+      guide: "USA-Ratgeber",
+      alternatives: "Alternative Wege",
+      submit: "Information einreichen",
+      submitShort: "Einreichen",
+      franceUs: "Frankreich–USA",
+      germanyUs: "Deutschland–USA",
+      menu: "Menü",
     },
   }[language]
 

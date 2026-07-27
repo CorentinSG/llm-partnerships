@@ -20,6 +20,12 @@ const labels: Record<UiLanguage, Record<string, string>> = {
     "frais réduits": "Matrícula reducida",
     "frais complets": "Matrícula completa",
     "bourse possible": "Beca posible"
+  },
+  de: {
+    "sans frais": "Kein Unterricht",
+    "frais réduits": "Reduzierte Studiengebühren",
+    "frais complets": "Voller Unterricht",
+    "bourse possible": "Stipendium möglich"
   }
 }
 

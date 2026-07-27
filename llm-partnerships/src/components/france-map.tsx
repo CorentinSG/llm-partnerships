@@ -46,6 +46,17 @@ const mapCopy = {
     selection: "Selección:",
     tip: "Consejo: toca un punto para filtrar la lista (en móvil: pellizca para ampliar).",
   },
+  de: {
+    title: "Karte (Frankreich)",
+    clear: "Klar",
+    zoomIn: "Vergrößern",
+    zoomOut: "Herauszoomen",
+    resetZoom: "Zoom zurücksetzen",
+    reset: "Zurücksetzen",
+    aria: "Karte von Frankreich mit Universitätspunkten",
+    selection: "Auswahl:",
+    tip: "Tipp: Klicken Sie auf einen Punkt, um die Liste zu filtern (auf Mobilgeräten: Zum Zoomen kneifen).",
+  },
 } as const
 
 export function FranceMap({

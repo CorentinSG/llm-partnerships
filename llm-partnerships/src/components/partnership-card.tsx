@@ -43,6 +43,14 @@ const copy = {
     notShared: "No comunicado",
     studentSource: "Por confirmar - fuente estudiantil no oficial",
   },
+  de: {
+    fees: "Gebühren",
+    details: "Einzelheiten",
+    open: "Offen",
+    source: "Quelle",
+    notShared: "Nicht bekannt gegeben",
+    studentSource: "Zur Bestätigung: inoffizielle Studentenquelle",
+  },
 } as const
 
 export function PartnershipCard({

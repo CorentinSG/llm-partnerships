@@ -278,6 +278,85 @@ const copy = {
     visaNote:
       "Estimación basada en MRV 185 $ y SEVIS I-901: F/M 350 $, J 220 $. Las tasas de emisión dependen de la nacionalidad.",
   },
+  de: {
+    badge: "Studentensimulator",
+    title: "Jährliches LL.M.-Budget: öffentlich vs. Partnerschaft",
+    intro:
+      "Studiengebühren können der größte Einzelposten für einen US-amerikanischen LL.M. sein, aber es ist nicht der einzige: Visum, Bücher, Unterkunft, Mahlzeiten, Transport, Versicherung und Flüge können ebenfalls von Bedeutung sein. Vergleichen Sie den öffentlichen Preis und den Partnerschaftspreis und passen Sie dann die Kosten entsprechend Ihren eigenen Entscheidungen an.",
+    city: "1. Stadt",
+    school: "Referenzschule",
+    partnership: "2. Partnerschaft",
+    offer: "3. Beantragtes Angebot",
+    visa: "4. Visa-Situation",
+    barJurisdiction: "5. Zielleiste",
+    noPartnership: "Keine konkrete Partnerschaft",
+    noOffer: "Öffentlicher Tarif",
+    publicTuition: "Jährlicher öffentlicher Unterricht",
+    partnerTuition: "Unterricht mit Partnerschaft",
+    savings: "Studiengebührenersparnis",
+    fixedCosts: "Jährliche Fixkosten",
+    visaCosts: "Geschätzte Visagebühren",
+    livingCosts: "Editierbare Lebenshaltungskosten",
+    healthInsurance: "Krankenversicherung",
+    flights: "Flüge zwischen Frankreich und den USA",
+    frenchUniversityFees:
+      "Mögliche Gebühren an der französischen Universität",
+    nyBarExamFee: "NY Bar Exam – Gebühr für ausländische Bewerber",
+    nyBarLaptop: "NY Bar Exam – Laptopgebühr",
+    nyleFee: "NYLE – Online-Prüfung",
+    mpreFee: "MPRE – berufliche Verantwortung",
+    barPrep: "Riegelvorbereitung",
+    barExamLogistics: "Bar exam Unterkunft und Transport",
+    nyleHelp:
+      "Die NYLE ist die New York Law Exam: eine New York-spezifische Online-Prüfung, getrennt von der UBE, die für die Zulassung in New York erforderlich ist.",
+    mpreHelp:
+      "Das MPRE ist die nationale Prüfung zur beruflichen Verantwortung, die von vielen US-amerikanischen Gerichtsbarkeiten verlangt wird, darunter New York, Kalifornien, D.C. und Washington.",
+    laptopHelp:
+      "Darin sind die Gebühren für Laptops oder Prüfungssoftware enthalten. Die Höhe hängt von der Gerichtsbarkeit und der Prüfungsverwaltung ab.",
+    barPrepHelp:
+      "Die Vorbereitungskosten hängen vom Anbieter und Paket ab. Themis und BARBRI sind gängige Referenzlieferanten für diese Schätzung. Bei manchen Partnerschaften mit juristischen Fakultäten in den USA können Ermäßigungen oder Stipendien gewährt werden, sodass die endgültigen Kosten erheblich variieren können.",
+    barJurisdictionNote:
+      "Die Eignung für im Ausland ausgebildete Anwälte hängt von der Gerichtsbarkeit, dem ersten Jurastudium LL.M. und den erforderlichen Studienleistungen ab. Überprüfen Sie immer die offiziellen Regeln, bevor Sie sich bewerben.",
+    publicTotal: "Jahresbudget ohne Partnerschaft",
+    partnerTotal: "Jahresbudget mit Partnerschaft",
+    showEuros: "EUR anzeigen",
+    showDollars: "USD anzeigen",
+    euroEstimateNote: "Richtwert: 1 $ ≈ 0,879 €.",
+    studentCosts: "Passen Sie Ihren Lebensstil an",
+    studentCostsHelp:
+      "Diese Schieberegler ändern nur die Kosten, die von Ihrer Unterkunft, Verpflegung, Transport, Versicherung, Flügen, Barvorbereitung oder persönlichen Ausgabenentscheidungen abhängen.",
+    lean: "mager",
+    reference: "Referenz",
+    comfortable: "komfortabel",
+    costBreakdown: "Jährliche Berechnungsdetails",
+    fixedHint:
+      "Studiengebühren, Bücher, Visa und obligatorische Prüfungsgebühren bleiben unverändert. Lediglich die oben genannten Lebenshaltungs- und Vorbereitungskosten sind interaktiv.",
+    methodology: "Methodik",
+    cityPartners: "Stadt und passende Partner",
+    otherCosts: "Gemeinsame Lebenshaltungskosten",
+    sources: "Offizielle Quellen",
+    booksHelp:
+      "Dieser Artikel umfasst akademische Bücher und Materialien: erforderliche Lehrbücher, Kursmaterialien, Druck, Datenbankzugriff oder von der Schule benötigte Ausrüstung. Es handelt sich nicht um frei regulierbare Lebenshaltungskosten.",
+    frenchUniversityFeesHelp:
+      "Schätzung der Gebühren, die möglicherweise noch an die französische Universität zu zahlen sind: behördliche Registrierung, mögliches CVEC, Bewerbungsgebühren, Studiengebühren oder örtliche Gebühren, abhängig von der Universität und der Partnerschaft. Dies sind keine US-Studiengebühren.",
+    freeSeat: "Partnersitz ohne Unterrichtsgebühren",
+    reducedSeat: "Reduzierter Studienplatz",
+    scholarshipSeat: "Stipendium oder Rabatt möglich",
+    percentSeat: "{percent} % Rabatt",
+    referenceAmount: "veröffentlichter Betrag",
+    publicRate: "Normaler öffentlicher Preis",
+    partnerRate: "Preis nach Partnerschaft",
+    unsupportedSchool: "Keine Referenzschätzung",
+    unsupportedEstimate:
+      "Für diese Destination liegt keine jährliche Kostenschätzung vor. Die Partnerschaft bleibt sichtbar, es wird jedoch keine LL.M.-Gesamtsumme erfunden.",
+    visaNone: "Es fallen keine Visakosten an",
+    visaF1: "Anfängliches F-1: MRV + SEVIS",
+    visaJ1: "Anfängliches J-1: MRV + SEVIS",
+    visaSevisOnly: "Nur SEVIS",
+    visaRenewal: "Visumverlängerung: MRV",
+    visaNote:
+      "Schätzung basierend auf MRV 185 $ und SEVIS I-901: F/M 350 $, J 220 $. Die Gebühr für die Ausstellung eines Visums hängt von der Nationalität ab.",
+  },
 } as const
 
 type VisaOption = {
@@ -338,6 +417,13 @@ function getBarJurisdictionOptions(
       dc: "Posible con 26 créditos en una law school ABA concentrados en materias del UBE, sujeto a validación.",
       wa: "Posible para algunos graduados extranjeros con LL.M. ABA bajo APR 3, según formación y práctica previa.",
       wi: "Posible para algunos graduados extranjeros con LL.M. u otro título avanzado de una law school ABA, sujeto a revisión y condiciones de Wisconsin.",
+    },
+    de: {
+      ny: "Der gebräuchlichste LL.M.-Weg: möglich, wenn der ausländische Juraabschluss und LL.M. die Anforderungen von Regel 520.6 erfüllen.",
+      ca: "Möglich für einige im Ausland ausgebildete Bewerber, nach Bewertung der juristischen Ausbildung und/oder erforderlichem Zusatzstudium.",
+      dc: "Möglich mit 26 Credits an einer von der ABA anerkannten juristischen Fakultät, die sich im Wesentlichen auf UBE-geprüfte Fächer konzentriert, vorbehaltlich der Genehmigung.",
+      wa: "Möglich für einige ausländische Juraabsolventen mit einem ABA LL.M. unter APR 3, abhängig von Ausbildung und bisheriger Praxis.",
+      wi: "Möglich für einige ausländische Juraabsolventen mit einem LL.M. oder einem anderen fortgeschrittenen Juraabschluss einer von der ABA anerkannten juristischen Fakultät, vorbehaltlich der Prüfung und der Bedingungen in Wisconsin.",
     },
   }[language]
 

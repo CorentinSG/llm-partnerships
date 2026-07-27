@@ -25,6 +25,12 @@ const copy = {
     action: "Volver al inicio",
     body: "Comprueba la URL o vuelve al directorio.",
   },
+  de: {
+    title: "Nicht gefunden",
+    description: "Diese Seite existiert nicht.",
+    action: "Zurück nach Hause",
+    body: "Überprüfen Sie die URL oder kehren Sie zum Verzeichnis zurück.",
+  },
 } as const
 
 export default function NotFound() {

@@ -55,6 +55,19 @@ const mapCopy = {
     selectedState: "Estado seleccionado:",
     tip: "Consejo: toca un estado con cifra para filtrar (en móvil: pellizca para ampliar).",
   },
+  de: {
+    title: "Karte (Vereinigte Staaten)",
+    clear: "Klar",
+    zoomIn: "Vergrößern",
+    zoomOut: "Herauszoomen",
+    resetZoom: "Zoom zurücksetzen",
+    reset: "Zurücksetzen",
+    aria: "Karte der angrenzenden Vereinigten Staaten mit anklickbaren Bundesstaaten",
+    partnership: "Partnerschaft(en)",
+    approximate: "ungefähre Position",
+    selectedState: "Ausgewähltes Bundesland:",
+    tip: "Tipp: Klicken Sie zum Filtern auf einen nummerierten Bundesstaat (auf Mobilgeräten: Zum Vergrößern zusammenziehen).",
+  },
 } as const
 
 function groupPartnerUniversities(partnerships: Partnership[]) {

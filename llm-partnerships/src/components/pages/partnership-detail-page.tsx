@@ -13,6 +13,7 @@ const copy = {
   fr: { back: "Retour à la recherche" },
   en: { back: "Back to search" },
   es: { back: "Volver a la búsqueda" },
+  de: { back: "Zurück zur Suche" },
 } as const
 
 export function PartnershipDetailPage({

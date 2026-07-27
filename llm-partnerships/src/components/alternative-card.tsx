@@ -55,6 +55,21 @@ const copy = {
     international: "Estudiantes internacionales:",
     missing: "Información pendiente",
   },
+  de: {
+    route: "Alternativroute",
+    source: "Offizielle Quelle",
+    summary: "Zusammenfassung",
+    relevance: "Warum es relevant sein könnte",
+    format: "Format",
+    language: "Sprache",
+    pace: "Lerntempo",
+    warning: "Warnung vor der Anwaltszulassung",
+    admission: "Zulassungsvoraussetzungen (Auszug)",
+    fees: "Gebühren (offizielle Schätzungen)",
+    francophone: "Französisch-/belgischsprachige Studierende:",
+    international: "Internationale Studierende:",
+    missing: "Fehlende Informationen",
+  },
 } as const
 
 export function AlternativeCard({ item }: { item: AlternativeItem }) {

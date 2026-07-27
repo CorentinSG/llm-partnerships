@@ -154,6 +154,52 @@ const copy = {
       "Marca claramente los datos inciertos en lugar de adivinarlos.",
     ],
   },
+  de: {
+    title: "Informationen übermitteln",
+    description:
+      "Senden Sie eine Korrektur, zusätzliche Details oder eine neue Partnerschaft. Die Nachricht wird zur Überprüfung per E-Mail gesendet, bevor der Website etwas hinzugefügt wird.",
+    requiredError: "Bitte füllen Sie vor dem Absenden alle erforderlichen Felder aus.",
+    configError:
+      "Die E-Mail-Übermittlung ist derzeit nicht konfiguriert. Bitte versuchen Sie es später noch einmal.",
+    genericError: "Etwas ist schief gelaufen. Bitte versuchen Sie es gleich noch einmal.",
+    sendError: "Die Übermittlung ist fehlgeschlagen",
+    success: "Vielen Dank, Ihre Nachricht wurde gesendet.",
+    successDetail:
+      "Es wird überprüft, bevor die Website aktualisiert wird. Ich kann die Quelle überprüfen oder Sie unter der angegebenen E-Mail-Adresse kontaktieren.",
+    another: "Senden Sie einen weiteren Artikel",
+    name: "Name",
+    namePlaceholder: "Ihr Name",
+    email: "E-Mail",
+    frenchUniversity: "Französische Universität betroffen",
+    frenchUniversityPlaceholder: "z.B. Paris 1, Assas, Lyon 3",
+    partnerUniversity: "Partneruniversität",
+    partnerUniversityPlaceholder: "z.B. Fordham, Georgetown",
+    type: "Art der Informationen",
+    typePlaceholder:
+      "z.B. Unterricht, TOEFL, Auswahl, verfügbare Plätze, ausgesetzte Vereinbarung",
+    message: "Nachricht",
+    messagePlaceholder:
+      "Erklären Sie genau und mit möglichst viel Kontext, was hinzugefügt oder korrigiert werden sollte.",
+    source: "Quelllink",
+    mailNotice:
+      "Das Formular sendet einen Vorschlag per E-Mail. Nichts wird automatisch veröffentlicht: Jede Einreichung wird überprüft, bevor sie hinzugefügt wird.",
+    required:
+      "Erforderliche Felder: Name, E-Mail, französische Universität, Informationstyp und Nachricht.",
+    sending: "Senden…",
+    submit: "Vorschlag senden",
+    canSend: "Was Sie einreichen können",
+    sendItems: [
+      "Eine neue LL.M-Partnerschaft oder Korrektur eines bestehenden Eintrags.",
+      "Sprachtests, Studiengebühren, Stipendien, Sitzplätze, Termine oder Auswahlverfahren.",
+      "Ausgesetzte Vereinbarungen, offizielle Aktualisierungen oder eingeholtes Feedback von Studierenden.",
+    ],
+    practices: "Gute Praktiken",
+    practiceItems: [
+      "Fügen Sie nach Möglichkeit einen offiziellen Link hinzu.",
+      "Geben Sie für das Feedback der Studierenden das Jahr oder die Kohorte an.",
+      "Markieren Sie unsichere Informationen deutlich, anstatt zu raten.",
+    ],
+  },
 } as const
 
 function cleanValue(value: FormDataEntryValue | null) {

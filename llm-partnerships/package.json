@@ -10,7 +10,11 @@
     "designer:verify": "node scripts/designer-verify.mjs",
     "data:verify:germany": "node scripts/verify-germany-data.mjs",
     "translations:verify:germany": "node scripts/verify-germany-translations.mjs",
+    "translations:verify:de": "node scripts/verify-german-locale.mjs",
+    "translations:verify:data": "node scripts/verify-data-translations.mjs",
     "test:integration:germany": "node scripts/verify-germany-integration.mjs",
+    "test:integration:de": "node scripts/verify-german-integration.mjs",
+    "verify:de": "npm run translations:verify:de && npm run translations:verify:data && npm run translations:verify:germany && npm run test:integration:de",
     "test:final-fixes": "node scripts/verify-final-fixes.mjs"
   },
   "dependencies": {

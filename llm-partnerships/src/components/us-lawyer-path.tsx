@@ -199,6 +199,66 @@ const guideCopy = {
       },
     ],
   },
+  de: {
+    eyebrow: "Führung",
+    title: "Vom französischen Jurastudenten zum US-Anwalt: ein typischer Weg",
+    intro:
+      "Ein klarer zweiminütiger Überblick. Öffnen Sie jeden interaktiven Schritt für weitere Details.",
+    details: "Einzelheiten",
+    collapse: "Zusammenbruch",
+    aria: "Weg zum US-Anwalt",
+    steps: [
+      {
+        title: "1) Definieren Sie das Ziel",
+        subtitle: "Wählen Sie eine Gerichtsbarkeit und machen Sie sich mit deren Anwaltsregeln vertraut.",
+        content: [
+          "Identifizieren Sie die Zieljurisdiktion und bestätigen Sie die Berechtigung mit einem französischen Abschluss und einem US-amerikanischen LL.M.",
+          "Stellen Sie fest, ob ein berufsbegleitender LL.M und bestimmte Kurse oder Credits erforderlich sind.",
+          "Schätzen Sie das Gesamtbudget, einschließlich Studiengebühren, Versicherung, Visum und Unterkunft.",
+        ],
+        footnote: "Die Zulassungsregeln für Rechtsanwälte variieren je nach Gerichtsbarkeit und können sich ändern.",
+      },
+      {
+        title: "2) Finden Sie den richtigen LL.M",
+        subtitle:
+          "Partnerschaften können die Kosten eines US-amerikanischen LL.M. erheblich senken",
+        content: [
+          "Vergleichen Sie reservierte Plätze, Studiengebührenermäßigungen, feste Gebühren und Stipendien.",
+          "Überprüfen Sie das akademische Niveau, die Sprachtests, die Fristen und den Bewerbungsprozess.",
+          "Priorisieren Sie Programme, die auf die Zielvorgabe und den Karriereplan abgestimmt sind.",
+        ],
+      },
+      {
+        title: "3) Bewerben",
+        subtitle:
+          "Bewerbungen können von der französischen Universität verwaltet oder über LSAC eingereicht werden.",
+        content: [
+          "Bereiten Sie Zeugnisse, Lebensläufe, Empfehlungen, persönliche Stellungnahmen und Sprachtests vor.",
+          "Planen Sie bei Bedarf ausreichend Zeit für die Bearbeitung der Dokumente ein.",
+          "Halten Sie frühe Fristen ein, oft zwischen Dezember und Februar.",
+        ],
+      },
+      {
+        title: "4) Vervollständigen Sie LL.M",
+        subtitle: "Wählen Sie gegebenenfalls Kurse aus, die die Anwaltsberechtigung unterstützen.",
+        content: [
+          "Wählen Sie Kurse aus, die mit den Anforderungen der Zielgerichtsbarkeit kompatibel sind.",
+          "Verwalten Sie Versicherungen, Visa, Registrierung und zusätzliche Kosten.",
+          "Bewahren Sie Lehrpläne, Kreditunterlagen und offizielle Zertifikate auf.",
+        ],
+      },
+      {
+        title: "5) Bereiten Sie sich auf das bar exam vor",
+        subtitle:
+          "Ein spezielles Vorbereitungsprogramm oder ein zusätzliches Semester kann hilfreich sein.",
+        content: [
+          "Bestätigen Sie die genauen Kredit-, Kurs- und Zeitanforderungen.",
+          "Planen Sie die Barvorbereitung, den Zeitplan, das Budget und die Logistik.",
+          "Reichen Sie den Zulassungsantrag gemäß den Regeln der Zieljurisdiktion ein.",
+        ],
+      },
+    ],
+  },
 } as const
 
 export function UsLawyerPath({ className }: { className?: string }) {

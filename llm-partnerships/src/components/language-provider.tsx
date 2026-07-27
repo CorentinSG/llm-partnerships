@@ -17,7 +17,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     const stored = window.localStorage.getItem("llm-partnerships-language")
-    if (stored === "fr" || stored === "en" || stored === "es") {
+    if (
+      stored === "fr" ||
+      stored === "en" ||
+      stored === "es" ||
+      stored === "de"
+    ) {
       setLanguage(stored)
     }
     setHydrated(true)

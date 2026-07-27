@@ -46,6 +46,12 @@ export function MultiSelectFilter({
       empty: "No hay resultados.",
       reset: "Reiniciar",
     },
+    de: {
+      selected: "ausgewählt",
+      search: "Suchen",
+      empty: "Keine Ergebnisse.",
+      reset: "Zurücksetzen",
+    },
   }[language]
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState("")

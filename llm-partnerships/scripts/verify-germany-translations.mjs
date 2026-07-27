@@ -76,7 +76,7 @@ for (const partnership of getAllGermanPartnerships()) {
   }
 }
 
-for (const language of ["en", "es"]) {
+for (const language of ["en", "es", "de"]) {
   assert.equal(
     typeof translations[language],
     "object",
@@ -95,7 +95,7 @@ for (const language of ["en", "es"]) {
 }
 
 for (const university of getGermanUniversitiesPoints()) {
-  for (const language of ["en", "es"]) {
+  for (const language of ["en", "es", "de"]) {
     assert.equal(
       translations[language][university.frenchUniversity],
       university.frenchUniversity,
@@ -108,6 +108,18 @@ assert.equal(translations.en["États-Unis"], "United States")
 assert.equal(translations.es["États-Unis"], "Estados Unidos")
 assert.equal(translations.en["Amérique du Nord"], "North America")
 assert.equal(translations.es["Amérique du Nord"], "América del Norte")
+assert.equal(translations.de["États-Unis"], "Vereinigte Staaten")
+assert.equal(translations.de["Amérique du Nord"], "Nordamerika")
+assert.equal(
+  translations.de["Échange créditable vers un LL.M."],
+  "Austausch mit anrechenbaren Leistungen für einen LL.M.",
+)
+assert.match(
+  translations.de[
+    "Une nomination crée une éligibilité à la bourse, pas un droit à 50 % ni une garantie d’admission."
+  ],
+  /berechtigt.*Stipendium.*weder.*50.*Zulassung/i,
+)
 
 const semanticSentinels = {
   "Bourse partielle dépendant des ressources de Suffolk et du nombre de participants; très probable si deux candidats admissibles au plus, mais non garantie.": {
@@ -187,5 +199,5 @@ assert.match(
 )
 
 console.log(
-  `Germany translations verified: ${values.size} values mapped in EN and ES`,
+  `Germany translations verified: ${values.size} values mapped in EN, ES and DE`,
 )

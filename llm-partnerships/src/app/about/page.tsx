@@ -43,6 +43,19 @@ const copy = {
       "Estudiantes, equipos académicos y universidades pueden enviar fuentes o correcciones desde la página «Proponer información».",
     ],
   },
+  de: {
+    title: "Über das Projekt",
+    description: "Der Zweck des Projekts und wie man dazu beitragen kann.",
+    paragraphs: [
+      "Dieses Projekt erleichtert Jurastudenten das Auffinden, Vergleichen und Überprüfen von LL.M-Partnerschaftsinformationen.",
+      "Die Website enthält zwei separate LL.M-Partnerschaftsverzeichnisse: Frankreich–USA und Deutschland–USA.",
+      "Der Bereich Frankreich–USA behandelt LL.M.-Partnerschaften zwischen französischen und US-amerikanischen Universitäten. Ziel ist es, Informationen zu bündeln, die derzeit verstreut, schwer vergleichbar und oft unzureichend erklärt sind.",
+      "In der Rubrik Deutschland–USA sind für LL.M-Programme ebenfalls Partnerschaften zwischen deutschen und US-amerikanischen Universitäten aufgeführt.",
+      "Da ein LL.M. in den USA meist sehr teuer ist, können Partnerschaften mit reservierten Plätzen, Studiengebührenermäßigungen oder bevorzugter Behandlung einen zugänglicheren Weg eröffnen. Für manche Studierende können sie außerdem Teil des Vorhabens sein, eine US-amerikanische Anwaltsprüfung abzulegen.",
+      "Grundprinzip: Niemals Informationen erfinden. Fehlende verlässliche Informationen werden als nicht offengelegt gekennzeichnet. Wahrscheinliche, aber nicht überprüfte Informationen werden zur Bestätigung markiert. Einträge mit zu vielen fehlenden Elementen werden als unvollständig markiert.",
+      "Studierende, akademische Teams und Universitäten können über die Seite „Informationen einreichen“ Quellen oder Korrekturen einreichen.",
+    ],
+  },
 } as const
 
 export default function AboutPage() {

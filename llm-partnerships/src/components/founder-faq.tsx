@@ -272,6 +272,22 @@ const faqCopy = {
       answer: answersEs[index],
     })),
   },
+  de: {
+    aria: "FAQ zu LL.M-Pfaden und New York Bar",
+    title: "Häufig gestellte Fragen zu meinem Weg, dem LL.M und New York",
+    intro:
+      "Antworten auf häufig gestellte Fragen zu meinem Hintergrund, US-amerikanischen LL.M-Programmen, Kosten, Auswahl und dem New York Bar.",
+    journey: "Mein Weg auf einen Blick",
+    journeyParagraphs: [
+      "Jurastudium in Nancy, Erasmus in Schweden, Studium des Wirtschaftsrechts in Nancy, anschließend ein M2 für internationales Wirtschaftsrecht an der Paris Dauphine mit Austausch in Tilburg.",
+      "Anschließend habe ich durch Dauphines Partnerschaft einen LL.M an der Case Western Reserve University abgeschlossen und den New York Bar bestanden.",
+      "Ich praktiziere jetzt in New York und habe diese Website erstellt, um französischen Jurastudenten den Weg klarer zu machen.",
+    ],
+    items: questionsEn.map((question, index) => ({
+      question,
+      answer: answersEn[index],
+    })),
+  },
 } as const
 
 export function FounderFaq() {

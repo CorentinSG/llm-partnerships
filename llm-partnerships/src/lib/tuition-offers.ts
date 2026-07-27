@@ -46,6 +46,18 @@ const copy = {
     partnerRate: "Precio tras convenio",
     scenario: "Escenario — {label}",
   },
+  de: {
+    noOffer: "Öffentlicher Tarif",
+    savings: "Studiengebührenersparnis",
+    freeSeat: "Partnersitz ohne Unterrichtsgebühren",
+    reducedSeat: "Reduzierter Studienplatz",
+    scholarshipSeat: "Stipendium oder Rabatt möglich",
+    percentSeat: "{percent} % Rabatt",
+    referenceAmount: "veröffentlichter Betrag",
+    publicRate: "Normaler öffentlicher Preis",
+    partnerRate: "Preis nach Partnerschaft",
+    scenario: "Szenario – {label}",
+  },
 } as const
 
 function parseDollarAmounts(text: string) {

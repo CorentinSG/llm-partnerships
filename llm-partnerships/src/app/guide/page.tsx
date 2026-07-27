@@ -21,6 +21,11 @@ const copy = {
     description:
       "Un recorrido típico por las etapas clave después de estudiar derecho en Francia.",
   },
+  de: {
+    title: "Leitfaden: Anwalt in den Vereinigten Staaten werden",
+    description:
+      "Ein typischer Weg durch die wichtigsten Schritte nach Abschluss des Jurastudiums in Frankreich.",
+  },
 } as const
 
 export default function GuidePage() {

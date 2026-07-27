@@ -24,6 +24,12 @@ const copy = {
     author:
       "Creado por Corentin Saint-Girons, abogado del estado de Nueva York.",
   },
+  de: {
+    warning: "Haftungsausschluss:",
+    disclaimer:
+      "Diese Website ist ein Informations-MVP, der sich auf LL.M-Partnerschaften mit US-amerikanischen Rechtsschulen konzentriert. Informationen können unvollständig sein oder sich im Laufe der Zeit ändern. Überprüfen Sie immer offizielle Quellen (Universitäten, LSAC, Anwaltsbehörden), bevor Sie sich bewerben. Bei diesem Inhalt handelt es sich nicht um eine Rechtsberatung.",
+    author: "Erstellt von Corentin Saint-Girons, New Yorker Anwalt.",
+  },
 } as const
 
 export function SiteFooter() {
