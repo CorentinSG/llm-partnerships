@@ -29,6 +29,13 @@ export interface CostEstimate {
   sources: CostSource[]
 }
 
+export interface PartnershipCostResolution {
+  partnership: Partnership
+  displayCity: string
+  status: "supported" | "unsupported"
+  estimate?: CostEstimate
+}
+
 interface CostEstimatesFile {
   updatedAt: string
   currency: string
@@ -60,6 +67,8 @@ function normalizePartnerCity(city: string | undefined) {
     "baton rouge la": "baton rouge",
     "st louis missouri": "st louis",
     "washington dc": "washington",
+    "washington d c": "washington",
+    "washington district of columbia": "washington",
     "wilmington": "wilmington",
     "cleveland ohio": "cleveland",
     "minneapolis mn": "minneapolis",
@@ -143,7 +152,9 @@ export function getPartnershipsInEstimateCity(
 export function getCostEstimateForPartnership(partnership: Partnership) {
   const normalizedUniversity = normalizeValue(partnership.partnerUniversity)
   const exact = costEstimates.estimates.find((estimate) =>
-    normalizeValue(estimate.referenceSchool) === normalizedUniversity
+    [estimate.referenceSchool, ...estimate.coveredUniversities].some(
+      (university) => normalizeValue(university) === normalizedUniversity,
+    ),
   )
 
   if (exact) return exact
@@ -151,6 +162,43 @@ export function getCostEstimateForPartnership(partnership: Partnership) {
   const normalizedCity = normalizePartnerCity(partnership.partnerCity)
   return costEstimates.estimates.find(
     (estimate) => normalizeDisplayCity(estimate.displayCity) === normalizedCity
+  )
+}
+
+export function getPartnershipCostResolutions(
+  partnerships: Partnership[],
+): PartnershipCostResolution[] {
+  return partnerships.map((partnership) => {
+    const estimate = getCostEstimateForPartnership(partnership)
+    return {
+      partnership,
+      displayCity:
+        estimate?.displayCity ||
+        partnership.partnerCity?.trim() ||
+        partnership.partnerState?.trim() ||
+        "Destination not communicated",
+      status: estimate ? "supported" : "unsupported",
+      estimate,
+    }
+  })
+}
+
+export function getScopedDisplayCities(partnerships: Partnership[]) {
+  return Array.from(
+    new Set(
+      getPartnershipCostResolutions(partnerships).map(
+        (resolution) => resolution.displayCity,
+      ),
+    ),
+  ).sort((a, b) => a.localeCompare(b))
+}
+
+export function getPartnershipResolutionsForDisplayCity(
+  partnerships: Partnership[],
+  displayCity: string,
+) {
+  return getPartnershipCostResolutions(partnerships).filter(
+    (resolution) => resolution.displayCity === displayCity,
   )
 }
 

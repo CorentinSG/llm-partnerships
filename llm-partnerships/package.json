@@ -10,7 +10,8 @@
     "designer:verify": "node scripts/designer-verify.mjs",
     "data:verify:germany": "node scripts/verify-germany-data.mjs",
     "translations:verify:germany": "node scripts/verify-germany-translations.mjs",
-    "test:integration:germany": "node scripts/verify-germany-integration.mjs"
+    "test:integration:germany": "node scripts/verify-germany-integration.mjs",
+    "test:final-fixes": "node scripts/verify-final-fixes.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",

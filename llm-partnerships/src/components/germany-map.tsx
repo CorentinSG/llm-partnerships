@@ -65,6 +65,7 @@ export function GermanyMap({
   const height = 520
   const padding = 26
   const [hovered, setHovered] = React.useState<string | null>(null)
+  const [focused, setFocused] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
   const copy = mapCopy[language]
 
@@ -90,24 +91,31 @@ export function GermanyMap({
   }, [width, height, padding])
 
   const displayPoints = React.useMemo(() => {
-    const keyFor = (x: number, y: number) => `${Math.round(x)}:${Math.round(y)}`
-    const counts = new Map<string, number>()
+    const placed: { x: number; y: number }[] = []
+    const minimumDistance = 20
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5))
 
     return points.map((p) => {
-      const { x, y } = projectPoint(p.coordinates.lat, p.coordinates.lng)
-      const key = keyFor(x, y)
-      const index = counts.get(key) ?? 0
-      counts.set(key, index + 1)
+      const projected = projectPoint(p.coordinates.lat, p.coordinates.lng)
+      let x = projected.x
+      let y = projected.y
+      let attempt = 0
 
-      if (index === 0) return { p, x, y }
-
-      const angle = (index * 2 * Math.PI) / 6
-      const radius = 10 + index * 3
-      return {
-        p,
-        x: x + Math.cos(angle) * radius,
-        y: y + Math.sin(angle) * radius,
+      while (
+        placed.some(
+          (point) => Math.hypot(point.x - x, point.y - y) < minimumDistance,
+        ) &&
+        attempt < 24
+      ) {
+        const radius = minimumDistance + Math.floor(attempt / 6) * 8
+        const angle = attempt * goldenAngle
+        x = projected.x + Math.cos(angle) * radius
+        y = projected.y + Math.sin(angle) * radius
+        attempt += 1
       }
+
+      placed.push({ x, y })
+      return { p, x, y }
     })
   }, [points, projectPoint])
 
@@ -205,12 +213,19 @@ export function GermanyMap({
               {displayPoints.map(({ p, x, y }) => {
                 const selected = p.frenchUniversity === selectedGermanUniversity
                 const isHovered = hovered === p.frenchUniversity
+                const isFocused = focused === p.frenchUniversity
+                const accessibleName = translateDataText(
+                  p.frenchUniversity,
+                  language,
+                )
                 return (
                   <g
                     key={p.frenchUniversity}
                     data-panzoom-ignore="true"
                     role="button"
                     tabIndex={0}
+                    aria-label={accessibleName}
+                    aria-pressed={selected}
                     onClick={() => onSelect(selected ? undefined : p.frenchUniversity)}
                     onMouseEnter={() => setHovered(p.frenchUniversity)}
                     onMouseLeave={() =>
@@ -224,6 +239,12 @@ export function GermanyMap({
                         onSelect(selected ? undefined : p.frenchUniversity)
                       }
                     }}
+                    onFocus={() => setFocused(p.frenchUniversity)}
+                    onBlur={() =>
+                      setFocused((previous) =>
+                        previous === p.frenchUniversity ? null : previous,
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   >
                     {isHovered ? (
@@ -274,6 +295,18 @@ export function GermanyMap({
                         stroke="hsl(var(--ring))"
                         strokeWidth={2}
                         opacity={0.6}
+                      />
+                    ) : null}
+                    {isFocused ? (
+                      <circle
+                        data-focus-ring="true"
+                        cx={x}
+                        cy={y}
+                        r={16}
+                        fill="transparent"
+                        stroke="hsl(var(--ring))"
+                        strokeWidth={3}
+                        opacity={0.95}
                       />
                     ) : null}
                   </g>

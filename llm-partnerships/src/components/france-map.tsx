@@ -65,6 +65,7 @@ export function FranceMap({
   const height = 520
   const padding = 26
   const [hovered, setHovered] = React.useState<string | null>(null)
+  const [focused, setFocused] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
   const copy = mapCopy[language]
 
@@ -235,12 +236,15 @@ export function FranceMap({
               {displayPoints.map(({ p, x, y }) => {
                 const selected = p.frenchUniversity === selectedFrenchUniversity
                 const isHovered = hovered === p.frenchUniversity
+                const isFocused = focused === p.frenchUniversity
                 return (
                   <g
                     key={p.frenchUniversity}
                     data-panzoom-ignore="true"
                     role="button"
                     tabIndex={0}
+                    aria-label={p.frenchUniversity}
+                    aria-pressed={selected}
                     onClick={() =>
                       onSelect(selected ? undefined : p.frenchUniversity)
                     }
@@ -256,6 +260,12 @@ export function FranceMap({
                         onSelect(selected ? undefined : p.frenchUniversity)
                       }
                     }}
+                    onFocus={() => setFocused(p.frenchUniversity)}
+                    onBlur={() =>
+                      setFocused((previous) =>
+                        previous === p.frenchUniversity ? null : previous,
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   >
                     {isHovered ? (
@@ -306,6 +316,18 @@ export function FranceMap({
                         stroke="hsl(var(--ring))"
                         strokeWidth={2}
                         opacity={0.6}
+                      />
+                    ) : null}
+                    {isFocused ? (
+                      <circle
+                        data-focus-ring="true"
+                        cx={x}
+                        cy={y}
+                        r={16}
+                        fill="transparent"
+                        stroke="hsl(var(--ring))"
+                        strokeWidth={3}
+                        opacity={0.95}
                       />
                     ) : null}
                   </g>

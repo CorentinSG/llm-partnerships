@@ -104,6 +104,15 @@ const germanPartnerships: Partnership[] = germanyDatabase.partnerships.map((part
     continent: partnership.continent || unknown,
     programType: partnership.programType || unknown,
     partnershipType,
+    tuitionBenefitScope:
+      partnership.partnershipType === "exchange_credit"
+        ? "exchange_only"
+        : partnership.tuitionCategory === "scholarship_possible" ||
+            partnership.tuitionCategory === "to_confirm"
+          ? "conditional_llm"
+          : partnership.tuitionCategory === "full_or_unknown"
+            ? "unknown"
+            : "llm",
     specialties: partnership.specialties?.length ? partnership.specialties : [unknown],
     requiredLevel: normalizeRequiredLevel(partnership.requiredLevel || unknown, unknown),
     programLanguage: partnership.programLanguage || unknown,

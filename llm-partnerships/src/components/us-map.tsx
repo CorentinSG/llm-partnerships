@@ -107,6 +107,7 @@ export function UsMap({
   const width = 520
   const height = 340
   const [hovered, setHovered] = React.useState<string | null>(null)
+  const [focusedState, setFocusedState] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
   const copy = mapCopy[language]
   const tr = (value: unknown) => translateDataText(value, language)
@@ -218,32 +219,64 @@ export function UsMap({
             >
               {usStates.features.map((f: any) => {
                 const name = String(f.properties?.name || "")
-                const selected = name && name === selectedState
+                const selected = Boolean(name && name === selectedState)
                 const hasData = stateCounts.has(name)
                 const d = pathFor(f)
+                const stateLabel = `${tr(name)}${
+                  hasData
+                    ? ` · ${stateCounts.get(name)} ${copy.partnership}`
+                    : ""
+                }`
                 return (
-                  <path
+                  <g
                     key={name}
-                    d={d}
                     data-panzoom-ignore="true"
-                    fill={hasData ? "url(#usFill)" : "hsl(var(--background))"}
-                    stroke="hsl(var(--border))"
-                    strokeWidth={selected ? 2.5 : 1.2}
-                    opacity={hasData ? 1 : 0.5}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={stateLabel}
+                    aria-pressed={selected}
                     onMouseEnter={() => setHovered(name)}
                     onMouseLeave={() =>
                       setHovered((prev) => (prev === name ? null : prev))
                     }
                     onClick={() => onSelectState(selected ? undefined : name)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault()
+                        onSelectState(selected ? undefined : name)
+                      }
+                    }}
+                    onFocus={() => setFocusedState(name)}
+                    onBlur={() =>
+                      setFocusedState((previous) =>
+                        previous === name ? null : previous,
+                      )
+                    }
                     style={{ cursor: hasData ? "pointer" : "default" }}
                   >
-                    <title>
-                      {tr(name)}
-                      {hasData
-                        ? ` · ${stateCounts.get(name)} ${copy.partnership}`
-                        : ""}
-                    </title>
-                  </path>
+                    <path
+                      d={d}
+                      fill={
+                        hasData ? "url(#usFill)" : "hsl(var(--background))"
+                      }
+                      stroke="hsl(var(--border))"
+                      strokeWidth={selected ? 2.5 : 1.2}
+                      opacity={hasData ? 1 : 0.5}
+                    >
+                      <title>{stateLabel}</title>
+                    </path>
+                    {focusedState === name ? (
+                      <path
+                        data-focus-ring="true"
+                        d={d}
+                        fill="transparent"
+                        stroke="hsl(var(--ring))"
+                        strokeWidth={4}
+                        opacity={0.95}
+                        pointerEvents="none"
+                      />
+                    ) : null}
+                  </g>
                 )
               })}
 

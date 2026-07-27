@@ -48,6 +48,7 @@ export interface Partnership {
   continent: string
   programType: string
   partnershipType?: string
+  tuitionBenefitScope?: "llm" | "exchange_only" | "conditional_llm" | "unknown"
   programName?: string
   degreesAwarded?: string[]
   usTrack?: {

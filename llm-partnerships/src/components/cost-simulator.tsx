@@ -32,13 +32,13 @@ import type { Partnership } from "@/lib/types"
 import { cleanText, translateDataText, type UiLanguage } from "@/lib/text-utils"
 import {
   formatUsd,
-  getAllCostEstimates,
   getCostEstimatesMeta,
   getEstimatesForDisplayCity,
-  getPartnershipsInEstimateCity,
-  getDisplayCities,
+  getPartnershipCostResolutions,
+  getScopedDisplayCities,
   type CostComponent,
 } from "@/lib/us-cost-estimates"
+import { inferOfferOptions } from "@/lib/tuition-offers"
 
 const copy = {
   fr: {
@@ -109,6 +109,9 @@ const copy = {
     referenceAmount: "montant indiqué",
     publicRate: "Prix public normal",
     partnerRate: "Prix après partenariat",
+    unsupportedSchool: "Aucune estimation de référence",
+    unsupportedEstimate:
+      "Aucune estimation annuelle n’est disponible pour cette destination. Le partenariat reste visible, mais aucun total LL.M. ne sera inventé.",
     visaNone: "Pas de visa à prévoir",
     visaF1: "F-1 initial : MRV + SEVIS",
     visaJ1: "J-1 initial : MRV + SEVIS",
@@ -185,6 +188,9 @@ const copy = {
     referenceAmount: "published amount",
     publicRate: "Normal public price",
     partnerRate: "Price after partnership",
+    unsupportedSchool: "No reference estimate",
+    unsupportedEstimate:
+      "No annual cost estimate is available for this destination. The partnership remains visible, but no LL.M. total will be invented.",
     visaNone: "No visa cost to include",
     visaF1: "Initial F-1: MRV + SEVIS",
     visaJ1: "Initial J-1: MRV + SEVIS",
@@ -261,6 +267,9 @@ const copy = {
     referenceAmount: "importe indicado",
     publicRate: "Precio público normal",
     partnerRate: "Precio tras convenio",
+    unsupportedSchool: "Sin estimación de referencia",
+    unsupportedEstimate:
+      "No hay una estimación anual disponible para este destino. El convenio sigue visible, pero no se inventará ningún total de LL.M.",
     visaNone: "Sin coste de visa",
     visaF1: "F-1 inicial: MRV + SEVIS",
     visaJ1: "J-1 inicial: MRV + SEVIS",
@@ -270,13 +279,6 @@ const copy = {
       "Estimación basada en MRV 185 $ y SEVIS I-901: F/M 350 $, J 220 $. Las tasas de emisión dependen de la nacionalidad.",
   },
 } as const
-
-type OfferOption = {
-  id: string
-  label: string
-  tuitionUsd: number
-  note?: string
-}
 
 type VisaOption = {
   id: string
@@ -685,228 +687,12 @@ function isEditableLivingComponent(
   )
 }
 
-function parseDollarAmounts(text: string) {
-  const amounts: number[] = []
-  const matches = text.matchAll(
-    /(?:\$|usd|dollars?)\s*([0-9][0-9\s.,]*)|([0-9][0-9\s.,]*)\s*(?:\$|usd|dollars?)/gi,
-  )
-  for (const match of matches) {
-    const raw = match[1] || match[2]
-    const value = Number(raw.replace(/[\s,]/g, ""))
-    if (Number.isFinite(value) && value > 0) amounts.push(value)
-  }
-  return amounts
-}
-
-function getSentences(text: string) {
-  return text
-    .split(/(?<=[.!?])\s+|\s+[;•]\s+/)
-    .map((sentence) => sentence.trim())
-    .filter(Boolean)
-}
-
-function sentenceHasAny(sentence: string, keywords: string[]) {
-  return keywords.some((keyword) => sentence.includes(keyword))
-}
-
-function parseDiscountAmounts(text: string, normalTuition: number) {
-  const discountKeywords = [
-    "bourse",
-    "scholarship",
-    "remise",
-    "discount",
-    "reduction",
-    "réduction",
-    "reduit",
-    "réduit",
-  ]
-  const excludedKeywords = [
-    "assurance",
-    "insurance",
-    "livres",
-    "books",
-    "manual",
-    "manuels",
-    "acceptation",
-    "application",
-    "dossier",
-    "fee",
-    "frais de 250",
-    "frais apres acceptation",
-    "frais après acceptation",
-  ]
-
-  return Array.from(
-    new Set(
-      getSentences(text)
-        .filter((sentence) => sentenceHasAny(sentence, discountKeywords))
-        .filter((sentence) => !sentenceHasAny(sentence, excludedKeywords))
-        .flatMap(parseDollarAmounts)
-        .filter((amount) => amount > 0 && amount < normalTuition),
-    ),
-  )
-}
-
-function parsePartnerTuitionAmounts(text: string, normalTuition: number) {
-  const priceKeywords = [
-    "prix",
-    "cout",
-    "coût",
-    "tuition",
-    "scolarite",
-    "scolarité",
-    "frais reduits",
-    "frais réduits",
-    "a verser",
-    "à verser",
-    "payant",
-    "tarif",
-  ]
-  const excludedKeywords = [
-    "bourse",
-    "scholarship",
-    "remise",
-    "discount",
-    "assurance",
-    "insurance",
-    "livres",
-    "books",
-    "acceptation",
-    "application",
-    "dossier",
-    "lsac",
-  ]
-
-  return Array.from(
-    new Set(
-      getSentences(text)
-        .filter((sentence) => sentenceHasAny(sentence, priceKeywords))
-        .filter((sentence) => !sentenceHasAny(sentence, excludedKeywords))
-        .flatMap(parseDollarAmounts)
-        .filter((amount) => amount > 0 && amount < normalTuition),
-    ),
-  )
-}
-
-function parsePercent(text: string) {
-  const match = text.match(/(\d{1,3})\s*%/)
-  if (!match) return undefined
-  return Math.min(Math.max(Number(match[1]), 0), 100)
-}
-
 function formatEurFromUsd(amountUsd: number) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0,
   }).format(Math.round(amountUsd * USD_TO_EUR_RATE))
-}
-
-function inferOfferOptions(
-  partnership: Partnership | undefined,
-  normalTuition: number,
-  language: UiLanguage,
-) {
-  const t = copy[language]
-  const options: OfferOption[] = [
-    {
-      id: "public",
-      label: t.noOffer,
-      tuitionUsd: normalTuition,
-      note: t.publicRate,
-    },
-  ]
-
-  if (!partnership) return options
-
-  const category = cleanText(partnership.tuitionCategory).toLowerCase()
-  const text = cleanText(
-    [
-      partnership.availableSeatsDisplay,
-      partnership.tuitionDisplay,
-      partnership.financialAid,
-      partnership.shortDescription,
-      partnership.notes,
-    ].join(" "),
-  )
-  const lower = text.toLowerCase()
-  const partnerTuitionAmounts = parsePartnerTuitionAmounts(
-    lower,
-    normalTuition,
-  )
-  const discountAmounts = parseDiscountAmounts(lower, normalTuition)
-  const percent = parsePercent(lower)
-
-  if (
-    category === "sans frais" ||
-    lower.includes("sans frais") ||
-    lower.includes("full scholarship")
-  ) {
-    options.push({
-      id: "free",
-      label: t.freeSeat,
-      tuitionUsd: 0,
-      note: cleanText(
-        partnership.availableSeatsDisplay || partnership.tuitionDisplay,
-      ),
-    })
-  }
-
-  if (percent && percent > 0 && percent < 100) {
-    options.push({
-      id: `percent-${percent}`,
-      label: t.percentSeat.replace("{percent}", String(percent)),
-      tuitionUsd: Math.round(normalTuition * (1 - percent / 100)),
-      note: cleanText(partnership.financialAid || partnership.tuitionDisplay),
-    })
-  }
-
-  partnerTuitionAmounts
-    .sort((a, b) => a - b)
-    .slice(0, 3)
-    .forEach((amount, index) => {
-      options.push({
-        id: `amount-${index}-${amount}`,
-        label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
-        tuitionUsd: Math.round(amount),
-        note: `${formatUsd(amount)} ${t.referenceAmount}`,
-      })
-    })
-
-  discountAmounts
-    .sort((a, b) => b - a)
-    .slice(0, 3)
-    .forEach((amount, index) => {
-      options.push({
-        id: `discount-${index}-${amount}`,
-        label: t.scholarshipSeat,
-        tuitionUsd: Math.max(0, Math.round(normalTuition - amount)),
-        note: `${formatUsd(amount)} ${t.savings.toLowerCase()}`,
-      })
-    })
-
-  if (
-    options.length === 1 &&
-    (category.includes("réduits") ||
-      category.includes("reduit") ||
-      category.includes("bourse"))
-  ) {
-    const fallbackPercent = category.includes("bourse") ? 25 : 50
-    options.push({
-      id: `fallback-${fallbackPercent}`,
-      label: category.includes("bourse") ? t.scholarshipSeat : t.reducedSeat,
-      tuitionUsd: Math.round(normalTuition * (1 - fallbackPercent / 100)),
-      note: t.partnerRate,
-    })
-  }
-
-  return options.filter(
-    (option, index, all) =>
-      all.findIndex(
-        (item) =>
-          item.tuitionUsd === option.tuitionUsd && item.label === option.label,
-      ) === index,
-  )
 }
 
 function sliderMin(amount: number) {
@@ -929,8 +715,14 @@ export function CostSimulator({
   const t = copy[language]
   const tr = (value: unknown) => translateDataText(value, language)
   const meta = React.useMemo(() => getCostEstimatesMeta(), [])
-  const allEstimates = React.useMemo(() => getAllCostEstimates(), [])
-  const cities = React.useMemo(() => getDisplayCities(), [])
+  const resolutions = React.useMemo(
+    () => getPartnershipCostResolutions(partnerships),
+    [partnerships],
+  )
+  const cities = React.useMemo(
+    () => getScopedDisplayCities(partnerships),
+    [partnerships],
+  )
   const barJurisdictionOptions = React.useMemo(
     () => getBarJurisdictionOptions(language),
     [language],
@@ -955,8 +747,7 @@ export function CostSimulator({
 
   const selectedEstimate =
     cityEstimates.find((estimate) => estimate.id === selectedEstimateId) ||
-    cityEstimates[0] ||
-    allEstimates[0]
+    cityEstimates[0]
   const selectedBarJurisdiction =
     barJurisdictionOptions.find(
       (option) => option.id === selectedBarJurisdictionId,
@@ -979,10 +770,10 @@ export function CostSimulator({
 
   const partnershipsInCity = React.useMemo(
     () =>
-      selectedEstimate
-        ? getPartnershipsInEstimateCity(partnerships, selectedEstimate)
-        : [],
-    [partnerships, selectedEstimate],
+      resolutions
+        .filter((resolution) => resolution.displayCity === selectedCity)
+        .map((resolution) => resolution.partnership),
+    [resolutions, selectedCity],
   )
 
   const [selectedPartnershipId, setSelectedPartnershipId] = React.useState("")
@@ -994,11 +785,7 @@ export function CostSimulator({
   )
 
   React.useEffect(() => {
-    const freeFirst = partnershipsInCity.find(
-      (partnership) =>
-        cleanText(partnership.tuitionCategory).toLowerCase() === "sans frais",
-    )
-    const first = freeFirst || partnershipsInCity[0]
+    const first = partnershipsInCity[0]
     setSelectedPartnershipId(first?.id ?? "")
   }, [partnershipsInCity])
 
@@ -1021,9 +808,7 @@ export function CostSimulator({
     visaOptions.find((option) => option.id === selectedVisaId) || visaOptions[0]
 
   React.useEffect(() => {
-    const bestOffer =
-      offerOptions.find((offer) => offer.id !== "public") || offerOptions[0]
-    setSelectedOfferId(bestOffer?.id ?? "public")
+    setSelectedOfferId("public")
   }, [offerOptions])
 
   const fixedComponents = React.useMemo(
@@ -1053,7 +838,109 @@ export function CostSimulator({
     })
   }, [editableComponents])
 
-  if (!selectedEstimate || !selectedOffer) return null
+  if (!selectedEstimate || !selectedOffer) {
+    if (!selectedCity) return null
+
+    return (
+      <section className="budget-section py-10 sm:py-14">
+        <div className="container">
+          <Card className="overflow-hidden rounded-2xl border-primary/10">
+            <CardHeader className="space-y-6 p-4 sm:p-8">
+              <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_460px]">
+                <div className="max-w-3xl space-y-3">
+                  <Badge className="w-fit rounded-full bg-primary/12 px-3 py-1 text-primary shadow-none">
+                    {t.badge}
+                  </Badge>
+                  <CardTitle className="text-2xl tracking-tight sm:text-3xl">
+                    {t.title}
+                  </CardTitle>
+                  <p className="text-sm leading-7 text-muted-foreground sm:text-base">
+                    {t.intro}
+                  </p>
+                </div>
+
+                <div className="grid gap-3 rounded-2xl border bg-secondary/45 p-3 sm:p-4">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-muted-foreground">
+                        {t.city}
+                      </label>
+                      <Select
+                        value={selectedCity}
+                        onValueChange={setSelectedCity}
+                      >
+                        <SelectTrigger className="h-11" aria-label={t.city}>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {cities.map((city) => (
+                            <SelectItem key={city} value={city}>
+                              {city}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="text-xs font-medium text-muted-foreground">
+                        {t.school}
+                      </label>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        className="h-11 w-full justify-start"
+                        aria-label={t.school}
+                        disabled
+                      >
+                        {t.unsupportedSchool}
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-medium text-muted-foreground">
+                      {t.partnership}
+                    </label>
+                    <Select
+                      value={selectedPartnershipId || "none"}
+                      onValueChange={(value: string) =>
+                        setSelectedPartnershipId(value === "none" ? "" : value)
+                      }
+                    >
+                      <SelectTrigger className="h-11" aria-label={t.partnership}>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">{t.noPartnership}</SelectItem>
+                        {partnershipsInCity.map((partnership) => (
+                          <SelectItem
+                            key={partnership.id}
+                            value={partnership.id}
+                            data-partnership-id={partnership.id}
+                          >
+                            {tr(partnership.frenchUniversity)} →{" "}
+                            {tr(partnership.partnerUniversity)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div
+                    role="status"
+                    className="rounded-xl border border-dashed bg-background/70 p-3 text-sm leading-6 text-muted-foreground"
+                  >
+                    {t.unsupportedEstimate}
+                  </div>
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
+        </div>
+      </section>
+    )
+  }
 
   const fixedOtherCosts = fixedComponents.reduce(
     (total, component) => total + component.amountUsd,
@@ -1160,7 +1047,11 @@ export function CostSimulator({
                     <SelectContent>
                       <SelectItem value="none">{t.noPartnership}</SelectItem>
                       {partnershipsInCity.map((partnership) => (
-                        <SelectItem key={partnership.id} value={partnership.id}>
+                        <SelectItem
+                          key={partnership.id}
+                          value={partnership.id}
+                          data-partnership-id={partnership.id}
+                        >
                           {tr(partnership.frenchUniversity)} →{" "}
                           {tr(partnership.partnerUniversity)}
                         </SelectItem>
