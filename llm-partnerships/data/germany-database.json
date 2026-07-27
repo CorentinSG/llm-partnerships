@@ -120,18 +120,6 @@
         "lng": 13.3933
       },
       "dataStatus": "to_confirm"
-    },
-    {
-      "id": "ebs",
-      "name": "EBS Universität für Wirtschaft und Recht",
-      "faculty": "EBS Law School",
-      "city": "Wiesbaden",
-      "country": "Allemagne",
-      "coordinates": {
-        "lat": 50.078,
-        "lng": 8.2456
-      },
-      "dataStatus": "to_confirm"
     }
   ],
   "partnerships": [
@@ -719,6 +707,56 @@
       "notes": "La bourse ne constitue pas une admission automatique. Une candidature Vanderbilt standard reste obligatoire."
     },
     {
+      "id": "mannheim-uconn-llm-pathway",
+      "frenchUniversityId": "mannheim",
+      "frenchUniversity": "Universität Mannheim",
+      "partnerUniversity": "University of Connecticut School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Hartford",
+      "partnerState": "Connecticut",
+      "partnerCoordinates": {
+        "lat": 41.773,
+        "lng": -72.7078
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Pathway LL.M. ou retour après échange",
+      "partnershipType": "pipeline",
+      "specialties": [
+        "U.S. Legal Studies",
+        "Human Rights and Social Justice",
+        "Energy and Environmental Law",
+        "Insurance Law",
+        "Governance, Risk Management and Compliance"
+      ],
+      "requiredLevel": "Étudiants ou diplômés de Mannheim selon la variante du parcours",
+      "applicationYear": "Après le diplôme ou après un échange régulier à UConn",
+      "programLanguage": "Anglais",
+      "duration": "Selon les crédits antérieurs et le programme LL.M. choisi",
+      "applicationProcess": "partner_application",
+      "officialLink": "https://www.uni-mannheim.de/en/news/llm-uconn-law-school-webinar/",
+      "shortDescription": "UConn présente aux étudiants de Mannheim un LL.M. Pathway et la possibilité de revenir après un semestre d’échange pour terminer un LL.M.",
+      "admissionConditions": "Candidature et admission UConn requises; reconnaissance des crédits antérieurs à déterminer avec UConn.",
+      "languageTests": [],
+      "availableSeatsDisplay": "Non communiqué; aucune place réservée publiée.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Tarif LL.M. UConn applicable; bourses au mérite générales possibles, sans remise partenaire Mannheim publiée.",
+      "financialAid": "UConn publie des bourses au mérite pour les candidats LL.M., mais aucun montant ni bénéfice automatique propre à Mannheim n’est annoncé.",
+      "applicationDeadline": "Non communiqué sur la page Mannheim; suivre le calendrier de candidature LL.M. UConn.",
+      "reliabilityStatus": "confirmed",
+      "sourceType": "official_german_university",
+      "sourceNote": "L’annonce officielle Mannheim du 5 février 2024 distingue le LL.M. Pathway et le retour après échange; les modalités financières restent générales.",
+      "missingInformation": [
+        "Crédits d’échange transférables",
+        "Durée résiduelle du LL.M.",
+        "Nombre de places",
+        "Montant d’une éventuelle bourse",
+        "Date limite"
+      ],
+      "notes": "Le partenariat facilite l’information et le parcours, mais ne garantit ni admission, ni bourse, ni pourcentage de remise."
+    },
+    {
       "id": "duesseldorf-suffolk-exchange-credit",
       "frenchUniversityId": "duesseldorf",
       "frenchUniversity": "Heinrich-Heine-Universität Düsseldorf",
@@ -856,52 +894,6 @@
         "Date limite"
       ],
       "notes": "Ne pas présenter ce parcours comme financé tant que la faculté HU n’a pas confirmé les conditions de la campagne actuelle."
-    },
-    {
-      "id": "ebs-case-western-exchange",
-      "frenchUniversityId": "ebs",
-      "frenchUniversity": "EBS Universität für Wirtschaft und Recht",
-      "partnerUniversity": "Case Western Reserve University School of Law",
-      "partnerCountry": "États-Unis",
-      "partnerCity": "Cleveland",
-      "partnerState": "Ohio",
-      "partnerCoordinates": {
-        "lat": 41.5075,
-        "lng": -81.6084
-      },
-      "continent": "Amérique du Nord",
-      "programType": "Échange juridique; articulation LL.M. à confirmer",
-      "partnershipType": "to_confirm",
-      "specialties": [
-        "Cours de droit à Case Western Reserve"
-      ],
-      "requiredLevel": "Étudiants EBS Law School sélectionnés pour l’échange",
-      "applicationYear": "Pendant le cursus EBS",
-      "programLanguage": "Anglais",
-      "duration": "Un semestre d’échange; toute prolongation ou articulation LL.M. doit être confirmée",
-      "applicationProcess": "internal_then_partner",
-      "officialLink": "https://www.ebs.edu/fileadmin/EBS/Netzwerk/Internationales/Medien/Overview_EBS_partner_universities.pdf",
-      "shortDescription": "EBS et Case Western Reserve publient un accord d’échange en droit; aucun crédit, diplôme LL.M. ou avantage financier propre n’est actuellement détaillé.",
-      "admissionConditions": "Sélection EBS et exigences de Case Western Reserve; détails non publiés dans la liste des partenaires.",
-      "languageTests": [],
-      "availableSeatsDisplay": "Variable selon le semestre et la réciprocité des échanges.",
-      "availableSeatsMin": null,
-      "availableSeatsMax": null,
-      "tuitionCategory": "to_confirm",
-      "tuitionDisplay": "Non communiqué; la liste EBS précise que les places offertes varient selon les semestres.",
-      "financialAid": "Aucune bourse LL.M. ou remise partenaire publiée.",
-      "applicationDeadline": "Non communiqué dans la liste officielle des partenaires.",
-      "reliabilityStatus": "to_confirm",
-      "sourceType": "official_german_university_and_us_law_school",
-      "sourceNote": "La liste EBS mise à jour le 30 janvier 2026 et la page Case Western Reserve confirment l’échange juridique; elles ne confirment pas un LL.M. direct.",
-      "missingInformation": [
-        "Lien formel avec un LL.M.",
-        "Crédits transférables",
-        "Nombre de places",
-        "Tuition et éventuelle remise",
-        "Date limite"
-      ],
-      "notes": "Conserver comme parcours à confirmer et ne pas le présenter comme un LL.M., un double diplôme ou une bourse tant qu’une source officielle plus précise n’est pas publiée."
     }
   ]
 }
