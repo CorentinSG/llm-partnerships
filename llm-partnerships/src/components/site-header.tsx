@@ -88,7 +88,6 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Parcours alternatifs",
       submit: "Proposer une info",
       submitShort: "Proposer",
-      home: "Accueil",
       franceUs: "France–États-Unis",
       germanyUs: "Allemagne–États-Unis",
       menu: "Menu",
@@ -100,7 +99,6 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Alternative paths",
       submit: "Submit information",
       submitShort: "Submit",
-      home: "Home",
       franceUs: "France–United States",
       germanyUs: "Germany–United States",
       menu: "Menu",
@@ -112,7 +110,6 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Vías alternativas",
       submit: "Proponer información",
       submitShort: "Proponer",
-      home: "Inicio",
       franceUs: "Francia–Estados Unidos",
       germanyUs: "Alemania–Estados Unidos",
       menu: "Menú",
@@ -145,7 +142,7 @@ export function SiteHeader({ className }: { className?: string }) {
         </Link>
 
         <nav className="flex min-w-0 items-center gap-2">
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 xl:flex">
             <Button asChild variant="ghost" size="sm">
               <Link href="/">{t.franceUs}</Link>
             </Button>
@@ -171,7 +168,7 @@ export function SiteHeader({ className }: { className?: string }) {
             <ThemeToggle />
           </div>
 
-          <div className="flex min-w-0 items-center gap-1.5 md:hidden">
+          <div className="flex min-w-0 items-center gap-1.5 xl:hidden">
             <Button asChild variant="default" size="sm" className="h-11 px-3">
               <Link href="/submit">{t.submitShort}</Link>
             </Button>
@@ -194,13 +191,6 @@ export function SiteHeader({ className }: { className?: string }) {
                   <SheetTitle>{t.menu}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-2">
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/">{t.home}</Link>
-                  </Button>
                   <Button
                     asChild
                     variant="ghost"
