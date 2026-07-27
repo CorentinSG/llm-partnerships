@@ -30,6 +30,7 @@ export function FiltersPanel({
   onChange,
   onReset,
   showFrenchUniversityFilter = true,
+  originUniversityLabel,
 }: {
   options: {
     frenchUniversities: string[]
@@ -51,6 +52,7 @@ export function FiltersPanel({
   onChange: (next: FiltersState) => void
   onReset: () => void
   showFrenchUniversityFilter?: boolean
+  originUniversityLabel?: string
 }) {
   const { language } = useLanguage()
   const t = {
@@ -198,7 +200,7 @@ export function FiltersPanel({
           <div className="grid gap-3 sm:grid-cols-2">
             {showFrenchUniversityFilter ? (
               <SelectFilter
-                label={t.frenchUniversity}
+                label={originUniversityLabel ?? t.frenchUniversity}
                 placeholder={t.all}
                 value={filters.frenchUniversity}
                 options={options.frenchUniversities}
