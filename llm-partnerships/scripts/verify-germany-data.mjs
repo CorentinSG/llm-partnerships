@@ -1,5 +1,12 @@
 import assert from "node:assert/strict"
+import { fileURLToPath } from "node:url"
+import jitiModule from "jiti"
 import database from "../data/germany-database.json" with { type: "json" }
+import frenchDatabase from "../data/database.json" with { type: "json" }
+
+const jiti = jitiModule(import.meta.url, {
+  alias: { "@": fileURLToPath(new URL("../src", import.meta.url)) },
+})
 
 assert.equal(database.frenchUniversities.length, 8, "expected 8 German faculties")
 assert.equal(database.partnerships.length, 16, "expected 16 German pathways")
@@ -23,6 +30,7 @@ const officialHosts = new Set([
   "www.uni-regensburg.de",
 ])
 const requiredStringFields = [
+  "partnerUniversity",
   "programType",
   "partnershipType",
   "shortDescription",
@@ -30,6 +38,7 @@ const requiredStringFields = [
   "tuitionDisplay",
   "financialAid",
   "applicationDeadline",
+  "tuitionCategory",
   "sourceNote",
   "notes",
 ]
@@ -131,5 +140,55 @@ assert.match(
 for (const augsburg of database.partnerships.filter(({ frenchUniversityId }) => frenchUniversityId === "augsburg")) {
   assert.match(augsburg.applicationDeadline, /30 novembre 2026/, `Augsburg deadline must be dated: ${augsburg.id}`)
 }
+
+const {
+  getAllGermanPartnerships,
+  getGermanFilterOptions,
+  getGermanPartnershipById,
+  getGermanUniversitiesPoints,
+} = await jiti.import("../src/lib/germany-data.ts")
+const { getAllPartnerships, getAnyPartnershipById, getPartnershipById } = await jiti.import("../src/lib/data.ts")
+
+const germanPartnerships = getAllGermanPartnerships()
+assert.equal(germanPartnerships.length, 16, "German loader must expose all 16 pathways")
+
+const germanPathway = getGermanPartnershipById("humboldt-berlin-minnesota-llm")
+assert.equal(germanPathway?.partnerUniversity, "University of Minnesota Law School")
+assert.equal(germanPathway?.availableSeats, "2", "German loader must normalize seats")
+assert.equal(
+  germanPathway?.tuitionCategory,
+  database.unknownValue,
+  "German loader must normalize tuition categories",
+)
+assert.equal(getGermanPartnershipById("missing-pathway"), undefined)
+
+const germanPoints = getGermanUniversitiesPoints()
+assert.equal(germanPoints.length, 8, "German loader must expose all 8 faculties as map points")
+const augsburg = database.frenchUniversities.find(({ id }) => id === "augsburg")
+assert.ok(augsburg, "expected Augsburg in the raw German database")
+assert.deepEqual(germanPoints.find(({ frenchUniversity }) => frenchUniversity === augsburg.name), {
+  frenchUniversity: augsburg.name,
+  frenchFaculty: augsburg.faculty,
+  city: augsburg.city,
+  coordinates: augsburg.coordinates,
+})
+
+const germanFilters = getGermanFilterOptions()
+assert.ok(germanFilters.frenchUniversities.includes(augsburg.name))
+assert.ok(germanFilters.partnerUniversities.includes("University of Minnesota Law School"))
+
+assert.equal(
+  getAllPartnerships().length,
+  frenchDatabase.partnerships.length,
+  "French list API must remain French-only",
+)
+assert.equal(
+  getAnyPartnershipById("humboldt-berlin-minnesota-llm")?.partnerUniversity,
+  "University of Minnesota Law School",
+  "combined lookup must resolve a German pathway",
+)
+const frenchPathway = getAllPartnerships()[0]
+assert.equal(getAnyPartnershipById(frenchPathway.id)?.id, getPartnershipById(frenchPathway.id)?.id)
+assert.equal(getAnyPartnershipById("missing-pathway"), undefined)
 
 console.log("German dataset verified: 8 faculties, 16 pathways")

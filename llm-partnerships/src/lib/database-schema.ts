@@ -16,6 +16,8 @@ export interface DatabaseLanguageTest {
   details?: string
 }
 
+export type DatabaseApplicationProcess = "internal" | "lsac" | "non_communique"
+
 export interface DatabasePartnership {
   id: string
   frenchUniversityId: string
@@ -33,7 +35,7 @@ export interface DatabasePartnership {
   applicationYear: string
   programLanguage: string
   duration: string
-  applicationProcess?: "internal" | "lsac" | "non_communique"
+  applicationProcess: DatabaseApplicationProcess
   officialLink: string
   attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string
@@ -73,5 +75,5 @@ export interface PartnershipsDatabase {
   partnershipTypes: Record<string, string>
   frenchUniversities: DatabaseFrenchUniversity[]
   partnerships: DatabasePartnership[]
-  researchQueue: ResearchQueueItem[]
+  researchQueue?: ResearchQueueItem[]
 }

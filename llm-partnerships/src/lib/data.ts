@@ -1,5 +1,6 @@
 import databaseRaw from "../../data/database.json"
 
+import { getGermanPartnershipById } from "@/lib/germany-data"
 import type { PartnershipsDatabase } from "@/lib/database-schema"
 import type { FrenchUniversityPoint, Partnership } from "@/lib/types"
 import { cleanText } from "@/lib/text-utils"
@@ -181,6 +182,10 @@ export function getAllPartnerships() {
 
 export function getPartnershipById(id: string) {
   return partnerships.find((p) => p.id === id)
+}
+
+export function getAnyPartnershipById(id: string) {
+  return getPartnershipById(id) ?? getGermanPartnershipById(id)
 }
 
 export function getFrenchUniversitiesPoints(): FrenchUniversityPoint[] {
