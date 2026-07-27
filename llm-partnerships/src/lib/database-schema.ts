@@ -35,7 +35,7 @@ export interface DatabasePartnership {
   applicationYear: string
   programLanguage: string
   duration: string
-  applicationProcess: DatabaseApplicationProcess
+  applicationProcess?: DatabaseApplicationProcess
   officialLink: string
   attachments?: { label: string; url: string; note?: string }[]
   shortDescription: string

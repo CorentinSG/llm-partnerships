@@ -160,6 +160,12 @@ assert.equal(
   database.unknownValue,
   "German loader must normalize tuition categories",
 )
+const reducedTuitionPathway = getGermanPartnershipById("fu-berlin-uconn-dual-degree")
+assert.equal(
+  reducedTuitionPathway?.tuitionCategory,
+  "frais réduits",
+  "German loader must preserve the French reduced-tuition category",
+)
 assert.equal(getGermanPartnershipById("missing-pathway"), undefined)
 
 const germanPoints = getGermanUniversitiesPoints()
@@ -181,6 +187,11 @@ assert.equal(
   getAllPartnerships().length,
   frenchDatabase.partnerships.length,
   "French list API must remain French-only",
+)
+assert.equal(
+  frenchDatabase.partnerships.filter((partnership) => partnership.applicationProcess === undefined).length,
+  16,
+  "French raw data intentionally permits omitted application processes",
 )
 assert.equal(
   getAnyPartnershipById("humboldt-berlin-minnesota-llm")?.partnerUniversity,

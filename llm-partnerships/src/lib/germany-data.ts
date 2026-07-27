@@ -1,7 +1,7 @@
 import databaseRaw from "../../data/germany-database.json"
 
 import type { PartnershipsDatabase } from "@/lib/database-schema"
-import type { FrenchUniversityPoint, Partnership } from "@/lib/types"
+import type { FrenchUniversityPoint, Partnership, TuitionCategory } from "@/lib/types"
 import { cleanText } from "@/lib/text-utils"
 
 const germanyDatabase = databaseRaw as PartnershipsDatabase
@@ -30,16 +30,16 @@ function inferSeats(
   return "3+"
 }
 
-function mapTuitionCategory(category: string, unknownValue: string) {
-  const map: Record<string, string> = {
+function mapTuitionCategory(category: string): TuitionCategory {
+  const map: Record<string, TuitionCategory> = {
     no_tuition: "sans frais",
-    fixed_fee: "frais rÃ©duits",
-    reduced_tuition: "frais rÃ©duits",
+    fixed_fee: "frais réduits",
+    reduced_tuition: "frais réduits",
     scholarship_possible: "bourse possible",
-    full_or_unknown: unknownValue,
-    to_confirm: unknownValue
+    full_or_unknown: "Non communiqué",
+    to_confirm: "Non communiqué"
   }
-  return map[category] || unknownValue
+  return map[category] || "Non communiqué"
 }
 
 function normalizeRequiredLevel(value: string, unknownValue: string) {
@@ -67,7 +67,7 @@ function normalizeRequiredLevel(value: string, unknownValue: string) {
 }
 
 function mapApplicationProcess(
-  value: string,
+  value: string | undefined,
   admissionConditions: string,
   unknownValue: string
 ): Partnership["applicationProcess"] {
@@ -135,7 +135,7 @@ const germanPartnerships: Partnership[] = germanyDatabase.partnerships.map((part
     availableSeatsMin: partnership.availableSeatsMin,
     availableSeatsMax: partnership.availableSeatsMax,
     tuition: partnership.tuitionDisplay || unknown,
-    tuitionCategory: mapTuitionCategory(partnership.tuitionCategory, unknown) as Partnership["tuitionCategory"],
+    tuitionCategory: mapTuitionCategory(partnership.tuitionCategory),
     tuitionDisplay: partnership.tuitionDisplay,
     financialAid: partnership.financialAid || unknown,
     applicationYear: partnership.applicationYear || unknown,
