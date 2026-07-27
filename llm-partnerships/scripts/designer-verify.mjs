@@ -1,10 +1,19 @@
 import { chromium } from "playwright";
 
 const baseURL = process.env.DESIGNER_VERIFY_URL || "http://127.0.0.1:3000";
-const routes = ["/", "/alternatives", "/guide", "/submit"];
+const routes = [
+  "/",
+  "/germany",
+  "/partnership/mannheim-vanderbilt-scholarship",
+  "/alternatives",
+  "/guide",
+  "/submit"
+];
 const viewports = [
-  { name: "desktop", width: 1440, height: 1000 },
-  { name: "mobile", width: 390, height: 844 }
+  { name: "mobile", width: 375, height: 844 },
+  { name: "tablet", width: 768, height: 1024 },
+  { name: "laptop", width: 1024, height: 900 },
+  { name: "desktop", width: 1440, height: 1000 }
 ];
 
 const browser = await chromium.launch();

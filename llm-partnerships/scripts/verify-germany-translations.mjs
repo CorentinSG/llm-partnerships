@@ -94,6 +94,16 @@ for (const language of ["en", "es"]) {
   )
 }
 
+for (const university of getGermanUniversitiesPoints()) {
+  for (const language of ["en", "es"]) {
+    assert.equal(
+      translations[language][university.frenchUniversity],
+      university.frenchUniversity,
+      `German institution names must remain untranslated in ${language}: ${university.frenchUniversity}`,
+    )
+  }
+}
+
 assert.equal(translations.en["États-Unis"], "United States")
 assert.equal(translations.es["États-Unis"], "Estados Unidos")
 assert.equal(translations.en["Amérique du Nord"], "North America")
