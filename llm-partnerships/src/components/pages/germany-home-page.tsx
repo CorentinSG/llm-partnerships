@@ -32,9 +32,38 @@ import {
   getGermanFilterOptions,
   getGermanUniversitiesPoints,
 } from "@/lib/germany-data"
-import { reliabilityCopy, translateDataText } from "@/lib/text-utils"
+import {
+  reliabilityCopy,
+  translateDataText,
+  type UiLanguage,
+} from "@/lib/text-utils"
+import type { Partnership } from "@/lib/types"
 
 const RESULTS_PAGE_SIZE = 12
+
+function getLocalizedSearchText(
+  partnership: Partnership,
+  language: UiLanguage,
+) {
+  const textValues: string[] = []
+
+  function collectText(value: unknown) {
+    if (typeof value === "string") {
+      textValues.push(translateDataText(value, language))
+      return
+    }
+    if (Array.isArray(value)) {
+      value.forEach(collectText)
+      return
+    }
+    if (value && typeof value === "object") {
+      Object.values(value).forEach(collectText)
+    }
+  }
+
+  collectText(partnership)
+  return textValues.join(" ")
+}
 
 const germanyCostSimulatorOrigin = {
   flights: {
@@ -182,8 +211,11 @@ export function GermanyHomePage() {
   const t = pageCopy[language]
 
   const filtered = React.useMemo(
-    () => filterPartnerships(all, searchQuery, filters),
-    [all, searchQuery, filters],
+    () =>
+      filterPartnerships(all, searchQuery, filters, (partnership) =>
+        getLocalizedSearchText(partnership, language),
+      ),
+    [all, searchQuery, filters, language],
   )
 
   React.useEffect(() => {

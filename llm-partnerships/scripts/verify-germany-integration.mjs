@@ -72,6 +72,7 @@ try {
   assert.equal(await usMapTab.getAttribute("aria-pressed"), "false")
 
   const openLinks = page.getByRole("link", { name: "Open", exact: true })
+  const search = page.getByRole("textbox", { name: "Global search" })
   assert.equal(await openLinks.count(), 12, "Germany starts with 12 cards")
   await expectText(
     page.locator("main"),
@@ -80,9 +81,23 @@ try {
   )
   await expectText(
     page.locator("main"),
-    /Creditable exchange towards an LL\.M\./,
+    /Creditable exchange toward an LL\.M\./,
     "English cards translate German pathway values",
   )
+
+  await search.fill("United States")
+  await expectText(
+    page.locator("main"),
+    /16 result\(s\)/,
+    "English country translation participates in search",
+  )
+  await search.fill("Creditable exchange toward an LL.M.")
+  assert.equal(
+    await openLinks.count(),
+    5,
+    "English pathway translation participates in search",
+  )
+  await search.fill("")
 
   const programTypeFilter = page
     .getByText("Program type", { exact: true })
@@ -92,7 +107,7 @@ try {
   await programTypeFilter.click()
   await page
     .getByRole("option", {
-      name: "Creditable exchange towards an LL.M.",
+      name: "Creditable exchange toward an LL.M.",
       exact: true,
     })
     .click()
@@ -111,7 +126,6 @@ try {
   await page.getByRole("button", { name: "Show 12 more" }).click()
   assert.equal(await openLinks.count(), 16, "pagination reveals all 16 cards")
 
-  const search = page.getByRole("textbox", { name: "Global search" })
   await search.fill("Vanderbilt Law School")
   assert.equal(await openLinks.count(), 1, "search filters German partnerships")
   await search.fill("")
@@ -171,9 +185,27 @@ try {
   )
   await expectText(
     page.locator("main"),
-    /Intercambio acreditable hacia un LL\.M\./,
+    /Intercambio con créditos computables para un LL\.M\./,
     "Spanish cards translate German pathway values",
   )
+  const spanishSearch = page.getByRole("textbox", {
+    name: "Búsqueda global",
+  })
+  await spanishSearch.fill("Estados Unidos")
+  await expectText(
+    page.locator("main"),
+    /16 resultado\(s\)/,
+    "Spanish country translation participates in search",
+  )
+  await spanishSearch.fill(
+    "Intercambio con créditos computables para un LL.M.",
+  )
+  assert.equal(
+    await page.getByRole("link", { name: "Abrir", exact: true }).count(),
+    5,
+    "Spanish pathway translation participates in search",
+  )
+  await spanishSearch.fill("")
 
   await page.getByRole("button", { name: "Français" }).click()
   await page.goto(`${baseUrl}/`)

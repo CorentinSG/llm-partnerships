@@ -28,7 +28,8 @@ export function emptyFilters(): FiltersState {
 export function filterPartnerships(
   all: Partnership[],
   searchQuery: string,
-  filters: FiltersState
+  filters: FiltersState,
+  getAdditionalSearchText?: (partnership: Partnership) => string
 ) {
   const q = searchQuery.trim()
   const activeSpecialties = (filters.specialties || []).filter(Boolean)
@@ -104,7 +105,8 @@ export function filterPartnerships(
       p.applicationYear,
       p.applicationDeadline,
       (p.missingInformation || []).join(" "),
-      p.notes
+      p.notes,
+      getAdditionalSearchText?.(p) || ""
     ]
       .filter(Boolean)
       .join(" • ")
