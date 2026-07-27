@@ -89,6 +89,8 @@ export function SiteHeader({ className }: { className?: string }) {
       submit: "Proposer une info",
       submitShort: "Proposer",
       home: "Accueil",
+      franceUs: "France–États-Unis",
+      germanyUs: "Allemagne–États-Unis",
       menu: "Menu",
     },
     en: {
@@ -99,6 +101,8 @@ export function SiteHeader({ className }: { className?: string }) {
       submit: "Submit information",
       submitShort: "Submit",
       home: "Home",
+      franceUs: "France–United States",
+      germanyUs: "Germany–United States",
       menu: "Menu",
     },
     es: {
@@ -109,6 +113,8 @@ export function SiteHeader({ className }: { className?: string }) {
       submit: "Proponer información",
       submitShort: "Proponer",
       home: "Inicio",
+      franceUs: "Francia–Estados Unidos",
+      germanyUs: "Alemania–Estados Unidos",
       menu: "Menú",
     },
   }[language]
@@ -140,6 +146,12 @@ export function SiteHeader({ className }: { className?: string }) {
 
         <nav className="flex min-w-0 items-center gap-2">
           <div className="hidden items-center gap-2 md:flex">
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/">{t.franceUs}</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/germany">{t.germanyUs}</Link>
+            </Button>
             <Button asChild variant="ghost" size="sm">
               <Link href="/about">{t.about}</Link>
             </Button>
@@ -188,6 +200,20 @@ export function SiteHeader({ className }: { className?: string }) {
                     className="h-11 justify-start"
                   >
                     <Link href="/">{t.home}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-11 justify-start"
+                  >
+                    <Link href="/">{t.franceUs}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-11 justify-start"
+                  >
+                    <Link href="/germany">{t.germanyUs}</Link>
                   </Button>
                   <Button
                     asChild

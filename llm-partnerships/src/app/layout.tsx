@@ -24,7 +24,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Annuaire des partenariats LL.M",
   description:
-    "Un annuaire clair des partenariats LL.M entre universités françaises et universités partenaires étrangères.",
+    "Deux annuaires distincts de partenariats LL.M : France–États-Unis et Allemagne–États-Unis.",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

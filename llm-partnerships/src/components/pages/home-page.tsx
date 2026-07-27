@@ -45,6 +45,7 @@ const pageCopy = {
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     faqCta: "Voir la FAQ",
+    germanyCta: "Découvrir l’annuaire Allemagne–États-Unis",
     searchTitle: "Recherche globale",
     searchHint:
       "Cherche une ville, une école ou un test, puis affine avec les filtres.",
@@ -82,6 +83,7 @@ const pageCopy = {
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     faqCta: "Open FAQ",
+    germanyCta: "Explore the Germany–U.S. directory",
     searchTitle: "Global search",
     searchHint: "Search by city, school, or test, then refine with filters.",
     searchPlaceholder: "University, country, test, program...",
@@ -117,6 +119,7 @@ const pageCopy = {
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     faqCta: "Ver FAQ",
+    germanyCta: "Explorar el directorio Alemania–Estados Unidos",
     searchTitle: "Búsqueda global",
     searchHint: "Busca por ciudad, escuela o examen, y afina con filtros.",
     searchPlaceholder: "Universidad, país, examen, programa...",
@@ -253,6 +256,13 @@ export function HomePage() {
                 <HelpCircle className="mr-2 h-4 w-4" aria-hidden="true" />
                 {t.faqCta}
               </a>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              className="h-12 rounded-xl text-muted-foreground hover:text-foreground sm:h-11"
+            >
+              <a href="/germany">{t.germanyCta}</a>
             </Button>
           </div>
         </div>

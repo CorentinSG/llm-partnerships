@@ -9,7 +9,9 @@ const copy = {
     description: "Objectif du projet et comment contribuer.",
     paragraphs: [
       "Ce projet vise à rendre les informations sur les partenariats LL.M faciles à trouver, comparer et vérifier pour les étudiants en droit.",
+      "Le site comprend deux annuaires distincts de partenariats LL.M : France–États-Unis et Allemagne–États-Unis.",
       "Périmètre actuel : le site est consacré aux partenariats entre universités françaises et universités américaines pour des LL.M. L’objectif est de centraliser une information aujourd’hui dispersée, difficile à comparer et parfois peu explicitée.",
+      "La section Allemagne–États-Unis recense de la même façon les partenariats entre universités allemandes et universités américaines pour des LL.M.",
       "Un LL.M aux États-Unis étant généralement très coûteux, les partenariats (places réservées, réductions, traitement préférentiel, etc.) peuvent constituer une voie plus accessible. Pour certains profils, ils peuvent aussi s’inscrire dans un projet de passage du barreau dans un État américain.",
       "Principe central : ne jamais inventer. Une information absente d’une source fiable est indiquée comme non communiquée. Une information probable mais non vérifiée est marquée à confirmer. Une entrée trop lacunaire est signalée comme information incomplète.",
       "Étudiants, équipes pédagogiques et universités peuvent proposer des sources ou corrections via la page « Proposer une information ».",
@@ -20,7 +22,9 @@ const copy = {
     description: "The project’s purpose and how to contribute.",
     paragraphs: [
       "This project makes LL.M partnership information easier for law students to find, compare, and verify.",
+      "The site contains two separate LL.M partnership directories: France–United States and Germany–United States.",
       "Current scope: partnerships between French universities and U.S. universities for LL.M programs. The aim is to centralize information that is currently scattered, difficult to compare, and often poorly explained.",
+      "The Germany–United States section likewise lists partnerships between German universities and U.S. universities for LL.M programs.",
       "Because a U.S. LL.M is usually very expensive, partnerships offering reserved seats, tuition reductions, or preferential treatment can provide a more accessible route. For some students, they can also support a plan to sit for a U.S. bar exam.",
       "Core principle: never invent information. Missing reliable information is marked as not disclosed. Probable but unverified information is marked for confirmation. Entries with too many missing elements are marked incomplete.",
       "Students, academic teams, and universities can submit sources or corrections through the “Submit information” page.",
@@ -31,7 +35,9 @@ const copy = {
     description: "Objetivo del proyecto y cómo contribuir.",
     paragraphs: [
       "Este proyecto facilita a los estudiantes de derecho la búsqueda, comparación y verificación de información sobre convenios LL.M.",
+      "El sitio contiene dos directorios distintos de convenios LL.M: Francia–Estados Unidos y Alemania–Estados Unidos.",
       "Alcance actual: convenios entre universidades francesas y estadounidenses para programas LL.M. El objetivo es centralizar información actualmente dispersa, difícil de comparar y a menudo poco explicada.",
+      "La sección Alemania–Estados Unidos también recopila convenios entre universidades alemanas y estadounidenses para programas LL.M.",
       "Como un LL.M en Estados Unidos suele ser muy costoso, los convenios con plazas reservadas, reducciones de matrícula o trato preferente pueden ofrecer una vía más accesible. Para algunos perfiles, también pueden formar parte de un proyecto para presentarse a un bar exam estadounidense.",
       "Principio central: nunca inventar información. Los datos sin fuente fiable se indican como no comunicados. La información probable pero no verificada se marca por confirmar. Las entradas con demasiados datos ausentes se señalan como incompletas.",
       "Estudiantes, equipos académicos y universidades pueden enviar fuentes o correcciones desde la página «Proponer información».",
