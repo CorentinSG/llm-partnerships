@@ -376,6 +376,7 @@ export function HomePage() {
                   size="sm"
                   onClick={() => setMapMode("fr")}
                   className="h-10 rounded-lg sm:h-9"
+                  aria-pressed={mapMode === "fr"}
                 >
                   {t.france}
                 </Button>
@@ -384,6 +385,7 @@ export function HomePage() {
                   size="sm"
                   onClick={() => setMapMode("us")}
                   className="h-10 rounded-lg sm:h-9"
+                  aria-pressed={mapMode === "us"}
                 >
                   {t.unitedStates}
                 </Button>

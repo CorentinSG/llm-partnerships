@@ -5,7 +5,7 @@ import { geoMercator, geoPath } from "d3-geo"
 
 import germanyGeojsonRaw from "../../data/germany.json"
 import type { FrenchUniversityPoint } from "@/lib/types"
-import type { UiLanguage } from "@/lib/text-utils"
+import { translateDataText, type UiLanguage } from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
 import { usePanZoom } from "@/lib/use-pan-zoom"
 
@@ -246,7 +246,7 @@ export function GermanyMap({
                           fill="hsl(var(--foreground))"
                           style={{ fontWeight: 600 }}
                         >
-                          {p.frenchUniversity}
+                          {translateDataText(p.frenchUniversity, language)}
                         </text>
                       </g>
                     ) : null}
@@ -287,7 +287,9 @@ export function GermanyMap({
       {selectedGermanUniversity ? (
         <div className="mt-3 text-sm text-muted-foreground">
           {copy.selection}{" "}
-          <span className="font-medium text-foreground">{selectedGermanUniversity}</span>
+          <span className="font-medium text-foreground">
+            {translateDataText(selectedGermanUniversity, language)}
+          </span>
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">{copy.tip}</div>

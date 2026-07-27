@@ -7,6 +7,7 @@ import { PageShell } from "@/components/page-shell"
 import { PartnershipDetails } from "@/components/partnership-details"
 import { Button } from "@/components/ui/button"
 import type { Partnership } from "@/lib/types"
+import { translateDataText } from "@/lib/text-utils"
 
 const copy = {
   fr: { back: "Retour à la recherche" },
@@ -16,19 +17,25 @@ const copy = {
 
 export function PartnershipDetailPage({
   partnership,
+  origin = "france",
 }: {
   partnership: Partnership
+  origin?: "france" | "germany"
 }) {
   const { language } = useLanguage()
   const t = copy[language]
+  const backHref = origin === "germany" ? "/germany" : "/"
 
   return (
     <PageShell
-      title={partnership.partnerUniversity}
-      description={`${partnership.frenchUniversity} • ${partnership.partnerCountry}`}
+      title={translateDataText(partnership.partnerUniversity, language)}
+      description={`${translateDataText(
+        partnership.frenchUniversity,
+        language,
+      )} • ${translateDataText(partnership.partnerCountry, language)}`}
       actions={
         <Button asChild variant="secondary">
-          <Link href="/">{t.back}</Link>
+          <Link href={backHref}>{t.back}</Link>
         </Button>
       }
     >

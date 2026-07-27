@@ -3,7 +3,10 @@
 import * as React from "react"
 import { ArrowRight, Filter, HelpCircle, Search } from "lucide-react"
 
-import { CostSimulator } from "@/components/cost-simulator"
+import {
+  CostSimulator,
+  type CostSimulatorOriginConfig,
+} from "@/components/cost-simulator"
 import { FiltersPanel } from "@/components/filters/filters-panel"
 import { GermanyMap } from "@/components/germany-map"
 import { useLanguage } from "@/components/language-provider"
@@ -29,9 +32,28 @@ import {
   getGermanFilterOptions,
   getGermanUniversitiesPoints,
 } from "@/lib/germany-data"
-import { reliabilityCopy } from "@/lib/text-utils"
+import { reliabilityCopy, translateDataText } from "@/lib/text-utils"
 
 const RESULTS_PAGE_SIZE = 12
+
+const germanyCostSimulatorOrigin = {
+  flights: {
+    fr: "Billets d'avion Allemagne - États-Unis",
+    en: "Germany - U.S. flights",
+    es: "Vuelos Alemania - Estados Unidos",
+  },
+  universityFees: {
+    fr: "Frais éventuels à l'université allemande",
+    en: "Possible fees at the German university",
+    es: "Posibles tasas en la universidad alemana",
+  },
+  universityFeesHelp: {
+    fr: "Estimation des frais administratifs qui peuvent rester dus à l'université allemande selon l'établissement et le partenariat. Aucun montant n'est supposé par défaut et ce poste ne correspond pas à la tuition américaine.",
+    en: "Estimate for administrative fees that may remain payable to the German university, depending on the institution and partnership. No amount is assumed by default, and this is not U.S. tuition.",
+    es: "Estimación de las tasas administrativas que podrían seguir debiéndose a la universidad alemana según la institución y el convenio. No se presupone ningún importe por defecto y no corresponde a la matrícula estadounidense.",
+  },
+  universityFeesUsd: 0,
+} satisfies CostSimulatorOriginConfig
 
 const pageCopy = {
   fr: {
@@ -297,7 +319,7 @@ export function GermanyHomePage() {
                         key={label}
                         className="rounded-full border bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary sm:px-2.5 sm:py-1 sm:text-[11px]"
                       >
-                        {label}
+                        {translateDataText(label, language)}
                       </span>
                     ))
                   ) : (
@@ -378,6 +400,7 @@ export function GermanyHomePage() {
                   size="sm"
                   onClick={() => setMapMode("de")}
                   className="h-10 rounded-lg sm:h-9"
+                  aria-pressed={mapMode === "de"}
                 >
                   {t.germany}
                 </Button>
@@ -386,6 +409,7 @@ export function GermanyHomePage() {
                   size="sm"
                   onClick={() => setMapMode("us")}
                   className="h-10 rounded-lg sm:h-9"
+                  aria-pressed={mapMode === "us"}
                 >
                   {t.unitedStates}
                 </Button>
@@ -516,7 +540,11 @@ export function GermanyHomePage() {
         </div>
 
         <div id="cost-estimator" className="scroll-mt-24 pt-10 sm:pt-14">
-          <CostSimulator partnerships={all} language={language} />
+          <CostSimulator
+            partnerships={all}
+            language={language}
+            originConfig={germanyCostSimulatorOrigin}
+          />
         </div>
       </section>
     </main>

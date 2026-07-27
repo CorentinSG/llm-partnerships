@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import type { Partnership } from "@/lib/types"
+import { translateDataText } from "@/lib/text-utils"
 
 export function PartnershipDialog({
   partnership,
@@ -36,7 +37,8 @@ export function PartnershipDialog({
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>
-            {partnership.frenchUniversity} • {partnership.partnerUniversity}
+            {translateDataText(partnership.frenchUniversity, language)} •{" "}
+            {translateDataText(partnership.partnerUniversity, language)}
           </DialogDescription>
         </DialogHeader>
         <div className="max-h-[70dvh] overflow-auto pr-1">

@@ -489,6 +489,13 @@ const DEFAULT_FLIGHTS_USD = 1200
 const DEFAULT_FRENCH_UNIVERSITY_FEES_USD = 700
 const USD_TO_EUR_RATE = 0.879
 
+export type CostSimulatorOriginConfig = {
+  flights: Record<UiLanguage, string>
+  universityFees: Record<UiLanguage, string>
+  universityFeesHelp: Record<UiLanguage, string>
+  universityFeesUsd: number
+}
+
 function isInsuranceComponent(label: string) {
   const normalized = cleanText(label).toLowerCase()
   return (
@@ -518,13 +525,24 @@ function isBarPrepComponent(label: string) {
   )
 }
 
-function isFrenchUniversityFeesComponent(label: string) {
+function isOriginUniversityFeesComponent(
+  label: string,
+  originConfig?: CostSimulatorOriginConfig,
+) {
   const normalized = cleanText(label).toLowerCase()
   return (
     normalized.includes("universite francaise") ||
     normalized.includes("université française") ||
     normalized.includes("french university") ||
-    normalized.includes("universidad francesa")
+    normalized.includes("universidad francesa") ||
+    normalized.includes("universite allemande") ||
+    normalized.includes("universität") ||
+    normalized.includes("german university") ||
+    normalized.includes("universidad alemana") ||
+    Object.values(originConfig?.universityFees || {}).some(
+      (configuredLabel) =>
+        cleanText(configuredLabel).toLowerCase() === normalized,
+    )
   )
 }
 
@@ -532,6 +550,7 @@ function getSupplementalCostComponents(
   components: CostComponent[],
   language: UiLanguage,
   barJurisdiction: BarJurisdictionOption,
+  originConfig?: CostSimulatorOriginConfig,
 ): CostComponent[] {
   const t = copy[language]
   const supplemental: CostComponent[] = []
@@ -546,15 +565,17 @@ function getSupplementalCostComponents(
 
   if (!components.some((component) => isFlightsComponent(component.label))) {
     supplemental.push({
-      label: t.flights,
+      label: originConfig?.flights[language] ?? t.flights,
       amountUsd: DEFAULT_FLIGHTS_USD,
       kind: "other",
     })
   }
 
   supplemental.push({
-    label: t.frenchUniversityFees,
-    amountUsd: DEFAULT_FRENCH_UNIVERSITY_FEES_USD,
+    label: originConfig?.universityFees[language] ?? t.frenchUniversityFees,
+    amountUsd:
+      originConfig?.universityFeesUsd ??
+      DEFAULT_FRENCH_UNIVERSITY_FEES_USD,
     kind: "other",
   })
 
@@ -600,7 +621,11 @@ function BooksHelpTooltip({ text }: { text: string }) {
   )
 }
 
-function getCostHelpText(label: string, language: UiLanguage) {
+function getCostHelpText(
+  label: string,
+  language: UiLanguage,
+  originConfig?: CostSimulatorOriginConfig,
+) {
   const t = copy[language]
   const normalized = cleanText(label).toLowerCase()
 
@@ -614,7 +639,11 @@ function getCostHelpText(label: string, language: UiLanguage) {
   )
     return t.laptopHelp
   if (isBarPrepComponent(label)) return t.barPrepHelp
-  if (isFrenchUniversityFeesComponent(label)) return t.frenchUniversityFeesHelp
+  if (isOriginUniversityFeesComponent(label, originConfig))
+    return (
+      originConfig?.universityFeesHelp[language] ??
+      t.frenchUniversityFeesHelp
+    )
   if (isBooksComponent(label)) return t.booksHelp
 
   return undefined
@@ -624,7 +653,10 @@ function isTuitionComponent(component: CostComponent) {
   return component.kind === "tuition"
 }
 
-function isEditableLivingComponent(component: CostComponent) {
+function isEditableLivingComponent(
+  component: CostComponent,
+  originConfig?: CostSimulatorOriginConfig,
+) {
   const label = cleanText(component.label).toLowerCase()
   if (component.kind === "tuition" || isBooksComponent(label)) return false
   if (label.includes("frais universitaire") || label.includes("activity fee"))
@@ -643,7 +675,7 @@ function isEditableLivingComponent(component: CostComponent) {
     label.includes("transport") ||
     isInsuranceComponent(label) ||
     isFlightsComponent(label) ||
-    isFrenchUniversityFeesComponent(label) ||
+    isOriginUniversityFeesComponent(label, originConfig) ||
     isBarPrepComponent(label) ||
     label.includes("personal") ||
     label.includes("personnelles") ||
@@ -888,9 +920,11 @@ function sliderMax(amount: number) {
 export function CostSimulator({
   partnerships,
   language = "fr",
+  originConfig,
 }: {
   partnerships: Partnership[]
   language?: UiLanguage
+  originConfig?: CostSimulatorOriginConfig
 }) {
   const t = copy[language]
   const tr = (value: unknown) => translateDataText(value, language)
@@ -936,10 +970,11 @@ export function CostSimulator({
               selectedEstimate.components,
               language,
               selectedBarJurisdiction,
+              originConfig,
             ),
           ]
         : [],
-    [selectedEstimate, language, selectedBarJurisdiction],
+    [selectedEstimate, language, selectedBarJurisdiction, originConfig],
   )
 
   const partnershipsInCity = React.useMemo(
@@ -996,13 +1031,16 @@ export function CostSimulator({
       estimateComponents.filter(
         (component) =>
           !isTuitionComponent(component) &&
-          !isEditableLivingComponent(component),
+          !isEditableLivingComponent(component, originConfig),
       ),
-    [estimateComponents],
+    [estimateComponents, originConfig],
   )
   const editableComponents = React.useMemo(
-    () => estimateComponents.filter(isEditableLivingComponent),
-    [estimateComponents],
+    () =>
+      estimateComponents.filter((component) =>
+        isEditableLivingComponent(component, originConfig),
+      ),
+    [estimateComponents, originConfig],
   )
 
   React.useEffect(() => {
@@ -1123,8 +1161,8 @@ export function CostSimulator({
                       <SelectItem value="none">{t.noPartnership}</SelectItem>
                       {partnershipsInCity.map((partnership) => (
                         <SelectItem key={partnership.id} value={partnership.id}>
-                          {cleanText(partnership.frenchUniversity)} →{" "}
-                          {cleanText(partnership.partnerUniversity)}
+                          {tr(partnership.frenchUniversity)} →{" "}
+                          {tr(partnership.partnerUniversity)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -1286,6 +1324,7 @@ export function CostSimulator({
                       const helpText = getCostHelpText(
                         component.label,
                         language,
+                        originConfig,
                       )
                       return (
                         <div
@@ -1393,13 +1432,17 @@ export function CostSimulator({
                   </p>
                   <div className="mt-4 grid gap-2 sm:grid-cols-2 sm:gap-3">
                     {estimateComponents.map((component) => {
-                      const editable = isEditableLivingComponent(component)
+                      const editable = isEditableLivingComponent(
+                        component,
+                        originConfig,
+                      )
                       const amount = editable
                         ? (customCosts[component.label] ?? component.amountUsd)
                         : component.amountUsd
                       const helpText = getCostHelpText(
                         component.label,
                         language,
+                        originConfig,
                       )
                       return (
                         <div
@@ -1487,7 +1530,7 @@ export function CostSimulator({
                         variant="outline"
                         className="rounded-full bg-card"
                       >
-                        {university}
+                        {tr(university)}
                       </Badge>
                     ))}
                   </div>

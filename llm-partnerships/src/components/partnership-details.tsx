@@ -55,8 +55,10 @@ export function PartnershipDetails({
             test.test === "Non communiqué"
               ? t.unknown
               : test.details
-                ? `${test.test} (${test.minimumScore}) — ${tr(test.details)}`
-                : `${test.test} (${test.minimumScore})`,
+                ? `${tr(test.test)} (${tr(test.minimumScore)}) — ${tr(
+                    test.details,
+                  )}`
+                : `${tr(test.test)} (${tr(test.minimumScore)})`,
           )
           .join(" • ")
       : t.unknown
@@ -67,7 +69,8 @@ export function PartnershipDetails({
         <CardHeader>
           <CardTitle className="flex items-start justify-between gap-3">
             <span className="leading-tight">
-              {partnership.frenchUniversity} ↔ {partnership.partnerUniversity}
+              {tr(partnership.frenchUniversity)} ↔{" "}
+              {tr(partnership.partnerUniversity)}
             </span>
             <div className="flex flex-wrap items-center justify-end gap-2">
               <ReliabilityBadge
@@ -93,7 +96,10 @@ export function PartnershipDetails({
             </div>
           ) : null}
           <div className="grid gap-4 sm:grid-cols-2">
-            <Field label={labels.faculty} value={partnership.frenchFaculty} />
+            <Field
+              label={labels.faculty}
+              value={tr(partnership.frenchFaculty)}
+            />
             <Field
               label={labels.programType}
               value={tr(partnership.programType)}
@@ -101,7 +107,7 @@ export function PartnershipDetails({
             {partnership.programName ? (
               <Field
                 label={labels.programName}
-                value={partnership.programName}
+                value={tr(partnership.programName)}
               />
             ) : null}
             <Field
@@ -124,7 +130,9 @@ export function PartnershipDetails({
             />
             <Field
               label={labels.partnerRegion}
-              value={`${partnership.partnerCountry} • ${partnership.continent}`}
+              value={`${tr(partnership.partnerCountry)} • ${tr(
+                partnership.continent,
+              )}`}
             />
             <Field label={labels.duration} value={tr(partnership.duration)} />
             <Field
@@ -133,7 +141,7 @@ export function PartnershipDetails({
             />
             <Field
               label={labels.requiredLevel}
-              value={String(partnership.requiredLevel)}
+              value={tr(partnership.requiredLevel)}
             />
           </div>
 
@@ -392,7 +400,7 @@ export function PartnershipDetails({
           <div className="grid gap-4 sm:grid-cols-2">
             <Field
               label={labels.applicationYear}
-              value={partnership.applicationYear}
+              value={tr(partnership.applicationYear)}
             />
             <Field
               label={labels.deadline}
@@ -441,7 +449,7 @@ export function PartnershipDetails({
                       className="inline-flex items-center gap-2 text-sm underline underline-offset-4"
                     >
                       <FileText className="h-4 w-4" aria-hidden="true" />
-                      {a.label}
+                      {tr(a.label)}
                     </a>
                     {a.note ? (
                       <div className="text-xs text-muted-foreground">
@@ -484,7 +492,7 @@ export function PartnershipDetails({
               {labels.location}
             </div>
             <div className="text-sm text-muted-foreground">
-              {partnership.city} • {partnership.frenchUniversity}
+              {tr(partnership.city)} • {tr(partnership.frenchUniversity)}
             </div>
           </CardContent>
         </Card>

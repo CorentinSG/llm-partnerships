@@ -85,14 +85,15 @@ export function PartnershipCard({
         </div>
 
         <CardTitle className="text-[16px] leading-snug tracking-tight transition-colors group-hover:text-primary">
-          {cleanText(partnership.frenchUniversity)} {"\u2194"}{" "}
-          {cleanText(partnership.partnerUniversity)}
+          {translateDataText(partnership.frenchUniversity, language)}{" "}
+          {"\u2194"}{" "}
+          {translateDataText(partnership.partnerUniversity, language)}
         </CardTitle>
 
         <div className="font-mono-ui text-[11px] text-muted-foreground">
-          {cleanText(partnership.partnerCountry)}
+          {translateDataText(partnership.partnerCountry, language)}
           {partnership.partnerCity
-            ? ` (${cleanText(partnership.partnerCity)})`
+            ? ` (${translateDataText(partnership.partnerCity, language)})`
             : ""}{" "}
           · {translateDataText(partnership.programType, language)}
         </div>
@@ -124,7 +125,10 @@ export function PartnershipCard({
                 href={partnership.attachments[0].url}
                 target="_blank"
                 rel="noreferrer"
-                title={cleanText(partnership.attachments[0].label)}
+                title={translateDataText(
+                  partnership.attachments[0].label,
+                  language,
+                )}
               >
                 <FileText className="mr-2 h-4 w-4" aria-hidden="true" />
                 PDF

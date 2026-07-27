@@ -5,7 +5,11 @@ import { geoAlbersUsa, geoPath } from "d3-geo"
 
 import usStatesRaw from "../../data/us-states-contiguous.json"
 import type { Partnership } from "@/lib/types"
-import { cleanText, type UiLanguage } from "@/lib/text-utils"
+import {
+  cleanText,
+  translateDataText,
+  type UiLanguage,
+} from "@/lib/text-utils"
 import { cn } from "@/lib/utils"
 import { usePanZoom } from "@/lib/use-pan-zoom"
 
@@ -105,6 +109,7 @@ export function UsMap({
   const [hovered, setHovered] = React.useState<string | null>(null)
   const { transform, bind, controls } = usePanZoom({ minZoom: 1, maxZoom: 6 })
   const copy = mapCopy[language]
+  const tr = (value: unknown) => translateDataText(value, language)
 
   const universities = React.useMemo(
     () => groupPartnerUniversities(partnerships),
@@ -233,7 +238,7 @@ export function UsMap({
                     style={{ cursor: hasData ? "pointer" : "default" }}
                   >
                     <title>
-                      {name}
+                      {tr(name)}
                       {hasData
                         ? ` · ${stateCounts.get(name)} ${copy.partnership}`
                         : ""}
@@ -270,7 +275,9 @@ export function UsMap({
                 }
 
                 const r = selected ? 6.5 : 5.2
-                const label = `${u.partnerUniversity} • ${u.partnerState}${
+                const label = `${tr(u.partnerUniversity)} • ${tr(
+                  u.partnerState,
+                )}${
                   u.partnerCoordinates ? "" : ` (${copy.approximate})`
                 }`
                 return (
@@ -307,7 +314,10 @@ export function UsMap({
               {hovered
                 ? (() => {
                     const count = stateCounts.get(hovered) || 0
-                    const label = count ? `${hovered} • ${count}` : hovered
+                    const translatedState = tr(hovered)
+                    const label = count
+                      ? `${translatedState} • ${count}`
+                      : translatedState
                     return (
                       <g>
                         <rect
@@ -342,7 +352,9 @@ export function UsMap({
       {selectedState ? (
         <div className="mt-3 text-sm text-muted-foreground">
           {copy.selectedState}{" "}
-          <span className="font-medium text-foreground">{selectedState}</span>
+          <span className="font-medium text-foreground">
+            {tr(selectedState)}
+          </span>
         </div>
       ) : (
         <div className="mt-3 text-sm text-muted-foreground">{copy.tip}</div>

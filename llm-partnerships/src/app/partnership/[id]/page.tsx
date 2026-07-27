@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation"
 
 import { PartnershipDetailPage as PartnershipDetailContent } from "@/components/pages/partnership-detail-page"
-import { getPartnershipById } from "@/lib/data"
+import { getAnyPartnershipById } from "@/lib/data"
+import { getGermanPartnershipById } from "@/lib/germany-data"
 
 export default async function PartnershipDetailPage({
   params,
@@ -9,8 +10,13 @@ export default async function PartnershipDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const partnership = getPartnershipById(id)
+  const partnership = getAnyPartnershipById(id)
   if (!partnership) notFound()
 
-  return <PartnershipDetailContent partnership={partnership} />
+  return (
+    <PartnershipDetailContent
+      partnership={partnership}
+      origin={getGermanPartnershipById(id) ? "germany" : "france"}
+    />
+  )
 }
