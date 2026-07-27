@@ -10,6 +10,7 @@ assert.equal(new Set(universityIds).size, universityIds.length, "duplicate unive
 assert.equal(new Set(partnershipIds).size, partnershipIds.length, "duplicate partnership id")
 
 const statuses = new Set(["confirmed", "to_confirm", "incomplete"])
+const applicationProcesses = new Set(["internal", "lsac", "non_communique"])
 const officialHosts = new Set([
   "law.vanderbilt.edu",
   "www.jura.fu-berlin.de",
@@ -33,9 +34,30 @@ const requiredStringFields = [
   "notes",
 ]
 
+for (const university of database.frenchUniversities) {
+  assert.ok(statuses.has(university.dataStatus), `invalid university data status: ${university.id}`)
+  const universityPathways = database.partnerships.filter(
+    ({ frenchUniversityId }) => frenchUniversityId === university.id,
+  )
+  if (
+    universityPathways.length > 0 &&
+    universityPathways.every(({ reliabilityStatus }) => reliabilityStatus === "confirmed")
+  ) {
+    assert.equal(
+      university.dataStatus,
+      "confirmed",
+      `university status must match its confirmed pathways: ${university.id}`,
+    )
+  }
+}
+
 for (const partnership of database.partnerships) {
   assert.ok(universityIds.includes(partnership.frenchUniversityId), `unknown university: ${partnership.id}`)
   assert.ok(statuses.has(partnership.reliabilityStatus), `invalid reliability: ${partnership.id}`)
+  assert.ok(
+    applicationProcesses.has(partnership.applicationProcess),
+    `invalid application process: ${partnership.id}`,
+  )
 
   for (const field of requiredStringFields) {
     assert.equal(typeof partnership[field], "string", `${field} must be a string: ${partnership.id}`)
