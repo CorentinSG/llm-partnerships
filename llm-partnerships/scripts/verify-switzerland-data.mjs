@@ -14,8 +14,8 @@ const partnerships = getAllSwissPartnerships()
 const institutions = getSwissUniversitiesPoints()
 
 assert.equal(institutions.length, 4, "Swiss directory must contain four institutions")
-assert.equal(partnerships.length, 6, "Swiss directory must expose six publishable pathways")
-assert.equal(new Set(partnerships.map(({ id }) => id)).size, 6, "Swiss IDs must be unique")
+assert.equal(partnerships.length, 7, "Swiss directory must expose seven publishable pathways")
+assert.equal(new Set(partnerships.map(({ id }) => id)).size, 7, "Swiss IDs must be unique")
 assert.deepEqual(
   new Set(partnerships.map(({ frenchUniversity }) => frenchUniversity)),
   new Set(institutions.map(({ frenchUniversity }) => frenchUniversity)),
@@ -36,6 +36,14 @@ assert.match(berkeley.notes, /Californie|California/i)
 const cardozo = partnerships.find(({ id }) => id === "uzh-cardozo")
 assert.match(cardozo.tuitionDisplay, /50 %/)
 assert.match(cardozo.availableSeatsDisplay, /15/)
+assert.doesNotMatch(cardozo.notes, /reconfirmer|reconfirm/i)
+
+const chicagoKent = partnerships.find(({ id }) => id === "uzh-chicago-kent")
+assert.ok(chicagoKent, "UZH–Chicago-Kent must be published")
+assert.match(chicagoKent.tuitionDisplay, /20 000 USD/)
+assert.match(chicagoKent.financialAid, /24 000 USD|55 %/)
+assert.match(chicagoKent.availableSeatsDisplay, /sans limitation|no limitation/i)
+assert.match(chicagoKent.languageTests[0].minimumScore, /90|7\.0/)
 
 const fletcher = partnerships.find(({ id }) => id === "hsg-fletcher")
 assert.match(fletcher.notes, /ne vise pas.*barreau|not intended.*bar/i)
@@ -44,4 +52,3 @@ const georgetown = partnerships.find(({ id }) => id === "ihei-georgetown")
 assert.match(georgetown.notes, /aucun avantage.*Suisse|no advantage.*Swiss/i)
 
 console.log(`Swiss dataset verified: ${institutions.length} institutions, ${partnerships.length} pathways`)
-

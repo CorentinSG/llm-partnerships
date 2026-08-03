@@ -23,7 +23,7 @@ for (const partnership of getAllSwissPartnerships()) {
   for (const field of ["frenchUniversity", "frenchFaculty", "city", "partnerCountry", "partnerUniversity", "partnerCity", "partnerState", "continent", "programType", "partnershipType", "requiredLevel", "programLanguage", "duration", "shortDescription", "admissionConditions", "availableSeats", "availableSeatsDisplay", "tuition", "tuitionCategory", "tuitionDisplay", "financialAid", "applicationYear", "applicationDeadline", "sourceNote", "notes"]) add(partnership[field])
   partnership.specialties?.forEach(add)
   partnership.missingInformation?.forEach(add)
-  partnership.languageTests?.forEach((test) => { add(test.test); add(test.minimumScore) })
+  partnership.languageTests?.forEach((test) => { add(test.test); add(test.minimumScore); add(test.details) })
   names.add(partnership.frenchUniversity)
   names.add(partnership.frenchFaculty)
   names.add(partnership.partnerUniversity)
@@ -41,4 +41,3 @@ assert.equal(translations.es.Suisse, "Suiza")
 assert.equal(translations.de.Suisse, "Schweiz")
 assert.equal(translations.it.Suisse, "Svizzera")
 console.log(`Swiss translations verified: ${values.size} values mapped in EN, ES, DE and IT`)
-

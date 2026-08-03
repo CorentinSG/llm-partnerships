@@ -98,7 +98,7 @@ const pageCopy = {
     intro:
       "Un LL.M effectué aux États-Unis est un diplôme de droit d’un an qui peut permettre aux juristes formés à l’étranger de présenter certains barreaux américains, notamment New York.",
     intro2:
-      "Cette page présente 6 partenariats entre établissements suisses et law schools américaines. Les avantages, coûts et effets sur l'accès aux barreaux sont distingués sans présumer l'éligibilité individuelle.",
+      "Cette page présente 7 partenariats entre établissements suisses et law schools américaines. Les avantages, coûts et effets sur l'accès aux barreaux sont distingués sans présumer l'éligibilité individuelle.",
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     faqCta: "Voir la FAQ",
@@ -135,7 +135,7 @@ const pageCopy = {
     intro:
       "A U.S. LL.M. is a one-year law degree that can allow foreign-trained lawyers to sit for certain U.S. bar exams, especially New York.",
     intro2:
-      "This page presents 6 partnerships between Swiss institutions and U.S. law schools. Benefits, costs, and bar-exam implications are separated without assuming individual eligibility.",
+      "This page presents 7 partnerships between Swiss institutions and U.S. law schools. Benefits, costs, and bar-exam implications are separated without assuming individual eligibility.",
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     faqCta: "Open FAQ",
@@ -171,7 +171,7 @@ const pageCopy = {
     intro:
       "Un LL.M en Estados Unidos es un título jurídico de un año que puede permitir a juristas formados en el extranjero presentarse a ciertos colegios de abogados estadounidenses, especialmente Nueva York.",
     intro2:
-      "Esta página presenta 6 convenios entre instituciones suizas y law schools estadounidenses. Las ventajas, los costes y los efectos sobre el acceso a los bar exams se distinguen sin presumir la elegibilidad individual.",
+      "Esta página presenta 7 convenios entre instituciones suizas y law schools estadounidenses. Las ventajas, los costes y los efectos sobre el acceso a los bar exams se distinguen sin presumir la elegibilidad individual.",
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     faqCta: "Ver FAQ",
@@ -207,7 +207,7 @@ const pageCopy = {
     intro:
       "Ein LL.M. in den USA ist ein einjähriger juristischer Abschluss, der im Ausland ausgebildeten Juristinnen und Juristen die Teilnahme an bestimmten US-amerikanischen Anwaltsprüfungen ermöglichen kann, insbesondere in New York.",
     intro2:
-      "Diese Seite zeigt 6 Partnerschaften zwischen Schweizer Institutionen und US-Law-Schools. Vorteile, Kosten und Auswirkungen auf die Anwaltszulassung werden getrennt dargestellt, ohne die individuelle Zulässigkeit vorauszusetzen.",
+      "Diese Seite zeigt 7 Partnerschaften zwischen Schweizer Institutionen und US-Law-Schools. Vorteile, Kosten und Auswirkungen auf die Anwaltszulassung werden getrennt dargestellt, ohne die individuelle Zulässigkeit vorauszusetzen.",
     searchCta: "Suchen Sie nach Partnerschaften",
     costCta: "Jahresbudget berechnen",
     faqCta: "FAQ öffnen",
@@ -242,7 +242,7 @@ const pageCopy = {
     intro:
       "Un LL.M. negli Stati Uniti è un titolo giuridico post-laurea di un anno che può consentire ai giuristi formati all’estero di accedere ad alcuni esami di abilitazione, in particolare quello di New York.",
     intro2:
-      "Questa pagina presenta 6 partnership tra istituzioni svizzere e law school statunitensi. Vantaggi, costi ed effetti sull'accesso agli esami di abilitazione sono distinti senza presumere l'idoneità individuale.",
+      "Questa pagina presenta 7 partnership tra istituzioni svizzere e law school statunitensi. Vantaggi, costi ed effetti sull'accesso agli esami di abilitazione sono distinti senza presumere l'idoneità individuale.",
     searchCta: "Cerca una partnership",
     costCta: "Calcola il budget annuale",
     faqCta: "Apri le domande frequenti",
@@ -658,4 +658,3 @@ export function SwitzerlandHomePage() {
     </main>
   )
 }
-
