@@ -45,24 +45,32 @@ try {
     level: 1,
     name: "Trouvez un LL.M américain via une université britannique.",
   }).waitFor()
-  assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 5)
+  assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 6)
   assert.match(
     await page.getByRole("combobox", { name: /^Pays/ }).getAttribute("aria-label"),
     /Royaume-Uni–États-Unis/,
     "UK must be active in country navigation",
   )
-  await expectText(page.locator("main"), /4 partenariats et 5 parcours/, "French summary distinguishes partnerships and pathways")
+  await expectText(page.locator("main"), /6 parcours actifs dans 5 universités britanniques/, "French summary exposes the active scope")
+  await expectText(page.locator("main"), /Georgetown indique explicitement.*New York Bar/s, "The dual-degree bar warning is visible")
+  await expectText(page.locator("main"), /ne nomme pas Bristol.*page partenaire dédiée/s, "The Bristol evidence limitation is visible")
+  assert.equal((await page.locator("main").innerText()).includes("Dundee"), false)
+  assert.equal((await page.locator("main").innerText()).includes("Hull"), false)
 
   const ukMap = page.getByRole("img", { name: "Carte du Royaume-Uni avec points des universités" })
-  assert.equal(await ukMap.locator('[tabindex="0"]').count(), 4)
-  const dundeeMarker = ukMap.getByRole("button", { name: "University of Dundee", exact: true })
-  await dundeeMarker.press("Enter")
-  await expectText(page.locator("main"), /Sélection : University of Dundee/, "UK map markers filter by keyboard")
+  assert.equal(await ukMap.locator('[tabindex="0"]').count(), 5)
+  assert.equal(await ukMap.locator('[data-marker-leader]').count(), 4)
+  const landFill = await ukMap.locator('[data-uk-land]').getAttribute("fill")
+  assert.ok(landFill && landFill !== "transparent", "UK land must have a visible fill")
+  const middlesexMarker = ukMap.getByRole("button", { name: "Middlesex University London", exact: true })
+  await middlesexMarker.press("Enter")
+  await expectText(page.locator("main"), /Sélection : Middlesex University London/, "UK map markers filter by keyboard")
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 1)
-  await dundeeMarker.press("Enter")
+  await middlesexMarker.press("Enter")
 
   await page.getByRole("button", { name: "Frais réduits", exact: true }).click()
-  assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 1, "The useful UK quick filter selects Bristol–Cardozo")
+  assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 2, "The reduced-fee filter returns CTLS and Cardozo")
+  await expectText(page.locator("main"), /CTLS Alumni Scholarship/, "Reduced-tuition shortcut returns CTLS")
   await expectText(page.locator("main"), /Benjamin N. Cardozo School of Law/, "Reduced-tuition shortcut returns Cardozo")
   await page.getByRole("button", { name: "Réinitialiser", exact: true }).first().click()
 
@@ -70,30 +78,35 @@ try {
   await page.getByRole("heading", { level: 1, name: "Find a U.S. LL.M. through a UK university." }).waitFor()
   const search = page.getByRole("textbox", { name: "Global search" })
   await search.fill("United States")
-  await expectText(page.locator("main"), /5 result\(s\)/, "Translated country participates in search")
-  await search.fill("Dundee")
+  await expectText(page.locator("main"), /6 result\(s\)/, "Translated country participates in search")
+  await search.fill("Middlesex")
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 1)
   await page.locator('main a[href^="/partnership/"]').click()
-  await page.waitForURL(/\/partnership\/dundee-auwcl-exchange$/)
+  await page.waitForURL(/\/partnership\/middlesex-case-western$/)
   assert.equal(
     await page.getByRole("link", { name: "Back to search", exact: true }).getAttribute("href"),
     "/uk",
     "UK details return to the UK directory",
   )
-  await expectText(page.locator("main"), /does not award an LL\.M.*Separate admission/s, "Dundee warning is translated")
+  await expectText(page.locator("main"), /suitable for U\.S\. bar preparation.*without guaranteeing/s, "Middlesex bar caveat is translated")
 
   await page.goto(`${baseUrl}/uk`)
   await page.getByRole("button", { name: "Español" }).click()
   await page.getByRole("heading", { level: 1, name: /universidad británica/ }).waitFor()
-  await expectText(page.locator("main"), /4 convenios y 5 itinerarios/, "Spanish summary is complete")
+  await expectText(page.locator("main"), /6 itinerarios activos en 5 universidades británicas/, "Spanish summary is complete")
   await page.getByRole("button", { name: "Deutsch" }).click()
   await page.getByRole("heading", { level: 1, name: /britische Universität/ }).waitFor()
-  await expectText(page.locator("main"), /4 Partnerschaften und 5 Studienwege/, "German summary is complete")
+  await expectText(page.locator("main"), /6 aktive Studienwege an 5 britischen Universitäten/, "German summary is complete")
   await page.getByRole("button", { name: "Italiano" }).click()
   await page.getByRole("heading", { level: 1, name: /università britannica/ }).waitFor()
-  await expectText(page.locator("main"), /4 partnership e 5 percorsi/, "Italian summary is complete")
+  await expectText(page.locator("main"), /6 percorsi attivi in 5 università britanniche/, "Italian summary is complete")
 
   await page.setViewportSize({ width: 390, height: 844 })
+  assert.equal(
+    await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    true,
+    "The UK page must not overflow horizontally on mobile",
+  )
   await page.getByRole("button", { name: "Menu" }).click()
   const countrySelector = page.getByRole("dialog").getByRole("combobox", { name: /^Paese/ })
   assert.match(await countrySelector.getAttribute("aria-label"), /Regno Unito–Stati Uniti/)

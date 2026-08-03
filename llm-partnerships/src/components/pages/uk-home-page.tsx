@@ -98,7 +98,7 @@ const pageCopy = {
     intro:
       "Un LL.M effectué aux États-Unis est un diplôme de droit d’un an qui peut permettre aux juristes formés à l’étranger de présenter certains barreaux américains, notamment New York.",
     intro2:
-      "Cette page présente 4 partenariats et 5 parcours entre universités britanniques et law schools américaines. Le sens Royaume-Uni vers États-Unis est rare; l'échange Dundee–AUWCL ne délivre pas de LL.M. à lui seul.",
+      "Cette page présente 6 parcours actifs dans 5 universités britanniques, avec des bourses, doubles diplômes et voies de progression vers des law schools américaines. Les conditions financières et l'éligibilité au barreau restent propres à chaque parcours.",
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     faqCta: "Voir la FAQ",
@@ -121,6 +121,7 @@ const pageCopy = {
     noResult:
       "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
     legendTitle: "Statuts des offres",
+    criticalTitle: "Points à vérifier avant de candidater",
     quickReduced: "Frais réduits",
     quickConfirmed: "Confirmés",
     uk: "Royaume-Uni",
@@ -135,7 +136,7 @@ const pageCopy = {
     intro:
       "A U.S. LL.M. is a one-year law degree that can allow foreign-trained lawyers to sit for certain U.S. bar exams, especially New York.",
     intro2:
-      "This page presents 4 partnerships and 5 pathways between UK universities and U.S. law schools. UK-to-U.S. routes are rare; the Dundee–AUWCL exchange does not itself award an LL.M.",
+      "This page presents 6 active pathways across 5 UK universities, including scholarships, dual degrees, and progression routes to U.S. law schools. Financial terms and bar eligibility remain specific to each pathway.",
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     faqCta: "Open FAQ",
@@ -156,6 +157,7 @@ const pageCopy = {
     allShown: "All matching results are shown.",
     noResult: "No result. Try removing filters or broadening the search.",
     legendTitle: "Offer status legend",
+    criticalTitle: "Check before applying",
     quickReduced: "Reduced tuition",
     quickConfirmed: "Confirmed",
     uk: "United Kingdom",
@@ -171,7 +173,7 @@ const pageCopy = {
     intro:
       "Un LL.M en Estados Unidos es un título jurídico de un año que puede permitir a juristas formados en el extranjero presentarse a ciertos colegios de abogados estadounidenses, especialmente Nueva York.",
     intro2:
-      "Esta página presenta 4 convenios y 5 itinerarios entre universidades británicas y law schools estadounidenses. Las vías Reino Unido–Estados Unidos son escasas; el intercambio Dundee–AUWCL no otorga por sí solo un LL.M.",
+      "Esta página presenta 6 itinerarios activos en 5 universidades británicas, con becas, dobles titulaciones y vías de progresión hacia law schools estadounidenses. Las condiciones económicas y la elegibilidad profesional dependen de cada itinerario.",
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     faqCta: "Ver FAQ",
@@ -193,6 +195,7 @@ const pageCopy = {
     noResult:
       "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
     legendTitle: "Leyenda de estados",
+    criticalTitle: "Comprueba antes de solicitar",
     quickReduced: "Matrícula reducida",
     quickConfirmed: "Confirmados",
     uk: "Reino Unido",
@@ -207,7 +210,7 @@ const pageCopy = {
     intro:
       "Ein LL.M. in den USA ist ein einjähriger juristischer Abschluss, der im Ausland ausgebildeten Juristinnen und Juristen die Teilnahme an bestimmten US-amerikanischen Anwaltsprüfungen ermöglichen kann, insbesondere in New York.",
     intro2:
-      "Diese Seite zeigt 4 Partnerschaften und 5 Studienwege zwischen britischen Universitäten und US-Law-Schools. Wege vom Vereinigten Königreich in die USA sind selten; der Dundee–AUWCL-Austausch verleiht allein keinen LL.M.",
+      "Diese Seite zeigt 6 aktive Studienwege an 5 britischen Universitäten, darunter Stipendien, Doppelabschlüsse und Zugangswege zu US-Law-Schools. Finanzielle Bedingungen und Bar-Zulassung sind für jeden Studienweg gesondert zu prüfen.",
     searchCta: "Suchen Sie nach Partnerschaften",
     costCta: "Jahresbudget berechnen",
     faqCta: "FAQ öffnen",
@@ -228,6 +231,7 @@ const pageCopy = {
     allShown: "Alle passenden Ergebnisse werden angezeigt.",
     noResult: "Kein Ergebnis. Versuchen Sie, Filter zu entfernen oder die Suche zu erweitern.",
     legendTitle: "Legende zum Angebotsstatus",
+    criticalTitle: "Vor der Bewerbung prüfen",
     quickReduced: "Ermäßigte Studiengebühren",
     quickConfirmed: "Bestätigt",
     uk: "Vereinigtes Königreich",
@@ -242,7 +246,7 @@ const pageCopy = {
     intro:
       "Un LL.M. negli Stati Uniti è un titolo giuridico post-laurea di un anno che può consentire ai giuristi formati all’estero di accedere ad alcuni esami di abilitazione, in particolare quello di New York.",
     intro2:
-      "Questa pagina presenta 4 partnership e 5 percorsi tra università britanniche e law school statunitensi. I percorsi Regno Unito-USA sono rari; lo scambio Dundee–AUWCL da solo non conferisce un LL.M.",
+      "Questa pagina presenta 6 percorsi attivi in 5 università britanniche, tra borse, doppi titoli e accessi a law school statunitensi. Condizioni economiche e idoneità agli esami di abilitazione dipendono dal singolo percorso.",
     searchCta: "Cerca una partnership",
     costCta: "Calcola il budget annuale",
     faqCta: "Apri le domande frequenti",
@@ -263,6 +267,7 @@ const pageCopy = {
     allShown: "Vengono visualizzati tutti i risultati corrispondenti.",
     noResult: "Nessun risultato. Prova a rimuovere alcuni filtri o ad ampliare la ricerca.",
     legendTitle: "Legenda dello stato dell'offerta",
+    criticalTitle: "Da verificare prima della candidatura",
     quickReduced: "Retta ridotta",
     quickConfirmed: "Confermato",
     uk: "Regno Unito",
@@ -299,6 +304,13 @@ export function UkHomePage() {
   }, [searchQuery, filters])
 
   const visiblePartnerships = filtered.slice(0, visibleCount)
+  const criticalNotices = React.useMemo(
+    () => [
+      all.find(({ id }) => id === "kcl-georgetown-dual")?.notes,
+      all.find(({ id }) => id === "bristol-cardozo")?.sourceNote,
+    ].filter((notice): notice is string => Boolean(notice)),
+    [all],
+  )
   const remainingCount = Math.max(
     filtered.length - visiblePartnerships.length,
     0,
@@ -582,6 +594,18 @@ export function UkHomePage() {
                   )}
                 </div>
               </div>
+
+              <aside className="rounded-2xl border border-amber-500/30 bg-amber-500/8 p-4" aria-label={t.criticalTitle}>
+                <div className="text-sm font-semibold text-foreground">{t.criticalTitle}</div>
+                <ul className="mt-2 space-y-2 text-xs leading-5 text-muted-foreground">
+                  {criticalNotices.map((notice) => (
+                    <li key={notice} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" aria-hidden="true" />
+                      <span>{translateDataText(notice, language)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
 
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-sm text-muted-foreground">
