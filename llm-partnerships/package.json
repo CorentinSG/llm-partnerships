@@ -9,6 +9,7 @@
     "lint": "next lint",
     "designer:verify": "node scripts/designer-verify.mjs",
     "data:verify:germany": "node scripts/verify-germany-data.mjs",
+    "data:verify:italy": "node scripts/verify-italy-data.mjs",
     "translations:verify:germany": "node scripts/verify-germany-translations.mjs",
     "translations:verify:de": "node scripts/verify-german-locale.mjs",
     "translations:verify:data": "node scripts/verify-data-translations.mjs",
