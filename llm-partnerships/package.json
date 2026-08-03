@@ -13,6 +13,7 @@
     "data:verify:uk": "node scripts/verify-uk-data.mjs",
     "translations:verify:germany": "node scripts/verify-germany-translations.mjs",
     "translations:verify:italy": "node scripts/verify-italy-translations.mjs",
+    "translations:verify:uk": "node scripts/verify-uk-translations.mjs",
     "translations:verify:de": "node scripts/verify-german-locale.mjs",
     "translations:verify:it": "node scripts/verify-italian-locale.mjs && node scripts/verify-italian-data-translations.mjs",
     "translations:verify:data": "node scripts/verify-data-translations.mjs",
