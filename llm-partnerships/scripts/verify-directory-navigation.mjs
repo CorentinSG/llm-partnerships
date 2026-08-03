@@ -38,13 +38,13 @@ assert.equal(
 )
 assert.match(
   header,
-  /className="hidden items-center gap-2 xl:flex"/,
-  "desktop navigation must not appear before the 1280px breakpoint",
+  /className="hidden items-center gap-1 min-\[1600px\]:flex"/,
+  "desktop navigation must not appear before the 1600px breakpoint",
 )
 assert.match(
   header,
-  /className="flex min-w-0 items-center gap-1\.5 xl:hidden"/,
-  "sheet navigation must remain available below the 1280px breakpoint",
+  /className="flex min-w-0 items-center gap-1\.5 min-\[1600px\]:hidden"/,
+  "sheet navigation must remain available below the 1600px breakpoint",
 )
 assert.doesNotMatch(
   header,
@@ -63,8 +63,8 @@ assert.match(homePage, /<a href="\/germany">\{t\.germanyCta\}<\/a>/)
 
 assert.match(
   layout,
-  /France–États-Unis et Allemagne–États-Unis/,
-  "metadata must describe both separate directories",
+  /Cinq annuaires distincts[\s\S]*Suisse–États-Unis/,
+  "metadata must describe all five separate directories",
 )
 
 for (const paragraph of [
@@ -135,7 +135,7 @@ try {
   await waitForServer()
   browser = await chromium.launch({ headless: true })
 
-  for (const width of [768, 1024, 1280, 1440]) {
+  for (const width of [768, 1024, 1280, 1440, 1680]) {
     for (const [language, copy] of Object.entries(navigationCopy)) {
       const page = await browser.newPage({ viewport: { width, height: 900 } })
       await page.addInitScript(
@@ -159,7 +159,7 @@ try {
         `${language} header must not create horizontal overflow at ${width}px`,
       )
 
-      if (width < 1280) {
+      if (width < 1600) {
         const menu = page.getByRole("button", { name: copy.menu, exact: true })
         await menu.click()
         const sheet = page.getByRole("dialog")

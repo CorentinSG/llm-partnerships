@@ -2,6 +2,7 @@ import translationsRaw from "../../data/text-translations.json"
 import germanyTranslationsRaw from "../../data/germany-translations.json"
 import italyTranslationsRaw from "../../data/italy-translations.json"
 import ukTranslationsRaw from "../../data/uk-translations.json"
+import switzerlandTranslationsRaw from "../../data/switzerland-translations.json"
 
 export type UiLanguage = "fr" | "en" | "es" | "de" | "it"
 
@@ -24,6 +25,12 @@ const italyDataTranslations = italyTranslationsRaw as {
   it?: Record<string, string>
 }
 const ukDataTranslations = ukTranslationsRaw as {
+  en: Record<string, string>
+  es: Record<string, string>
+  de?: Record<string, string>
+  it?: Record<string, string>
+}
+const switzerlandDataTranslations = switzerlandTranslationsRaw as {
   en: Record<string, string>
   es: Record<string, string>
   de?: Record<string, string>
@@ -72,6 +79,7 @@ export function translateDataText(
       germanyDataTranslations[language]?.[raw] ||
       dataTranslations[language]?.[raw] ||
       ukDataTranslations[language]?.[raw] ||
+      switzerlandDataTranslations[language]?.[raw] ||
       raw,
   )
 }

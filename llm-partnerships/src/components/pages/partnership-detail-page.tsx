@@ -22,7 +22,7 @@ export function PartnershipDetailPage({
   origin = "france",
 }: {
   partnership: Partnership
-  origin?: "france" | "germany" | "italy" | "uk"
+  origin?: "france" | "germany" | "italy" | "uk" | "switzerland"
 }) {
   const { language } = useLanguage()
   const t = copy[language]
@@ -31,7 +31,11 @@ export function PartnershipDetailPage({
       ? "/germany"
       : origin === "italy"
         ? "/italy"
-        : origin === "uk" ? "/uk" : "/"
+        : origin === "uk"
+          ? "/uk"
+          : origin === "switzerland"
+            ? "/switzerland"
+            : "/"
 
   return (
     <PageShell

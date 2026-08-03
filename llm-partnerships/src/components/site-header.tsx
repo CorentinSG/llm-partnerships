@@ -98,6 +98,7 @@ export function SiteHeader({ className }: { className?: string }) {
       germanyUs: "Allemagne–États-Unis",
       italyUs: "Italie–États-Unis",
       ukUs: "Royaume-Uni–États-Unis",
+      switzerlandUs: "Suisse–États-Unis",
       menu: "Menu",
     },
     en: {
@@ -111,6 +112,7 @@ export function SiteHeader({ className }: { className?: string }) {
       germanyUs: "Germany–United States",
       italyUs: "Italy–United States",
       ukUs: "United Kingdom–United States",
+      switzerlandUs: "Switzerland–United States",
       menu: "Menu",
     },
     es: {
@@ -124,6 +126,7 @@ export function SiteHeader({ className }: { className?: string }) {
       germanyUs: "Alemania–Estados Unidos",
       italyUs: "Italia–Estados Unidos",
       ukUs: "Reino Unido–Estados Unidos",
+      switzerlandUs: "Suiza–Estados Unidos",
       menu: "Menú",
     },
     de: {
@@ -137,6 +140,7 @@ export function SiteHeader({ className }: { className?: string }) {
       germanyUs: "Deutschland–USA",
       italyUs: "Italien–USA",
       ukUs: "Vereinigtes Königreich–USA",
+      switzerlandUs: "Schweiz–USA",
       menu: "Menü",
     },
     it: {
@@ -150,6 +154,7 @@ export function SiteHeader({ className }: { className?: string }) {
       germanyUs: "Germania–Stati Uniti",
       italyUs: "Italia–Stati Uniti",
       ukUs: "Regno Unito–Stati Uniti",
+      switzerlandUs: "Svizzera–Stati Uniti",
       menu: "Menu",
     },
   }[language]
@@ -192,6 +197,9 @@ export function SiteHeader({ className }: { className?: string }) {
             </Button>
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/uk">{t.ukUs}</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
+              <Link href="/switzerland">{t.switzerlandUs}</Link>
             </Button>
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/about">{t.about}</Link>
@@ -262,6 +270,13 @@ export function SiteHeader({ className }: { className?: string }) {
                     className="h-11 justify-start"
                   >
                     <Link href="/uk">{t.ukUs}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-11 justify-start"
+                  >
+                    <Link href="/switzerland">{t.switzerlandUs}</Link>
                   </Button>
                   <Button
                     asChild

@@ -5,6 +5,7 @@ import { getAnyPartnershipById } from "@/lib/data"
 import { getGermanPartnershipById } from "@/lib/germany-data"
 import { getItalianPartnershipById } from "@/lib/italy-data"
 import { getUkPartnershipById } from "@/lib/uk-data"
+import { getSwissPartnershipById } from "@/lib/switzerland-data"
 
 export default async function PartnershipDetailPage({
   params,
@@ -15,7 +16,8 @@ export default async function PartnershipDetailPage({
   const partnership =
     getAnyPartnershipById(id) ??
     getItalianPartnershipById(id) ??
-    getUkPartnershipById(id)
+    getUkPartnershipById(id) ??
+    getSwissPartnershipById(id)
   if (!partnership) notFound()
 
   return (
@@ -28,7 +30,9 @@ export default async function PartnershipDetailPage({
             ? "italy"
             : getUkPartnershipById(id)
               ? "uk"
-              : "france"
+              : getSwissPartnershipById(id)
+                ? "switzerland"
+                : "france"
       }
     />
   )
