@@ -55,10 +55,14 @@ assert.equal(translations.es["Royaume-Uni"], "Reino Unido")
 assert.equal(translations.de["Royaume-Uni"], "Vereinigtes Königreich")
 assert.equal(translations.it["Royaume-Uni"], "Regno Unito")
 
-const exchangeWarning = "L'échange seul ne confère aucun LL.M. Une admission distincte au LL.M. complet est nécessaire, avec jusqu'à 12 crédits transférables."
-assert.match(translations.en[exchangeWarning], /does not award.*LL\.M.*separate admission/i)
-assert.match(translations.es[exchangeWarning], /no otorga.*LL\.M.*admisión independiente/i)
-assert.match(translations.de[exchangeWarning], /verleiht keinen LL\.M.*separate Zulassung/i)
-assert.match(translations.it[exchangeWarning], /non conferisce.*LL\.M.*ammissione separata/i)
+const dualBarWarning = getAllUkPartnerships().find(({ id }) => id === "kcl-georgetown-dual").notes
+const bristolEvidence = getAllUkPartnerships().find(({ id }) => id === "bristol-cardozo").sourceNote
+const qmulCoverage = getAllUkPartnerships().find(({ id }) => id === "qmul-william-mary").financialAid
+
+for (const language of ["en", "es", "de", "it"]) {
+  assert.match(translations[language][dualBarWarning], /New York/i)
+  assert.ok(translations[language][bristolEvidence]?.trim())
+  assert.ok(translations[language][qmulCoverage]?.trim())
+}
 
 console.log(`UK translations verified: ${values.size} values mapped in EN, ES, DE and IT`)
