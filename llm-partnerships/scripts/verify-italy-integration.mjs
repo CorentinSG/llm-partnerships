@@ -38,7 +38,7 @@ let browser
 try {
   await waitForServer()
   browser = await chromium.launch({ headless: true })
-  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
+  const page = await browser.newPage({ viewport: { width: 1680, height: 1000 } })
   await page.goto(`${baseUrl}/italy`)
 
   await page.getByRole("heading", {

@@ -17,6 +17,7 @@ const jiti = jitiModule(import.meta.url, {
 const costModule = jiti(join(projectRoot, "src", "lib", "us-cost-estimates.ts"))
 const germanData = jiti(join(projectRoot, "src", "lib", "germany-data.ts"))
 const italianData = jiti(join(projectRoot, "src", "lib", "italy-data.ts"))
+const ukData = jiti(join(projectRoot, "src", "lib", "uk-data.ts"))
 const frenchData = jiti(join(projectRoot, "src", "lib", "data.ts"))
 const textModule = jiti(join(projectRoot, "src", "lib", "text-utils.ts"))
 
@@ -106,6 +107,16 @@ assert.deepEqual(
   italianResolutions.map((resolution) => resolution.partnership.id).sort(),
   italianPartnerships.map((partnership) => partnership.id).sort(),
   "Italian simulator behavior must include all 12 records/options",
+)
+
+const ukPartnerships = ukData.getAllUkPartnerships()
+const ukResolutions = costModule.getPartnershipCostResolutions(ukPartnerships)
+assert.equal(ukPartnerships.length, 5)
+assert.equal(ukResolutions.length, 5)
+assert.deepEqual(
+  ukResolutions.map((resolution) => resolution.partnership.id).sort(),
+  ukPartnerships.map((partnership) => partnership.id).sort(),
+  "UK simulator behavior must include all 5 records/options",
 )
 
 for (const id of [
@@ -204,5 +215,5 @@ const rootGitignore = readFileSync(join(repositoryRoot, ".gitignore"), "utf8")
 assert.match(rootGitignore, /^\/\.next\/$/m)
 
 console.log(
-  "Final data regressions verified: 42 French, 16 German, and 12 Italian simulator options",
+  "Final data regressions verified: 42 French, 16 German, 12 Italian, and 5 UK simulator options",
 )

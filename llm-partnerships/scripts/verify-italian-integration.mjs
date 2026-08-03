@@ -36,7 +36,7 @@ let browser
 try {
   await waitForServer()
   browser = await chromium.launch({ headless: true })
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
+  const context = await browser.newContext({ viewport: { width: 1680, height: 1000 } })
   const page = await context.newPage()
   await page.goto(baseUrl, { waitUntil: "domcontentloaded" })
   await page.getByRole("button", { name: "Italiano" }).click()

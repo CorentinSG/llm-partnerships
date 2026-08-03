@@ -180,7 +180,7 @@ export function SiteHeader({ className }: { className?: string }) {
         </Link>
 
         <nav className="flex min-w-0 items-center gap-2">
-          <div className="hidden items-center gap-1 min-[1400px]:flex">
+          <div className="hidden items-center gap-1 min-[1600px]:flex">
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/">{t.franceUs}</Link>
             </Button>
@@ -212,7 +212,7 @@ export function SiteHeader({ className }: { className?: string }) {
             <ThemeToggle />
           </div>
 
-          <div className="flex min-w-0 items-center gap-1.5 min-[1400px]:hidden">
+          <div className="flex min-w-0 items-center gap-1.5 min-[1600px]:hidden">
             <Button asChild variant="default" size="sm" className="h-11 px-3">
               <Link href="/submit">{t.submitShort}</Link>
             </Button>

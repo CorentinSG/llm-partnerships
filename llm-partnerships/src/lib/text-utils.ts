@@ -68,10 +68,10 @@ export function translateDataText(
   const raw = String(value)
   if (language === "fr") return cleanText(raw)
   return cleanText(
-    ukDataTranslations[language]?.[raw] ||
-      italyDataTranslations[language]?.[raw] ||
+    italyDataTranslations[language]?.[raw] ||
       germanyDataTranslations[language]?.[raw] ||
       dataTranslations[language]?.[raw] ||
+      ukDataTranslations[language]?.[raw] ||
       raw,
   )
 }

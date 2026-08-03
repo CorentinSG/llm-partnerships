@@ -20,6 +20,7 @@
     "test:integration:germany": "node scripts/verify-germany-integration.mjs",
     "test:integration:italy": "node scripts/verify-italy-integration.mjs",
     "test:integration:uk": "node scripts/verify-uk-integration.mjs",
+    "test:browser:uk": "node scripts/verify-uk-page.mjs",
     "test:integration:de": "node scripts/verify-german-integration.mjs",
     "test:integration:it": "node scripts/verify-italian-integration.mjs",
     "verify:de": "npm run translations:verify:de && npm run translations:verify:data && npm run translations:verify:germany && npm run test:integration:de",

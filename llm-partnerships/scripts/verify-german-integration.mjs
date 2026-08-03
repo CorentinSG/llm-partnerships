@@ -47,7 +47,7 @@ async function expectText(page, text) {
 }
 
 try {
-  const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } })
+  const context = await browser.newContext({ viewport: { width: 1680, height: 1000 } })
   const page = await context.newPage()
   page.on("console", (message) => {
     if (

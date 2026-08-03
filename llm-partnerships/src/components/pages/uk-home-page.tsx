@@ -121,7 +121,7 @@ const pageCopy = {
     noResult:
       "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
     legendTitle: "Statuts des offres",
-    quickReduced: "Sans frais d'inscription",
+    quickReduced: "Frais réduits",
     quickConfirmed: "Confirmés",
     uk: "Royaume-Uni",
     unitedStates: "États-Unis",
@@ -156,7 +156,7 @@ const pageCopy = {
     allShown: "All matching results are shown.",
     noResult: "No result. Try removing filters or broadening the search.",
     legendTitle: "Offer status legend",
-    quickReduced: "No partner tuition",
+    quickReduced: "Reduced tuition",
     quickConfirmed: "Confirmed",
     uk: "United Kingdom",
     unitedStates: "United States",
@@ -193,7 +193,7 @@ const pageCopy = {
     noResult:
       "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
     legendTitle: "Leyenda de estados",
-    quickReduced: "Sin matrícula",
+    quickReduced: "Matrícula reducida",
     quickConfirmed: "Confirmados",
     uk: "Reino Unido",
     unitedStates: "Estados Unidos",
@@ -228,7 +228,7 @@ const pageCopy = {
     allShown: "Alle passenden Ergebnisse werden angezeigt.",
     noResult: "Kein Ergebnis. Versuchen Sie, Filter zu entfernen oder die Suche zu erweitern.",
     legendTitle: "Legende zum Angebotsstatus",
-    quickReduced: "Kein Partnerunterricht",
+    quickReduced: "Ermäßigte Studiengebühren",
     quickConfirmed: "Bestätigt",
     uk: "Vereinigtes Königreich",
     unitedStates: "Vereinigte Staaten",
@@ -263,7 +263,7 @@ const pageCopy = {
     allShown: "Vengono visualizzati tutti i risultati corrispondenti.",
     noResult: "Nessun risultato. Prova a rimuovere alcuni filtri o ad ampliare la ricerca.",
     legendTitle: "Legenda dello stato dell'offerta",
-    quickReduced: "Nessuna tassa universitaria presso il partner",
+    quickReduced: "Retta ridotta",
     quickConfirmed: "Confermato",
     uk: "Regno Unito",
     unitedStates: "Stati Uniti",
@@ -445,7 +445,7 @@ export function UkHomePage() {
                         onClick={() =>
                           setFilters((previous) => ({
                             ...previous,
-                            tuitionCategory: "sans frais",
+                            tuitionCategory: "frais réduits",
                           }))
                         }
                       >
