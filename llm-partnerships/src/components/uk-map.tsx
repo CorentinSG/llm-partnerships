@@ -10,7 +10,14 @@ import { cn } from "@/lib/utils"
 import { usePanZoom } from "@/lib/use-pan-zoom"
 
 const ukGeojson = ukGeojsonRaw as any
-const ukFeature = ukGeojson.features?.[0]
+const ukFeature = ukGeojson
+
+const markerOffsets: Record<string, { x: number; y: number }> = {
+  "King's College London": { x: -38, y: -24 },
+  "Queen Mary University of London": { x: 40, y: -18 },
+  "University of Greenwich": { x: 38, y: 28 },
+  "Middlesex University London": { x: -36, y: 30 },
+}
 
 const mapCopy = {
   fr: {
@@ -113,31 +120,12 @@ export function UkMap({
   }, [width, height, padding])
 
   const displayPoints = React.useMemo(() => {
-    const placed: { x: number; y: number }[] = []
-    const minimumDistance = 20
-    const goldenAngle = Math.PI * (3 - Math.sqrt(5))
-
     return points.map((p) => {
       const projected = projectPoint(p.coordinates.lat, p.coordinates.lng)
-      let x = projected.x
-      let y = projected.y
-      let attempt = 0
-
-      while (
-        placed.some(
-          (point) => Math.hypot(point.x - x, point.y - y) < minimumDistance,
-        ) &&
-        attempt < 24
-      ) {
-        const radius = minimumDistance + Math.floor(attempt / 6) * 8
-        const angle = attempt * goldenAngle
-        x = projected.x + Math.cos(angle) * radius
-        y = projected.y + Math.sin(angle) * radius
-        attempt += 1
-      }
-
-      placed.push({ x, y })
-      return { p, x, y }
+      const offset = markerOffsets[p.frenchUniversity] || { x: 0, y: 0 }
+      const x = Math.min(width - padding - 24, Math.max(padding + 24, projected.x + offset.x))
+      const y = Math.min(height - padding - 24, Math.max(padding + 24, projected.y + offset.y))
+      return { p, x, y, originX: projected.x, originY: projected.y }
     })
   }, [points, projectPoint])
 
@@ -204,8 +192,16 @@ export function UkMap({
             <g transform={`translate(${transform.x} ${transform.y}) scale(${transform.k})`}>
               {svgPath ? (
                 <>
-                  <path d={svgPath} fill="url(#ukFill)" filter="url(#ukSoftShadow)" />
-                  <path d={svgPath} fill="transparent" stroke="hsl(var(--border))" strokeWidth="2" />
+                  <path
+                    data-uk-land="true"
+                    d={svgPath}
+                    fill="url(#ukFill)"
+                    filter="url(#ukSoftShadow)"
+                    stroke="hsl(var(--foreground))"
+                    strokeOpacity="0.5"
+                    strokeWidth="1.75"
+                    vectorEffect="non-scaling-stroke"
+                  />
                 </>
               ) : (
                 <rect
@@ -219,23 +215,12 @@ export function UkMap({
                 />
               )}
 
-              <path
-                d={`M ${width * 0.5} ${height * 0.12} L ${width * 0.5} ${height * 0.88}`}
-                stroke="hsl(var(--border))"
-                strokeWidth="1"
-                opacity="0.35"
-              />
-              <path
-                d={`M ${width * 0.22} ${height * 0.48} L ${width * 0.78} ${height * 0.48}`}
-                stroke="hsl(var(--border))"
-                strokeWidth="1"
-                opacity="0.25"
-              />
-
-              {displayPoints.map(({ p, x, y }) => {
+              {displayPoints.map(({ p, x, y, originX, originY }) => {
                 const selected = p.frenchUniversity === selectedUkUniversity
                 const isHovered = hovered === p.frenchUniversity
                 const isFocused = focused === p.frenchUniversity
+                const showLabel = isHovered || isFocused || selected
+                const displaced = Math.hypot(x - originX, y - originY) > 2
                 const accessibleName = translateDataText(
                   p.frenchUniversity,
                   language,
@@ -269,12 +254,36 @@ export function UkMap({
                     }
                     style={{ cursor: "pointer" }}
                   >
-                    {isHovered ? (
+                    {displaced ? (
+                      <>
+                        <line
+                          data-marker-leader={p.frenchUniversity}
+                          x1={originX}
+                          y1={originY}
+                          x2={x}
+                          y2={y}
+                          stroke="hsl(var(--primary))"
+                          strokeOpacity="0.58"
+                          strokeWidth="1.5"
+                          strokeDasharray="3 3"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                        <circle
+                          data-marker-origin={p.frenchUniversity}
+                          cx={originX}
+                          cy={originY}
+                          r={2.5}
+                          fill="hsl(var(--primary))"
+                          opacity="0.8"
+                        />
+                      </>
+                    ) : null}
+                    {showLabel ? (
                       <g>
                         <rect
-                          x={Math.max(10, x - 140)}
+                          x={Math.min(width - 230, Math.max(10, x - 110))}
                           y={Math.max(10, y - 42)}
-                          width={280}
+                          width={220}
                           height={30}
                           rx={10}
                           fill="hsl(var(--background))"
@@ -282,7 +291,7 @@ export function UkMap({
                           stroke="hsl(var(--border))"
                         />
                         <text
-                          x={x}
+                          x={Math.min(width - 120, Math.max(120, x))}
                           y={y - 21}
                           textAnchor="middle"
                           fontSize="12"
@@ -293,6 +302,13 @@ export function UkMap({
                         </text>
                       </g>
                     ) : null}
+                    <circle
+                      cx={x}
+                      cy={y}
+                      r={22}
+                      fill="transparent"
+                      pointerEvents="all"
+                    />
                     <circle
                       cx={x}
                       cy={y}
