@@ -1,5 +1,6 @@
 import translationsRaw from "../../data/text-translations.json"
 import germanyTranslationsRaw from "../../data/germany-translations.json"
+import italyTranslationsRaw from "../../data/italy-translations.json"
 
 export type UiLanguage = "fr" | "en" | "es" | "de"
 
@@ -9,6 +10,11 @@ const dataTranslations = translationsRaw as {
   de?: Record<string, string>
 }
 const germanyDataTranslations = germanyTranslationsRaw as {
+  en: Record<string, string>
+  es: Record<string, string>
+  de?: Record<string, string>
+}
+const italyDataTranslations = italyTranslationsRaw as {
   en: Record<string, string>
   es: Record<string, string>
   de?: Record<string, string>
@@ -52,7 +58,8 @@ export function translateDataText(
   const raw = String(value)
   if (language === "fr") return cleanText(raw)
   return cleanText(
-    germanyDataTranslations[language]?.[raw] ||
+    italyDataTranslations[language]?.[raw] ||
+      germanyDataTranslations[language]?.[raw] ||
       dataTranslations[language]?.[raw] ||
       raw,
   )

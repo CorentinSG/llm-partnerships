@@ -21,11 +21,12 @@ export function PartnershipDetailPage({
   origin = "france",
 }: {
   partnership: Partnership
-  origin?: "france" | "germany"
+  origin?: "france" | "germany" | "italy"
 }) {
   const { language } = useLanguage()
   const t = copy[language]
-  const backHref = origin === "germany" ? "/germany" : "/"
+  const backHref =
+    origin === "germany" ? "/germany" : origin === "italy" ? "/italy" : "/"
 
   return (
     <PageShell

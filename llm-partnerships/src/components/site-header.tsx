@@ -93,6 +93,7 @@ export function SiteHeader({ className }: { className?: string }) {
       submitShort: "Proposer",
       franceUs: "France–États-Unis",
       germanyUs: "Allemagne–États-Unis",
+      italyUs: "Italie–États-Unis",
       menu: "Menu",
     },
     en: {
@@ -104,6 +105,7 @@ export function SiteHeader({ className }: { className?: string }) {
       submitShort: "Submit",
       franceUs: "France–United States",
       germanyUs: "Germany–United States",
+      italyUs: "Italy–United States",
       menu: "Menu",
     },
     es: {
@@ -115,6 +117,7 @@ export function SiteHeader({ className }: { className?: string }) {
       submitShort: "Proponer",
       franceUs: "Francia–Estados Unidos",
       germanyUs: "Alemania–Estados Unidos",
+      italyUs: "Italia–Estados Unidos",
       menu: "Menú",
     },
     de: {
@@ -126,6 +129,7 @@ export function SiteHeader({ className }: { className?: string }) {
       submitShort: "Einreichen",
       franceUs: "Frankreich–USA",
       germanyUs: "Deutschland–USA",
+      italyUs: "Italien–USA",
       menu: "Menü",
     },
   }[language]
@@ -137,7 +141,7 @@ export function SiteHeader({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="container flex min-h-16 items-center justify-between gap-2 py-2">
+      <div className="flex min-h-16 w-full items-center justify-between gap-2 px-4 py-2 sm:px-6">
         <Link
           href="/"
           className="group flex items-center gap-2 rounded-xl focus-ring"
@@ -156,33 +160,36 @@ export function SiteHeader({ className }: { className?: string }) {
         </Link>
 
         <nav className="flex min-w-0 items-center gap-2">
-          <div className="hidden items-center gap-2 xl:flex">
-            <Button asChild variant="ghost" size="sm">
+          <div className="hidden items-center gap-1 min-[1400px]:flex">
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/">{t.franceUs}</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/germany">{t.germanyUs}</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
+              <Link href="/italy">{t.italyUs}</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/about">{t.about}</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/guide">{t.guide}</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm">
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/alternatives">{t.alternatives}</Link>
             </Button>
             <Button asChild variant="default" size="sm">
               <Link href="/submit">
                 <Send className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
-                {t.submit}
+                {t.submitShort}
               </Link>
             </Button>
             <LanguageSwitch />
             <ThemeToggle />
           </div>
 
-          <div className="flex min-w-0 items-center gap-1.5 xl:hidden">
+          <div className="flex min-w-0 items-center gap-1.5 min-[1400px]:hidden">
             <Button asChild variant="default" size="sm" className="h-11 px-3">
               <Link href="/submit">{t.submitShort}</Link>
             </Button>
@@ -218,6 +225,13 @@ export function SiteHeader({ className }: { className?: string }) {
                     className="h-11 justify-start"
                   >
                     <Link href="/germany">{t.germanyUs}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-11 justify-start"
+                  >
+                    <Link href="/italy">{t.italyUs}</Link>
                   </Button>
                   <Button
                     asChild
