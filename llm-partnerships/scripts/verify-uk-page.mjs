@@ -46,7 +46,11 @@ try {
     name: "Trouvez un LL.M américain via une université britannique.",
   }).waitFor()
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 5)
-  assert.ok(await page.locator('header a[href="/uk"]').count(), "UK must be present in navigation")
+  assert.match(
+    await page.getByRole("combobox", { name: /^Pays/ }).getAttribute("aria-label"),
+    /Royaume-Uni–États-Unis/,
+    "UK must be active in country navigation",
+  )
   await expectText(page.locator("main"), /4 partenariats et 5 parcours/, "French summary distinguishes partnerships and pathways")
 
   const ukMap = page.getByRole("img", { name: "Carte du Royaume-Uni avec points des universités" })
@@ -91,11 +95,10 @@ try {
 
   await page.setViewportSize({ width: 390, height: 844 })
   await page.getByRole("button", { name: "Menu" }).click()
-  assert.equal(
-    await page.getByRole("link", { name: "Regno Unito–Stati Uniti", exact: true }).getAttribute("href"),
-    "/uk",
-    "Mobile navigation includes the UK directory",
-  )
+  const countrySelector = page.getByRole("dialog").getByRole("combobox", { name: /^Paese/ })
+  assert.match(await countrySelector.getAttribute("aria-label"), /Regno Unito–Stati Uniti/)
+  await countrySelector.click()
+  await page.getByRole("option", { name: "Regno Unito–Stati Uniti", exact: true }).waitFor()
 
   console.log("UK browser integration verified across five languages")
 } finally {

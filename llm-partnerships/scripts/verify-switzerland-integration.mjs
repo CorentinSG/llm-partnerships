@@ -35,7 +35,7 @@ for (const phrase of ["7 partenariats", "7 partnerships", "7 convenios", "7 Part
 assert.match(route, /SwitzerlandHomePage/)
 assert.match(map, /Switzerland|Suisse|Schweiz|Svizzera/)
 assert.match(header, /switzerlandUs/)
-assert.match(header, /href="\/switzerland"/)
+assert.match(header, /href: "\/switzerland"/)
 assert.match(details, /"switzerland"/)
 assert.match(detailRoute, /getSwissPartnershipById/)
 assert.match(about, /cinq annuaires distincts/)

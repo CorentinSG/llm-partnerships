@@ -119,10 +119,9 @@ try {
   await mobilePage.waitForFunction(() => document.documentElement.lang === "de")
   await mobilePage.getByRole("button", { name: "Menü" }).click()
   await mobilePage.getByRole("button", { name: "Deutsch" }).last().waitFor()
-  await mobilePage
-    .getByRole("link", { name: "Deutschland–USA", exact: true })
-    .last()
-    .waitFor()
+  const countrySelector = mobilePage.getByRole("dialog").getByRole("combobox", { name: /^Land/ })
+  await countrySelector.click()
+  await mobilePage.getByRole("option", { name: "Deutschland–USA", exact: true }).waitFor()
   await mobile.close()
 
   assert.deepEqual(consoleErrors, [], `Browser console errors:\n${consoleErrors.join("\n")}`)

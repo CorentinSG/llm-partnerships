@@ -1,8 +1,10 @@
 "use client"
 
+import * as React from "react"
 import Link from "next/link"
 import { Languages, Menu, Send } from "lucide-react"
 
+import { CountryDirectoryMenu } from "@/components/country-directory-menu"
 import { useLanguage } from "@/components/language-provider"
 import { LogoMark } from "@/components/logo"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -86,6 +88,7 @@ function LanguageSwitch({ compact = false }: { compact?: boolean }) {
 
 export function SiteHeader({ className }: { className?: string }) {
   const { language } = useLanguage()
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const t = {
     fr: {
       subtitle: "Annuaire des partenariats",
@@ -94,6 +97,7 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Parcours alternatifs",
       submit: "Proposer une info",
       submitShort: "Proposer",
+      country: "Pays",
       franceUs: "France–États-Unis",
       germanyUs: "Allemagne–États-Unis",
       italyUs: "Italie–États-Unis",
@@ -108,6 +112,7 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Alternative paths",
       submit: "Submit information",
       submitShort: "Submit",
+      country: "Country",
       franceUs: "France–United States",
       germanyUs: "Germany–United States",
       italyUs: "Italy–United States",
@@ -122,6 +127,7 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Vías alternativas",
       submit: "Proponer información",
       submitShort: "Proponer",
+      country: "País",
       franceUs: "Francia–Estados Unidos",
       germanyUs: "Alemania–Estados Unidos",
       italyUs: "Italia–Estados Unidos",
@@ -136,6 +142,7 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Alternative Wege",
       submit: "Information einreichen",
       submitShort: "Einreichen",
+      country: "Land",
       franceUs: "Frankreich–USA",
       germanyUs: "Deutschland–USA",
       italyUs: "Italien–USA",
@@ -150,6 +157,7 @@ export function SiteHeader({ className }: { className?: string }) {
       alternatives: "Percorsi alternativi",
       submit: "Invia informazioni",
       submitShort: "Invia",
+      country: "Paese",
       franceUs: "Francia–Stati Uniti",
       germanyUs: "Germania–Stati Uniti",
       italyUs: "Italia–Stati Uniti",
@@ -158,6 +166,14 @@ export function SiteHeader({ className }: { className?: string }) {
       menu: "Menu",
     },
   }[language]
+
+  const countryDirectories = [
+    { href: "/", label: t.franceUs },
+    { href: "/germany", label: t.germanyUs },
+    { href: "/italy", label: t.italyUs },
+    { href: "/uk", label: t.ukUs },
+    { href: "/switzerland", label: t.switzerlandUs },
+  ]
 
   return (
     <header
@@ -186,21 +202,10 @@ export function SiteHeader({ className }: { className?: string }) {
 
         <nav className="flex min-w-0 items-center gap-2">
           <div className="hidden items-center gap-1 min-[1600px]:flex">
-            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
-              <Link href="/">{t.franceUs}</Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
-              <Link href="/germany">{t.germanyUs}</Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
-              <Link href="/italy">{t.italyUs}</Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
-              <Link href="/uk">{t.ukUs}</Link>
-            </Button>
-            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
-              <Link href="/switzerland">{t.switzerlandUs}</Link>
-            </Button>
+            <CountryDirectoryMenu
+              label={t.country}
+              directories={countryDirectories}
+            />
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/about">{t.about}</Link>
             </Button>
@@ -226,7 +231,7 @@ export function SiteHeader({ className }: { className?: string }) {
             </Button>
             <ThemeToggle />
 
-            <Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button
                   type="button"
@@ -243,41 +248,12 @@ export function SiteHeader({ className }: { className?: string }) {
                   <SheetTitle>{t.menu}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-2">
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/">{t.franceUs}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/germany">{t.germanyUs}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/italy">{t.italyUs}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/uk">{t.ukUs}</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="h-11 justify-start"
-                  >
-                    <Link href="/switzerland">{t.switzerlandUs}</Link>
-                  </Button>
+                  <CountryDirectoryMenu
+                    label={t.country}
+                    directories={countryDirectories}
+                    mobile
+                    onNavigate={() => setMobileMenuOpen(false)}
+                  />
                   <Button
                     asChild
                     variant="ghost"

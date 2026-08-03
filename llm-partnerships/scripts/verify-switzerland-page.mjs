@@ -77,7 +77,10 @@ try {
 
   await page.setViewportSize({ width: 390, height: 844 })
   await page.getByRole("button", { name: "Menu" }).click()
-  assert.equal(await page.getByRole("link", { name: "Svizzera–Stati Uniti", exact: true }).getAttribute("href"), "/switzerland")
+  const countrySelector = page.getByRole("dialog").getByRole("combobox", { name: /^Paese/ })
+  assert.match(await countrySelector.getAttribute("aria-label"), /Svizzera–Stati Uniti/)
+  await countrySelector.click()
+  await page.getByRole("option", { name: "Svizzera–Stati Uniti", exact: true }).waitFor()
   console.log("Swiss browser integration verified across five languages")
 } finally {
   await browser?.close()

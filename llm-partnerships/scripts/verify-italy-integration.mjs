@@ -46,7 +46,11 @@ try {
     name: "Trouvez un LL.M américain via une université italienne.",
   }).waitFor()
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 12)
-  assert.ok(await page.locator('header a[href="/italy"]').count(), "Italy must be present in navigation")
+  assert.match(
+    await page.getByRole("combobox", { name: /^Pays/ }).getAttribute("aria-label"),
+    /Italie–États-Unis/,
+    "Italy must be active in country navigation",
+  )
 
   const italyMap = page.getByRole("img", { name: "Carte d'Italie avec points des universités" })
   assert.equal(await italyMap.locator('[tabindex="0"]').count(), 5)
@@ -92,11 +96,10 @@ try {
 
   await page.setViewportSize({ width: 390, height: 844 })
   await page.getByRole("button", { name: "Menü" }).click()
-  assert.equal(
-    await page.getByRole("link", { name: "Italien–USA", exact: true }).getAttribute("href"),
-    "/italy",
-    "Mobile navigation includes Italy",
-  )
+  const mobileCountrySelector = page.getByRole("dialog").getByRole("combobox", { name: /^Land/ })
+  assert.match(await mobileCountrySelector.getAttribute("aria-label"), /Italien–USA/)
+  await mobileCountrySelector.click()
+  await page.getByRole("option", { name: "Italien–USA", exact: true }).waitFor()
 
   console.log("Italy browser integration verified")
 } finally {

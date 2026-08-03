@@ -50,7 +50,7 @@ assert.match(map, /Map \(United Kingdom\)/)
 assert.match(map, /Carte du Royaume-Uni/)
 assert.match(map, /Karte.*Vereinigtes Königreich/s)
 
-for (const label of ["ukUs", 'href="/uk"']) assert.match(header, new RegExp(label))
+for (const label of ["ukUs", 'href: "/uk"']) assert.match(header, new RegExp(label))
 assert.match(details, /"france" \| "germany" \| "italy" \| "uk"/)
 assert.match(details, /origin === "uk"\s*\? "\/uk"/)
 assert.match(detailRoute, /getUkPartnershipById/)
