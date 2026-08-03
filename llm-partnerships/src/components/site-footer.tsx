@@ -30,6 +30,12 @@ const copy = {
       "Diese Website ist ein Informations-MVP, der sich auf LL.M-Partnerschaften mit US-amerikanischen Rechtsschulen konzentriert. Informationen können unvollständig sein oder sich im Laufe der Zeit ändern. Überprüfen Sie immer offizielle Quellen (Universitäten, LSAC, Anwaltsbehörden), bevor Sie sich bewerben. Bei diesem Inhalt handelt es sich nicht um eine Rechtsberatung.",
     author: "Erstellt von Corentin Saint-Girons, New Yorker Anwalt.",
   },
+  it: {
+    warning: "Disclaimer:",
+    disclaimer:
+      "questo sito Web è un MVP informativo incentrato sulle partnership LL.M con le scuole di diritto statunitensi. Le informazioni potrebbero essere incomplete o cambiare nel tempo. Verificare sempre le fonti ufficiali (università, LSAC, autorità forensi) prima di presentare domanda. Questo contenuto non costituisce consulenza legale.",
+    author: "Creato da Corentin Saint-Girons, avvocato di New York.",
+  },
 } as const
 
 export function SiteFooter() {

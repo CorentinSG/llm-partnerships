@@ -288,6 +288,22 @@ const faqCopy = {
       answer: answersEn[index],
     })),
   },
+  it: {
+    aria: "FAQ sui percorsi LL.M e sul New York Bar",
+    title: "Domande frequenti sul mio percorso, sul LL.M e su New York",
+    intro:
+      "Risposte a domande comuni sul mio background, sui programmi LL.M statunitensi, sui costi, sulla selezione e sull'Ordine degli avvocati di New York.",
+    journey: "Il mio percorso in uno sguardo",
+    journeyParagraphs: [
+      "Laurea in giurisprudenza a Nancy, Erasmus in Svezia, studi di diritto commerciale a Nancy, poi M2 in diritto commerciale internazionale a Paris Dauphine con scambio a Tilburg.",
+      "Ho poi completato un LL.M presso la Case Western Reserve University attraverso la partnership di Dauphine e ho superato l'Ordine degli avvocati di New York.",
+      "Ora pratico a New York e ho creato questo sito Web per rendere il percorso più chiaro agli studenti di giurisprudenza francesi.",
+    ],
+    items: questionsEn.map((question, index) => ({
+      question,
+      answer: answersEn[index],
+    })),
+  },
 } as const
 
 export function FounderFaq() {

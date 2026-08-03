@@ -68,6 +68,19 @@ const mapCopy = {
     selectedState: "Ausgewähltes Bundesland:",
     tip: "Tipp: Klicken Sie zum Filtern auf einen nummerierten Bundesstaat (auf Mobilgeräten: Zum Vergrößern zusammenziehen).",
   },
+  it: {
+    title: "Mappa (Stati Uniti)",
+    clear: "Chiaro",
+    zoomIn: "Ingrandisci",
+    zoomOut: "Rimpicciolisci",
+    resetZoom: "Reimposta lo zoom",
+    reset: "Reset",
+    aria: "Mappa degli Stati Uniti contigui con stati cliccabili",
+    partnership: "partnership",
+    approximate: "posizione approssimativa",
+    selectedState: "Stato selezionato:",
+    tip: "Suggerimento: fai clic su uno stato numerato per filtrare (sui dispositivi mobili: pizzica per ingrandire).",
+  },
 } as const
 
 function groupPartnerUniversities(partnerships: Partnership[]) {

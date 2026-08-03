@@ -58,6 +58,18 @@ const copy = {
     partnerRate: "Preis nach Partnerschaft",
     scenario: "Szenario – {label}",
   },
+  it: {
+    noOffer: "Tariffa pubblica",
+    savings: "Risparmio sulle tasse universitarie",
+    freeSeat: "Posto senza tasse universitarie presso il partner",
+    reducedSeat: "Posto con tasse universitarie ridotte",
+    scholarshipSeat: "Borsa di studio o sconto possibile",
+    percentSeat: "Sconto del {percent}%",
+    referenceAmount: "importo pubblicato",
+    publicRate: "Prezzo pubblico normale",
+    partnerRate: "Prezzo dopo la partnership",
+    scenario: "Scenario: {etichetta}",
+  },
 } as const
 
 function parseDollarAmounts(text: string) {

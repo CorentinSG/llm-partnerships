@@ -60,6 +60,20 @@ const copy = {
       "Studierende, akademische Teams und Universitäten können über die Seite „Informationen einreichen“ Quellen oder Korrekturen einreichen.",
     ],
   },
+  it: {
+    title: "Informazioni sul progetto",
+    description: "Scopo del progetto e come contribuire.",
+    paragraphs: [
+      "Questo progetto rende più facile per gli studenti di giurisprudenza trovare, confrontare e verificare le informazioni sulla partnership LL.M.",
+      "Il sito contiene tre directory distinte di partnership LL.M.: Francia–Stati Uniti, Germania–Stati Uniti e Italia–Stati Uniti.",
+      "La sezione Francia–Stati Uniti presenta le partnership tra università francesi e università statunitensi per programmi LL.M. L’obiettivo è riunire informazioni oggi disperse, difficili da confrontare e talvolta poco chiare.",
+      "La sezione Germania–Stati Uniti raccoglie allo stesso modo le partnership LL.M. tra università tedesche e statunitensi.",
+      "La sezione Italia–Stati Uniti segue lo stesso approccio per i percorsi LL.M tra università italiane e law school statunitensi.",
+      "Poiché un LL.M. negli Stati Uniti è generalmente molto costoso, le partnership con posti riservati, riduzioni delle tasse universitarie o trattamento preferenziale possono offrire un percorso più accessibile. Per alcuni studenti possono anche inserirsi in un progetto di accesso a un esame di abilitazione statunitense.",
+      "Principio fondamentale: non inventare mai informazioni. Le informazioni attendibili mancanti sono contrassegnate come non divulgate. Le informazioni probabili ma non verificate sono contrassegnate per conferma. Le voci con troppi elementi mancanti vengono contrassegnate come incomplete.",
+      "Studenti, gruppi accademici e università possono inviare fonti o correzioni tramite la pagina \"Invia informazioni\".",
+    ],
+  },
 } as const
 
 export default function AboutPage() {

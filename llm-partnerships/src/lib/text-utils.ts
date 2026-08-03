@@ -2,22 +2,25 @@ import translationsRaw from "../../data/text-translations.json"
 import germanyTranslationsRaw from "../../data/germany-translations.json"
 import italyTranslationsRaw from "../../data/italy-translations.json"
 
-export type UiLanguage = "fr" | "en" | "es" | "de"
+export type UiLanguage = "fr" | "en" | "es" | "de" | "it"
 
 const dataTranslations = translationsRaw as {
   en: Record<string, string>
   es: Record<string, string>
   de?: Record<string, string>
+  it?: Record<string, string>
 }
 const germanyDataTranslations = germanyTranslationsRaw as {
   en: Record<string, string>
   es: Record<string, string>
   de?: Record<string, string>
+  it?: Record<string, string>
 }
 const italyDataTranslations = italyTranslationsRaw as {
   en: Record<string, string>
   es: Record<string, string>
   de?: Record<string, string>
+  it?: Record<string, string>
 }
 
 export function cleanText(value: unknown) {
@@ -127,6 +130,21 @@ export const reliabilityCopy = {
       label: "Unvollständige Information",
       description:
         "Für einen Vergleich ohne zusätzliche Prüfung liegen nicht genügend Daten vor.",
+    },
+  },
+  it: {
+    confirmed: {
+      label: "Confermato",
+      description: "Confermato da una fonte ufficiale o recente.",
+    },
+    to_confirm: {
+      label: "Da confermare",
+      description:
+        "Informazione probabile, ma basata su una fonte datata, parziale o non ufficiale.",
+    },
+    incomplete: {
+      label: "Incompleto",
+      description: "Dati insufficienti per il confronto senza ulteriore verifica.",
     },
   },
 } as const

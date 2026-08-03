@@ -21,7 +21,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       stored === "fr" ||
       stored === "en" ||
       stored === "es" ||
-      stored === "de"
+      stored === "de" ||
+      stored === "it"
     ) {
       setLanguage(stored)
     }

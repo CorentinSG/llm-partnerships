@@ -13,11 +13,14 @@
     "translations:verify:germany": "node scripts/verify-germany-translations.mjs",
     "translations:verify:italy": "node scripts/verify-italy-translations.mjs",
     "translations:verify:de": "node scripts/verify-german-locale.mjs",
+    "translations:verify:it": "node scripts/verify-italian-locale.mjs && node scripts/verify-italian-data-translations.mjs",
     "translations:verify:data": "node scripts/verify-data-translations.mjs",
     "test:integration:germany": "node scripts/verify-germany-integration.mjs",
     "test:integration:italy": "node scripts/verify-italy-integration.mjs",
     "test:integration:de": "node scripts/verify-german-integration.mjs",
+    "test:integration:it": "node scripts/verify-italian-integration.mjs",
     "verify:de": "npm run translations:verify:de && npm run translations:verify:data && npm run translations:verify:germany && npm run test:integration:de",
+    "verify:it": "npm run translations:verify:it && npm run translations:verify:data && npm run translations:verify:germany && npm run translations:verify:italy && npm run test:integration:it",
     "test:final-fixes": "node scripts/verify-final-fixes.mjs"
   },
   "dependencies": {

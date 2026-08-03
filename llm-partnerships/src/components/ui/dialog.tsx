@@ -4,7 +4,20 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 
+import { useLanguage } from "@/components/language-provider"
 import { cn } from "@/lib/utils"
+
+function CloseLabel() {
+  const { language } = useLanguage()
+  const label = {
+    fr: "Fermer",
+    en: "Close",
+    es: "Cerrar",
+    de: "Schließen",
+    it: "Chiudi",
+  }[language]
+  return <span className="sr-only">{label}</span>
+}
 
 const Dialog = DialogPrimitive.Root
 const DialogTrigger = DialogPrimitive.Trigger
@@ -43,7 +56,7 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close className="glass-button absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground ring-offset-background transition-colors hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
         <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
+        <CloseLabel />
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>

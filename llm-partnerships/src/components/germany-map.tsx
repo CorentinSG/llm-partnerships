@@ -57,6 +57,17 @@ const mapCopy = {
     selection: "Auswahl:",
     tip: "Tipp: Klicken Sie auf einen Punkt, um die Liste zu filtern (auf Mobilgeräten: Zum Zoomen kneifen).",
   },
+  it: {
+    title: "Mappa (Germania)",
+    clear: "Chiaro",
+    zoomIn: "Ingrandisci",
+    zoomOut: "Rimpicciolisci",
+    resetZoom: "Reimposta lo zoom",
+    reset: "Reset",
+    aria: "Mappa della Germania con punti universitari",
+    selection: "Selezione:",
+    tip: "Suggerimento: fai clic su un punto per filtrare l'elenco (su dispositivi mobili: pizzica per ingrandire).",
+  },
 } as const
 
 export function GermanyMap({

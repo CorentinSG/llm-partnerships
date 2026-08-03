@@ -259,6 +259,66 @@ const guideCopy = {
       },
     ],
   },
+  it: {
+    eyebrow: "Guida",
+    title: "Da laureato in giurisprudenza francese ad avvocato statunitense: un percorso tipico",
+    intro:
+      "Una chiara panoramica di due minuti. Apri ogni passaggio interattivo per maggiori dettagli.",
+    details: "Dettagli",
+    collapse: "Crollo",
+    aria: "Il percorso per diventare avvocato americano",
+    steps: [
+      {
+        title: "1) Definire l'obiettivo",
+        subtitle: "Scegli una giurisdizione e comprendi le sue regole del bar.",
+        content: [
+          "Identificare la giurisdizione di destinazione e confermare l'idoneità con una laurea francese più un LL.M. statunitense.",
+          "Determinare se sono richiesti un LL.M idoneo alla barra e corsi o crediti specifici.",
+          "Stima il budget complessivo, comprese tasse universitarie, assicurazione, visto e alloggio.",
+        ],
+        footnote: "Le regole di ammissione agli avvocati variano a seconda della giurisdizione e possono cambiare.",
+      },
+      {
+        title: "2) Trova il LL.M",
+        subtitle:
+          "Le partnership possono ridurre significativamente il costo di un LL.M.",
+        content: [
+          "Confronta posti riservati, riduzioni delle tasse universitarie, tariffe fisse e borse di studio.",
+          "Controlla il livello accademico, i test di lingua, le scadenze e il processo di candidatura.",
+          "Dare priorità ai programmi in linea con l'obiettivo e il piano di carriera.",
+        ],
+      },
+      {
+        title: "3) Applicare",
+        subtitle:
+          "Le domande possono essere gestite dall'università francese o presentate tramite LSAC.",
+        content: [
+          "Preparare trascrizioni, CV, raccomandazioni, dichiarazioni personali e test di lingua.",
+          "Concedere tempo sufficiente per l'elaborazione dei documenti LSAC, ove richiesto.",
+          "Rispettare le scadenze anticipate, spesso tra dicembre e febbraio.",
+        ],
+      },
+      {
+        title: "4) Completa il LL.M",
+        subtitle: "Scegli i corsi che supportano l'idoneità all'albo, ove pertinente.",
+        content: [
+          "Seleziona i corsi compatibili con i requisiti della giurisdizione di destinazione.",
+          "Gestisci l'assicurazione, il visto, la registrazione e i costi aggiuntivi.",
+          "Conserva programmi, documenti di credito e certificati ufficiali.",
+        ],
+      },
+      {
+        title: "5) Prepararsi per l'esame di abilitazione",
+        subtitle:
+          "Potrebbe essere utile un programma di preparazione dedicato o un semestre extra.",
+        content: [
+          "Conferma i requisiti esatti di credito, corso e tempistica.",
+          "Pianificare la preparazione, il programma, il budget e la logistica del bar.",
+          "Presentare la domanda di ammissibilità secondo le regole della giurisdizione di destinazione.",
+        ],
+      },
+    ],
+  },
 } as const
 
 export function UsLawyerPath({ className }: { className?: string }) {

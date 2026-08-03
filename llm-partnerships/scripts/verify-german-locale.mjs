@@ -12,7 +12,7 @@ assert.match(textUtils, /"fr"\s*\|\s*"en"\s*\|\s*"es"\s*\|\s*"de"/)
 assert.match(provider, /stored === "de"/)
 assert.match(header, /de:\s*"DE"/)
 assert.match(header, /de:\s*"Deutsch"/)
-assert.match(header, /\["fr",\s*"en",\s*"es",\s*"de"\]/)
+assert.match(header, /\["fr",\s*"en",\s*"es",\s*"de",\s*"it"\]/)
 
 const localizedFiles = [
   "src/app/about/page.tsx",

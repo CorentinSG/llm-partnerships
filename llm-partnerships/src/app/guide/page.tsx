@@ -26,6 +26,11 @@ const copy = {
     description:
       "Ein typischer Weg durch die wichtigsten Schritte nach Abschluss des Jurastudiums in Frankreich.",
   },
+  it: {
+    title: "Guida: diventare avvocato negli Stati Uniti",
+    description:
+      "Un tipico percorso attraverso i passaggi chiave dopo aver completato gli studi giuridici in Francia.",
+  },
 } as const
 
 export default function GuidePage() {

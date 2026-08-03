@@ -129,6 +129,30 @@ export function StatsBar({ all }: { all: Partnership[] }) {
         "Wahrscheinliche oder teilweise Informationen, die noch einer Überprüfung bedürfen.",
       incomplete: "Unvollständig",
     },
+    it: {
+      frenchUniversities: "università francesi",
+      universitiesDescription: "Elenco delle università nella directory.",
+      partnerships: "Partenariati",
+      partnershipsDescription:
+        "Numero totale di partnership esclusi i segnaposto incompleti.",
+      listed: "partnership elencate.",
+      countries: "Paesi partner",
+      countriesDescription: "Paesi coperti dai partenariati.",
+      confirmed: "Confermato",
+      confirmedTitle: "Programmi confermati",
+      confirmedDescription: "Voci supportate da dati sufficientemente attendibili.",
+      none: "Nessuno.",
+      noneFeminine: "Nessuno.",
+      toConfirm: "Da confermare",
+      toConfirmAria: "Cosa significa “Da confermare”?",
+      toConfirmDescription:
+        "L'informazione è probabile o parziale, ma non è stata ancora verificata rispetto a una fonte ufficiale oppure la fonte non è aggiornata. Potrebbe quindi cambiare.",
+      viewToConfirm: "Visualizza le voci contrassegnate come \"Da confermare\"",
+      toConfirmTitle: "Voci da confermare",
+      toConfirmListDescription:
+        "Informazioni probabili o parziali che necessitano ancora di verifica.",
+      incomplete: "Incompleto",
+    },
   }[language]
   const real = all.filter((p) => !isPlaceholder(p))
   const frenchUniCount = countUnique(all.map((p) => p.frenchUniversity))

@@ -29,6 +29,7 @@ export function PartnershipDialog({
     en: "Partnership details",
     es: "Detalles del convenio",
     de: "Details zur Partnerschaft",
+    it: "Dettagli del partenariato",
   }[language]
 
   return (

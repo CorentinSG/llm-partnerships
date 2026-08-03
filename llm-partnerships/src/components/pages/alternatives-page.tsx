@@ -45,6 +45,15 @@ const copy = {
     aria: "Suchen Sie nach alternativen Programmen",
     empty: "Keine Ergebnisse.",
   },
+  it: {
+    title: "Percorsi alternativi nel diritto comune nordamericano",
+    intro:
+      "Questa sezione presenta programmi, spesso francofoni o situati fuori dagli Stati Uniti, rivolti agli studenti francesi interessati al common law nordamericano senza seguire un LL.M. statunitense o una partnership diretta Francia–Stati Uniti.",
+    search: "Ricerca",
+    placeholder: "Università, programma, paese, materie…",
+    aria: "Cerca programmi alternativi",
+    empty: "Nessun risultato.",
+  },
 } as const
 
 export function AlternativesPage() {

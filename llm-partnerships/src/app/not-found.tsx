@@ -31,6 +31,12 @@ const copy = {
     action: "Zurück nach Hause",
     body: "Überprüfen Sie die URL oder kehren Sie zum Verzeichnis zurück.",
   },
+  it: {
+    title: "Non trovato",
+    description: "Questa pagina non esiste",
+    action: "Torna alla home",
+    body: "Controlla l'URL o torna alla directory.",
+  },
 } as const
 
 export default function NotFound() {

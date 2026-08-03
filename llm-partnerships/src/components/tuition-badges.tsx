@@ -26,7 +26,13 @@ const labels: Record<UiLanguage, Record<string, string>> = {
     "frais réduits": "Reduzierte Studiengebühren",
     "frais complets": "Voller Unterricht",
     "bourse possible": "Stipendium möglich"
-  }
+  },
+  it: {
+    "sans frais": "Senza tasse universitarie",
+    "frais réduits": "Tasse universitarie ridotte",
+    "frais complets": "Tasse universitarie complete",
+    "bourse possible": "Borsa di studio possibile"
+  },
 }
 
 export function TuitionBadges({

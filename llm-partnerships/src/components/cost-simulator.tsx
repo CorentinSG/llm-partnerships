@@ -357,6 +357,85 @@ const copy = {
     visaNote:
       "Schätzung basierend auf MRV 185 $ und SEVIS I-901: F/M 350 $, J 220 $. Die Gebühr für die Ausstellung eines Visums hängt von der Nationalität ab.",
   },
+  it: {
+    badge: "Simulatore di studenti",
+    title: "Preventivo annuale LL.M.: tariffa pubblica e partnership",
+    intro:
+      "Le tasse universitarie possono essere la voce principale di un LL.M. negli Stati Uniti, ma non sono l'unica: incidono anche visto, libri, alloggio, pasti, trasporti, assicurazione e voli. Confronta la tariffa pubblica con quella della partnership, poi adegua le spese alle tue scelte.",
+    city: "1. Città",
+    school: "Scuola di riferimento",
+    partnership: "2. Partenariato",
+    offer: "3. Offerta applicata",
+    visa: "4. Situazione dei visti",
+    barJurisdiction: "5. Giurisdizione dell’esame di abilitazione",
+    noPartnership: "Nessuna partnership specifica",
+    noOffer: "Tariffa pubblica",
+    publicTuition: "Tasse universitarie annuali pubbliche",
+    partnerTuition: "Tasse universitarie con partnership",
+    savings: "Risparmio sulle tasse universitarie",
+    fixedCosts: "Costi fissi annuali",
+    visaCosts: "Spese per il visto stimate",
+    livingCosts: "Costo della vita modificabile",
+    healthInsurance: "Assicurazione sanitaria",
+    flights: "Voli Francia-USA",
+    frenchUniversityFees:
+      "Possibili tasse presso l'università francese",
+    nyBarExamFee: "Esame di avvocato di New York: tassa per i candidati stranieri",
+    nyBarLaptop: "Esame di avvocato di New York: tariffa per laptop",
+    nyleFee: "NYLE - esame online",
+    mpreFee: "MPRE - responsabilità professionale",
+    barPrep: "Preparazione della barra",
+    barExamLogistics: "Alloggio e trasporto per l'esame di abilitazione",
+    nyleHelp:
+      "Il NYLE è il New York Law Exam: un esame online specifico per New York, separato dall'UBE, richiesto per l'ammissione a New York.",
+    mpreHelp:
+      "L'MPRE è l'esame nazionale di responsabilità professionale richiesto da molte giurisdizioni statunitensi, tra cui New York, California, DC e Washington.",
+    laptopHelp:
+      "Questo copre le spese per laptop o software per esami. L'importo dipende dalla giurisdizione e dall'amministrazione dell'esame.",
+    barPrepHelp:
+      "Il costo di preparazione dipende dal fornitore e dal pacchetto. Themis e BARBRI sono fornitori di riferimento comuni per questa stima. Sconti o borse di studio potrebbero essere disponibili attraverso alcune partnership con scuole di diritto statunitensi, quindi il costo finale può variare in modo significativo.",
+    barJurisdictionNote:
+      "L'idoneità per gli avvocati formati all'estero dipende dalla giurisdizione, dalla laurea in giurisprudenza, dal LL.M. e dai corsi richiesti. Verifica sempre le regole ufficiali prima di fare domanda.",
+    publicTotal: "Bilancio annuale senza partenariato",
+    partnerTotal: "Budget annuale con partenariato",
+    showEuros: "Mostra EUR",
+    showDollars: "Mostra USD",
+    euroEstimateNote: "Conversione indicativa: $1 ≈ €0,879.",
+    studentCosts: "Modifica il tuo stile di vita",
+    studentCostsHelp:
+      "Questi cursori modificano solo i costi determinati dall'alloggio, dai pasti, dai trasporti, dall'assicurazione, dai voli, dalla preparazione del bar o dalle scelte di spesa personali.",
+    lean: "pendere",
+    reference: "riferimento",
+    comfortable: "comodo",
+    costBreakdown: "Dettagli del calcolo annuale",
+    fixedHint:
+      "Tasse scolastiche, libri, visto e esami obbligatori rimangono fissi. Solo i costi di soggiorno e preparazione sopra indicati sono interattivi.",
+    methodology: "Metodologia",
+    cityPartners: "Città e partner corrispondenti",
+    otherCosts: "Costo della vita comune",
+    sources: "Fonti ufficiali",
+    booksHelp:
+      "Questa voce copre libri e forniture accademiche: libri di testo richiesti, materiale didattico, stampa, accesso al database o attrezzature richieste dalla scuola. Non è una spesa di soggiorno liberamente regolabile.",
+    frenchUniversityFeesHelp:
+      "Stima degli importi che possono restare dovuti all’università francese: iscrizione amministrativa, eventuale CVEC, diritti di iscrizione, spese di diploma o altri contributi locali. Non si tratta delle tasse universitarie statunitensi.",
+    freeSeat: "Posto senza tasse universitarie presso il partner",
+    reducedSeat: "Posto con tasse universitarie ridotte",
+    scholarshipSeat: "Borsa di studio o sconto possibile",
+    percentSeat: "Sconto del {percent}%",
+    referenceAmount: "importo pubblicato",
+    publicRate: "Prezzo pubblico normale",
+    partnerRate: "Prezzo dopo la partnership",
+    unsupportedSchool: "Nessun preventivo di riferimento",
+    unsupportedEstimate:
+      "Non è disponibile una stima del costo annuale per questa destinazione. La partnership rimane visibile, ma nessun LL.M. il totale sarà inventato.",
+    visaNone: "Nessun costo del visto da includere",
+    visaF1: "F-1 iniziale: MRV + SEVIS",
+    visaJ1: "Iniziale J-1: MRV + SEVIS",
+    visaSevisOnly: "Solo SEVIS",
+    visaRenewal: "Rinnovo del visto: MRV",
+    visaNote:
+      "Stima basata su MRV $185 e SEVIS I-901: F/M $350, J $220. Eventuali spese per il rilascio del visto dipendono dalla nazionalità.",
+  },
 } as const
 
 type VisaOption = {
@@ -424,6 +503,13 @@ function getBarJurisdictionOptions(
       dc: "Möglich mit 26 Credits an einer von der ABA anerkannten juristischen Fakultät, die sich im Wesentlichen auf UBE-geprüfte Fächer konzentriert, vorbehaltlich der Genehmigung.",
       wa: "Möglich für einige ausländische Juraabsolventen mit einem ABA LL.M. unter APR 3, abhängig von Ausbildung und bisheriger Praxis.",
       wi: "Möglich für einige ausländische Juraabsolventen mit einem LL.M. oder einem anderen fortgeschrittenen Juraabschluss einer von der ABA anerkannten juristischen Fakultät, vorbehaltlich der Prüfung und der Bedingungen in Wisconsin.",
+    },
+    it: {
+      ny: "Il LL.M. più comune percorso: possibile se la laurea in giurisprudenza estera e il LL.M. soddisfare i requisiti della regola 520.6.",
+      ca: "Possibile per alcuni candidati istruiti all'estero, dopo la valutazione della formazione giuridica e/o studi supplementari richiesti.",
+      dc: "Possibile con 26 crediti presso una scuola di diritto approvata dall'ABA sostanzialmente concentrata su materie testate dall'UBE, previa approvazione.",
+      wa: "Possibile per alcuni laureati in giurisprudenza stranieri con un ABA LL.M. sotto APR 3, a seconda dell'istruzione e della pratica precedente.",
+      wi: "Possibile per alcuni laureati in giurisprudenza stranieri con un LL.M. o altra laurea in giurisprudenza avanzata presso una scuola di diritto approvata dall'ABA, soggetta alla revisione e alle condizioni del Wisconsin.",
     },
   }[language]
 

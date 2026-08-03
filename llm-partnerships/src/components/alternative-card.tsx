@@ -24,6 +24,8 @@ const copy = {
     francophone: "Étudiants FR/BE francophones :",
     international: "Internationaux :",
     missing: "À compléter",
+    commonLawRoute: "Parcours alternatif en common law",
+    notUsLlm: "Pas un LL.M. américain",
   },
   en: {
     route: "Alternative route",
@@ -39,6 +41,8 @@ const copy = {
     francophone: "French/Belgian French-speaking students:",
     international: "International students:",
     missing: "Missing information",
+    commonLawRoute: "Alternative common law route",
+    notUsLlm: "Not a U.S. LL.M.",
   },
   es: {
     route: "Vía alternativa",
@@ -54,6 +58,8 @@ const copy = {
     francophone: "Estudiantes francófonos de Francia/Bélgica:",
     international: "Estudiantes internacionales:",
     missing: "Información pendiente",
+    commonLawRoute: "Vía alternativa de common law",
+    notUsLlm: "No es un LL.M. estadounidense",
   },
   de: {
     route: "Alternativroute",
@@ -69,6 +75,25 @@ const copy = {
     francophone: "Französisch-/belgischsprachige Studierende:",
     international: "Internationale Studierende:",
     missing: "Fehlende Informationen",
+    commonLawRoute: "Alternativer Common-Law-Weg",
+    notUsLlm: "Kein US-amerikanischer LL.M.",
+  },
+  it: {
+    route: "Percorso alternativo",
+    source: "Fonte ufficiale",
+    summary: "Riepilogo",
+    relevance: "Perché potrebbe essere rilevante",
+    format: "Formato",
+    language: "Lingua",
+    pace: "Ritmo di studio",
+    warning: "Avviso di ammissione al bar",
+    admission: "Requisiti di ammissione (estratto)",
+    fees: "Commissioni (stime ufficiali)",
+    francophone: "Studenti francofoni francesi/belgi:",
+    international: "Studenti internazionali:",
+    missing: "Informazioni mancanti",
+    commonLawRoute: "Percorso alternativo di common law",
+    notUsLlm: "Non è un LL.M. statunitense",
   },
 } as const
 
@@ -83,8 +108,8 @@ export function AlternativeCard({ item }: { item: AlternativeItem }) {
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="outline">{t.route}</Badge>
-            <Badge variant="secondary">Alternative common law route</Badge>
-            <Badge variant="muted">Not a U.S. LL.M.</Badge>
+            <Badge variant="secondary">{t.commonLawRoute}</Badge>
+            <Badge variant="muted">{t.notUsLlm}</Badge>
           </div>
           <div className="text-lg font-semibold tracking-tight sm:text-xl">
             {item.programName}

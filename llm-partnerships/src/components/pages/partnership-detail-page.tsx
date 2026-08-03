@@ -14,6 +14,7 @@ const copy = {
   en: { back: "Back to search" },
   es: { back: "Volver a la búsqueda" },
   de: { back: "Zurück zur Suche" },
+  it: { back: "Torna alla ricerca" },
 } as const
 
 export function PartnershipDetailPage({

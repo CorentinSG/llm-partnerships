@@ -20,6 +20,7 @@ export function ThemeToggle() {
     en: isDark ? "Use light mode" : "Use dark mode",
     es: isDark ? "Activar modo claro" : "Activar modo oscuro",
     de: isDark ? "Verwenden Sie den Lichtmodus" : "Verwenden Sie den Dunkelmodus",
+    it: isDark ? "Utilizza la modalità luce" : "Utilizza la modalità oscura",
   }[language]
 
   return (

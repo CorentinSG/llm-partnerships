@@ -32,6 +32,7 @@ const copy = {
     name: "Nom",
     namePlaceholder: "Ton nom",
     email: "Email",
+    website: "Site web",
     frenchUniversity: "Université française concernée",
     frenchUniversityPlaceholder: "Ex. Paris 1, Assas, Lyon 3…",
     partnerUniversity: "Université partenaire",
@@ -78,6 +79,7 @@ const copy = {
     name: "Name",
     namePlaceholder: "Your name",
     email: "Email",
+    website: "Website",
     frenchUniversity: "French university concerned",
     frenchUniversityPlaceholder: "e.g. Paris 1, Assas, Lyon 3",
     partnerUniversity: "Partner university",
@@ -124,6 +126,7 @@ const copy = {
     name: "Nombre",
     namePlaceholder: "Tu nombre",
     email: "Email",
+    website: "Sitio web",
     frenchUniversity: "Universidad francesa",
     frenchUniversityPlaceholder: "Ej. Paris 1, Assas, Lyon 3",
     partnerUniversity: "Universidad asociada",
@@ -170,6 +173,7 @@ const copy = {
     name: "Name",
     namePlaceholder: "Ihr Name",
     email: "E-Mail",
+    website: "Website",
     frenchUniversity: "Französische Universität betroffen",
     frenchUniversityPlaceholder: "z.B. Paris 1, Assas, Lyon 3",
     partnerUniversity: "Partneruniversität",
@@ -198,6 +202,53 @@ const copy = {
       "Fügen Sie nach Möglichkeit einen offiziellen Link hinzu.",
       "Geben Sie für das Feedback der Studierenden das Jahr oder die Kohorte an.",
       "Markieren Sie unsichere Informationen deutlich, anstatt zu raten.",
+    ],
+  },
+  it: {
+    title: "Invia informazioni",
+    description:
+      "Invia una correzione, dettagli aggiuntivi o una nuova partnership. Il messaggio viene inviato via email per la revisione prima che venga aggiunto qualsiasi cosa al sito web.",
+    requiredError: "Si prega di completare tutti i campi obbligatori prima di inviare.",
+    configError:
+      "L'invio di email non è configurato al momento. Per favore riprova più tardi.",
+    genericError: "Qualcosa è andato storto. Per favore riprova tra un attimo.",
+    sendError: "Invio non riuscito",
+    success: "Grazie, il tuo messaggio è stato inviato.",
+    successDetail:
+      "Verrà esaminato prima dell'aggiornamento del sito web. Potrei verificare la fonte o contattarti all'indirizzo email fornito.",
+    another: "Invia un altro elemento",
+    name: "Nome",
+    namePlaceholder: "Il tuo nome",
+    email: "E-mail",
+    website: "Sito web",
+    frenchUniversity: "Università francese interessata",
+    frenchUniversityPlaceholder: "per esempio. Parigi 1, Assas, Lione 3",
+    partnerUniversity: "Università partner",
+    partnerUniversityPlaceholder: "per esempio. Fordham, Georgetown",
+    type: "Tipo di informazioni",
+    typePlaceholder:
+      "ad es. tasse universitarie, TOEFL, selezione, posti disponibili, accordo sospeso",
+    message: "Messaggio",
+    messagePlaceholder:
+      "Spiega con precisione cosa dovrebbe essere aggiunto o corretto, fornendo il maggior contesto possibile.",
+    source: "Collegamento alla fonte",
+    mailNotice:
+      "Il modulo invia una proposta via e-mail. Niente viene pubblicato automaticamente: ogni contributo viene esaminato prima di essere aggiunto.",
+    required:
+      "Campi obbligatori: nome, email, università francese, tipo di informazioni e messaggio.",
+    sending: "Invio…",
+    submit: "Invia proposta",
+    canSend: "Cosa puoi inviare",
+    sendItems: [
+      "Una nuova partnership LL.M o correzione di una voce esistente.",
+      "Test linguistici, tasse universitarie, borse di studio, posti, scadenze o procedura di selezione.",
+      "Accordi sospesi, aggiornamenti ufficiali o feedback degli studenti forniti.",
+    ],
+    practices: "Buone pratiche",
+    practiceItems: [
+      "Aggiungi un collegamento ufficiale quando possibile.",
+      "Per il feedback degli studenti, specificare l'anno o il gruppo.",
+      "Contrassegna chiaramente le informazioni incerte invece di indovinare.",
     ],
   },
 } as const
@@ -405,7 +456,7 @@ export function SubmitInformationForm() {
                 </div>
 
                 <div className="hidden" aria-hidden="true">
-                  <Label htmlFor="website">Website</Label>
+                  <Label htmlFor="website">{t.website}</Label>
                   <Input
                     id="website"
                     name="website"

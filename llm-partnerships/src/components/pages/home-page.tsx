@@ -29,9 +29,28 @@ import {
   getFilterOptions,
   getFrenchUniversitiesPoints,
 } from "@/lib/data"
-import { reliabilityCopy, type UiLanguage } from "@/lib/text-utils"
+import {
+  reliabilityCopy,
+  translateDataText,
+  type UiLanguage,
+} from "@/lib/text-utils"
+import type { Partnership } from "@/lib/types"
 
 const RESULTS_PAGE_SIZE = 12
+
+function getLocalizedSearchText(
+  partnership: Partnership,
+  language: UiLanguage,
+) {
+  const values: string[] = []
+  function collect(value: unknown) {
+    if (typeof value === "string") values.push(translateDataText(value, language))
+    else if (Array.isArray(value)) value.forEach(collect)
+    else if (value && typeof value === "object") Object.values(value).forEach(collect)
+  }
+  collect(partnership)
+  return values.join(" ")
+}
 
 const pageCopy = {
   fr: {
@@ -181,6 +200,42 @@ const pageCopy = {
     unitedStates: "Vereinigte Staaten",
     sheetHint: "Ergebnisse verfeinern. Jederzeit zurücksetzen.",
   },
+  it: {
+    chipA: "Obiettivo abilitazione USA",
+    chipB: "LL.M. partner",
+    title: "Trova un LL.M statunitense tramite un'università francese.",
+    intro:
+      "Un LL.M. negli Stati Uniti è un titolo giuridico post-laurea di un anno che può consentire ai giuristi formati all’estero di accedere ad alcuni esami di abilitazione, in particolare quello di New York.",
+    intro2:
+      "Le tasse universitarie sono spesso il costo principale di un LL.M. Questa directory raccoglie le partnership tra università francesi e law school statunitensi che offrono riduzioni, borse di studio o talvolta esenzioni complete.",
+    searchCta: "Cerca una partnership",
+    costCta: "Calcola il budget annuale",
+    faqCta: "Apri le domande frequenti",
+    germanyCta: "Esplora la directory Germania–Stati Uniti",
+    searchTitle: "Ricerca globale",
+    searchHint: "Cerca per città, scuola o test, quindi perfeziona con i filtri.",
+    searchPlaceholder: "Università, paese, test, programma...",
+    filters: "Filtri",
+    reset: "Reimposta",
+    noFilter: "Nessun filtro attivo",
+    activeFilters: "filtri attivi",
+    results: "risultati",
+    shown: "mostrato di",
+    naturalScroll: "Scorrimento naturale delle pagine",
+    backToSearch: "Torna alla ricerca",
+    morePrefix: "",
+    moreSuffix: "risultato/i rimanente/i.",
+    showMore: "Mostrane altri 12",
+    allShown: "Vengono visualizzati tutti i risultati corrispondenti.",
+    noResult: "Nessun risultato. Prova a rimuovere alcuni filtri o ad ampliare la ricerca.",
+    legendTitle: "Legenda dello stato dell'offerta",
+    language: "Lingua",
+    quickReduced: "Nessuna tassa universitaria presso il partner",
+    quickConfirmed: "Confermato",
+    france: "Francia",
+    unitedStates: "Stati Uniti",
+    sheetHint: "Perfezionare i risultati. Reimposta in qualsiasi momento.",
+  },
 } as const
 
 export function HomePage() {
@@ -198,8 +253,11 @@ export function HomePage() {
   const t = pageCopy[language]
 
   const filtered = React.useMemo(
-    () => filterPartnerships(all, searchQuery, filters),
-    [all, searchQuery, filters],
+    () =>
+      filterPartnerships(all, searchQuery, filters, (partnership) =>
+        getLocalizedSearchText(partnership, language),
+      ),
+    [all, searchQuery, filters, language],
   )
 
   React.useEffect(() => {
@@ -332,7 +390,7 @@ export function HomePage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder={t.searchPlaceholder}
                     className="h-12 rounded-xl pl-9 text-base sm:text-sm"
-                    aria-label="Recherche globale"
+                    aria-label={t.searchTitle}
                   />
                 </div>
                 <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -393,7 +451,7 @@ export function HomePage() {
                   </SheetTrigger>
                   <SheetContent className="w-[92vw] overflow-y-auto sm:max-w-md">
                     <SheetHeader>
-                      <SheetTitle>Filtres</SheetTitle>
+                      <SheetTitle>{t.filters}</SheetTitle>
                       <SheetDescription>{t.sheetHint}</SheetDescription>
                     </SheetHeader>
                     <div className="mt-6">
