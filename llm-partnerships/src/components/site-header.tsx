@@ -97,6 +97,7 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "France–États-Unis",
       germanyUs: "Allemagne–États-Unis",
       italyUs: "Italie–États-Unis",
+      ukUs: "Royaume-Uni–États-Unis",
       menu: "Menu",
     },
     en: {
@@ -109,6 +110,7 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "France–United States",
       germanyUs: "Germany–United States",
       italyUs: "Italy–United States",
+      ukUs: "United Kingdom–United States",
       menu: "Menu",
     },
     es: {
@@ -121,6 +123,7 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "Francia–Estados Unidos",
       germanyUs: "Alemania–Estados Unidos",
       italyUs: "Italia–Estados Unidos",
+      ukUs: "Reino Unido–Estados Unidos",
       menu: "Menú",
     },
     de: {
@@ -133,6 +136,7 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "Frankreich–USA",
       germanyUs: "Deutschland–USA",
       italyUs: "Italien–USA",
+      ukUs: "Vereinigtes Königreich–USA",
       menu: "Menü",
     },
     it: {
@@ -145,6 +149,7 @@ export function SiteHeader({ className }: { className?: string }) {
       franceUs: "Francia–Stati Uniti",
       germanyUs: "Germania–Stati Uniti",
       italyUs: "Italia–Stati Uniti",
+      ukUs: "Regno Unito–Stati Uniti",
       menu: "Menu",
     },
   }[language]
@@ -184,6 +189,9 @@ export function SiteHeader({ className }: { className?: string }) {
             </Button>
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/italy">{t.italyUs}</Link>
+            </Button>
+            <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
+              <Link href="/uk">{t.ukUs}</Link>
             </Button>
             <Button asChild variant="ghost" size="sm" className="px-2 text-xs">
               <Link href="/about">{t.about}</Link>
@@ -247,6 +255,13 @@ export function SiteHeader({ className }: { className?: string }) {
                     className="h-11 justify-start"
                   >
                     <Link href="/italy">{t.italyUs}</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="ghost"
+                    className="h-11 justify-start"
+                  >
+                    <Link href="/uk">{t.ukUs}</Link>
                   </Button>
                   <Button
                     asChild

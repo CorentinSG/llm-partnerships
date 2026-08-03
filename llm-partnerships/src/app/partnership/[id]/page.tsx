@@ -4,6 +4,7 @@ import { PartnershipDetailPage as PartnershipDetailContent } from "@/components/
 import { getAnyPartnershipById } from "@/lib/data"
 import { getGermanPartnershipById } from "@/lib/germany-data"
 import { getItalianPartnershipById } from "@/lib/italy-data"
+import { getUkPartnershipById } from "@/lib/uk-data"
 
 export default async function PartnershipDetailPage({
   params,
@@ -12,7 +13,9 @@ export default async function PartnershipDetailPage({
 }) {
   const { id } = await params
   const partnership =
-    getAnyPartnershipById(id) ?? getItalianPartnershipById(id)
+    getAnyPartnershipById(id) ??
+    getItalianPartnershipById(id) ??
+    getUkPartnershipById(id)
   if (!partnership) notFound()
 
   return (
@@ -23,7 +26,9 @@ export default async function PartnershipDetailPage({
           ? "germany"
           : getItalianPartnershipById(id)
             ? "italy"
-            : "france"
+            : getUkPartnershipById(id)
+              ? "uk"
+              : "france"
       }
     />
   )
