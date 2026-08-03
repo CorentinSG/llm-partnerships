@@ -13,14 +13,19 @@ const { getAllUkPartnerships, getUkUniversitiesPoints } = jiti(
 const partnerships = getAllUkPartnerships()
 const institutions = getUkUniversitiesPoints()
 
-assert.equal(institutions.length, 4, "The UK directory must contain four institutions")
-assert.equal(partnerships.length, 5, "The UK directory must expose five LL.M. pathways")
-assert.equal(new Set(partnerships.map(({ id }) => id)).size, 5, "UK pathway IDs must be unique")
-assert.equal(
-  partnerships.filter(({ partnerUniversity }) => partnerUniversity.includes("Georgetown")).length,
-  2,
-  "King's–Georgetown must expose both LL.M. degrees",
-)
+const expectedIds = new Set([
+  "qmul-william-mary",
+  "kcl-georgetown-dual",
+  "kcl-ctls-georgetown",
+  "greenwich-mitchell-hamline",
+  "middlesex-case-western",
+  "bristol-cardozo",
+])
+
+assert.equal(institutions.length, 5, "The UK directory must contain five institutions")
+assert.equal(partnerships.length, 6, "The UK directory must expose six active LL.M. pathways")
+assert.deepEqual(new Set(partnerships.map(({ id }) => id)), expectedIds)
+assert.equal(partnerships.some(({ id }) => /dundee|hull/i.test(id)), false)
 assert.deepEqual(
   new Set(partnerships.map(({ frenchUniversity }) => frenchUniversity)),
   new Set(institutions.map(({ frenchUniversity }) => frenchUniversity)),
@@ -39,14 +44,24 @@ for (const partnership of partnerships) {
   assert.ok(partnership.notes.length > 20, `${partnership.id} needs a user-facing caveat`)
 }
 
-const dundee = partnerships.find(({ id }) => id === "dundee-auwcl-exchange")
-assert.ok(dundee, "Dundee–AUWCL pathway is required")
-assert.match(dundee.shortDescription, /ne délivre pas.*LL\.M|aucun LL\.M/i)
-assert.match(dundee.duration, /un semestre/i)
-assert.match(dundee.notes, /12 crédits|admission distincte/i)
+const qmul = partnerships.find(({ id }) => id === "qmul-william-mary")
+assert.match(qmul.financialAid, /billet|tuition|logement|allocation/i)
+
+const kclDual = partnerships.find(({ id }) => id === "kcl-georgetown-dual")
+assert.match(kclDual.notes, /New York Bar/i)
+
+const ctls = partnerships.find(({ id }) => id === "kcl-ctls-georgetown")
+assert.match(ctls.tuitionDisplay, /50 %/)
+
+const greenwich = partnerships.find(({ id }) => id === "greenwich-mitchell-hamline")
+assert.match(greenwich.financialAid, /50 %/)
+
+const middlesex = partnerships.find(({ id }) => id === "middlesex-case-western")
+assert.match(middlesex.availableSeatsDisplay, /deux/i)
 
 const bristol = partnerships.find(({ id }) => id === "bristol-cardozo")
 assert.match(bristol.tuitionDisplay, /77 602 USD/)
 assert.match(bristol.tuitionDisplay, /50 %/)
+assert.match(bristol.sourceNote, /Bristol.*Cardozo/i)
 
 console.log(`UK dataset verified: ${institutions.length} institutions, ${partnerships.length} pathways`)
