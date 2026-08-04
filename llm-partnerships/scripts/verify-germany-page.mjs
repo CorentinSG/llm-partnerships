@@ -76,6 +76,9 @@ assert.match(
 )
 assert.match(pageComponent, /Trouvez un LL\.M/)
 assert.match(pageComponent, /Encuentra un LL\.M estadounidense/)
+assert.match(pageComponent, /27 parcours auprès de 13 facultés allemandes/)
+assert.match(pageComponent, /data-germany-safeguards/)
+assert.match(pageComponent, /Aucune fiche ne garantit l’admission, une bourse ou l’éligibilité à un barreau américain/)
 
 assert.match(filtersPanel, /originUniversityLabel,?/)
 assert.match(filtersPanel, /originUniversityLabel\?: string/)
@@ -90,7 +93,7 @@ assert.match(route, /return <GermanyHomePage \/>/)
 
 assert.match(detailRoute, /getAnyPartnershipById\(id\)/)
 assert.match(detailRoute, /getGermanPartnershipById\(id\)/)
-assert.match(detailPage, /origin === "germany" \? "\/germany" : "\/"/)
+assert.match(detailPage, /origin === "germany"[\s\S]*?\? "\/germany"/)
 assert.match(costSimulator, /originConfig\?: CostSimulatorOriginConfig/)
 assert.match(
   costSimulator,

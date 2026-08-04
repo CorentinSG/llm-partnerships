@@ -8,8 +8,8 @@ const jiti = jitiModule(import.meta.url, {
   alias: { "@": fileURLToPath(new URL("../src", import.meta.url)) },
 })
 
-assert.equal(database.frenchUniversities.length, 8, "expected 8 German faculties")
-assert.equal(database.partnerships.length, 16, "expected 16 German pathways")
+assert.equal(database.frenchUniversities.length, 13, "expected 13 German faculties")
+assert.equal(database.partnerships.length, 27, "expected 27 German pathways")
 
 const universityIds = database.frenchUniversities.map(({ id }) => id)
 const partnershipIds = database.partnerships.map(({ id }) => id)
@@ -19,15 +19,19 @@ assert.equal(new Set(partnershipIds).size, partnershipIds.length, "duplicate par
 const statuses = new Set(["confirmed", "to_confirm", "incomplete"])
 const applicationProcesses = new Set(["internal", "lsac", "non_communique"])
 const officialHosts = new Set([
-  "law.vanderbilt.edu",
   "www.jura.fu-berlin.de",
   "www.jura.hhu.de",
   "www.jura.uni-freiburg.de",
+  "www.jura.uni-hamburg.de",
+  "www.jura.uni-konstanz.de",
+  "www.ipr.uni-heidelberg.de",
+  "www.commonlaw.jura.uni-passau.de",
   "www.rewi.hu-berlin.de",
+  "www.rewi.uni-jena.de",
   "www.uni-augsburg.de",
-  "www.uni-mannheim.de",
+  "www.uni-giessen.de",
   "www.uni-muenster.de",
-  "www.uni-regensburg.de",
+  "zib.jura.uni-koeln.de",
 ])
 const requiredStringFields = [
   "partnerUniversity",
@@ -101,7 +105,7 @@ const muenster = getPartnership("muenster-uconn-pathway")
 assert.equal(muenster.availableSeatsMax, 4, "Münster source publishes up to 4 nominations")
 assert.match(muenster.availableSeatsDisplay, /\b4\b/, "Münster seat display must show 4 nominations")
 assert.match(muenster.applicationDeadline, /30 août 2026/, "Münster deadline must be dated 30 August 2026")
-assert.match(muenster.sourceNote, /26 juillet 2026/, "Münster source verification must be dated")
+assert.match(muenster.sourceNote, /3 août 2026/, "Münster source verification must be dated")
 assert.doesNotMatch(JSON.stringify(muenster), /sept nominations|7 nominations/i, "stale Münster quota")
 
 const humboldt = getPartnership("humboldt-berlin-minnesota-llm")
@@ -127,15 +131,31 @@ assert.ok(
   "Humboldt missing information must be limited to tuition",
 )
 
-const mannheim = getPartnership("mannheim-uconn-llm-pathway")
-assert.equal(mannheim.reliabilityStatus, "to_confirm", "Mannheim–UConn current operations are unverified")
-assert.match(mannheim.sourceNote, /5 février 2024/, "Mannheim evidence date must be explicit")
-assert.match(mannheim.sourceNote, /historique/i, "Mannheim evidence must be labelled historical")
-assert.match(
-  mannheim.sourceNote,
-  /modalités opérationnelles actuelles non vérifiées/i,
-  "Mannheim current operational terms must be marked unverified",
-)
+for (const id of [
+  "fu-berlin-cardozo-alumni",
+  "fu-berlin-georgetown-ctls",
+  "passau-tulane-exchange-credit",
+  "heidelberg-pepperdine-dispute-resolution",
+  "konstanz-loyola-llm",
+  "hamburg-loyola-llm",
+  "jena-illinois-partner-scholar",
+  "giessen-wisconsin-llm",
+  "cologne-duquesne-llm",
+]) {
+  getPartnership(id)
+}
+
+for (const excludedId of [
+  "passau-tulane-scholarship-2025",
+  "cologne-berkeley-partner-scholarship",
+  "potsdam-illinois-llm",
+]) {
+  assert.equal(
+    database.partnerships.some(({ id }) => id === excludedId),
+    false,
+    `non-current or insufficiently supported pathway must stay excluded: ${excludedId}`,
+  )
+}
 
 for (const augsburg of database.partnerships.filter(({ frenchUniversityId }) => frenchUniversityId === "augsburg")) {
   assert.match(augsburg.applicationDeadline, /30 novembre 2026/, `Augsburg deadline must be dated: ${augsburg.id}`)
@@ -150,7 +170,7 @@ const {
 const { getAllPartnerships, getAnyPartnershipById, getPartnershipById } = await jiti.import("../src/lib/data.ts")
 
 const germanPartnerships = getAllGermanPartnerships()
-assert.equal(germanPartnerships.length, 16, "German loader must expose all 16 pathways")
+assert.equal(germanPartnerships.length, 27, "German loader must expose all 27 pathways")
 
 const germanPathway = getGermanPartnershipById("humboldt-berlin-minnesota-llm")
 assert.equal(germanPathway?.partnerUniversity, "University of Minnesota Law School")
@@ -169,7 +189,7 @@ assert.equal(
 assert.equal(getGermanPartnershipById("missing-pathway"), undefined)
 
 const germanPoints = getGermanUniversitiesPoints()
-assert.equal(germanPoints.length, 8, "German loader must expose all 8 faculties as map points")
+assert.equal(germanPoints.length, 13, "German loader must expose all 13 faculties as map points")
 const augsburg = database.frenchUniversities.find(({ id }) => id === "augsburg")
 assert.ok(augsburg, "expected Augsburg in the raw German database")
 assert.deepEqual(germanPoints.find(({ frenchUniversity }) => frenchUniversity === augsburg.name), {
@@ -202,4 +222,4 @@ const frenchPathway = getAllPartnerships()[0]
 assert.equal(getAnyPartnershipById(frenchPathway.id)?.id, getPartnershipById(frenchPathway.id)?.id)
 assert.equal(getAnyPartnershipById("missing-pathway"), undefined)
 
-console.log("German dataset verified: 8 faculties, 16 pathways")
+console.log("German dataset verified: 13 faculties, 27 pathways")

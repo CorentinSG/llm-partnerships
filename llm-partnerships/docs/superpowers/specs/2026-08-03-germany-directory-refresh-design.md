@@ -9,7 +9,7 @@ Replace the current partial German directory with the materially more complete r
 - Use the `Partnerschaften` tab as the canonical research input and the `Ausgeschlossene Abkommen` and `Analysen` tabs as exclusion and interpretation controls.
 - Publish rows whose pathway is active and whose reliability score is at least 4.
 - Do not publish DE-US-011 (expired cohort), DE-US-019 (one-sided evidence, score 3), or DE-US-020 (undocumented/stale, score 2) as current opportunities.
-- Split aggregate rows by U.S. law school because each website card, map destination, filter option, and cost-simulator option represents one destination. This yields 27 cards across 14 German faculties from 17 qualifying sheet rows.
+- Split aggregate rows by U.S. law school because each website card, map destination, filter option, and cost-simulator option represents one destination. This yields 27 cards across 13 German faculties from 17 qualifying sheet rows.
 - Preserve dated or conditional terms as dated or conditional. Never turn a nomination, historical discount, exchange waiver, or possible credit transfer into guaranteed LL.M. admission or free LL.M. tuition.
 
 ## User experience
@@ -24,4 +24,4 @@ French remains the canonical data language. Every new user-visible canonical str
 
 ## Verification
 
-Automated checks must enforce 14 faculties, 27 unique pathways, the required new IDs, the three excluded IDs, valid official HTTPS sources, full five-language coverage, unchanged counts for other countries, mobile-safe layout, map accessibility, pagination, search, filters, detail routing, and cost-simulator inclusion.
+Automated checks must enforce 13 faculties, 27 unique pathways, the required new IDs, the three excluded IDs, valid official HTTPS sources, full five-language coverage, unchanged counts for other countries, mobile-safe layout, map accessibility, pagination, search, filters, detail routing, and cost-simulator inclusion.

@@ -74,6 +74,11 @@ try {
   const germanyMap = page.getByRole("img", {
     name: "Map of Germany with university points",
   })
+  assert.equal(
+    await germanyMap.locator('[tabindex="0"]').count(),
+    13,
+    "Germany map exposes all 13 represented faculties",
+  )
   const freieBerlinMarker = germanyMap.getByRole("button", {
     name: "Freie Universität Berlin",
     exact: true,
@@ -152,32 +157,31 @@ try {
   const search = page.getByRole("textbox", { name: "Global search" })
   assert.equal(await openLinks.count(), 12, "Germany starts with 12 cards")
   await expectText(
+    page.locator('[data-germany-safeguards="true"]'),
+    /No card guarantees admission, funding, or eligibility for a U\.S\. bar exam/,
+    "Germany safeguards remain visible above the directory",
+  )
+  await expectText(
     page.locator("main"),
     /United States/,
     "English cards translate the partner country",
   )
-  await expectText(
-    page.locator("main"),
-    /Creditable exchange toward an LL\.M\./,
-    "English cards translate German pathway values",
-  )
-
   await search.fill("United States")
   await expectText(
     page.locator("main"),
-    /16 result\(s\)/,
+    /27 result\(s\)/,
     "English country translation participates in search",
   )
   await search.fill("Creditable exchange toward an LL.M.")
   assert.equal(
     await openLinks.count(),
-    5,
+    7,
     "English pathway translation participates in search",
   )
   await search.fill("")
 
   const programTypeFilter = page
-    .getByText("Program type", { exact: true })
+    .getByText("Partnership type", { exact: true })
     .last()
     .locator("..")
     .getByRole("combobox")
@@ -190,21 +194,25 @@ try {
     .click()
   assert.equal(
     await openLinks.count(),
-    5,
+    7,
     "translated filter labels preserve canonical raw filter values",
   )
   await page.getByRole("button", { name: "Reset", exact: true }).first().click()
   await expectText(
     page.locator("main"),
-    /16 result\(s\)/,
+    /27 result\(s\)/,
     "reset restores all German partnerships",
   )
 
   await page.getByRole("button", { name: "Show 12 more" }).click()
-  assert.equal(await openLinks.count(), 16, "pagination reveals all 16 cards")
+  assert.equal(await openLinks.count(), 24, "first pagination step reveals 24 cards")
+  await page.getByRole("button", { name: "Show 12 more" }).click()
+  assert.equal(await openLinks.count(), 27, "pagination reveals all 27 cards")
 
-  await search.fill("Vanderbilt Law School")
+  await search.fill("Georgetown University Law Center")
   assert.equal(await openLinks.count(), 1, "search filters German partnerships")
+  await search.fill("Berkeley Law")
+  assert.equal(await openLinks.count(), 0, "insufficiently supported Berkeley route stays excluded")
   await search.fill("")
 
   await openLinks.first().click()
@@ -256,8 +264,8 @@ try {
   const germanSimulatorCities = await page.getByRole("option").allTextContents()
   assert.equal(
     germanSimulatorCities.includes("New York, NY"),
-    false,
-    "German simulator excludes irrelevant global cost cities",
+    true,
+    "Cardozo adds New York as a documented German-partnership destination",
   )
   assert.ok(
     germanSimulatorCities.includes("Hartford"),
@@ -298,7 +306,7 @@ try {
   await germanPartnershipSelect.click()
   await page
     .locator(
-      '[data-partnership-id="duesseldorf-suffolk-graduate-scholarship"]',
+      '[data-partnership-id="duesseldorf-suffolk-llm"]',
     )
     .click()
   await expectText(
@@ -323,18 +331,13 @@ try {
     /Estados Unidos/,
     "Spanish cards translate the partner country",
   )
-  await expectText(
-    page.locator("main"),
-    /Intercambio con créditos computables para un LL\.M\./,
-    "Spanish cards translate German pathway values",
-  )
   const spanishSearch = page.getByRole("textbox", {
     name: "Búsqueda global",
   })
   await spanishSearch.fill("Estados Unidos")
   await expectText(
     page.locator("main"),
-    /16 resultado\(s\)/,
+    /27 resultado\(s\)/,
     "Spanish country translation participates in search",
   )
   await spanishSearch.fill(
@@ -342,7 +345,7 @@ try {
   )
   assert.equal(
     await page.getByRole("link", { name: "Abrir", exact: true }).count(),
-    5,
+    7,
     "Spanish pathway translation participates in search",
   )
   await spanishSearch.fill("")
@@ -395,6 +398,24 @@ try {
     "/",
     "French details keep returning to the French directory",
   )
+
+  const mobilePage = await browser.newPage({ viewport: { width: 390, height: 844 } })
+  await mobilePage.goto(`${baseUrl}/germany`)
+  await mobilePage.getByRole("heading", {
+    level: 1,
+    name: /Trouvez un LL\.M américain via une université allemande/,
+  }).waitFor()
+  const mobileMetrics = await mobilePage.evaluate(() => ({
+    viewport: window.innerWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }))
+  assert.ok(
+    mobileMetrics.scrollWidth <= mobileMetrics.viewport,
+    `Germany mobile layout must not overflow horizontally: ${JSON.stringify(mobileMetrics)}`,
+  )
+  await mobilePage.locator('[data-germany-safeguards="true"]').waitFor({ state: "visible" })
+  await mobilePage.getByRole("button", { name: /^Filtres/ }).waitFor({ state: "visible" })
+  await mobilePage.close()
 
   console.log("Germany browser integration verified")
 } finally {

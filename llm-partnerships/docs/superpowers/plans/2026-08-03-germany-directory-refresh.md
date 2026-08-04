@@ -27,7 +27,7 @@
 
 **Interfaces:**
 - Consumes: `data/germany-database.json`
-- Produces: assertions for 14 faculties, 27 pathways, required additions, explicit exclusions, and unchanged country counts
+- Produces: assertions for 13 faculties, 27 pathways, required additions, explicit exclusions, and unchanged country counts
 
 - [ ] **Step 1: Write the failing assertions** for the new counts, required IDs, exclusion IDs, valid source hosts, and simulator union.
 - [ ] **Step 2: Run `node scripts/verify-germany-data.mjs` and `node scripts/verify-final-fixes.mjs`** and confirm they fail because the current dataset still contains 8 faculties and 16 pathways.
@@ -43,7 +43,7 @@
 - Consumes: the supplied sheet’s `Partnerschaften`, `Ausgeschlossene Abkommen`, and `Analysen` tabs
 - Produces: the existing `PartnershipsDatabase` JSON shape consumed by `src/lib/germany-data.ts`
 
-- [ ] **Step 1: Add the six newly represented German faculties** with stable IDs and map coordinates.
+- [ ] **Step 1: Replace the obsolete faculty set with the 13 represented German faculties** and stable map coordinates.
 - [ ] **Step 2: Build 27 destination-specific partnership records** from the 17 qualifying rows, retaining official links, deadlines, seats, tuition conditions, admission routes, language evidence, missing information, and source caveats.
 - [ ] **Step 3: Record the sheet URL, selection rule, excluded IDs, and aggregate-row expansion in the research ledger.**
 - [ ] **Step 4: Run `node scripts/verify-germany-data.mjs`** and correct only implementation defects until it passes.
@@ -70,7 +70,7 @@
 - Modify: `scripts/verify-germany-integration.mjs`
 
 **Interfaces:**
-- Consumes: 27 localized partnerships and 14 German map points
+- Consumes: 27 localized partnerships and 13 German map points
 - Produces: localized scope copy, permanent warnings, paginated cards, maps, filters, details, and simulator behavior
 
 - [ ] **Step 1: Update the browser assertions** for 27 results, pagination, new map markers, exclusions, warning visibility, and a 390px mobile viewport without horizontal overflow.
@@ -90,4 +90,4 @@
 - [ ] **Step 1: Run all Germany checks, final regressions, Italian coverage, TypeScript, and production build.**
 - [ ] **Step 2: Commit only the Germany refresh files and push `master`.**
 - [ ] **Step 3: Deploy production from the linked Vercel project root.**
-- [ ] **Step 4: Verify the public Germany route on desktop and mobile, including 27 results, 14 map points, warnings, exclusions, and no horizontal overflow.**
+- [ ] **Step 4: Verify the public Germany route on desktop and mobile, including 27 results, 13 map points, warnings, exclusions, and no horizontal overflow.**

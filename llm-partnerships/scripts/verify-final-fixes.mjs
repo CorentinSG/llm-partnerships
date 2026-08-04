@@ -43,15 +43,15 @@ assert.equal(
 const germanPartnerships = germanData.getAllGermanPartnerships()
 const germanResolutions =
   costModule.getPartnershipCostResolutions(germanPartnerships)
-assert.equal(germanResolutions.length, 16)
+assert.equal(germanResolutions.length, 27)
 assert.deepEqual(
   germanResolutions.map((resolution) => resolution.partnership.id).sort(),
   germanPartnerships.map((partnership) => partnership.id).sort(),
-  "the union of German simulator options must equal all 16 German IDs",
+  "the union of German simulator options must equal all 27 German IDs",
 )
 assert.equal(
   new Set(germanResolutions.map((resolution) => resolution.partnership.id)).size,
-  16,
+  27,
   "every German partnership must appear exactly once",
 )
 assert.ok(
@@ -75,8 +75,8 @@ assert.equal(
   germanResolutions.some(
     (resolution) => resolution.displayCity.startsWith("New York"),
   ),
-  false,
-  "German simulator cities must be derived from German partnerships",
+  true,
+  "Cardozo adds New York as a documented German-partnership destination",
 )
 assert.equal(
   germanResolutions.find(
@@ -122,7 +122,6 @@ assert.deepEqual(
 for (const id of [
   "augsburg-george-washington-exchange-credit",
   "augsburg-pittsburgh-exchange-credit",
-  "duesseldorf-suffolk-exchange-credit",
 ]) {
   const partnership = germanPartnerships.find((candidate) => candidate.id === id)
   const resolution = germanResolutions.find(
@@ -150,12 +149,12 @@ for (const id of [
 
 const conditionalPartnership = germanPartnerships.find(
   (partnership) =>
-    partnership.id === "duesseldorf-suffolk-graduate-scholarship",
+    partnership.id === "duesseldorf-suffolk-llm",
 )
 const conditionalResolution = germanResolutions.find(
   (resolution) =>
     resolution.partnership.id ===
-    "duesseldorf-suffolk-graduate-scholarship",
+    "duesseldorf-suffolk-llm",
 )
 assert.ok(conditionalPartnership && conditionalResolution?.estimate)
 const conditionalOffers = simulatorModule.inferOfferOptions(
@@ -215,5 +214,5 @@ const rootGitignore = readFileSync(join(repositoryRoot, ".gitignore"), "utf8")
 assert.match(rootGitignore, /^\/\.next\/$/m)
 
 console.log(
-  "Final data regressions verified: 42 French, 16 German, 22 Italian, and 6 UK simulator options",
+  "Final data regressions verified: 42 French, 27 German, 22 Italian, and 6 UK simulator options",
 )

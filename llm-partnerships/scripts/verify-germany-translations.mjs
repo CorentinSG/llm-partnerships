@@ -76,7 +76,7 @@ for (const partnership of getAllGermanPartnerships()) {
   }
 }
 
-for (const language of ["en", "es", "de"]) {
+for (const language of ["en", "es", "de", "it"]) {
   assert.equal(
     typeof translations[language],
     "object",
@@ -95,7 +95,7 @@ for (const language of ["en", "es", "de"]) {
 }
 
 for (const university of getGermanUniversitiesPoints()) {
-  for (const language of ["en", "es", "de"]) {
+  for (const language of ["en", "es", "de", "it"]) {
     assert.equal(
       translations[language][university.frenchUniversity],
       university.frenchUniversity,
@@ -103,6 +103,25 @@ for (const university of getGermanUniversitiesPoints()) {
     )
   }
 }
+
+for (const partnership of getAllGermanPartnerships()) {
+  for (const language of ["en", "es", "de", "it"]) {
+    assert.equal(
+      translations[language][partnership.partnerUniversity],
+      partnership.partnerUniversity,
+      `U.S. law-school names must remain official in ${language}: ${partnership.partnerUniversity}`,
+    )
+  }
+}
+
+assert.equal(
+  translations.en["Voir les conditions détaillées"],
+  "See detailed requirements",
+)
+assert.equal(
+  translations.it["Dispense garantie pour les anciens participants au CTLS"],
+  "Esenzione garantita per gli ex partecipanti al CTLS",
+)
 
 assert.equal(translations.en["États-Unis"], "United States")
 assert.equal(translations.es["États-Unis"], "Estados Unidos")
@@ -119,6 +138,25 @@ assert.match(
     "Une nomination crée une éligibilité à la bourse, pas un droit à 50 % ni une garantie d’admission."
   ],
   /berechtigt.*Stipendium.*weder.*50.*Zulassung/i,
+)
+
+const exchangeWaiverWarning =
+  "Le semestre d’échange est exonéré des frais de scolarité; un LL.M. ultérieur reste payant."
+assert.equal(
+  translations.en[exchangeWaiverWarning],
+  "The exchange semester is tuition-free; a later LL.M. remains subject to tuition.",
+)
+assert.equal(
+  translations.es[exchangeWaiverWarning],
+  "El semestre de intercambio está exento de matrícula; un LL.M. posterior sigue sujeto al pago de matrícula.",
+)
+assert.equal(
+  translations.de[exchangeWaiverWarning],
+  "Das Austauschsemester ist studiengebührenfrei; für einen späteren LL.M. fallen weiterhin Studiengebühren an.",
+)
+assert.equal(
+  translations.it[exchangeWaiverWarning],
+  "Il semestre di scambio è esente dalle tasse universitarie; un successivo LL.M. resta a pagamento.",
 )
 
 const semanticSentinels = {
@@ -199,5 +237,5 @@ assert.match(
 )
 
 console.log(
-  `Germany translations verified: ${values.size} values mapped in EN, ES and DE`,
+  `Germany translations verified: ${values.size} values mapped in EN, ES, DE and IT`,
 )

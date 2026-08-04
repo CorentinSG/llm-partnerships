@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, Filter, HelpCircle, Search } from "lucide-react"
+import { AlertTriangle, ArrowRight, Filter, HelpCircle, Search } from "lucide-react"
 
 import {
   CostSimulator,
@@ -98,7 +98,14 @@ const pageCopy = {
     intro:
       "Un LL.M effectué aux États-Unis est un diplôme de droit d’un an qui peut permettre aux juristes formés à l’étranger de présenter certains barreaux américains, notamment New York.",
     intro2:
-      "Cette page recense les partenariats entre universités allemandes et law schools américaines offrant des parcours dédiés, des réductions ou des bourses.",
+      "L’annuaire présente 27 parcours auprès de 13 facultés allemandes, avec une fiche distincte par law school américaine et des conditions vérifiées au 3 août 2026.",
+    safeguardTitle: "À vérifier avant toute candidature",
+    safeguards: [
+      "Aucune fiche ne garantit l’admission, une bourse ou l’éligibilité à un barreau américain.",
+      "Une nomination ouvre une voie de candidature; la law school conserve sa décision d’admission et de financement.",
+      "Une exonération pendant l’échange ne rend pas automatiquement le LL.M. gratuit; les frais du complément de cursus et de vie peuvent rester dus.",
+      "Les montants historiques ou contradictoires sont signalés et doivent être reconfirmés auprès des deux établissements.",
+    ],
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     faqCta: "Voir la FAQ",
@@ -135,7 +142,14 @@ const pageCopy = {
     intro:
       "A U.S. LL.M. is a one-year law degree that can allow foreign-trained lawyers to sit for certain U.S. bar exams, especially New York.",
     intro2:
-      "This page tracks partnerships between German universities and U.S. law schools offering dedicated pathways, tuition reductions, or scholarships.",
+      "The directory presents 27 pathways across 13 German law faculties, with one card per U.S. law school and terms verified as of August 3, 2026.",
+    safeguardTitle: "Check before applying",
+    safeguards: [
+      "No card guarantees admission, funding, or eligibility for a U.S. bar exam.",
+      "A nomination opens an application pathway; the law school retains the admission and funding decision.",
+      "A tuition waiver during an exchange does not automatically make the LL.M. free; the remaining study period and living costs may still be payable.",
+      "Historical or conflicting figures are flagged and must be reconfirmed with both institutions.",
+    ],
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     faqCta: "Open FAQ",
@@ -171,7 +185,14 @@ const pageCopy = {
     intro:
       "Un LL.M en Estados Unidos es un título jurídico de un año que puede permitir a juristas formados en el extranjero presentarse a ciertos colegios de abogados estadounidenses, especialmente Nueva York.",
     intro2:
-      "Esta página recopila convenios entre universidades alemanas y law schools estadounidenses con vías específicas, reducciones o becas.",
+      "El directorio presenta 27 vías en 13 facultades de Derecho alemanas, con una ficha por cada law school estadounidense y condiciones verificadas a 3 de agosto de 2026.",
+    safeguardTitle: "Comprueba antes de solicitar",
+    safeguards: [
+      "Ninguna ficha garantiza la admisión, la financiación ni la elegibilidad para un examen de abogacía de Estados Unidos.",
+      "Una nominación abre una vía de solicitud; la law school conserva la decisión de admisión y financiación.",
+      "La exención de matrícula durante el intercambio no hace que el LL.M. sea automáticamente gratuito; el periodo restante y la manutención pueden seguir siendo de pago.",
+      "Los importes históricos o contradictorios están señalados y deben volver a confirmarse con ambas instituciones.",
+    ],
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     faqCta: "Ver FAQ",
@@ -207,7 +228,14 @@ const pageCopy = {
     intro:
       "Ein LL.M. in den USA ist ein einjähriger juristischer Abschluss, der im Ausland ausgebildeten Juristinnen und Juristen die Teilnahme an bestimmten US-amerikanischen Anwaltsprüfungen ermöglichen kann, insbesondere in New York.",
     intro2:
-      "Auf dieser Seite werden Partnerschaften zwischen deutschen Universitäten und US-amerikanischen Rechtsschulen verfolgt, die spezielle Studiengänge, Studiengebührenermäßigungen oder Stipendien anbieten.",
+      "Das Verzeichnis umfasst 27 Wege an 13 deutschen juristischen Fakultäten, jeweils mit einer eigenen Karte pro US-Law-School und einem Prüfstand vom 3. August 2026.",
+    safeguardTitle: "Vor der Bewerbung prüfen",
+    safeguards: [
+      "Keine Karte garantiert die Zulassung, eine Finanzierung oder die Berechtigung zu einer US-Anwaltsprüfung.",
+      "Eine Nominierung eröffnet einen Bewerbungsweg; über Zulassung und Finanzierung entscheidet weiterhin die Law School.",
+      "Ein Studiengebührenerlass während des Austauschs macht den LL.M. nicht automatisch kostenlos; für das restliche Studium und den Lebensunterhalt können weiterhin Kosten anfallen.",
+      "Historische oder widersprüchliche Beträge sind gekennzeichnet und müssen bei beiden Hochschulen erneut bestätigt werden.",
+    ],
     searchCta: "Suchen Sie nach Partnerschaften",
     costCta: "Jahresbudget berechnen",
     faqCta: "FAQ öffnen",
@@ -242,7 +270,14 @@ const pageCopy = {
     intro:
       "Un LL.M. negli Stati Uniti è un titolo giuridico post-laurea di un anno che può consentire ai giuristi formati all’estero di accedere ad alcuni esami di abilitazione, in particolare quello di New York.",
     intro2:
-      "Questa pagina raccoglie le partnership tra università tedesche e law school statunitensi che offrono percorsi dedicati, riduzioni delle tasse universitarie o borse di studio.",
+      "L’elenco presenta 27 percorsi presso 13 facoltà di giurisprudenza tedesche, con una scheda per ogni law school statunitense e condizioni verificate al 3 agosto 2026.",
+    safeguardTitle: "Verifica prima di candidarti",
+    safeguards: [
+      "Nessuna scheda garantisce l’ammissione, un finanziamento o l’idoneità a un esame di abilitazione statunitense.",
+      "La nomina apre un percorso di candidatura; la decisione sull’ammissione e sul finanziamento resta alla law school.",
+      "L’esenzione dalle tasse durante lo scambio non rende automaticamente gratuito l’LL.M.; il periodo di studio restante e le spese di vita possono restare a pagamento.",
+      "Gli importi storici o contraddittori sono segnalati e devono essere riconfermati con entrambe le istituzioni.",
+    ],
     searchCta: "Cerca una partnership",
     costCta: "Calcola il budget annuale",
     faqCta: "Apri le domande frequenti",
@@ -385,6 +420,30 @@ export function GermanyHomePage() {
                 {t.faqCta}
               </a>
             </Button>
+          </div>
+          <div
+            data-germany-safeguards="true"
+            className="rounded-2xl border border-amber-500/30 bg-amber-500/[0.07] p-4 sm:p-5"
+          >
+            <div className="flex items-start gap-3">
+              <AlertTriangle
+                className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-300"
+                aria-hidden="true"
+              />
+              <div className="min-w-0">
+                <h2 className="text-sm font-semibold text-foreground">
+                  {t.safeguardTitle}
+                </h2>
+                <ul className="mt-2 grid gap-1.5 text-sm leading-6 text-muted-foreground sm:grid-cols-2 sm:gap-x-6">
+                  {t.safeguards.map((safeguard) => (
+                    <li key={safeguard} className="flex gap-2">
+                      <span aria-hidden="true">•</span>
+                      <span>{safeguard}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
