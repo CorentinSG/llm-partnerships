@@ -46,6 +46,7 @@ try {
     name: "Trouvez un LL.M américain via une université italienne.",
   }).waitFor()
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 12)
+  await expectText(page.locator("main"), /22 parcours actifs ou qualifi.*11 universit/i, "Italy hero shows refreshed scope")
   assert.match(
     await page.getByRole("combobox", { name: /^Pays/ }).getAttribute("aria-label"),
     /Italie–États-Unis/,
@@ -53,7 +54,7 @@ try {
   )
 
   const italyMap = page.getByRole("img", { name: "Carte d'Italie avec points des universités" })
-  assert.equal(await italyMap.locator('[tabindex="0"]').count(), 5)
+  assert.equal(await italyMap.locator('[tabindex="0"]').count(), 11)
   const luissMarker = italyMap.getByRole("button", { name: "LUISS Guido Carli", exact: true })
   await luissMarker.focus()
   await luissMarker.locator('[data-focus-ring="true"]').waitFor({ state: "visible" })
@@ -74,17 +75,17 @@ try {
   await expectText(page.locator("main"), /United States/, "English translates Italian directory data")
   const search = page.getByRole("textbox", { name: "Global search" })
   await search.fill("United States")
-  await expectText(page.locator("main"), /12 result\(s\)/, "Translated country participates in search")
+  await expectText(page.locator("main"), /22 result\(s\)/, "Translated country participates in search")
   await search.fill("Roma Tre")
   assert.equal(await page.locator('main a[href^="/partnership/"]').count(), 1)
   await page.locator('main a[href^="/partnership/"]').click()
-  await page.waitForURL(/\/partnership\/roma-tre-cardozo$/)
+  await page.waitForURL(/\/partnership\/roma-tre-uc-law-sf$/)
   assert.equal(
     await page.getByRole("link", { name: "Back to search", exact: true }).getAttribute("href"),
     "/italy",
     "Italian details return to the Italy directory",
   )
-  await expectText(page.locator("main"), /The Cardozo agreement guarantees neither admission/, "Detail text is translated")
+  await expectText(page.locator("main"), /UC Law SF/, "Detail text is translated")
 
   await page.goto(`${baseUrl}/italy`)
   await page.getByRole("button", { name: "Español" }).click()
@@ -95,6 +96,11 @@ try {
   await expectText(page.locator("main"), /Vereinigte Staaten/, "German Italy page is translated")
 
   await page.setViewportSize({ width: 390, height: 844 })
+  assert.equal(
+    await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    true,
+    "Italy page must not overflow horizontally on mobile",
+  )
   await page.getByRole("button", { name: "Menü" }).click()
   const mobileCountrySelector = page.getByRole("dialog").getByRole("combobox", { name: /^Land/ })
   assert.match(await mobileCountrySelector.getAttribute("aria-label"), /Italien–USA/)

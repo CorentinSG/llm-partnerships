@@ -101,12 +101,12 @@ assert.deepEqual(
 const italianPartnerships = italianData.getAllItalianPartnerships()
 const italianResolutions =
   costModule.getPartnershipCostResolutions(italianPartnerships)
-assert.equal(italianPartnerships.length, 12)
-assert.equal(italianResolutions.length, 12)
+assert.equal(italianPartnerships.length, 22)
+assert.equal(italianResolutions.length, 22)
 assert.deepEqual(
   italianResolutions.map((resolution) => resolution.partnership.id).sort(),
   italianPartnerships.map((partnership) => partnership.id).sort(),
-  "Italian simulator behavior must include all 12 records/options",
+  "Italian simulator behavior must include all 22 records/options",
 )
 
 const ukPartnerships = ukData.getAllUkPartnerships()
@@ -215,5 +215,5 @@ const rootGitignore = readFileSync(join(repositoryRoot, ".gitignore"), "utf8")
 assert.match(rootGitignore, /^\/\.next\/$/m)
 
 console.log(
-  "Final data regressions verified: 42 French, 16 German, 12 Italian, and 6 UK simulator options",
+  "Final data regressions verified: 42 French, 16 German, 22 Italian, and 6 UK simulator options",
 )

@@ -5,11 +5,11 @@ const databaseUrl = new URL("../data/italy-database.json", import.meta.url)
 assert.ok(existsSync(databaseUrl), "Italy database must exist")
 
 const database = JSON.parse(readFileSync(databaseUrl, "utf8"))
-assert.equal(database.partnerships.length, 12, "Italy must publish 12 pathways")
-assert.equal(database.frenchUniversities.length, 5, "Italy must publish 5 institutions")
+assert.equal(database.partnerships.length, 22, "Italy must publish 22 pathways")
+assert.equal(database.frenchUniversities.length, 11, "Italy must publish 11 institutions")
 assert.equal(
   new Set(database.partnerships.map((item) => item.id)).size,
-  12,
+  22,
   "Italy pathway IDs must be unique",
 )
 
@@ -22,10 +22,20 @@ const expectedIds = [
   "cattolica-fordham",
   "cattolica-boston-college",
   "cattolica-berkeley",
+  "bocconi-fordham",
+  "bocconi-indiana-maurer",
+  "bocconi-temple",
+  "genova-loyola-students",
+  "genova-loyola-graduates",
+  "genova-illinois",
   "trento-washu",
   "trento-cincinnati",
+  "parma-widener",
   "lum-indiana-maurer",
-  "roma-tre-cardozo",
+  "firenze-boston-university",
+  "bologna-uc-law-sf",
+  "roma-tre-uc-law-sf",
+  "napoli-federico-ii-loyola",
 ]
 assert.deepEqual(
   database.partnerships.map((item) => item.id).sort(),
@@ -43,9 +53,18 @@ for (const item of database.partnerships) {
   )
 }
 
-const romaTre = database.partnerships.find((item) => item.id === "roma-tre-cardozo")
-assert.equal(romaTre.reliabilityStatus, "to_confirm")
-assert.match(romaTre.sourceNote, /2026.?2027|actualisation|annuelle/i)
+assert.equal(database.partnerships.some((item) => item.id === "roma-tre-cardozo"), false)
+for (const id of ["luiss-temple", "luiss-suffolk", "bologna-uc-law-sf", "roma-tre-uc-law-sf"]) {
+  const item = database.partnerships.find((candidate) => candidate.id === id)
+  assert.equal(item?.reliabilityStatus, "to_confirm", `${id}: qualification must remain visible`)
+}
+
+const parma = database.partnerships.find((item) => item.id === "parma-widener")
+assert.match(parma?.tuitionDisplay || "", /11.?050|6.?500/i)
+assert.match(parma?.notes || "", /Delaware|barreau/i)
+
+const trento = database.partnerships.find((item) => item.id === "trento-washu")
+assert.match(trento?.notes || "", /77|New York Bar/i)
 
 for (const id of ["luiss-fordham", "luiss-american-wcl"]) {
   const item = database.partnerships.find((candidate) => candidate.id === id)
@@ -54,4 +73,4 @@ for (const id of ["luiss-fordham", "luiss-american-wcl"]) {
   assert.match(item.tuitionDisplay, /séjour|logement|vie/i)
 }
 
-console.log("Italy dataset verified: 5 institutions, 12 pathways")
+console.log("Italy dataset verified: 11 institutions, 22 pathways")

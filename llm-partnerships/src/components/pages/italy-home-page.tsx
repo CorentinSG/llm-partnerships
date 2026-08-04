@@ -98,7 +98,7 @@ const pageCopy = {
     intro:
       "Un LL.M effectué aux États-Unis est un diplôme de droit d’un an qui peut permettre aux juristes formés à l’étranger de présenter certains barreaux américains, notamment New York.",
     intro2:
-      "Cette page recense les partenariats entre universités italiennes et law schools américaines offrant des parcours dédiés, des réductions ou des bourses.",
+      "Cette page présente 22 parcours actifs ou qualifiés dans 11 universités italiennes, avec doubles diplômes, réductions, bourses et transferts de crédits. Les conditions annuelles et l’éligibilité au barreau restent propres à chaque parcours.",
     searchCta: "Rechercher un partenariat",
     costCta: "Calculer mon budget annuel",
     faqCta: "Voir la FAQ",
@@ -121,6 +121,7 @@ const pageCopy = {
     noResult:
       "Aucun résultat. Essaie d'enlever des filtres ou d'élargir la recherche.",
     legendTitle: "Statuts des offres",
+    criticalTitle: "Points à vérifier avant de candidater",
     quickReduced: "Sans frais d'inscription",
     quickConfirmed: "Confirmés",
     italy: "Italie",
@@ -135,7 +136,7 @@ const pageCopy = {
     intro:
       "A U.S. LL.M. is a one-year law degree that can allow foreign-trained lawyers to sit for certain U.S. bar exams, especially New York.",
     intro2:
-      "This page tracks partnerships between Italian universities and U.S. law schools offering dedicated pathways, tuition reductions, or scholarships.",
+      "This page presents 22 active or qualified pathways across 11 Italian universities, including dual degrees, tuition reductions, scholarships, and credit-transfer routes. Annual terms and bar eligibility remain specific to each pathway.",
     searchCta: "Search partnerships",
     costCta: "Calculate annual budget",
     faqCta: "Open FAQ",
@@ -156,6 +157,7 @@ const pageCopy = {
     allShown: "All matching results are shown.",
     noResult: "No result. Try removing filters or broadening the search.",
     legendTitle: "Offer status legend",
+    criticalTitle: "Check before applying",
     quickReduced: "No partner tuition",
     quickConfirmed: "Confirmed",
     italy: "Italy",
@@ -171,7 +173,7 @@ const pageCopy = {
     intro:
       "Un LL.M en Estados Unidos es un título jurídico de un año que puede permitir a juristas formados en el extranjero presentarse a ciertos colegios de abogados estadounidenses, especialmente Nueva York.",
     intro2:
-      "Esta página recopila convenios entre universidades italianas y law schools estadounidenses con vías específicas, reducciones o becas.",
+      "Esta página presenta 22 itinerarios activos o cualificados en 11 universidades italianas, con dobles titulaciones, reducciones, becas y transferencia de créditos. Las condiciones anuales y la elegibilidad profesional dependen de cada itinerario.",
     searchCta: "Buscar convenios",
     costCta: "Calcular presupuesto anual",
     faqCta: "Ver FAQ",
@@ -193,6 +195,7 @@ const pageCopy = {
     noResult:
       "No hay resultados. Prueba quitando filtros o ampliando la búsqueda.",
     legendTitle: "Leyenda de estados",
+    criticalTitle: "Comprueba antes de solicitar",
     quickReduced: "Sin matrícula",
     quickConfirmed: "Confirmados",
     italy: "Italia",
@@ -207,7 +210,7 @@ const pageCopy = {
     intro:
       "Ein LL.M. in den USA ist ein einjähriger juristischer Abschluss, der im Ausland ausgebildeten Juristinnen und Juristen die Teilnahme an bestimmten US-amerikanischen Anwaltsprüfungen ermöglichen kann, insbesondere in New York.",
     intro2:
-      "Diese Seite erfasst Partnerschaften zwischen italienischen Universitäten und US-amerikanischen Law Schools mit besonderen Studienwegen, Gebührenermäßigungen oder Stipendien.",
+      "Diese Seite zeigt 22 aktive oder qualifizierte Studienwege an 11 italienischen Universitäten, darunter Doppelabschlüsse, Ermäßigungen, Stipendien und Anrechnungsmöglichkeiten. Jährliche Bedingungen und Bar-Zulassung sind für jeden Weg gesondert zu prüfen.",
     searchCta: "Suchen Sie nach Partnerschaften",
     costCta: "Jahresbudget berechnen",
     faqCta: "FAQ öffnen",
@@ -228,6 +231,7 @@ const pageCopy = {
     allShown: "Alle passenden Ergebnisse werden angezeigt.",
     noResult: "Kein Ergebnis. Versuchen Sie, Filter zu entfernen oder die Suche zu erweitern.",
     legendTitle: "Legende zum Angebotsstatus",
+    criticalTitle: "Vor der Bewerbung prüfen",
     quickReduced: "Kein Partnerunterricht",
     quickConfirmed: "Bestätigt",
     italy: "Italien",
@@ -242,7 +246,7 @@ const pageCopy = {
     intro:
       "Un LL.M. negli Stati Uniti è un titolo giuridico post-laurea di un anno che può consentire ai giuristi formati all’estero di accedere ad alcuni esami di abilitazione, in particolare quello di New York.",
     intro2:
-      "Questa pagina raccoglie le partnership tra università italiane e law school statunitensi che offrono percorsi dedicati, riduzioni delle tasse universitarie o borse di studio.",
+      "Questa pagina presenta 22 percorsi attivi o qualificati in 11 università italiane, tra doppi titoli, riduzioni, borse e trasferimenti di crediti. Condizioni annuali e idoneità agli esami di abilitazione dipendono dal singolo percorso.",
     searchCta: "Cerca una partnership",
     costCta: "Calcola il budget annuale",
     faqCta: "Apri le domande frequenti",
@@ -263,6 +267,7 @@ const pageCopy = {
     allShown: "Vengono visualizzati tutti i risultati corrispondenti.",
     noResult: "Nessun risultato. Prova a rimuovere alcuni filtri o ad ampliare la ricerca.",
     legendTitle: "Legenda dello stato dell'offerta",
+    criticalTitle: "Da verificare prima della candidatura",
     quickReduced: "Nessuna tassa universitaria presso il partner",
     quickConfirmed: "Confermato",
     italy: "Italia",
@@ -299,6 +304,14 @@ export function ItalyHomePage() {
   }, [searchQuery, filters])
 
   const visiblePartnerships = filtered.slice(0, visibleCount)
+  const applicationNotices = React.useMemo(
+    () => [
+      all.find(({ id }) => id === "luiss-temple")?.sourceNote,
+      all.find(({ id }) => id === "genova-loyola-students")?.sourceNote,
+      all.find(({ id }) => id === "parma-widener")?.notes,
+    ].filter((notice): notice is string => Boolean(notice)),
+    [all],
+  )
   const remainingCount = Math.max(
     filtered.length - visiblePartnerships.length,
     0,
@@ -582,6 +595,18 @@ export function ItalyHomePage() {
                   )}
                 </div>
               </div>
+
+              <aside className="rounded-2xl border border-amber-500/30 bg-amber-500/8 p-4" aria-label={t.criticalTitle}>
+                <div className="text-sm font-semibold text-foreground">{t.criticalTitle}</div>
+                <ul className="mt-2 space-y-2 text-xs leading-5 text-muted-foreground">
+                  {applicationNotices.map((notice) => (
+                    <li key={notice} className="flex gap-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" aria-hidden="true" />
+                      <span>{translateDataText(notice, language)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
 
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-sm text-muted-foreground">

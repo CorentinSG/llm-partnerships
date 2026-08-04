@@ -61,7 +61,7 @@ try {
     ["/submit", "Invia informazioni"],
     ["/partnership/assas-boston-university", "Torna alla ricerca"],
     ["/partnership/augsburg-george-washington-exchange-credit", "Torna alla ricerca"],
-    ["/partnership/roma-tre-cardozo", "Torna alla ricerca"],
+    ["/partnership/roma-tre-uc-law-sf", "Torna alla ricerca"],
     ["/italian-route-does-not-exist", "Non trovato"],
   ]
   for (const [path, text] of routes) {

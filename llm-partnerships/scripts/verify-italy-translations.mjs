@@ -40,14 +40,14 @@ for (const partnership of getAllItalianPartnerships()) {
   }
 }
 
-for (const language of ["en", "es", "de"]) {
+for (const language of ["en", "es", "de", "it"]) {
   assert.equal(typeof translations[language], "object", `Italy ${language} translations must be an object`)
   const missing = [...values].filter((value) => !translations[language][value]?.trim())
   assert.deepEqual(missing, [], `Missing Italy ${language} translations:\n${missing.join("\n")}`)
 }
 
 for (const university of getItalianUniversitiesPoints()) {
-  for (const language of ["en", "es", "de"]) {
+  for (const language of ["en", "es", "de", "it"]) {
     assert.equal(
       translations[language][university.frenchUniversity],
       university.frenchUniversity,
@@ -74,4 +74,4 @@ for (const language of ["en", "es", "de"]) {
   assert.match(translations[language][cardozo], /New York Bar|Colegio de Abogados de Nueva York|New Yorker Anwaltsprüfung/i)
 }
 
-console.log(`Italy translations verified: ${values.size} values mapped in EN, ES and DE`)
+console.log(`Italy translations verified: ${values.size} values mapped in EN, ES, DE and IT`)

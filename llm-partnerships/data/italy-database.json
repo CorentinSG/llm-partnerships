@@ -22,85 +22,1370 @@
     "to_confirm": "Accord officiel avec actualisation annuelle requise"
   },
   "frenchUniversities": [
-    { "id": "luiss", "name": "LUISS Guido Carli", "faculty": "Department of Law", "city": "Rome", "country": "Italie", "coordinates": { "lat": 41.9247, "lng": 12.4933 }, "dataStatus": "confirmed" },
-    { "id": "cattolica", "name": "Università Cattolica del Sacro Cuore", "faculty": "Facoltà di Giurisprudenza", "city": "Milan", "country": "Italie", "coordinates": { "lat": 45.4632, "lng": 9.1761 }, "dataStatus": "confirmed" },
-    { "id": "trento", "name": "Università di Trento", "faculty": "Facoltà di Giurisprudenza", "city": "Trento", "country": "Italie", "coordinates": { "lat": 46.0679, "lng": 11.1211 }, "dataStatus": "confirmed" },
-    { "id": "lum", "name": "Università LUM Giuseppe Degennaro", "faculty": "Department of Law and Business Studies", "city": "Casamassima", "country": "Italie", "coordinates": { "lat": 40.9564, "lng": 16.9206 }, "dataStatus": "confirmed" },
-    { "id": "roma-tre", "name": "Università degli Studi Roma Tre", "faculty": "Dipartimento di Giurisprudenza", "city": "Rome", "country": "Italie", "coordinates": { "lat": 41.8624, "lng": 12.4797 }, "dataStatus": "to_confirm" }
+    {
+      "id": "luiss",
+      "name": "LUISS Guido Carli",
+      "faculty": "Dipartimento di Giurisprudenza",
+      "city": "Rome",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 41.9247,
+        "lng": 12.4933
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "cattolica",
+      "name": "Università Cattolica del Sacro Cuore",
+      "faculty": "Facoltà di Giurisprudenza",
+      "city": "Milan",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 45.4632,
+        "lng": 9.1761
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "bocconi",
+      "name": "Università Bocconi",
+      "faculty": "School of Law",
+      "city": "Milan",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 45.4502,
+        "lng": 9.1896
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "genova",
+      "name": "Università degli Studi di Genova",
+      "faculty": "Dipartimento di Giurisprudenza",
+      "city": "Genoa",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 44.4115,
+        "lng": 8.9327
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "trento",
+      "name": "Università degli Studi di Trento",
+      "faculty": "Facoltà di Giurisprudenza",
+      "city": "Trento",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 46.0679,
+        "lng": 11.1211
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "parma",
+      "name": "Università degli Studi di Parma",
+      "faculty": "Dipartimento di Giurisprudenza, Studî Politici e Internazionali",
+      "city": "Parma",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 44.8015,
+        "lng": 10.3279
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "lum",
+      "name": "Università LUM Giuseppe Degennaro",
+      "faculty": "Dipartimento di Scienze Giuridiche e dell’Impresa",
+      "city": "Casamassima",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 40.9564,
+        "lng": 16.9206
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "firenze",
+      "name": "Università di Firenze",
+      "faculty": "Scuola di Giurisprudenza",
+      "city": "Florence",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 43.7696,
+        "lng": 11.2558
+      },
+      "dataStatus": "confirmed"
+    },
+    {
+      "id": "bologna",
+      "name": "Università di Bologna",
+      "faculty": "Dipartimento di Scienze Politiche e Sociali",
+      "city": "Bologna",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 44.4949,
+        "lng": 11.3426
+      },
+      "dataStatus": "to_confirm"
+    },
+    {
+      "id": "roma-tre",
+      "name": "Università degli Studi Roma Tre",
+      "faculty": "Dipartimento di Giurisprudenza",
+      "city": "Rome",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 41.8624,
+        "lng": 12.4797
+      },
+      "dataStatus": "to_confirm"
+    },
+    {
+      "id": "napoli-federico-ii",
+      "name": "Università di Napoli Federico II",
+      "faculty": "Dipartimento di Giurisprudenza",
+      "city": "Naples",
+      "country": "Italie",
+      "coordinates": {
+        "lat": 40.8518,
+        "lng": 14.2681
+      },
+      "dataStatus": "to_confirm"
+    }
   ],
   "partnerships": [
     {
-      "id": "luiss-fordham", "frenchUniversityId": "luiss", "frenchUniversity": "LUISS Guido Carli", "partnerUniversity": "Fordham University School of Law", "partnerCountry": "États-Unis", "partnerCity": "New York", "partnerState": "New York", "partnerCoordinates": { "lat": 40.7714, "lng": -73.9855 }, "continent": "Amérique du Nord",
-      "programType": "LL.M. Educational Program with Fordham University", "partnershipType": "dual_degree", "specialties": ["International Business and Trade Law", "Banking, Corporate and Finance Law", "International Law and Justice", "International Dispute Resolution", "Intellectual Property and Information Technology Law", "Corporate Compliance", "Fashion Law"],
-      "requiredLevel": "Quatrième année de Laurea Magistrale a ciclo unico in Giurisprudenza; moyenne pondérée ≥ 27/30 et au moins 180 ECTS", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Cinquième année à Fordham; LL.M. de 24 crédits et reconnaissance dans le diplôme LUISS", "applicationProcess": "internal", "officialLink": "https://www.luiss.it/it/internazionale/studiare-allestero/llm-educational-programmes/llm-educational-program-fordham-university",
-      "shortDescription": "Double diplôme permettant d’obtenir le LL.M. Fordham pendant la cinquième année du cursus LUISS.", "admissionConditions": "Présélection LUISS sur résultats et motivation, entretien, puis décision finale de Fordham.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "100" }, { "test": "IELTS", "minimumScore": "7.0" }, { "test": "Duolingo English Test", "minimumScore": "120" }],
-      "availableSeatsDisplay": "2 places publiées pour 2026-2027; admission finale non garantie.", "availableSeatsMin": 2, "availableSeatsMax": 2, "tuitionCategory": "no_tuition", "tuitionDisplay": "Aucun frais de scolarité Fordham supplémentaire; la tuition LUISS reste due. Assurance santé d’environ 5 000 USD, frais administratifs d’environ 1 750 USD et dépenses de séjour à New York restent à payer.", "financialAid": "Exonération de la tuition Fordham dans le cadre du partenariat; aucune bourse de vie automatique annoncée.", "applicationDeadline": "21 janvier 2026 à 12 h CET", "sourceType": "official_home_university", "sourceNote": "La page LUISS 2026-2027 confirme le double diplôme, 2 places, l’exonération de tuition Fordham, les coûts annexes, les seuils d’anglais et la procédure.", "reliabilityStatus": "confirmed", "missingInformation": ["Budget de vie contractuel individuel", "Éligibilité personnelle à un bar américain"], "notes": "« No Fee » signifie aucun frais de scolarité supplémentaire à Fordham, et non un LL.M. gratuit."
+      "id": "luiss-fordham",
+      "frenchUniversityId": "luiss",
+      "frenchUniversity": "LUISS Guido Carli",
+      "partnerUniversity": "Fordham University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "New York",
+      "partnerState": "New York",
+      "partnerCoordinates": {
+        "lat": 40.7714,
+        "lng": -73.9855
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. Educational Program with Fordham University",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "International Business and Trade Law",
+        "Banking, Corporate and Finance Law",
+        "International Law and Justice",
+        "International Dispute Resolution",
+        "Intellectual Property and Information Technology Law",
+        "Corporate Compliance",
+        "Fashion Law",
+        "Real Estate Law",
+        "Competition Law"
+      ],
+      "requiredLevel": "Quatrième année de Laurea Magistrale a ciclo unico in Giurisprudenza; moyenne pondérée ≥ 27/30 et au moins 180 ECTS",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Cinquième année à Fordham; LL.M. de 24 crédits et reconnaissance dans le diplôme LUISS",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.luiss.it/it/internazionale/studiare-allestero/llm-educational-programmes/llm-educational-program-fordham-university",
+      "shortDescription": "Double diplôme permettant d’obtenir le LL.M. Fordham pendant la cinquième année du cursus LUISS.",
+      "admissionConditions": "Présélection LUISS sur résultats et motivation, entretien, puis décision finale de Fordham.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "120"
+        }
+      ],
+      "availableSeatsDisplay": "2 places publiées pour 2026-2027; admission finale non garantie.",
+      "availableSeatsMin": 2,
+      "availableSeatsMax": 2,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Aucun frais de scolarité Fordham supplémentaire; la tuition LUISS reste due. Assurance santé d’environ 5 000 USD, frais administratifs d’environ 1 750 USD et dépenses de séjour à New York restent à payer.",
+      "financialAid": "Exonération de la tuition Fordham dans le cadre du partenariat; aucune bourse de vie automatique annoncée.",
+      "applicationDeadline": "21 janvier 2026 à 12 h CET",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page LUISS 2026-2027 confirme le double diplôme, 2 places, l’exonération de tuition Fordham, les coûts annexes, les seuils d’anglais et la procédure.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Budget de vie contractuel individuel",
+        "Éligibilité personnelle à un bar américain"
+      ],
+      "notes": "« No Fee » signifie aucun frais de scolarité supplémentaire à Fordham, et non un LL.M. gratuit."
     },
     {
-      "id": "luiss-temple", "frenchUniversityId": "luiss", "frenchUniversity": "LUISS Guido Carli", "partnerUniversity": "Temple University Beasley School of Law", "partnerCountry": "États-Unis", "partnerCity": "Philadelphia", "partnerState": "Pennsylvania", "partnerCoordinates": { "lat": 39.9812, "lng": -75.1554 }, "continent": "Amérique du Nord",
-      "programType": "LL.M. for Foreign-Trained Lawyers", "partnershipType": "dual_degree", "specialties": ["U.S. Law", "International Law", "Business Law"], "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Cinquième année à Temple; LL.M. américain et crédits reconnus par LUISS", "applicationProcess": "internal", "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
-      "shortDescription": "Parcours de cinquième année menant au LL.M. Temple en complément du diplôme LUISS.", "admissionConditions": "Présélection LUISS, puis décision finale de Temple et pièces d’admission de la law school.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "88" }, { "test": "IELTS", "minimumScore": "6.5", "details": "Aucune section sous 6.0" }, { "test": "Duolingo English Test", "minimumScore": "115" }],
-      "availableSeatsDisplay": "5 places publiées pour 2026-2027.", "availableSeatsMin": 5, "availableSeatsMax": 5, "tuitionCategory": "fixed_fee", "tuitionDisplay": "Tarif partenaire annoncé de 18 000 USD, environ 50 % du tarif LL.M. standard; tuition LUISS et dépenses de vie restent dues.", "financialAid": "Réduction contractuelle d’environ 50 %; autres aides non garanties.", "applicationDeadline": "21 janvier 2026 pour la sélection LUISS", "sourceType": "official_home_university_call", "sourceNote": "Le programme figure dans l’offre LL.M. LUISS actuelle; les places, le tarif partenaire et les seuils proviennent du cycle officiel 2026-2027.", "reliabilityStatus": "confirmed", "missingInformation": ["Coût total annuel officiel propre au partenariat", "Application fee applicable aux étudiants nominés"], "notes": "Le choix des cours et l’éligibilité à un bar doivent être évalués individuellement."
+      "id": "luiss-temple",
+      "frenchUniversityId": "luiss",
+      "frenchUniversity": "LUISS Guido Carli",
+      "partnerUniversity": "Temple University Beasley School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Philadelphia",
+      "partnerState": "Pennsylvania",
+      "partnerCoordinates": {
+        "lat": 39.9812,
+        "lng": -75.1554
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. for Foreign-Trained Lawyers",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law",
+        "International Law",
+        "Business Law"
+      ],
+      "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Cinquième année à Temple; LL.M. américain et crédits reconnus par LUISS",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
+      "shortDescription": "Parcours de cinquième année menant au LL.M. Temple en complément du diplôme LUISS.",
+      "admissionConditions": "Présélection LUISS, puis décision finale de Temple et pièces d’admission de la law school.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "88"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5",
+          "details": "Aucune section sous 6.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "115"
+        }
+      ],
+      "availableSeatsDisplay": "5 places publiées pour 2026-2027.",
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Tarif partenaire annoncé de 18 000 USD, environ 50 % du tarif LL.M. standard; tuition LUISS et dépenses de vie restent dues.",
+      "financialAid": "Réduction contractuelle d’environ 50 %; autres aides non garanties.",
+      "applicationDeadline": "21 janvier 2026 pour la sélection LUISS",
+      "sourceType": "official_home_university_call",
+      "sourceNote": "La documentation LUISS 2026-2027 publie 5 places et un tarif partenaire de 18 000 USD, mais précise que l’accord attend encore son approbation finale pour cette année universitaire.",
+      "reliabilityStatus": "to_confirm",
+      "missingInformation": [
+        "Coût total annuel officiel propre au partenariat",
+        "Application fee applicable aux étudiants nominés"
+      ],
+      "notes": "Temple documente précisément les cours utiles au New York Bar, mais l’autorité du bar reste seule compétente et l’accord LUISS 2026-2027 doit encore être définitivement approuvé."
     },
     {
-      "id": "luiss-uc-law-sf", "frenchUniversityId": "luiss", "frenchUniversity": "LUISS Guido Carli", "partnerUniversity": "University of California College of the Law, San Francisco", "partnerCountry": "États-Unis", "partnerCity": "San Francisco", "partnerState": "California", "partnerCoordinates": { "lat": 37.7806, "lng": -122.4158 }, "continent": "Amérique du Nord",
-      "programType": "LL.M. in U.S. Legal Studies", "partnershipType": "dual_degree", "specialties": ["Criminal Law", "Dispute Resolution", "Environmental Law", "Health Law and Policy", "International Business and Trade", "International Law and Human Rights", "Science, Technology and Intellectual Property", "Taxation"], "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Une année académique, d’août à mai", "applicationProcess": "internal", "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-uc-law-san-francisco",
-      "shortDescription": "LL.M. en U.S. Legal Studies avec certificat de spécialisation possible et reconnaissance de crédits LUISS.", "admissionConditions": "Classement et entretien LUISS, puis sélection finale par UC Law SF.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "90" }, { "test": "IELTS", "minimumScore": "7.0", "details": "Tests en ligne non acceptés" }],
-      "availableSeatsDisplay": "5 places par an.", "availableSeatsMin": 5, "availableSeatsMax": 5, "tuitionCategory": "reduced_tuition", "tuitionDisplay": "Tuition partenaire 2026-2027 d’environ 27 500 USD, soit 50 % de la tuition LL.M. standard de 55 000 USD; frais administratifs, assurance et vie en supplément.", "financialAid": "Réduction contractuelle de 50 %.", "applicationDeadline": "21 janvier 2026 à 12 h CET", "sourceType": "official_home_university", "sourceNote": "La page LUISS actuelle publie directement le coût 2026-2027, les 5 places, les conditions, les spécialités et la chronologie.", "reliabilityStatus": "confirmed", "missingInformation": ["Décision individuelle sur une éventuelle dispense d’assurance"], "notes": "L’admissibilité à un bar dépend du programme de cours et des règles de la juridiction visée."
+      "id": "luiss-uc-law-sf",
+      "frenchUniversityId": "luiss",
+      "frenchUniversity": "LUISS Guido Carli",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4158
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. in U.S. Legal Studies",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "Criminal Law",
+        "Dispute Resolution",
+        "Environmental Law",
+        "Health Law and Policy",
+        "International Business and Trade",
+        "International Law and Human Rights",
+        "Science, Technology and Intellectual Property",
+        "Taxation"
+      ],
+      "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Une année académique, d’août à mai",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-uc-law-san-francisco",
+      "shortDescription": "LL.M. en U.S. Legal Studies avec certificat de spécialisation possible et reconnaissance de crédits LUISS.",
+      "admissionConditions": "Classement et entretien LUISS, puis sélection finale par UC Law SF.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0",
+          "details": "Tests en ligne non acceptés"
+        }
+      ],
+      "availableSeatsDisplay": "5 places par an.",
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Tuition partenaire 2026-2027 d’environ 27 500 USD, soit 50 % de la tuition LL.M. standard de 55 000 USD; frais administratifs, assurance et vie en supplément.",
+      "financialAid": "Réduction contractuelle de 50 %.",
+      "applicationDeadline": "21 janvier 2026 à 12 h CET",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page LUISS actuelle publie directement le coût 2026-2027, les 5 places, les conditions, les spécialités et la chronologie.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Décision individuelle sur une éventuelle dispense d’assurance"
+      ],
+      "notes": "L’admissibilité à un bar dépend du programme de cours et des règles de la juridiction visée."
     },
     {
-      "id": "luiss-american-wcl", "frenchUniversityId": "luiss", "frenchUniversity": "LUISS Guido Carli", "partnerUniversity": "American University Washington College of Law", "partnerCountry": "États-Unis", "partnerCity": "Washington, D.C.", "partnerState": "District of Columbia", "partnerCoordinates": { "lat": 38.9452, "lng": -77.0791 }, "continent": "Amérique du Nord",
-      "programType": "LL.M. Educational Program with American University", "partnershipType": "dual_degree", "specialties": ["International Legal Studies", "International Business and Trade", "Human Rights"], "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Cinquième année à Washington; LL.M. de 24 crédits", "applicationProcess": "internal", "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
-      "shortDescription": "LL.M. de cinquième année à American University WCL, intégré au cursus LUISS.", "admissionConditions": "Présélection LUISS puis décision finale WCL.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "84" }, { "test": "IELTS", "minimumScore": "6.5" }, { "test": "PTE Academic", "minimumScore": "56" }, { "test": "Duolingo English Test", "minimumScore": "110" }],
-      "availableSeatsDisplay": "2 places publiées pour 2026-2027.", "availableSeatsMin": 2, "availableSeatsMax": 2, "tuitionCategory": "no_tuition", "tuitionDisplay": "Aucun frais de scolarité WCL supplémentaire annoncé; la tuition LUISS et les dépenses de séjour à Washington restent dues. Frais et assurance WCL éventuels à confirmer dans l’admission.", "financialAid": "Exonération de tuition WCL dans le cadre du partenariat; autres aides non garanties.", "applicationDeadline": "21 janvier 2026 pour LUISS", "sourceType": "official_home_university_call", "sourceNote": "L’offre LUISS et le cycle officiel 2026-2027 confirment le LL.M., 2 places, l’absence de partner fee et les seuils linguistiques.", "reliabilityStatus": "confirmed", "missingInformation": ["Ventilation annuelle définitive des frais obligatoires WCL"], "notes": "Aucun paiement de tuition WCL ne signifie pas que le séjour ou le cursus LUISS est gratuit."
+      "id": "luiss-american-wcl",
+      "frenchUniversityId": "luiss",
+      "frenchUniversity": "LUISS Guido Carli",
+      "partnerUniversity": "American University Washington College of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Washington, D.C.",
+      "partnerState": "District of Columbia",
+      "partnerCoordinates": {
+        "lat": 38.9452,
+        "lng": -77.0791
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. Educational Program with American University",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "International Legal Studies",
+        "International Business and Trade",
+        "Human Rights"
+      ],
+      "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Cinquième année à Washington; LL.M. de 24 crédits",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
+      "shortDescription": "LL.M. de cinquième année à American University WCL, intégré au cursus LUISS.",
+      "admissionConditions": "Présélection LUISS puis décision finale WCL.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "84"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5"
+        },
+        {
+          "test": "PTE Academic",
+          "minimumScore": "56"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "110"
+        }
+      ],
+      "availableSeatsDisplay": "2 places publiées pour 2026-2027.",
+      "availableSeatsMin": 2,
+      "availableSeatsMax": 2,
+      "tuitionCategory": "no_tuition",
+      "tuitionDisplay": "Aucun frais de scolarité WCL supplémentaire annoncé; la tuition LUISS et les dépenses de séjour à Washington restent dues. Frais et assurance WCL éventuels à confirmer dans l’admission.",
+      "financialAid": "Exonération de tuition WCL dans le cadre du partenariat; autres aides non garanties.",
+      "applicationDeadline": "21 janvier 2026 pour LUISS",
+      "sourceType": "official_home_university_call",
+      "sourceNote": "L’offre LUISS et le cycle officiel 2026-2027 confirment le LL.M., 2 places, l’absence de partner fee et les seuils linguistiques.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Ventilation annuelle définitive des frais obligatoires WCL"
+      ],
+      "notes": "Aucun paiement de tuition WCL ne signifie pas que le séjour ou le cursus LUISS est gratuit."
     },
     {
-      "id": "luiss-suffolk", "frenchUniversityId": "luiss", "frenchUniversity": "LUISS Guido Carli", "partnerUniversity": "Suffolk University Law School", "partnerCountry": "États-Unis", "partnerCity": "Boston", "partnerState": "Massachusetts", "partnerCoordinates": { "lat": 42.3588, "lng": -71.0618 }, "continent": "Amérique du Nord",
-      "programType": "General LL.M. ou LL.M. in Global Law and Technology", "partnershipType": "dual_degree", "specialties": ["General LL.M.", "Global Law and Technology"], "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "24 crédits sur deux semestres, avec prolongation possible selon le programme", "applicationProcess": "internal", "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
-      "shortDescription": "Parcours LL.M. Suffolk à tarif partenaire fixe pendant la cinquième année LUISS.", "admissionConditions": "Présélection LUISS, puis admission Suffolk et éventuelle procédure LSAC.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "85", "details": "Aucune sous-note sous 15" }, { "test": "IELTS", "minimumScore": "6.5", "details": "Aucune sous-note sous 6.0" }, { "test": "Duolingo English Test", "minimumScore": "115" }],
-      "availableSeatsDisplay": "10 places publiées pour 2026-2027.", "availableSeatsMin": 10, "availableSeatsMax": 10, "tuitionCategory": "fixed_fee", "tuitionDisplay": "Tarif partenaire de 32 000 USD pour 24 crédits, contre environ 66 480 USD au tarif standard; tuition LUISS, frais, assurance et vie en supplément.", "financialAid": "Réduction d’environ 52 % par rapport au tarif standard de 24 crédits.", "applicationDeadline": "21 janvier 2026 pour LUISS", "sourceType": "official_home_university_call", "sourceNote": "Le programme est listé dans l’offre LUISS actuelle; le cycle 2026-2027 publie 10 places, le tarif partenaire et les seuils d’anglais.", "reliabilityStatus": "confirmed", "missingInformation": ["Applicabilité des frais de candidature standard aux étudiants nominés"], "notes": "Le LL.M. ne garantit pas l’admission à un bar américain."
+      "id": "luiss-suffolk",
+      "frenchUniversityId": "luiss",
+      "frenchUniversity": "LUISS Guido Carli",
+      "partnerUniversity": "Suffolk University Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Boston",
+      "partnerState": "Massachusetts",
+      "partnerCoordinates": {
+        "lat": 42.3588,
+        "lng": -71.0618
+      },
+      "continent": "Amérique du Nord",
+      "programType": "General LL.M. ou LL.M. in Global Law and Technology",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "General LL.M.",
+        "Global Law and Technology"
+      ],
+      "requiredLevel": "Quatrième année; moyenne ≥ 27/30 et 180 ECTS",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "24 crédits sur deux semestres, avec prolongation possible selon le programme",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes",
+      "shortDescription": "Parcours LL.M. Suffolk à tarif partenaire fixe pendant la cinquième année LUISS.",
+      "admissionConditions": "Présélection LUISS, puis admission Suffolk et éventuelle procédure LSAC.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "85",
+          "details": "Aucune sous-note sous 15"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5",
+          "details": "Aucune sous-note sous 6.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "115"
+        }
+      ],
+      "availableSeatsDisplay": "10 places publiées pour 2026-2027.",
+      "availableSeatsMin": 10,
+      "availableSeatsMax": 10,
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Tarif partenaire de 32 000 USD pour 24 crédits, contre environ 66 480 USD au tarif standard; tuition LUISS, frais, assurance et vie en supplément.",
+      "financialAid": "Réduction d’environ 52 % par rapport au tarif standard de 24 crédits.",
+      "applicationDeadline": "21 janvier 2026 pour LUISS",
+      "sourceType": "official_home_university_call",
+      "sourceNote": "La documentation LUISS 2026-2027 publie 10 places et une réduction de 50 %, mais indique que l’accord attend encore son approbation finale pour cette année universitaire.",
+      "reliabilityStatus": "to_confirm",
+      "missingInformation": [
+        "Applicabilité des frais de candidature standard aux étudiants nominés"
+      ],
+      "notes": "Suffolk ne confirme pas que ses LL.M. satisfont les exigences d’un barreau autre que le Massachusetts; le tarif 2026-2027 reste conditionné à l’approbation finale de l’accord."
     },
     {
-      "id": "cattolica-fordham", "frenchUniversityId": "cattolica", "frenchUniversity": "Università Cattolica del Sacro Cuore", "partnerUniversity": "Fordham University School of Law", "partnerCountry": "États-Unis", "partnerCity": "New York", "partnerState": "New York", "partnerCoordinates": { "lat": 40.7714, "lng": -73.9855 }, "continent": "Amérique du Nord",
-      "programType": "Cattolica–Fordham Double Degree", "partnershipType": "dual_degree", "specialties": ["U.S. Law", "New York Bar curriculum"], "requiredLevel": "Quatrième année de Laurea Magistrale; moyenne ≥ 24/30 et progression académique suffisante", "applicationYear": "Cycle 2026", "programLanguage": "Anglais", "duration": "4 années à Cattolica puis 1 année à Fordham", "applicationProcess": "internal", "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-new-york-fordham-university?rdeLocaleAttr=en",
-      "shortDescription": "Double diplôme 4+1 explicitement structuré pour le LL.M. et une possible voie vers le New York Bar après obtention du diplôme italien.", "admissionConditions": "Candidature et sélection Cattolica, puis admission formelle Fordham.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "100" }, { "test": "IELTS", "minimumScore": "7.0" }, { "test": "Duolingo English Test", "minimumScore": "120" }],
-      "availableSeatsDisplay": "Nombre total non publié; conditions financières limitées selon la page annuelle.", "availableSeatsMin": null, "availableSeatsMax": null, "tuitionCategory": "reduced_tuition", "tuitionDisplay": "Réduction de 20 % sur la tuition Fordham; référence 2025-2026 de 79 078 USD, soit environ 63 262 USD après réduction. Frais Cattolica de 950 EUR, frais américains et vie en supplément.", "financialAid": "Réduction de 20 % et bourse Cattolica de 1 500 EUR possible selon éligibilité et fonds.", "applicationDeadline": "6 février 2026", "sourceType": "official_home_university", "sourceNote": "La page Cattolica actuelle confirme le cycle 2026, la structure 4+1, l’anglais, le calendrier, la réduction et la voie conditionnelle vers le New York Bar.", "reliabilityStatus": "confirmed", "missingInformation": ["Nombre total de places", "Tuition Fordham 2026-2027 propre à cette cohorte"], "notes": "L’étudiant ne peut se présenter au New York Bar qu’après obtention du diplôme Cattolica et sous réserve de l’évaluation du Board."
+      "id": "cattolica-fordham",
+      "frenchUniversityId": "cattolica",
+      "frenchUniversity": "Università Cattolica del Sacro Cuore",
+      "partnerUniversity": "Fordham University School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "New York",
+      "partnerState": "New York",
+      "partnerCoordinates": {
+        "lat": 40.7714,
+        "lng": -73.9855
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Cattolica–Fordham Double Degree",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law",
+        "New York Bar curriculum"
+      ],
+      "requiredLevel": "Quatrième année de Laurea Magistrale; moyenne ≥ 24/30 et progression académique suffisante",
+      "applicationYear": "Cycle 2026",
+      "programLanguage": "Anglais",
+      "duration": "4 années à Cattolica puis 1 année à Fordham",
+      "applicationProcess": "internal",
+      "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-new-york-fordham-university?rdeLocaleAttr=en",
+      "shortDescription": "Double diplôme 4+1 explicitement structuré pour le LL.M. et une possible voie vers le New York Bar après obtention du diplôme italien.",
+      "admissionConditions": "Candidature et sélection Cattolica, puis admission formelle Fordham.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "120"
+        }
+      ],
+      "availableSeatsDisplay": "Nombre total non publié; conditions financières limitées selon la page annuelle.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Réduction de 20 % sur la tuition Fordham; référence 2025-2026 de 79 078 USD, soit environ 63 262 USD après réduction. Frais Cattolica de 950 EUR, frais américains et vie en supplément.",
+      "financialAid": "Réduction de 20 % et bourse Cattolica de 1 500 EUR possible selon éligibilité et fonds.",
+      "applicationDeadline": "6 février 2026",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page Cattolica actuelle confirme le cycle 2026, la structure 4+1, l’anglais, le calendrier, la réduction et la voie conditionnelle vers le New York Bar.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Nombre total de places",
+        "Tuition Fordham 2026-2027 propre à cette cohorte"
+      ],
+      "notes": "L’étudiant ne peut se présenter au New York Bar qu’après obtention du diplôme Cattolica et sous réserve de l’évaluation du Board."
     },
     {
-      "id": "cattolica-boston-college", "frenchUniversityId": "cattolica", "frenchUniversity": "Università Cattolica del Sacro Cuore", "partnerUniversity": "Boston College Law School", "partnerCountry": "États-Unis", "partnerCity": "Newton", "partnerState": "Massachusetts", "partnerCoordinates": { "lat": 42.3428, "lng": -71.1937 }, "continent": "Amérique du Nord",
-      "programType": "Cattolica–Boston College Double Degree", "partnershipType": "dual_degree", "specialties": ["U.S. Law", "New York Bar curriculum", "Massachusetts Bar curriculum"], "requiredLevel": "Quatrième année; moyenne ≥ 24/30 et progression académique suffisante", "applicationYear": "Cycle 2026", "programLanguage": "Anglais", "duration": "4 années à Cattolica puis 2 semestres à Boston College; au moins 24 crédits", "applicationProcess": "internal", "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-boston-college-law-school",
-      "shortDescription": "Double diplôme 4+1 avec parcours possibles vers les bars de New York et du Massachusetts, sans garantie d’admission.", "admissionConditions": "Sélection Cattolica puis admission Boston College.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "100" }, { "test": "IELTS", "minimumScore": "7.0" }],
-      "availableSeatsDisplay": "5 étudiants Cattolica peuvent bénéficier de la réduction de 20 %; sélection compétitive si davantage de candidats.", "availableSeatsMin": 5, "availableSeatsMax": 5, "tuitionCategory": "reduced_tuition", "tuitionDisplay": "Réduction de 20 % sur la tuition. Le montant de référence de 72 705 USD mélange tuition, fees et books, donc la tuition nette exacte n’est pas calculable publiquement. Frais Cattolica et vie en supplément.", "financialAid": "Réduction de 20 % pour 5 étudiants et bourse Cattolica de 1 500 EUR possible.", "applicationDeadline": "6 février 2026", "sourceType": "official_home_university", "sourceNote": "La page officielle Cattolica confirme le double diplôme, les 5 réductions, les exigences et les voies professionnelles conditionnelles.", "reliabilityStatus": "confirmed", "missingInformation": ["Ventilation exacte tuition, fees et books", "Budget annuel complet"], "notes": "Les voies New York et Massachusetts dépendent des diplômes obtenus, des cours choisis et des autorités du bar."
+      "id": "cattolica-boston-college",
+      "frenchUniversityId": "cattolica",
+      "frenchUniversity": "Università Cattolica del Sacro Cuore",
+      "partnerUniversity": "Boston College Law School",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Newton",
+      "partnerState": "Massachusetts",
+      "partnerCoordinates": {
+        "lat": 42.3428,
+        "lng": -71.1937
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Cattolica–Boston College Double Degree",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law",
+        "New York Bar curriculum",
+        "Massachusetts Bar curriculum"
+      ],
+      "requiredLevel": "Quatrième année; moyenne ≥ 24/30 et progression académique suffisante",
+      "applicationYear": "Cycle 2026",
+      "programLanguage": "Anglais",
+      "duration": "4 années à Cattolica puis 2 semestres à Boston College; au moins 24 crédits",
+      "applicationProcess": "internal",
+      "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-boston-college-law-school",
+      "shortDescription": "Double diplôme 4+1 avec parcours possibles vers les bars de New York et du Massachusetts, sans garantie d’admission.",
+      "admissionConditions": "Sélection Cattolica puis admission Boston College.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        }
+      ],
+      "availableSeatsDisplay": "5 étudiants Cattolica peuvent bénéficier de la réduction de 20 %; sélection compétitive si davantage de candidats.",
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Réduction de 20 % sur la tuition. Le montant de référence de 72 705 USD mélange tuition, fees et books, donc la tuition nette exacte n’est pas calculable publiquement. Frais Cattolica et vie en supplément.",
+      "financialAid": "Réduction de 20 % pour 5 étudiants et bourse Cattolica de 1 500 EUR possible.",
+      "applicationDeadline": "6 février 2026",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page officielle Cattolica confirme le double diplôme, les 5 réductions, les exigences et les voies professionnelles conditionnelles.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Ventilation exacte tuition, fees et books",
+        "Budget annuel complet"
+      ],
+      "notes": "Les voies New York et Massachusetts dépendent des diplômes obtenus, des cours choisis et des autorités du bar."
     },
     {
-      "id": "cattolica-berkeley", "frenchUniversityId": "cattolica", "frenchUniversity": "Università Cattolica del Sacro Cuore", "partnerUniversity": "University of California, Berkeley School of Law", "partnerCountry": "États-Unis", "partnerCity": "Berkeley", "partnerState": "California", "partnerCoordinates": { "lat": 37.8697, "lng": -122.2533 }, "continent": "Amérique du Nord",
-      "programType": "Executive Track LL.M. / Cattolica–Berkeley Double Degree", "partnershipType": "dual_degree", "specialties": ["U.S. Law", "California Bar curriculum"], "requiredLevel": "Troisième année lors de la candidature; moyenne ≥ 24/30; diplôme italien de niveau bachelor requis avant délivrance du LL.M.", "applicationYear": "Cycle commencé en 2026", "programLanguage": "Anglais", "duration": "24 unités réparties sur deux sessions d’été", "applicationProcess": "internal", "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-berkeley-law",
-      "shortDescription": "LL.M. Executive Track sur deux étés, intégré au cursus Cattolica et orienté vers une possible admissibilité californienne.", "admissionConditions": "Sélection interne Cattolica puis admission Berkeley.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "100" }, { "test": "IELTS", "minimumScore": "7.0" }],
-      "availableSeatsDisplay": "Nombre de places non publié.", "availableSeatsMin": null, "availableSeatsMax": null, "tuitionCategory": "scholarship_possible", "tuitionDisplay": "Tuition de référence 2025-2026 de 73 350 USD; bourse garantie de 10 000 USD, soit environ 63 350 USD avant frais Cattolica et dépenses de séjour.", "financialAid": "Bourse Berkeley de 10 000 USD et bourse Cattolica de 1 500 EUR possible selon éligibilité.", "applicationDeadline": "20 novembre 2025 pour le cycle commencé en mai 2026", "sourceType": "official_home_university", "sourceNote": "La page officielle Cattolica confirme la structure sur deux étés, le cycle 2026, la bourse de 10 000 USD et les conditions académiques.", "reliabilityStatus": "confirmed", "missingInformation": ["Nombre de places", "Tarif de la prochaine cohorte"], "notes": "La conformité académique à la Californie ne garantit pas l’admission individuelle au bar."
+      "id": "cattolica-berkeley",
+      "frenchUniversityId": "cattolica",
+      "frenchUniversity": "Università Cattolica del Sacro Cuore",
+      "partnerUniversity": "University of California, Berkeley School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Berkeley",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.8697,
+        "lng": -122.2533
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Executive Track LL.M. / Cattolica–Berkeley Double Degree",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law",
+        "California Bar curriculum"
+      ],
+      "requiredLevel": "Troisième année lors de la candidature; moyenne ≥ 24/30; diplôme italien de niveau bachelor requis avant délivrance du LL.M.",
+      "applicationYear": "Cycle commencé en 2026",
+      "programLanguage": "Anglais",
+      "duration": "24 unités réparties sur deux sessions d’été",
+      "applicationProcess": "internal",
+      "officialLink": "https://studenticattolica.unicatt.it/giurisprudenza-berkeley-law",
+      "shortDescription": "LL.M. Executive Track sur deux étés, intégré au cursus Cattolica et orienté vers une possible admissibilité californienne.",
+      "admissionConditions": "Sélection interne Cattolica puis admission Berkeley.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        }
+      ],
+      "availableSeatsDisplay": "Nombre de places non publié.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Tuition de référence 2025-2026 de 73 350 USD; bourse garantie de 10 000 USD, soit environ 63 350 USD avant frais Cattolica et dépenses de séjour.",
+      "financialAid": "Bourse Berkeley de 10 000 USD et bourse Cattolica de 1 500 EUR possible selon éligibilité.",
+      "applicationDeadline": "20 novembre 2025 pour le cycle commencé en mai 2026",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page officielle Cattolica confirme la structure sur deux étés, le cycle 2026, la bourse de 10 000 USD et les conditions académiques.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Nombre de places",
+        "Tarif de la prochaine cohorte"
+      ],
+      "notes": "La conformité académique à la Californie ne garantit pas l’admission individuelle au bar."
     },
     {
-      "id": "trento-washu", "frenchUniversityId": "trento", "frenchUniversity": "Università di Trento", "partnerUniversity": "Washington University in St. Louis School of Law", "partnerCountry": "États-Unis", "partnerCity": "St. Louis", "partnerState": "Missouri", "partnerCoordinates": { "lat": 38.6488, "lng": -90.3115 }, "continent": "Amérique du Nord",
-      "programType": "Transnational Law Program (TLP) ou Transnational GLaM Program (TGP)", "partnershipType": "dual_degree", "specialties": ["U.S. Law", "Intellectual Property and Technology", "Negotiation and Dispute Resolution", "Business and Corporate Law", "International Law"], "requiredLevel": "TLP: deuxième année, 42 CFU, 5 examens fondamentaux sur 7 et moyenne ≥ 26/30; TGP: conditions propres au Global Law Making", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Deux semestres à WashU", "applicationProcess": "internal", "officialLink": "https://www.unitn.it/sites/default/files/2025-12/All.%201_Destinazioni.pdf",
-      "shortDescription": "Double diplôme WashU à tarif négocié; le TLP mentionne explicitement des voies vers la Californie, New York et le Missouri, contrairement au TGP.", "admissionConditions": "Sélection UniTrento, classement interne puis validation et documents complémentaires possibles de WashU.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "90" }, { "test": "IELTS", "minimumScore": "6.5" }, { "test": "Duolingo English Test", "minimumScore": "125" }, { "test": "Gateway", "minimumScore": "495" }],
-      "availableSeatsDisplay": "5 bourses TLP et 2 bourses TGP; places supplémentaires sans bourse possibles sous réserve du partenaire.", "availableSeatsMin": 7, "availableSeatsMax": 7, "tuitionCategory": "fixed_fee", "tuitionDisplay": "Tuition partenaire d’environ 28 000 USD au total. Les frais, le logement et les dépenses personnelles restent dus.", "financialAid": "Par semestre: bourse UniTrento de 3 500 EUR, complément de 1 250 EUR si ISEE ≤ 25 000 EUR, plus 1 500 EUR de voyage.", "applicationDeadline": "15 mai 2026 auprès du partenaire après sélection", "sourceType": "official_home_university_call", "sourceNote": "L’annexe officielle UniTrento 2026-2027 publie les parcours, places, bourses, tuition, anglais et distinction TLP/TGP pour le bar.", "reliabilityStatus": "confirmed", "missingInformation": ["Frais obligatoires WashU ventilés pour la cohorte"], "notes": "Le TGP/Global Law Making n’ouvre pas la voie au bar américain indiquée pour le TLP. L’éligibilité reste individuelle."
+      "id": "trento-washu",
+      "frenchUniversityId": "trento",
+      "frenchUniversity": "Università di Trento",
+      "partnerUniversity": "Washington University in St. Louis School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "St. Louis",
+      "partnerState": "Missouri",
+      "partnerCoordinates": {
+        "lat": 38.6488,
+        "lng": -90.3115
+      },
+      "continent": "Amérique du Nord",
+      "programType": "Transnational Law Program (TLP) ou Transnational GLaM Program (TGP)",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law",
+        "Intellectual Property and Technology",
+        "Negotiation and Dispute Resolution",
+        "Business and Corporate Law",
+        "International Law"
+      ],
+      "requiredLevel": "TLP: deuxième année, 42 CFU, 5 examens fondamentaux sur 7 et moyenne ≥ 26/30; TGP: conditions propres au Global Law Making",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Deux semestres à WashU",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.unitn.it/sites/default/files/2025-12/All.%201_Destinazioni.pdf",
+      "shortDescription": "Double diplôme WashU à tarif négocié; le TLP mentionne explicitement des voies vers la Californie, New York et le Missouri, contrairement au TGP.",
+      "admissionConditions": "Sélection UniTrento, classement interne puis validation et documents complémentaires possibles de WashU.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "125"
+        },
+        {
+          "test": "Gateway",
+          "minimumScore": "495"
+        }
+      ],
+      "availableSeatsDisplay": "5 bourses TLP et 2 bourses TGP; places supplémentaires sans bourse possibles sous réserve du partenaire.",
+      "availableSeatsMin": 7,
+      "availableSeatsMax": 7,
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Tuition partenaire d’environ 28 000 USD au total. Les frais, le logement et les dépenses personnelles restent dus.",
+      "financialAid": "Par semestre: bourse UniTrento de 3 500 EUR, complément de 1 250 EUR si ISEE ≤ 25 000 EUR, plus 1 500 EUR de voyage.",
+      "applicationDeadline": "15 mai 2026 auprès du partenaire après sélection",
+      "sourceType": "official_home_university_call",
+      "sourceNote": "L’annexe officielle UniTrento 2026-2027 publie les parcours, places, bourses, tuition, anglais et distinction TLP/TGP pour le bar.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Frais obligatoires WashU ventilés pour la cohorte"
+      ],
+      "notes": "UniTrento indique que 77 étudiants ont terminé le TLP et que 10 ont ensuite présenté le New York Bar. Le parcours TGP, lui, n’ouvre pas l’accès au bar. L’admissibilité individuelle reste décidée par l’autorité compétente."
     },
     {
-      "id": "trento-cincinnati", "frenchUniversityId": "trento", "frenchUniversity": "Università di Trento", "partnerUniversity": "University of Cincinnati College of Law", "partnerCountry": "États-Unis", "partnerCity": "Cincinnati", "partnerState": "Ohio", "partnerCoordinates": { "lat": 39.1293, "lng": -84.5200 }, "continent": "Amérique du Nord",
-      "programType": "LL.M. in U.S. Legal System", "partnershipType": "dual_degree", "specialties": ["Business Law", "Intellectual Property", "International Legal Studies", "Social Justice"], "requiredLevel": "Au moins troisième année; ≥ 100 CFU et moyenne ≥ 26/30 à la candidature; ≥ 180 CFU avant le départ", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "Deux semestres; LL.M. délivré sous condition d’obtention ultérieure du diplôme Trento", "applicationProcess": "internal", "officialLink": "https://www.unitn.it/en/international/going-abroad/study/double-degree/social-sciences-and-humanities/cincinnati-college-law",
-      "shortDescription": "Double diplôme à tuition subventionnée, avec possibilité conditionnelle de satisfaire certaines règles de New York et Californie.", "admissionConditions": "Sélection UniTrento; Cincinnati peut demander une évaluation et des documents supplémentaires.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "85" }, { "test": "IELTS", "minimumScore": "7.0" }, { "test": "Duolingo English Test", "minimumScore": "110" }, { "test": "CEFR", "minimumScore": "C1" }],
-      "availableSeatsDisplay": "3 places à réduction de 50 %, 1 place à réduction inférieure; admissions supplémentaires possibles sans réduction prédéfinie.", "availableSeatsMin": 4, "availableSeatsMax": 4, "tuitionCategory": "reduced_tuition", "tuitionDisplay": "Environ 15 000 USD pour les trois premiers sélectionnés, soit 50 % d’une tuition indicative de 30 000 USD; environ 3 600 USD de fees et assurance en supplément.", "financialAid": "Réduction de 50 % pour les trois premiers; réduction inférieure pour le quatrième; autres niveaux décidés par le partenaire.", "applicationDeadline": "Première moitié de février 2026 auprès de Cincinnati", "sourceType": "official_home_university", "sourceNote": "La page et le cycle officiel UniTrento 2026-2027 confirment le LL.M., les réductions, la langue, la structure et les voies bar conditionnelles.", "reliabilityStatus": "confirmed", "missingInformation": ["Tuition contractuelle définitive 2026-2027 pour chaque rang"], "notes": "Le programme de cours et l’évaluation de chaque juridiction déterminent l’admissibilité effective au bar."
+      "id": "trento-cincinnati",
+      "frenchUniversityId": "trento",
+      "frenchUniversity": "Università di Trento",
+      "partnerUniversity": "University of Cincinnati College of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Cincinnati",
+      "partnerState": "Ohio",
+      "partnerCoordinates": {
+        "lat": 39.1293,
+        "lng": -84.52
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LL.M. in U.S. Legal System",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "Business Law",
+        "Intellectual Property",
+        "International Legal Studies",
+        "Social Justice"
+      ],
+      "requiredLevel": "Au moins troisième année; ≥ 100 CFU et moyenne ≥ 26/30 à la candidature; ≥ 180 CFU avant le départ",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "Deux semestres; LL.M. délivré sous condition d’obtention ultérieure du diplôme Trento",
+      "applicationProcess": "internal",
+      "officialLink": "https://www.unitn.it/en/international/going-abroad/study/double-degree/social-sciences-and-humanities/cincinnati-college-law",
+      "shortDescription": "Double diplôme à tuition subventionnée, avec possibilité conditionnelle de satisfaire certaines règles de New York et Californie.",
+      "admissionConditions": "Sélection UniTrento; Cincinnati peut demander une évaluation et des documents supplémentaires.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "85"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "110"
+        },
+        {
+          "test": "CEFR",
+          "minimumScore": "C1"
+        }
+      ],
+      "availableSeatsDisplay": "3 places à réduction de 50 %, 1 place à réduction inférieure; admissions supplémentaires possibles sans réduction prédéfinie.",
+      "availableSeatsMin": 4,
+      "availableSeatsMax": 4,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Environ 15 000 USD pour les trois premiers sélectionnés, soit 50 % d’une tuition indicative de 30 000 USD; environ 3 600 USD de fees et assurance en supplément.",
+      "financialAid": "Réduction de 50 % pour les trois premiers; réduction inférieure pour le quatrième; autres niveaux décidés par le partenaire.",
+      "applicationDeadline": "Première moitié de février 2026 auprès de Cincinnati",
+      "sourceType": "official_home_university",
+      "sourceNote": "La page et le cycle officiel UniTrento 2026-2027 confirment le LL.M., les réductions, la langue, la structure et les voies bar conditionnelles.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Tuition contractuelle définitive 2026-2027 pour chaque rang"
+      ],
+      "notes": "Le programme de cours et l’évaluation de chaque juridiction déterminent l’admissibilité effective au bar."
     },
     {
-      "id": "lum-indiana-maurer", "frenchUniversityId": "lum", "frenchUniversity": "Università LUM Giuseppe Degennaro", "partnerUniversity": "Indiana University Maurer School of Law", "partnerCountry": "États-Unis", "partnerCity": "Bloomington", "partnerState": "Indiana", "partnerCoordinates": { "lat": 39.1664, "lng": -86.5269 }, "continent": "Amérique du Nord",
-      "programType": "LUM–Indiana 4+1 LL.M.", "partnershipType": "dual_degree", "specialties": ["LL.M. Practicum", "U.S. Law"], "requiredLevel": "Quatrième année accomplie, 240 CFU et moyenne ≥ 26/30", "applicationYear": "2026-2027", "programLanguage": "Anglais", "duration": "4 années à LUM puis cinquième année à Maurer; au moins 24 crédits", "applicationProcess": "internal", "officialLink": "https://cloud.email.lum.it/manifesto",
-      "shortDescription": "Programme 4+1 menant à la Laurea Magistrale LUM et au LL.M. Indiana avec réduction de tuition de 50 %.", "admissionConditions": "Sélection conjointe, recommandations LUM, admission Indiana et procédure I-20.", "languageTests": [{ "test": "TOEFL iBT", "minimumScore": "94" }, { "test": "IELTS", "minimumScore": "7.0" }],
-      "availableSeatsDisplay": "Nombre de places non publié.", "availableSeatsMin": null, "availableSeatsMax": null, "tuitionCategory": "reduced_tuition", "tuitionDisplay": "Réduction garantie de 50 %. Sur une tuition internationale 2026-2027 de 46 680 USD pour 24 crédits, tuition indicative nette de 23 340 USD; frais, assurance, livres et vie en supplément.", "financialAid": "Réduction contractuelle de 50 %.", "applicationDeadline": "Habituellement en avril; date annuelle exacte à confirmer", "sourceType": "official_home_university", "sourceNote": "Le manifeste LUM 2026-2027 confirme le 4+1, les 240 crédits, la moyenne, l’anglais et la réduction de 50 %.", "reliabilityStatus": "confirmed", "missingInformation": ["Nombre de places", "Date limite annuelle exacte"], "notes": "L’accès potentiel aux bars, notamment New York ou Californie, dépend des critères propres à chaque État."
+      "id": "lum-indiana-maurer",
+      "frenchUniversityId": "lum",
+      "frenchUniversity": "Università LUM Giuseppe Degennaro",
+      "partnerUniversity": "Indiana University Maurer School of Law",
+      "partnerCountry": "États-Unis",
+      "partnerCity": "Bloomington",
+      "partnerState": "Indiana",
+      "partnerCoordinates": {
+        "lat": 39.1664,
+        "lng": -86.5269
+      },
+      "continent": "Amérique du Nord",
+      "programType": "LUM–Indiana 4+1 LL.M.",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "LL.M. Practicum",
+        "U.S. Law"
+      ],
+      "requiredLevel": "Quatrième année accomplie, 240 CFU et moyenne ≥ 26/30",
+      "applicationYear": "2026-2027",
+      "programLanguage": "Anglais",
+      "duration": "4 années à LUM puis cinquième année à Maurer; au moins 24 crédits",
+      "applicationProcess": "internal",
+      "officialLink": "https://cloud.email.lum.it/manifesto",
+      "shortDescription": "Programme 4+1 menant à la Laurea Magistrale LUM et au LL.M. Indiana avec réduction de tuition de 50 %.",
+      "admissionConditions": "Sélection conjointe, recommandations LUM, admission Indiana et procédure I-20.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "94"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        }
+      ],
+      "availableSeatsDisplay": "Nombre de places non publié.",
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Réduction garantie de 50 %. Sur une tuition internationale 2026-2027 de 46 680 USD pour 24 crédits, tuition indicative nette de 23 340 USD; frais, assurance, livres et vie en supplément.",
+      "financialAid": "Réduction contractuelle de 50 %.",
+      "applicationDeadline": "Habituellement en avril; date annuelle exacte à confirmer",
+      "sourceType": "official_home_university",
+      "sourceNote": "Le manifeste LUM 2026-2027 confirme le 4+1, les 240 crédits, la moyenne, l’anglais et la réduction de 50 %.",
+      "reliabilityStatus": "confirmed",
+      "missingInformation": [
+        "Nombre de places",
+        "Date limite annuelle exacte"
+      ],
+      "notes": "L’accès potentiel aux bars, notamment New York ou Californie, dépend des critères propres à chaque État."
     },
     {
-      "id": "roma-tre-cardozo", "frenchUniversityId": "roma-tre", "frenchUniversity": "Università degli Studi Roma Tre", "partnerUniversity": "Benjamin N. Cardozo School of Law, Yeshiva University", "partnerCountry": "États-Unis", "partnerCity": "New York", "partnerState": "New York", "partnerCoordinates": { "lat": 40.7350, "lng": -73.9945 }, "continent": "Amérique du Nord",
-      "programType": "Institutional LL.M. Scholarship Partnership", "partnershipType": "to_confirm", "specialties": ["General Studies", "Comparative Legal Thought", "Dispute Resolution and Advocacy", "Intellectual Property Law"], "requiredLevel": "Étudiant ou diplômé en droit de Roma Tre répondant aux critères généraux Cardozo", "applicationYear": "Accord officiel; cycle 2026-2027 à confirmer", "programLanguage": "Anglais", "duration": "LL.M. sur campus ou, pour certains programmes, en ligne", "applicationProcess": "lsac", "officialLink": "https://giurisprudenza.uniroma3.it/en/international/international-mobility-and-exchange-program/cardozo-law-school/",
-      "shortDescription": "Accord officiel offrant une admission préférentielle et une bourse de 30 % à 50 %, sans double diplôme ni admission automatique.", "admissionConditions": "Candidature au LL.M. Cardozo en s’identifiant comme étudiant Roma Tre; admission et bourse compétitives.", "languageTests": [{ "test": "TOEFL ou IELTS", "minimumScore": "Seuil actuel non publié sur la page du partenariat", "details": "Waiver possible selon les règles Cardozo à vérifier annuellement" }],
-      "availableSeatsDisplay": "3 à 5 bourses institutionnelles; ce nombre ne garantit pas 3 à 5 admissions.", "availableSeatsMin": 3, "availableSeatsMax": 5, "tuitionCategory": "scholarship_possible", "tuitionDisplay": "Bourse de 30 % à 50 % sur la tuition Cardozo. Sur une référence 2026-2027 de 77 602 USD, tuition indicative de 54 321 à 38 801 USD; frais et vie en supplément.", "financialAid": "Bourse institutionnelle de 30 % à 50 % pour 3 à 5 étudiants Roma Tre, sous réserve d’actualisation annuelle.", "applicationDeadline": "Non publiée par Roma Tre pour 2026-2027", "sourceType": "official_home_university", "sourceNote": "L’accord et la bourse sont officiellement documentés, mais la page Roma Tre a été actualisée en janvier 2024 et aucun appel public 2026-2027 n’a été identifié; confirmation annuelle requise.", "reliabilityStatus": "to_confirm", "missingInformation": ["Appel 2026-2027", "Date limite actuelle", "Seuils linguistiques chiffrés actuels", "Nombre exact de bourses pour la prochaine cohorte"], "notes": "L’accord ne garantit ni l’admission, ni le taux maximal de bourse, ni l’éligibilité au New York Bar."
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Tuition Fordham effectivement due"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "bocconi-fordham",
+      "frenchUniversityId": "bocconi",
+      "frenchUniversity": "Università Bocconi",
+      "partnerUniversity": "Fordham University School of Law",
+      "partnerCity": "New York",
+      "partnerState": "New York",
+      "partnerCoordinates": {
+        "lat": 40.7714,
+        "lng": -73.9855
+      },
+      "programType": "LL.M. Fordham – Double Degree",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law"
+      ],
+      "requiredLevel": "Quatrième année de Giurisprudenza; moyenne minimale de 25/30 et progression minimale en crédits.",
+      "applicationYear": "Cycle annuel Bocconi",
+      "duration": "Cinquième année à Fordham; diplôme Bocconi et LL.M. Fordham.",
+      "officialLink": "https://www.unibocconi.it/en/current-students/international-mobility/double-degree-program/double-degree-law",
+      "shortDescription": "Double diplôme permettant d’effectuer la cinquième année à Fordham et d’obtenir le LL.M.",
+      "admissionConditions": "Candidature Punto Blu; classement composé à 70 % de la moyenne et à 30 % du dossier et de l’entretien.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        }
+      ],
+      "availableSeatsDisplay": "Nombre de places non publié par destination.",
+      "tuitionCategory": "to_confirm",
+      "tuitionDisplay": "Contribution Bocconi de 2 000 EUR. La politique de double diplôme prévoit normalement l’absence de tuition auprès de l’établissement d’accueil, mais le traitement Fordham exact se trouve dans la Restricted Area et doit être confirmé.",
+      "financialAid": "Avantage financier exact à confirmer dans la Restricted Area Bocconi.",
+      "applicationDeadline": "Candidatures généralement en novembre-décembre; résultats en février.",
+      "sourceNote": "Bocconi confirme Fordham dans son réseau de doubles diplômes, mais ne publie ni les places ni le traitement détaillé de la tuition.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Aucune déclaration Bocconi sur l’éligibilité au New York Bar."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Tuition nette"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "bocconi-indiana-maurer",
+      "frenchUniversityId": "bocconi",
+      "frenchUniversity": "Università Bocconi",
+      "partnerUniversity": "Indiana University Maurer School of Law",
+      "partnerCity": "Bloomington",
+      "partnerState": "Indiana",
+      "partnerCoordinates": {
+        "lat": 39.1653,
+        "lng": -86.5264
+      },
+      "programType": "LL.M. Indiana Maurer – Double Degree",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "U.S. Law"
+      ],
+      "requiredLevel": "Quatrième année de Giurisprudenza; moyenne minimale de 25/30 et progression minimale en crédits.",
+      "applicationYear": "Cycle annuel Bocconi",
+      "duration": "Cinquième année à Bloomington; LL.M. d’environ 24 crédits sur deux semestres.",
+      "officialLink": "https://www.unibocconi.it/en/current-students/international-mobility/double-degree-program/dd-network",
+      "shortDescription": "Double diplôme Bocconi–Maurer réalisé pendant la cinquième année.",
+      "admissionConditions": "Candidature Punto Blu; 70 % moyenne et 30 % dossier-entretien.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "100"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué par destination.",
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Contribution Bocconi de 2 000 EUR; tuition Maurer non publiée pour ce parcours.",
+      "financialAid": "Les étudiants d’établissements partenaires peuvent être éligibles à une bourse allant jusqu’à 50 % de la tuition; montant individuel non garanti.",
+      "applicationDeadline": "Novembre-décembre; résultats en février.",
+      "sourceNote": "Le parcours Bocconi vers Maurer est confirmé du côté italien; les conditions financières propres à la cohorte ne sont pas publiques.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Un LL.M. Maurer peut contribuer à une voie vers certains barreaux, sans garantir l’admissibilité individuelle."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Aide propre au partenariat"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "bocconi-temple",
+      "frenchUniversityId": "bocconi",
+      "frenchUniversity": "Università Bocconi",
+      "partnerUniversity": "Temple University Beasley School of Law",
+      "partnerCity": "Philadelphia",
+      "partnerState": "Pennsylvania",
+      "partnerCoordinates": {
+        "lat": 39.9812,
+        "lng": -75.1554
+      },
+      "programType": "LL.M. for Foreign-Trained Lawyers",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "U.S. Law",
+        "Bar Track"
+      ],
+      "requiredLevel": "Premier diplôme en droit obtenu hors des États-Unis.",
+      "applicationYear": "Accord renouvelé en 2024",
+      "duration": "Échange d’un ou deux semestres; crédits transférables vers un LL.M. de 24 crédits dans les deux ans.",
+      "officialLink": "https://law.temple.edu/academics/degrees/llm-foreign-trained/global-partnerships/",
+      "shortDescription": "Échange Bocconi avec possibilité de transférer les crédits vers le LL.M. Temple.",
+      "admissionConditions": "Nomination Bocconi, puis candidature distincte au LL.M. Temple.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "88"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5",
+          "details": "Aucune section sous 6.0"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "115"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué.",
+      "tuitionCategory": "full_or_unknown",
+      "tuitionDisplay": "Tuition standard de 36 000 USD; frais publiés d’environ 1 829 USD. Aucun avantage financier Bocconi spécifique n’est publié.",
+      "financialAid": "Aucune réduction de partenariat publiée.",
+      "applicationDeadline": "15 mars pour l’automne; 15 octobre pour le printemps.",
+      "sourceNote": "Temple confirme le partenariat Bocconi et son renouvellement du 21 février 2024.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Temple publie les cours et règles à vérifier pour New York et rappelle que le Board of Law Examiners reste l’autorité finale."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Taux contractuel définitif de réduction"
+      ],
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "id": "genova-loyola-students",
+      "frenchUniversityId": "genova",
+      "frenchUniversity": "Università degli Studi di Genova",
+      "partnerUniversity": "Loyola Law School, Los Angeles",
+      "partnerCity": "Los Angeles",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 34.049,
+        "lng": -118.444
+      },
+      "programType": "Loyola LL.M. – parcours étudiants",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "Bar Track",
+        "Entertainment Law",
+        "Intellectual Property",
+        "Cybersecurity"
+      ],
+      "requiredLevel": "Inscription en quatrième ou cinquième année; moyenne minimale de 25/30.",
+      "applicationYear": "2026-2027",
+      "duration": "10 mois, deux semestres et au moins 24 unités.",
+      "officialLink": "https://giurisprudenza.unige.it/did/progr_internaz_prog_loy",
+      "shortDescription": "Double diplôme avec priorité d’admission, réduction importante et bourses de mobilité UNIGE.",
+      "admissionConditions": "Sélection UNIGE sur dossier et entretien, puis décision indépendante de Loyola; la nomination ne garantit pas l’admission.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "110"
+        }
+      ],
+      "availableSeatsDisplay": "5 étudiants; les deux premiers du classement peuvent recevoir une bourse UNIGE.",
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Tuition standard 2026-2027 de 73 000 USD. Les documents officiels indiquent 50 % dans le mémorandum et 60 % dans les appels annuels récents; le taux applicable doit être confirmé.",
+      "financialAid": "Réduction annoncée de 50 à 60 % plus bourse UNIGE de 700 à 1 200 EUR par mois et contribution voyage jusqu’à 1 150 EUR pour les premiers classés.",
+      "applicationDeadline": "20 février 2026; Loyola: 1er juin 2026 pour l’automne.",
+      "sourceNote": "UNIGE et Loyola confirment le partenariat; une divergence officielle subsiste entre 50 % et 60 % de réduction.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Le Bar Track vise notamment New York et la Californie, mais chaque autorité décide de l’admissibilité. Loyola publie des taux indicatifs de réussite de 30–50 % à New York et 10–20 % en Californie pour les juristes étrangers."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [],
+      "availableSeatsMin": 5,
+      "availableSeatsMax": 5,
+      "id": "genova-loyola-graduates",
+      "frenchUniversityId": "genova",
+      "frenchUniversity": "Università degli Studi di Genova",
+      "partnerUniversity": "Loyola Law School, Los Angeles",
+      "partnerCity": "Los Angeles",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 34.049,
+        "lng": -118.444
+      },
+      "programType": "Loyola LL.M. – parcours diplômés",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "Bar Track",
+        "U.S. Law"
+      ],
+      "requiredLevel": "Diplôme de Giurisprudenza UNIGE obtenu avec au moins 100/110.",
+      "applicationYear": "2026-2027",
+      "duration": "10 mois, deux semestres et au moins 24 unités.",
+      "officialLink": "https://giurisprudenza.unige.it/sites/giurisprudenza.unige.it/files/2025-02/Bando%20n.%20809%20del%2024_2_2025%20Loyola%202025-2026%20per%20laureati_signed.pdf",
+      "shortDescription": "Voie Loyola réservée aux diplômés UNIGE avec réduction de 60 %.",
+      "admissionConditions": "Sélection UNIGE, puis candidature autonome et décision finale de Loyola.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "110"
+        }
+      ],
+      "availableSeatsDisplay": "5 diplômés.",
+      "tuitionCategory": "reduced_tuition",
+      "tuitionDisplay": "Tuition standard de 73 000 USD; réduction publiée de 60 %.",
+      "financialAid": "Réduction de 60 %; aucune autre aide automatique dans cet appel.",
+      "applicationDeadline": "20 février 2026.",
+      "sourceNote": "Appel UNIGE dédié aux diplômés, avec places, réduction et critères explicites.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Seule voie italienne publiée expressément pour des diplômés. Le Bar Track n’est pas une garantie d’admissibilité."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [],
+      "availableSeatsMin": 4,
+      "availableSeatsMax": 4,
+      "id": "genova-illinois",
+      "frenchUniversityId": "genova",
+      "frenchUniversity": "Università degli Studi di Genova",
+      "partnerUniversity": "University of Illinois College of Law",
+      "partnerCity": "Champaign",
+      "partnerState": "Illinois",
+      "partnerCoordinates": {
+        "lat": 40.109,
+        "lng": -88.227
+      },
+      "programType": "University of Illinois LL.M.",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "Corporate Law",
+        "International Law",
+        "Criminal Law"
+      ],
+      "requiredLevel": "Examens de troisième année terminés; candidature possible en troisième, quatrième ou cinquième année.",
+      "applicationYear": "2026-2027",
+      "duration": "Août à mai; 32 crédits américains reconnus jusqu’à 48 CFU.",
+      "officialLink": "https://giurisprudenza.unige.it/didatt_progetto_illi",
+      "shortDescription": "LL.M. Illinois à tarif négocié avec réduction des deux tiers.",
+      "admissionConditions": "UNIGE recommande jusqu’à quatre étudiants; Illinois conserve la décision finale.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "80"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "6.5"
+        }
+      ],
+      "availableSeatsDisplay": "4 étudiants par an.",
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Tarif partenaire de 15 000 USD contre environ 45 000 USD; logement en supplément.",
+      "financialAid": "Réduction des deux tiers plus bourses de mobilité UNIGE pour les premiers classés.",
+      "applicationDeadline": "20 février 2026.",
+      "sourceNote": "La page et l’appel UNIGE publient le tarif, les quatre places et les seuils linguistiques.",
+      "reliabilityStatus": "confirmed",
+      "notes": "UNIGE cite une possible voie vers six barreaux dont New York; aucune confirmation équivalente n’a été trouvée côté Illinois."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Conciliation de l’année d’études exigée"
+      ],
+      "availableSeatsMin": 10,
+      "availableSeatsMax": 10,
+      "id": "parma-widener",
+      "frenchUniversityId": "parma",
+      "frenchUniversity": "Università degli Studi di Parma",
+      "partnerUniversity": "Widener University Delaware Law School",
+      "partnerCity": "Wilmington",
+      "partnerState": "Delaware",
+      "partnerCoordinates": {
+        "lat": 39.742,
+        "lng": -75.55
+      },
+      "programType": "LL.M. Corporate Law and Finance / Human Rights and Dignity Law",
+      "partnershipType": "dual_degree",
+      "specialties": [
+        "Corporate Law and Finance",
+        "Human Rights and Dignity Law"
+      ],
+      "requiredLevel": "Le bando 2026 vise la troisième année; l’accord prévoit la mobilité en cinquième année avec 240 CFU, divergence à vérifier.",
+      "applicationYear": "2026",
+      "duration": "Semestre de printemps; 12 crédits américains, équivalant à 24 CFU.",
+      "officialLink": "https://corsi.unipr.it/it/cdlm-giur/doppio-titolo",
+      "shortDescription": "Double diplôme au coût global publié le plus bas de l’annuaire italien.",
+      "admissionConditions": "Sélection UniPR, puis acceptation finale par Delaware Law School.",
+      "languageTests": [
+        {
+          "test": "Niveau CECRL",
+          "minimumScore": "B2"
+        }
+      ],
+      "availableSeatsDisplay": "10 bourses en 2026.",
+      "tuitionCategory": "fixed_fee",
+      "tuitionDisplay": "Coût total publié d’environ 11 050 USD: tuition 6 500 USD, assurance 900 USD, logement 3 500 USD et frais 150 USD.",
+      "financialAid": "Tarif forfaitaire négocié et 10 bourses UniPR.",
+      "applicationDeadline": "14 septembre 2026.",
+      "sourceNote": "L’accord et le bando UniPR 2026 publient les coûts, les crédits et les dix bourses.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Le programme exclut expressément l’accès au barreau du Delaware; aucune admissibilité à un autre barreau ne doit être déduite."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Seuil d’anglais propre au partenariat"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "firenze-boston-university",
+      "frenchUniversityId": "firenze",
+      "frenchUniversity": "Università di Firenze",
+      "partnerUniversity": "Boston University School of Law",
+      "partnerCity": "Boston",
+      "partnerState": "Massachusetts",
+      "partnerCoordinates": {
+        "lat": 42.3505,
+        "lng": -71.1054
+      },
+      "programType": "Exchange-to-LL.M. avec advanced standing",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "U.S. Law"
+      ],
+      "requiredLevel": "Sélection par le bando extra-UE de Firenze; admission distincte au LL.M. Boston University.",
+      "applicationYear": "2026-2027",
+      "duration": "Semestre d’échange avec jusqu’à 18 crédits transférables, puis un semestre supplémentaire pour le LL.M.",
+      "officialLink": "https://www.bu.edu/law/admissions-aid/graduate-admissions/how-to-apply/foreign-exchange-students/",
+      "shortDescription": "Parcours où les crédits d’échange peuvent réduire le LL.M. à un semestre supplémentaire.",
+      "admissionConditions": "Sélection Firenze pour l’échange, puis candidature autonome; l’admission au LL.M. n’est pas garantie.",
+      "languageTests": [
+        {
+          "test": "TOEFL / IELTS",
+          "minimumScore": "Non communiqué pour le partenariat"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué.",
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Pendant l’échange, tuition payée à Firenze. Le coût standard BU 2026-2027 est de 96 920 USD; l’avantage porte sur les 18 crédits transférables, pas sur un pourcentage de réduction publié.",
+      "financialAid": "Jusqu’à 18 crédits d’advanced standing; bourses Firenze possibles pendant l’échange.",
+      "applicationDeadline": "BU: 1er mai pour l’automne, 1er septembre pour le printemps.",
+      "sourceNote": "Boston University confirme le transfert maximal de 18 crédits pour ses anciens étudiants d’échange.",
+      "reliabilityStatus": "confirmed",
+      "notes": "L’échange ne garantit ni l’admission au LL.M. ni l’éligibilité à un barreau."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Avantage financier propre au partenariat"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "bologna-uc-law-sf",
+      "frenchUniversityId": "bologna",
+      "frenchUniversity": "Università di Bologna",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4158
+      },
+      "programType": "LL.M. in U.S. Legal Studies",
+      "partnershipType": "to_confirm",
+      "specialties": [
+        "U.S. Legal Studies",
+        "International Law",
+        "Technology Law"
+      ],
+      "requiredLevel": "Premier diplôme en droit obtenu hors des États-Unis; parcours également ouvert aux alumni selon UC Law SF.",
+      "applicationYear": "Cycle 2026",
+      "duration": "Au moins 24 crédits sur deux semestres.",
+      "officialLink": "https://www.uclawsf.edu/admissions/llm-admissions/international-partner-institutions/",
+      "shortDescription": "Procédure partenaire séparée sur nomination de l’université italienne.",
+      "admissionConditions": "Nomination par l’établissement d’origine avant le 15 mars, puis candidature UC Law SF.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0",
+          "details": "Tests en ligne non acceptés"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué.",
+      "tuitionCategory": "full_or_unknown",
+      "tuitionDisplay": "Tuition standard de 55 000 USD; environ 8 076 USD de frais et assurance, plus les dépenses de vie. Aucune réduction propre à ce partenaire n’est publiée.",
+      "financialAid": "Bourses générales UC Law SF possibles, sans montant partenaire garanti.",
+      "applicationDeadline": "Priorité bourses: 1er mars; nomination: 15 mars; échéance finale: 31 mai.",
+      "sourceNote": "UC Law SF nomme officiellement l’établissement italien; Bologne est nommée via le Dipartimento di Scienze Politiche e Sociali, et non la faculté de droit; l’accès des juristes doit être confirmé.",
+      "reliabilityStatus": "to_confirm",
+      "notes": "UC Law SF décrit les règles générales de Californie et de New York, sans garantir l’admissibilité individuelle."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Nombre de places",
+        "Avantage financier propre au partenariat"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "roma-tre-uc-law-sf",
+      "frenchUniversityId": "roma-tre",
+      "frenchUniversity": "Università degli Studi Roma Tre",
+      "partnerUniversity": "University of California College of the Law, San Francisco",
+      "partnerCity": "San Francisco",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 37.7806,
+        "lng": -122.4158
+      },
+      "programType": "LL.M. in U.S. Legal Studies",
+      "partnershipType": "to_confirm",
+      "specialties": [
+        "U.S. Legal Studies",
+        "International Law",
+        "Technology Law"
+      ],
+      "requiredLevel": "Premier diplôme en droit obtenu hors des États-Unis; parcours également ouvert aux alumni selon UC Law SF.",
+      "applicationYear": "Cycle 2026",
+      "duration": "Au moins 24 crédits sur deux semestres.",
+      "officialLink": "https://www.uclawsf.edu/admissions/llm-admissions/international-partner-institutions/",
+      "shortDescription": "Procédure partenaire séparée sur nomination de l’université italienne.",
+      "admissionConditions": "Nomination par l’établissement d’origine avant le 15 mars, puis candidature UC Law SF.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "IELTS",
+          "minimumScore": "7.0",
+          "details": "Tests en ligne non acceptés"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué.",
+      "tuitionCategory": "full_or_unknown",
+      "tuitionDisplay": "Tuition standard de 55 000 USD; environ 8 076 USD de frais et assurance, plus les dépenses de vie. Aucune réduction propre à ce partenaire n’est publiée.",
+      "financialAid": "Bourses générales UC Law SF possibles, sans montant partenaire garanti.",
+      "applicationDeadline": "Priorité bourses: 1er mars; nomination: 15 mars; échéance finale: 31 mai.",
+      "sourceNote": "UC Law SF nomme officiellement l’établissement italien; Roma Tre est nommée par UC Law SF, mais aucune confirmation annuelle côté italien n’a été trouvée.",
+      "reliabilityStatus": "to_confirm",
+      "notes": "UC Law SF décrit les règles générales de Californie et de New York, sans garantir l’admissibilité individuelle."
+    },
+    {
+      "partnerCountry": "États-Unis",
+      "continent": "Amérique du Nord",
+      "programLanguage": "Anglais",
+      "applicationProcess": "internal",
+      "attachments": [],
+      "sourceType": "official_university_source",
+      "missingInformation": [
+        "Conditions internes",
+        "Nombre de places",
+        "Montant partenaire"
+      ],
+      "availableSeatsMin": null,
+      "availableSeatsMax": null,
+      "id": "napoli-federico-ii-loyola",
+      "frenchUniversityId": "napoli-federico-ii",
+      "frenchUniversity": "Università di Napoli Federico II",
+      "partnerUniversity": "Loyola Law School, Los Angeles",
+      "partnerCity": "Los Angeles",
+      "partnerState": "California",
+      "partnerCoordinates": {
+        "lat": 34.049,
+        "lng": -118.444
+      },
+      "programType": "Loyola LL.M. – International Partner",
+      "partnershipType": "preferential_treatment",
+      "specialties": [
+        "Bar Track",
+        "U.S. Law"
+      ],
+      "requiredLevel": "Conditions internes Federico II non publiées.",
+      "applicationYear": "Liste partenaire actuelle",
+      "duration": "10 mois sur deux semestres; 24 à 28 unités.",
+      "officialLink": "https://www.lls.edu/llm/ourinternationalpartners",
+      "shortDescription": "Procédure partenaire spéciale Loyola avec bourse possible.",
+      "admissionConditions": "Contacter l’office international Federico II, puis déposer la candidature Loyola.",
+      "languageTests": [
+        {
+          "test": "TOEFL iBT",
+          "minimumScore": "90"
+        },
+        {
+          "test": "Duolingo English Test",
+          "minimumScore": "Accepté; seuil non publié sur la page partenaire"
+        }
+      ],
+      "availableSeatsDisplay": "Non communiqué.",
+      "tuitionCategory": "scholarship_possible",
+      "tuitionDisplay": "Tuition standard 2026-2027 de 73 000 USD; frais obligatoires d’environ 1 026 USD. Montant partenaire non publié.",
+      "financialAid": "Bourse partenaire possible; Loyola attribue aussi des bourses au mérite pouvant atteindre 50 000 USD, sans garantie individuelle.",
+      "applicationDeadline": "1er juin 2026 pour l’automne; 1er octobre pour le printemps 2027.",
+      "sourceNote": "Loyola nomme Federico II dans sa liste actuelle; aucune page italienne équivalente n’a été trouvée.",
+      "reliabilityStatus": "confirmed",
+      "notes": "Le Bar Track vise notamment New York et la Californie, sous décision exclusive des autorités de chaque barreau."
     }
   ]
 }

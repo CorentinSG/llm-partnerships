@@ -1,6 +1,22 @@
 # Italy–United States LL.M. official-source ledger
 
-Checked: 2026-08-02. Only official university sources are accepted for publication.
+Checked: 2026-08-03. Only official university sources are accepted for publication.
+
+## 2026 expanded dataset
+
+The Google Sheets refresh replaces the initial twelve-route baseline. The public directory now contains 22 active or qualified cards across 11 Italian institutions. It excludes the expired Roma Tre–Cardozo call and all reliability 2–3 rows, while keeping pending or one-sided evidence visibly qualified.
+
+- LUISS: [Fordham](https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-partnership-fordham-university), [American WCL](https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-partnership-american-university), [Temple](https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-partnership-temple-university), [UC Law SF](https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-uc-law-san-francisco), and [Suffolk](https://www.luiss.it/en/international/studying-abroad/llm-educational-programmes/llm-educational-program-partnership-suffolk-university)
+- Bocconi: [double-degree network](https://www.unibocconi.it/en/current-students/international-mobility/double-degree-program/dd-network) and [Temple global partnerships](https://law.temple.edu/academics/degrees/llm-foreign-trained/global-partnerships/)
+- Genova: [Loyola](https://giurisprudenza.unige.it/did/progr_internaz_prog_loy) and [Illinois](https://giurisprudenza.unige.it/didatt_progetto_illi)
+- Trento: [double-degree overview](https://www.giurisprudenza.unitn.it/3621/doppio-titolo)
+- Parma: [Widener/Delaware double degree](https://corsi.unipr.it/it/cdlm-giur/doppio-titolo)
+- LUM: [Indiana Maurer](https://www.lum.it/en/indiana-university-maurer-school-of-law/)
+- Firenze: [Boston University exchange-to-LL.M.](https://www.bu.edu/law/admissions-aid/graduate-admissions/how-to-apply/foreign-exchange-students/)
+- Bologna and Roma Tre: [UC Law SF partner institutions](https://www.uclawsf.edu/admissions/llm-admissions/international-partner-institutions/)
+- Napoli Federico II: [Loyola international partners](https://www.lls.edu/llm/ourinternationalpartners)
+
+Public cautions retained in the interface: LUISS–Temple and LUISS–Suffolk await final 2026–2027 approval; Genova–Loyola documents conflict between a 50% and 60% reduction; Parma–Widener excludes access to the Delaware bar; and one-sided partner evidence remains qualified. Every bar statement is attributed to its publishing institution and is not an individual eligibility decision.
 
 | ID | Italian institution | U.S. partner | Official home source | Current evidence |
 |---|---|---|---|---|
