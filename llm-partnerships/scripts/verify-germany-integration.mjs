@@ -386,6 +386,22 @@ try {
     /\$700/,
     "French simulator keeps its existing university-fee default",
   )
+  const frenchSimulator = page.locator("#cost-estimator")
+  await frenchSimulator.getByRole("combobox", { name: "1. Ville" }).click()
+  await page.getByRole("option", { name: "St. Louis, MO", exact: true }).click()
+  await frenchSimulator
+    .getByRole("combobox", { name: "2. Partenariat" })
+    .click()
+  await page
+    .locator('[data-partnership-id="dauphine-saint-louis-university"]')
+    .click()
+  await expectText(
+    frenchSimulator.getByRole("combobox", {
+      name: "École de référence",
+    }),
+    /Saint Louis University School of Law/,
+    "selecting a partnership must synchronize its law-school cost estimate",
+  )
   const frenchOpenLink = page
     .getByRole("link", { name: "Ouvrir", exact: true })
     .first()

@@ -32,6 +32,7 @@ import type { Partnership } from "@/lib/types"
 import { cleanText, translateDataText, type UiLanguage } from "@/lib/text-utils"
 import {
   formatUsd,
+  getCostEstimateForPartnership,
   getCostEstimatesMeta,
   getEstimatesForDisplayCity,
   getPartnershipCostResolutions,
@@ -964,6 +965,19 @@ export function CostSimulator({
   const selectedPartnership = partnershipsInCity.find(
     (partnership) => partnership.id === selectedPartnershipId,
   )
+
+  React.useEffect(() => {
+    if (!selectedPartnership) return
+
+    const partnershipEstimate =
+      getCostEstimateForPartnership(selectedPartnership)
+    if (
+      partnershipEstimate &&
+      cityEstimates.some((estimate) => estimate.id === partnershipEstimate.id)
+    ) {
+      setSelectedEstimateId(partnershipEstimate.id)
+    }
+  }, [selectedPartnership, cityEstimates])
 
   const normalTuition = estimateComponents
     .filter(isTuitionComponent)
